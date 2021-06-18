@@ -1,0 +1,110 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  tags:
+    - ugrad
+  except:
+    - release
+    - master
+  script:
+    - mvn clean compile
+    - mvn package
+  artifacts:
+    when: on_success
+    paths:
+      - target/*.jar
+
+release_build:
+  stage: build
+  tags:
+    - ugrad
+  only:
+    - release
+  script:
+    - mvn clean compile
+    - mvn package -P test
+  artifacts:
+    when: on_success
+    paths:
+      - target/*.jar
+
+master_build:
+  stage: build
+  tags:
+    - ugrad
+  only:
+    - master
+  script:
+    - mvn clean compile
+    - mvn package -P prod
+  artifacts:
+    when: on_success
+    paths:
+      - target/*.jar
+      
+test:
+  stage: test
+  tags:
+    - ugrad
+  script:
+    - mvn verify
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
+DevelopDeploy:
+  stage: deploy
+  tags:
+    - ugrad
+  only:
+    - Develop
+  before_script:
+    - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
+    - eval $(ssh-agent -s)
+    - echo "SSH_KEY" | tr -d '\r' | ssh-add -
+  script:
+    - echo "Connecting to Timberlea..."
+    - echo "SSH_KEY" >> ~/.ssh/gitlab-ci-cd
+    - chmod og-rwx ~/.ssh/gitlab-ci-cd
+    - scp -r -o StrictHostKeyChecking=no "target/HMS-jar-with-dependencies.jar" "${USER_NAME}@${HOST_NAME}:${DEPLOY_DEVELOP}"
+
+TestDeploy:
+  stage: deploy
+  tags:
+    - ugrad
+  only:
+    - release
+  before_script:
+    - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
+    - eval $(ssh-agent -s)
+    - echo "SSH_KEY" | tr -d '\r' | ssh-add -
+  script:
+    - echo "Connecting to Timberlea..."
+    - echo "SSH_KEY" >> ~/.ssh/gitlab-ci-cd
+    - chmod og-rwx ~/.ssh/gitlab-ci-cd
+    - scp -r -o StrictHostKeyChecking=no "target/HMS-jar-with-dependencies.jar" "${USER_NAME}@${HOST_NAME}:${DEPLOY_RELEASE}"
+    
+ProductionDeploy:
+  stage: deploy
+  tags:
+    - ugrad
+  only:
+    - master
+  before_script:
+    - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
+    - eval $(ssh-agent -s)
+    - echo "SSH_KEY" | tr -d '\r' | ssh-add -
+  script:
+    - echo "Connecting to Timberlea..."
+    - echo "SSH_KEY" >> ~/.ssh/gitlab-ci-cd
+    - chmod og-rwx ~/.ssh/gitlab-ci-cd
+    - scp -r -o StrictHostKeyChecking=no "target/HMS-jar-with-dependencies.jar" "${USER_NAME}@${HOST_NAME}:${DEPLOY_MASTER}"
+
+
+
