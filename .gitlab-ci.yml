@@ -104,7 +104,7 @@ ProductionDeploy:
     - echo "Connecting to Timberlea..."
     - echo "$SSH_KEY" >> ~/.ssh/gitlab-ci-cd
     - chmod og-rwx ~/.ssh/gitlab-ci-cd
-    - scp -r -o StrictHostKeyChecking=no "target/HMS-jar-with-dependencies.jar" "${USER_NAME}@${HOST_NAME}:${DEPLOY_MASTER}"
+    - scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  README.md "${USER_NAME}@${HOST_NAME}:/${DEPLOY_MASTER}"
 
 
 
