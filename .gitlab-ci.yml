@@ -67,10 +67,10 @@ DevelopDeploy:
   before_script:
     - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
     - eval $(ssh-agent -s)
-    - echo "SSH_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_KEY" | tr -d '\r' | ssh-add -
   script:
     - echo "Connecting to Timberlea..."
-    - echo "SSH_KEY" >> ~/.ssh/gitlab-ci-cd
+    - echo "$SSH_KEY" >> ~/.ssh/gitlab-ci-cd
     - chmod og-rwx ~/.ssh/gitlab-ci-cd
     - scp -r -o StrictHostKeyChecking=no "target/HMS-jar-with-dependencies.jar" "${USER_NAME}@${HOST_NAME}:${DEPLOY_DEVELOP}"
 
@@ -83,10 +83,10 @@ TestDeploy:
   before_script:
     - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
     - eval $(ssh-agent -s)
-    - echo "SSH_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_KEY" | tr -d '\r' | ssh-add -
   script:
     - echo "Connecting to Timberlea..."
-    - echo "SSH_KEY" >> ~/.ssh/gitlab-ci-cd
+    - echo "$SSH_KEY" >> ~/.ssh/gitlab-ci-cd
     - chmod og-rwx ~/.ssh/gitlab-ci-cd
     - scp -r -o StrictHostKeyChecking=no "target/HMS-jar-with-dependencies.jar" "${USER_NAME}@${HOST_NAME}:${DEPLOY_RELEASE}"
     
@@ -99,10 +99,10 @@ ProductionDeploy:
   before_script:
     - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
     - eval $(ssh-agent -s)
-    - echo "SSH_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_KEY" | tr -d '\r' | ssh-add -
   script:
     - echo "Connecting to Timberlea..."
-    - echo "SSH_KEY" >> ~/.ssh/gitlab-ci-cd
+    - echo "$SSH_KEY" >> ~/.ssh/gitlab-ci-cd
     - chmod og-rwx ~/.ssh/gitlab-ci-cd
     - scp -r -o StrictHostKeyChecking=no "target/HMS-jar-with-dependencies.jar" "${USER_NAME}@${HOST_NAME}:${DEPLOY_MASTER}"
 
