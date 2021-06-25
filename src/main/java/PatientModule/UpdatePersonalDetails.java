@@ -22,7 +22,7 @@ public class UpdatePersonalDetails {
     private void establishConnection(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            System.out.println("successfull JDBC Driver !!!!");
+           // System.out.println("successfull JDBC Driver !!!!");
         }
 
         //handle jdbc connection errors
@@ -35,7 +35,7 @@ public class UpdatePersonalDetails {
         try{
             String hostname="jdbc:mysql://db-5308.cs.Dal.ca:3306/CSCI5308_6_DEVINT";
             connection = DriverManager.getConnection(hostname,"CSCI5308_6_DEVINT_USER","ZD8gnU7BsJR");
-            System.out.println("\nSuccessfull connection to DB ! ! !");
+           // System.out.println("\nSuccessfull connection to DB ! ! !");
             statement=connection.createStatement();
         }
         catch(Exception e){
@@ -71,6 +71,11 @@ public class UpdatePersonalDetails {
         String userID=null;
         String password=null;
 
+        System.out.println("===========================================\n" +
+                "\t\t\t\tPatient Registration\n" +
+                "===========================================\n");
+        System.out.println("Please enter below details\n" +
+                "Note: * fields are mandatory");
         //First Name
         do{
             if(firstName!=null)
@@ -187,6 +192,9 @@ public class UpdatePersonalDetails {
         String providedPassword=null;
         ResultSet resultSet=null;
 
+        System.out.println("===========================================\n" +
+                "\t\t\t\tPatient Login\n" +
+                "===========================================\n");
         establishConnection();
         do{
             if(userID!=null)
