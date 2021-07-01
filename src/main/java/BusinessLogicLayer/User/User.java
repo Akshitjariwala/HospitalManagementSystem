@@ -1,4 +1,4 @@
-package User;
+package BusinessLogicLayer.User;
 
 import java.sql.ResultSet;
 
