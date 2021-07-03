@@ -1,0 +1,7 @@
+1) Created a new table named admission_type for Admission module and inserted admission type data.
+2) Added dummy patient record.
+3) Added disease table and it's data.
+4) Added dummy doctor records.
+5) Added dummy ward records.
+6) Added dummy bed records.
+7) Added bed id.
