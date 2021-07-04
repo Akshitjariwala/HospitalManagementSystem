@@ -9,6 +9,8 @@ public class Admission {
     private String doctorID;
     private String diseaseID;
 
+    public Admission(){};
+
     public Admission(String patientID,int admissionType,int wardID,int bedID,String doctorID,String diseaseID){
         this.patientID = patientID;
         this.admissionType = admissionType;
@@ -18,58 +20,46 @@ public class Admission {
         this.diseaseID = diseaseID;
     }
 
-    // returns the value of patientID.
     public String getPatientID() {
-        return "id";
+        return this.patientID;
     }
-
-    // set the value for the patientID.
     public void setPatientID(String patientID){
+        this.patientID = patientID;
     }
 
-    // returns the value of admissionType.
     public int getAdmissionType() {
-        return 0;
+        return this.admissionType;
     }
-
-    // set the value for the admissionType.
     public void setAdmissionType(int admissionType){
+        this.admissionType = admissionType;
     }
 
-    // returns the value of wardID.
     public int getWardID() {
-        return 0;
+        return this.wardID;
     }
-
-    // set the value for the wardID.
     public void setWardID(int wardID){
+        this.wardID = wardID;
     }
 
-    // returns the value of bedID.
     public int getBedID() {
-        return 0;
+        return this.bedID;
     }
-
-    // set the value for the bedID.
     public void setBedID(int bedID){
+        this.bedID = bedID;
     }
 
-    // returns the value of doctorID.
     public String getDoctorID() {
-        return "id";
+        return this.doctorID;
     }
-
-    // set the value for the doctorID.
     public void setDoctorID(String doctorID){
+        this.doctorID =doctorID;
     }
 
-    // returns the value of diseaseID.
     public String getDiseaseID() {
-        return "id";
+        return this.diseaseID;
     }
-
-    // set the value for the diseaseID.
     public void setDiseaseID(String diseaseID){
+        this.diseaseID =diseaseID;
     }
 
 }

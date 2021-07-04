@@ -4,6 +4,7 @@ import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class AdmissionDAO {
 
@@ -11,7 +12,6 @@ public class AdmissionDAO {
     public static Connection connection = databaseConnection.openDBConnection();
     public static Statement statement;
     public static LocalDate todayDate = LocalDate.now();
-    public static ResultSet result;
 
     static {
         try {
@@ -21,81 +21,155 @@ public class AdmissionDAO {
         }
     }
 
-    /* Fetch Patient data with patientID from the database
-    *  returns patient record with provided patient ID. */
-    public ResultSet getPatient(String patientID)  {
-
-        return result;
+    public String getPatient(String patientID) throws SQLException {
+        String patientName=null;
+        ResultSet result = statement.executeQuery("SELECT * FROM patients WHERE patient_id = '" + patientID + "'");
+        if(result.next()){
+            patientName = result.getString("first_name") + " " + result.getString("last_name");
+        }
+        return patientName;
     }
 
-    /* Fetch admission type with admissionTypeID from the database.
-    *  returns name of Admission type from given ID. */
-    public String getAdmissionType(int admissionTypeID)  {
-        String admissionType=null;
+
+    public String getAdmissionType(int admissionTypeID) throws SQLException {
+        String admissionType = null;
+        ResultSet r = statement.executeQuery("SELECT * FROM admission_type WHERE admission_type_code = '" + admissionTypeID + "'");
+        if (r.next()) {
+            admissionType = r.getString("admission_type");
+        }
         return admissionType;
     }
 
-    /* Fetch all the admission types stored in the database.
-    *  returns ResultSet object with list of Admission Types from database. */
-    public ResultSet getAdmissionTypesList()  {
-        return result;
+    public ArrayList<String> getAdmissionTypesList() throws SQLException {
+        ArrayList<String> type = new ArrayList<>();
+        ResultSet types = statement.executeQuery("SELECT * FROM admission_type");
+
+        while(types.next()){
+            type.add(types.getString("admission_type"));
+        }
+        return type;
     }
 
-    /* Fetch all the disease list stored in the database.
-    *  returns ResultSet object with list of disease from database. */
-    public ResultSet getDiseaseList()  {
-        return result;
+    public ArrayList<String> getDiseaseList() throws SQLException {
+        ArrayList<String> disease = new ArrayList<>();
+        ResultSet diseases = statement.executeQuery("SELECT * FROM disease");
+
+        while(diseases.next()){
+            disease.add(diseases.getString("disease_name"));
+        }
+        return disease;
     }
 
-    /* Fetch disease code with diseaseID from the database.
-    *  returns Disease code associated with provided disease id. */
-    public ResultSet getDisease(int diseaseID)  {
-        return result;
+    public String getDiseaseName(int diseaseID) throws SQLException {
+        String diseaseName = null;
+        ResultSet disease = statement.executeQuery("SELECT * FROM disease WHERE disease_id = '" + diseaseID + "'");
+
+        while(disease.next()){
+            diseaseName = disease.getString("disease_name");
+        }
+
+        return diseaseName;
     }
 
-    /* Fetch all the doctor list stored in the database.
-    *  returns ResultSet object with list of Doctors from database. */
-    public ResultSet getDoctorList()  {
-        return result;
+    public String getDiseaseCode(int diseaseID) throws SQLException {
+        String diseaseCode = null;
+        ResultSet disease = statement.executeQuery("SELECT * FROM disease WHERE disease_id = '" + diseaseID + "'");
+
+        while(disease.next()){
+            diseaseCode = disease.getString("disease_code");
+        }
+        return diseaseCode;
     }
 
-    /* Fetch doctor code with doctorID from the database.
-    *  returns ResultSet object of Doctor associated with provided doctor id. */
-    public ResultSet getDoctor(int doctorID)  {
-        return result;
+    public ArrayList<String> getDoctorList() throws SQLException {
+        ArrayList<String> doctorList = new ArrayList<>();
+        ResultSet doctors = statement.executeQuery("SELECT * FROM doctors");
+
+        while(doctors.next()){
+            doctorList.add(doctors.getString("first_name")+" "+doctors.getString("last_name"));
+        }
+        return doctorList;
     }
 
-    /* Fetch all the ward list stored in the database.
-    *  returns ResultSet object with list of wards. */
-    public ResultSet getWardsList()  {
-        return result;
+    public String getDoctor(int doctorID) throws SQLException {
+        String doctorId = null;
+        ResultSet doctor = statement.executeQuery("SELECT * FROM doctors WHERE id = '" + doctorID + "'");
+
+        while(doctor.next()){
+            doctorId = doctor.getString("doc_id");
+        }
+        return doctorId;
     }
 
-    /* Fetch Ward code with wardID from the database.
-    *  returns Ward name associated with the provided ward id.*/
-    public String getWardCode(int wardID) {
-        String wardCode = null;
+    public String getDoctorName(int doctorID) throws SQLException {
+        String doctorName = null;
+        ResultSet doctor = statement.executeQuery("SELECT * FROM doctors WHERE id = '" + doctorID + "'");
+
+        while(doctor.next()){
+            doctorName = doctor.getString("first_name")+" "+doctor.getString("last_name");
+        }
+        return doctorName;
+    }
+
+    public ArrayList<String> getWardsList() throws SQLException {
+        ArrayList<String> wardList = new ArrayList<String>();
+        ResultSet wards = statement.executeQuery("SELECT * FROM wards");
+
+        while(wards.next()){
+            wardList.add(wards.getString("name"));
+        }
+
+        return wardList;
+    }
+
+    public String getWardCode(int wardID) throws SQLException {
+        String wardCode=null;
+        ResultSet r = statement.executeQuery("SELECT * FROM wards WHERE ward_id = '" + wardID + "'");
+        if (r.next()) {
+            wardCode = r.getString("name");
+        }
         return wardCode;
     }
 
-    /* Fetch all the available beds with isOccupied = 0 from the database.
-    *  returns list of all the available beds as ResultSet object */
-   public ResultSet getAvailableBeds()  {
-       return result;
+    public ArrayList<String> getAvailableBeds() throws SQLException {
+        ArrayList<String> bedList = new ArrayList<String>();
+        ResultSet availableBeds = statement.executeQuery("SELECT * FROM beds WHERE isOccupied = 0");
+
+        while(availableBeds.next()){
+            bedList.add(availableBeds.getString("bed_code"));
+        }
+
+        return bedList;
     }
 
-    /* Fetch Bed code with bedID from the database.
-       returns Bed code associated with bed id. */
-    public String getbedCode(int bedID) {
+    public String getBedCode(int bedID) throws SQLException {
+
         String bedCode = null;
+        ResultSet r = statement.executeQuery("SELECT * FROM beds WHERE bed_id = '" + bedID + "'");
+        if (r.next()) {
+            bedCode = r.getString("bed_code");
+        }
         return bedCode;
     }
 
-    /* Saves the Admission form data stored in Admission object to the database.
-       This method returns 1 if user inserted successfully. */
-    public int saveAdmissionForm(Admission admission)  {
-        int result = 0;
+    public int saveAdmissionForm(Admission admission) throws SQLException {
+
+        int result;
+        PreparedStatement ps =connection.prepareStatement("INSERT INTO admission(patient_id,date_of_admission,admission_type,ward_id,bed_id,doc_id,diesease_code) VALUES(?,?,?,?,?,?,?)");
+
+        ps.setString(1,admission.getPatientID());
+        ps.setDate(2, Date.valueOf(todayDate));
+        ps.setInt(3,admission.getAdmissionType());
+        ps.setInt(4,admission.getWardID());
+        ps.setInt(5,admission.getBedID());
+        ps.setString(6,admission.getDoctorID());
+        ps.setString(7,admission.getDiseaseID());
+
+        result = ps.executeUpdate();
+
+        if(result==1){
+            statement.executeUpdate("UPDATE beds SET isOccupied = 1 WHERE bed_id = "+admission.getBedID());
+        }
         return result;
     }
-
 }
