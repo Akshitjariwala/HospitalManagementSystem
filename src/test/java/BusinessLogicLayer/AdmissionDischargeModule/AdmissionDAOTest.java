@@ -157,7 +157,6 @@ class AdmissionDAOTest {
         bedList.add("10002-5");
         bedList.add("10002-8");
         bedList.add("10002-9");
-        bedList.add("10002-12");
         bedList.add("10002-17");
 
         AdmissionDAO ad = new AdmissionDAO();
