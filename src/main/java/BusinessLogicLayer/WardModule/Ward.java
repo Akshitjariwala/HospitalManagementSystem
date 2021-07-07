@@ -25,7 +25,7 @@ public class Ward {
    * @return wardName
    */
   public String getWardName() {
-    return wardName;
+    return this.wardName;
   }
 
   /**
@@ -43,7 +43,7 @@ public class Ward {
    * @return wardType
    */
   public String getWardType() {
-    return wardType;
+    return this.wardType;
   }
 
   /**
@@ -61,7 +61,7 @@ public class Ward {
    * @return location of the ward
    */
   public String getLocation() {
-    return location;
+    return this.location;
   }
 
   /**
@@ -79,7 +79,7 @@ public class Ward {
    * @return bedType of the given ward
    */
   public String getBedType() {
-    return bedType;
+    return this.bedType;
   }
 
   /**
@@ -97,7 +97,7 @@ public class Ward {
    * @return number of beds
    */
   public int getTotalBeds() {
-    return totalBeds;
+    return this.totalBeds;
   }
 
   /**
