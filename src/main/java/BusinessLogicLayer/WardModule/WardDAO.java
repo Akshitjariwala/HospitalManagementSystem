@@ -28,7 +28,7 @@ public class WardDAO {
     return null;
   }
 
-  public ArrayList<PatientBed> getPatients(int wardId) {
+  public ArrayList<PatientBed> getPatientBed(int wardId) {
     return null;
   }
 }

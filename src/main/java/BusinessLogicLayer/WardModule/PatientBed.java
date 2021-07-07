@@ -3,22 +3,16 @@ package BusinessLogicLayer.WardModule;
 public class PatientBed {
 
   private String patientName;
-  private String bedCode;
-  private String wardName;
-  private String bedType;
-  private int bedId;
+  private Bed bed;
   private String patientId;
 
   public PatientBed() {
 
   }
 
-  public PatientBed(String patientName, String bedCode, String wardName, String bedType, int bedId, String patientId) {
+  public PatientBed(String patientName, Bed bed, String patientId) {
     this.patientName = patientName;
-    this.bedCode = bedCode;
-    this.wardName = wardName;
-    this.bedType = bedType;
-    this.bedId = bedId;
+    this.bed = bed;
     this.patientId = patientId;
   }
 
@@ -41,58 +35,23 @@ public class PatientBed {
   }
 
   /**
-   * Get code of current bed
+   * Get current bed
    *
-   * @return bed code
+   * @return bed
    */
-  public String getBedCode() {
-    return this.bedCode;
+  public Bed getBed() {
+    return this.bed;
   }
 
   /**
-   * Set bed code
+   * Set bed
    *
-   * @param bedCode to be set with bed
+   * @param bed to be set with patient
    */
-  public void setBedCode(String bedCode) {
-    this.bedCode = bedCode;
+  public void setBed(Bed bed) {
+    this.bed = bed;
   }
 
-  /**
-   * Get type of bed
-   *
-   * @return bed type of this bed
-   */
-  public String getBedType() {
-    return this.bedType;
-  }
-
-  /**
-   * Set type of bed
-   *
-   * @param bedType to be set with bed
-   */
-  public void setBedType(String bedType) {
-    this.bedType = bedType;
-  }
-
-  /**
-   * Get ward name under which this bed available
-   *
-   * @return name of ward
-   */
-  public String getWardName() {
-    return this.wardName;
-  }
-
-  /**
-   * Set ward name
-   *
-   * @param wardName to be set with bed
-   */
-  public void setWardName(String wardName) {
-    this.wardName = wardName;
-  }
 
   /**
    * Get patient id of patient who is using this bed
@@ -110,24 +69,6 @@ public class PatientBed {
    */
   public void setPatientId(String patientId) {
     this.patientId = patientId;
-  }
-
-  /**
-   * Get this bed id
-   *
-   * @return bed id
-   */
-  public int getBedId() {
-    return this.bedId;
-  }
-
-  /**
-   * Set bed id
-   *
-   * @param bedId to be set for this bed
-   */
-  public void setBedId(int bedId) {
-    this.bedId = bedId;
   }
 
 }

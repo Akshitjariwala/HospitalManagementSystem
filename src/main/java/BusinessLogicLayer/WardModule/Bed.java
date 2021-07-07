@@ -1,8 +1,9 @@
 package BusinessLogicLayer.WardModule;
 
 public class Bed {
+  private int bedId;
   private String bedCode;
-  private int wardId;
+  private Ward ward;
   private boolean isOccupied;
   private String bedType;
 
@@ -10,11 +11,30 @@ public class Bed {
 
   }
 
-  public Bed(String bedCode, int wardId, boolean isOccupied, String bedType) {
+  public Bed(int bedId, String bedCode, Ward ward, boolean isOccupied, String bedType) {
+    this.bedId = bedId;
     this.bedCode = bedCode;
-    this.wardId = wardId;
+    this.ward = ward;
     this.isOccupied = isOccupied;
     this.bedType = bedType;
+  }
+
+  /**
+   * Get id of bed
+   *
+   * @return bedId
+   */
+  public int getBedId() {
+    return this.bedId;
+  }
+
+  /**
+   * Set bed is
+   *
+   * @param bedId to be set
+   */
+  public void setBedId(int bedId) {
+    this.bedId = bedId;
   }
 
   /**
@@ -36,21 +56,21 @@ public class Bed {
   }
 
   /**
-   * Get ward id of bed
+   * Get ward of this bed
    *
-   * @return wardId
+   * @return ward
    */
-  public int getWardId() {
-    return this.wardId;
+  public Ward getWard() {
+    return this.ward;
   }
 
   /**
-   * Set ward id for bed
+   * Set ward for bed
    *
-   * @param wardId - to be set
+   * @param ward - to be set
    */
-  public void setWardId(int wardId) {
-    this.wardId = wardId;
+  public void setWard(Ward ward) {
+    this.ward = ward;
   }
 
   /**

@@ -7,8 +7,21 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WardTest {
 
   @Test
+  void getWardIdTest() {
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
+    assertEquals(1, ward.getWardId(), "Ward Id is not matching");
+  }
+
+  @Test
+  void setWardIdTest() {
+    Ward ward = new Ward();
+    ward.setWardId(1);
+    assertEquals(1, ward.getWardId(), "Ward Id is not matching");
+  }
+
+  @Test
   void getWardNameTest() {
-    Ward ward = new Ward("WARD A", "COVID", "C Wing", 100, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
     assertEquals("WARD A", ward.getWardName(), "Ward Name is not matching");
   }
 
@@ -21,7 +34,7 @@ public class WardTest {
 
   @Test
   void getWardTypeTest() {
-    Ward ward = new Ward("WARD A", "COVID", "C Wing", 100, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
     assertEquals("COVID", ward.getWardType(), "Ward Type is not matching");
   }
 
@@ -34,7 +47,7 @@ public class WardTest {
 
   @Test
   void getWardLocationTest() {
-    Ward ward = new Ward("WARD A", "COVID", "C Wing", 100, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
     assertEquals("C Wing", ward.getLocation(), "Ward Location is not matching");
   }
 
@@ -47,7 +60,7 @@ public class WardTest {
 
   @Test
   void getTotalBedsTest() {
-    Ward ward = new Ward("WARD A", "COVID", "C Wing", 100, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
     assertEquals(100, ward.getTotalBeds(), "Total Beds in ward is not matching");
   }
 
@@ -60,7 +73,7 @@ public class WardTest {
 
   @Test
   void getBedTypeTest() {
-    Ward ward = new Ward("WARD A", "COVID", "C Wing", 100, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
     assertEquals("General", ward.getBedType(), "Bed Type in ward is not matching");
   }
 

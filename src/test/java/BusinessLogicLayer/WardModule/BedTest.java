@@ -9,7 +9,8 @@ public class BedTest {
 
   @Test
   void getBedCodeTest() {
-    Bed bed = new Bed("10000-1", 1, true, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
+    Bed bed = new Bed(1, "10000-1", ward, true, "General");
     assertEquals("10000-1", bed.getBedCode(), "Bed Code is not matching");
   }
 
@@ -22,20 +23,23 @@ public class BedTest {
 
   @Test
   void getWardIdTest() {
-    Bed bed = new Bed("10000-1", 1, true, "General");
-    assertEquals(1, bed.getWardId(), "Ward is not matching");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
+    Bed bed = new Bed(1, "10000-1", ward, true, "General");
+    assertEquals(ward, bed.getWard(), "Ward is not matching");
   }
 
   @Test
   void setWardIdTest() {
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
     Bed bed = new Bed();
-    bed.setWardId(1);
-    assertEquals(1, bed.getWardId(), "Ward is not matching");
+    bed.setWard(ward);
+    assertEquals(ward, bed.getWard(), "Ward is not matching");
   }
 
   @Test
   void getOccupiedTest() {
-    Bed bed = new Bed("10000-1", 1, true, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
+    Bed bed = new Bed(1, "10000-1", ward, true, "General");
     assertTrue(bed.getOccupied(), "IsOccupied not matching");
   }
 
@@ -48,7 +52,8 @@ public class BedTest {
 
   @Test
   void getBedTypeTest() {
-    Bed bed = new Bed("10000-1", 1, true, "General");
+    Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
+    Bed bed = new Bed(1, "10000-1", ward, true, "General");
     assertEquals("General", bed.getBedType(), "Bed Type is not matching");
   }
 
