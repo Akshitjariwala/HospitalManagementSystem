@@ -23,7 +23,7 @@ public class Bed {
    * @return bedCode
    */
   public String getBedCode() {
-    return "bedCode";
+    return this.bedCode;
   }
 
   /**
@@ -32,6 +32,7 @@ public class Bed {
    * @param bedCode to be set
    */
   public void setBedCode(String bedCode) {
+    this.bedCode = bedCode;
   }
 
   /**
@@ -40,7 +41,7 @@ public class Bed {
    * @return wardId
    */
   public int getWardId() {
-    return 0;
+    return this.wardId;
   }
 
   /**
@@ -49,6 +50,7 @@ public class Bed {
    * @param wardId - to be set
    */
   public void setWardId(int wardId) {
+    this.wardId = wardId;
   }
 
   /**
@@ -57,7 +59,7 @@ public class Bed {
    * @return true if occupied, false other wise
    */
   public boolean getOccupied() {
-    return false;
+    return this.isOccupied;
   }
 
   /**
@@ -66,6 +68,7 @@ public class Bed {
    * @param isOccupied - true if wants to occupied
    */
   public void setOccupied(boolean isOccupied) {
+    this.isOccupied = isOccupied;
   }
 
   /**
@@ -80,7 +83,7 @@ public class Bed {
   /**
    * Set type of bed
    *
-   * @param bedType
+   * @param bedType - type of bed
    */
   public void setBedType(String bedType) {
     this.bedType = bedType;

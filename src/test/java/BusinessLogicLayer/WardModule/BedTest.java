@@ -55,7 +55,7 @@ public class BedTest {
   @Test
   void setBedTypeTest() {
     Bed bed = new Bed();
-    bed.setBedCode("General");
+    bed.setBedType("General");
     assertEquals("General", bed.getBedType(), "Bed Type is not matching");
   }
 }
