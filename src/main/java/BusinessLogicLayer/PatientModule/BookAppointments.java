@@ -53,7 +53,6 @@ public class BookAppointments {
             }
             System.out.println("\n");
 
-
             //Select doctor
             do{
                 if(doctorChoice==0 || doctorChoice!=0)
