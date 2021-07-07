@@ -25,7 +25,7 @@ public class Ward {
    * @return wardName
    */
   public String getWardName() {
-    return "wardName";
+    return wardName;
   }
 
   /**
@@ -34,7 +34,7 @@ public class Ward {
    * @param wardName to be set
    */
   public void setWardName(String wardName) {
-
+    this.wardName = wardName;
   }
 
   /**
@@ -43,7 +43,7 @@ public class Ward {
    * @return wardType
    */
   public String getWardType() {
-    return "wardType";
+    return wardType;
   }
 
   /**
@@ -52,6 +52,7 @@ public class Ward {
    * @param wardType - to be set
    */
   public void setWardType(String wardType) {
+    this.wardType = wardType;
   }
 
   /**
@@ -60,7 +61,7 @@ public class Ward {
    * @return location of the ward
    */
   public String getLocation() {
-    return "location";
+    return location;
   }
 
   /**
@@ -69,6 +70,7 @@ public class Ward {
    * @param location - ward location to be set
    */
   public void setLocation(String location) {
+    this.location = location;
   }
 
   /**
@@ -77,7 +79,7 @@ public class Ward {
    * @return bedType of the given ward
    */
   public String getBedType() {
-    return "bedType";
+    return bedType;
   }
 
   /**
@@ -86,6 +88,7 @@ public class Ward {
    * @param bedType in ward
    */
   public void setBedType(String bedType) {
+    this.bedType = bedType;
   }
 
   /**
@@ -94,7 +97,7 @@ public class Ward {
    * @return number of beds
    */
   public int getTotalBeds() {
-    return 0;
+    return totalBeds;
   }
 
   /**
@@ -103,5 +106,6 @@ public class Ward {
    * @param totalBeds available in ward
    */
   public void setTotalBeds(int totalBeds) {
+    this.totalBeds = totalBeds;
   }
 }
