@@ -1,6 +1,7 @@
 package BusinessLogicLayer.WardModule;
 
 public class Ward {
+  private int wardId;
   private String wardName;
   private String wardType;
   private String location;
@@ -11,12 +12,31 @@ public class Ward {
 
   }
 
-  public Ward(String wardName, String wardType, String location, int totalBeds, String bedType) {
+  public Ward(int wardId, String wardName, String wardType, String location, int totalBeds, String bedType) {
+    this.wardId = wardId;
     this.wardName = wardName;
     this.wardType = wardType;
     this.location = location;
     this.totalBeds = totalBeds;
     this.bedType = bedType;
+  }
+
+  /**
+   * Get unique id of the ward
+   *
+   * @return ward id
+   */
+  public int getWardId() {
+    return this.wardId;
+  }
+
+  /**
+   * Set ward id
+   *
+   * @param wardId to be set
+   */
+  public void setWardId(int wardId) {
+    this.wardId = wardId;
   }
 
   /**
