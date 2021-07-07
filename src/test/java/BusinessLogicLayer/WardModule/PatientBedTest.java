@@ -29,7 +29,7 @@ public class PatientBedTest {
   @Test
   void setPatientIdTest() {
     PatientBed pb = new PatientBed();
-    pb.setPatientName("patient1");
+    pb.setPatientId("patient1");
     assertEquals("patient1", pb.getPatientId(), "Patient Id is not matching");
   }
 

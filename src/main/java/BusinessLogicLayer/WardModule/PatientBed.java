@@ -28,7 +28,7 @@ public class PatientBed {
    * @return name of patient occupied bed
    */
   public String getPatientName() {
-    return "patientName";
+    return this.patientName;
   }
 
   /**
@@ -37,6 +37,7 @@ public class PatientBed {
    * @param patientName to be set with bed
    */
   public void setPatientName(String patientName) {
+    this.patientName = patientName;
   }
 
   /**
@@ -45,7 +46,7 @@ public class PatientBed {
    * @return bed code
    */
   public String getBedCode() {
-    return "bedCode";
+    return this.bedCode;
   }
 
   /**
@@ -54,6 +55,7 @@ public class PatientBed {
    * @param bedCode to be set with bed
    */
   public void setBedCode(String bedCode) {
+    this.bedCode = bedCode;
   }
 
   /**
@@ -62,7 +64,7 @@ public class PatientBed {
    * @return bed type of this bed
    */
   public String getBedType() {
-    return "bedType";
+    return this.bedType;
   }
 
   /**
@@ -71,6 +73,7 @@ public class PatientBed {
    * @param bedType to be set with bed
    */
   public void setBedType(String bedType) {
+    this.bedType = bedType;
   }
 
   /**
@@ -79,7 +82,7 @@ public class PatientBed {
    * @return name of ward
    */
   public String getWardName() {
-    return "wardName";
+    return this.wardName;
   }
 
   /**
@@ -88,6 +91,7 @@ public class PatientBed {
    * @param wardName to be set with bed
    */
   public void setWardName(String wardName) {
+    this.wardName = wardName;
   }
 
   /**
@@ -96,7 +100,7 @@ public class PatientBed {
    * @return patient id
    */
   public String getPatientId() {
-    return "patientId";
+    return this.patientId;
   }
 
   /**
@@ -105,6 +109,7 @@ public class PatientBed {
    * @param patientId of patient
    */
   public void setPatientId(String patientId) {
+    this.patientId = patientId;
   }
 
   /**
@@ -113,7 +118,7 @@ public class PatientBed {
    * @return bed id
    */
   public int getBedId() {
-    return -1;
+    return this.bedId;
   }
 
   /**
@@ -122,6 +127,7 @@ public class PatientBed {
    * @param bedId to be set for this bed
    */
   public void setBedId(int bedId) {
+    this.bedId = bedId;
   }
 
 }
