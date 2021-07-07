@@ -3,6 +3,7 @@
  * @author: Kishan Kahodariya
  * @description: This program handles new patient registration,
  * and also handles login process of patient.
+ * The database access is done using common DatabaseConnection class
  *
  * */
 
@@ -18,12 +19,12 @@ import java.util.Scanner;
 
 public class UpdatePersonalDetails {
 
-    public static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-    public static Connection connection = databaseConnection.openDBConnection();
-    public Statement statement=null;
+    private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
+    private static Connection connection = databaseConnection.openDBConnection();
+    private Statement statement=null;
     private Scanner readInput=new Scanner(System.in);
 
-    //Close Connection
+    //Open Connection
     /*
     private void establishConnection(){
         try{
@@ -81,6 +82,8 @@ public class UpdatePersonalDetails {
         String userID=null;
         String password=null;
 
+
+        System.out.println("=================================\n\tPatient Registration\n=================================");
         //First Name
         do{
             if(firstName!=null)
@@ -184,7 +187,6 @@ public class UpdatePersonalDetails {
             statement.addBatch(query1);
             statement.addBatch(query2);
             statement.executeBatch();
-
         }
         catch (Exception E){
             E.printStackTrace();
@@ -227,10 +229,8 @@ public class UpdatePersonalDetails {
     }
     public static void main(String[] args) {
         UpdatePersonalDetails patient=new UpdatePersonalDetails();
-        //patient.newPatientRegistration();
-        patient.patientLogin();
-       // patient.establishConnection();
-        //patient.closeConnection();
+        patient.newPatientRegistration();
+        //patient.patientLogin();
 
     }
 }
