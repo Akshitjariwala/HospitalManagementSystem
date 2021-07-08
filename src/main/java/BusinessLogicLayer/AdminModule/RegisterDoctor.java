@@ -50,45 +50,136 @@ public class RegisterDoctor {
         System.out.println("============================================================================");
         System.out.println("Please enter the below details");
         System.out.println("Note: * denotes mandatory fields");
-        System.out.println("Medical License Id* :");
-        String medicalLicenseId = inputData.nextLine();
-        doct.setMedicalLicenseId(medicalLicenseId);
-        System.out.println("Last Name* :");
-        String lastName = inputData.nextLine();
-        doct.setLastName(lastName);
-        System.out.println("Middle Name: ");
-        String middleName = inputData.nextLine();
-        doct.setMiddleName(middleName);
-        System.out.println("First Name* :");
-        String firstName = inputData.nextLine();
-        doct.setFirstName(firstName);
-        System.out.println("Email* :");
-        String emailId = inputData.nextLine();
-        doct.setEmailId(emailId);
-        System.out.println("Phone number* :");
-        String phoneNumber = inputData.nextLine();
-        doct.setPhoneNumber(phoneNumber);
-        System.out.println("Specialization*:");
-        String specialization = inputData.nextLine();
-        doct.setSpecialization(specialization);
-        System.out.println("Department* :");
-        String department = inputData.nextLine();
-        doct.setDepartment(department);
-        System.out.println("Experience* :");
-        String experience = inputData.nextLine();
-        doct.setExperience(experience);
-        System.out.println("Password* :");
-        String password = inputData.nextLine();
-        doct.setPassword(password);
+
+        do {
+            System.out.println("Medical License Id* :");
+            String medicalLicenseId = inputData.nextLine();
+            if (medicalLicenseId.matches("^[a-zA-Z0-9_.-]*$")) {
+                doct.setMedicalLicenseId(medicalLicenseId);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getMedicalLicenseId() == null);
+
+        do {
+            System.out.println("Last Name* :");
+            String lastName = inputData.nextLine();
+            if (lastName.matches("[A-Za-z]*")) {
+                doct.setLastName(lastName);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getLastName() == null);
+
+        do {
+            System.out.println("Middle Name* :");
+            String middleName = inputData.nextLine();
+            if (middleName.matches("[A-Za-z]*")) {
+                doct.setMiddleName(middleName);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getMiddleName() == null);
+
+        do {
+            System.out.println("First Name* :");
+            String firstName = inputData.nextLine();
+            if (firstName.matches("[A-Za-z]*")) {
+                doct.setFirstName(firstName);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getFirstName() == null);
+
+        do {
+            System.out.println("Email* :");
+            String emailId = inputData.nextLine();
+            if (emailId.matches("^(.+)@(.+)$")) {
+                doct.setEmailId(emailId);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getEmailId() == null);
+
+        do {
+            System.out.println("Phone number* :");
+            String phoneNumber = inputData.nextLine();
+            if (phoneNumber.matches("\\d{10}")) {
+                doct.setPhoneNumber(phoneNumber);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getPhoneNumber() == null);
+
+        do {
+            System.out.println("Specialization*:");
+            String specialization = inputData.nextLine();
+            if (specialization.matches("[A-Za-z]*")) {
+                doct.setSpecialization(specialization);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getSpecialization() == null);
+
+        do {
+            System.out.println("Department* :");
+            String department = inputData.nextLine();
+
+            if (department.matches("[A-Za-z]*")) {
+                doct.setDepartment(department);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getDepartment() == null);
+
+
+        do {
+            System.out.println("Experience* :");
+            String experience = inputData.nextLine();
+            if (experience.matches("^[0-9]*$")) {
+                doct.setExperience(experience);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getExperience() == null);
+
+        do {
+            System.out.println("Password* :");
+            String password = inputData.nextLine();
+
+            if (password.matches("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" +
+                    "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$")) {
+                doct.setPassword(password);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getPassword() == null);
+
+
         System.out.println("Address* :");
         String address = inputData.nextLine();
         doct.setAddress(address);
-        System.out.println("City* : ");
-        String city = inputData.nextLine();
-        doct.setCity(city);
-        System.out.println("State* :");
-        String state = inputData.nextLine();
-        doct.setState(state);
+
+        do {
+            System.out.println("City* : ");
+            String city = inputData.nextLine();
+
+            if (city.matches("[A-Za-z]*")) {
+                doct.setCity(city);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getCity() == null);
+
+        do {
+            System.out.println("State* :");
+            String state = inputData.nextLine();
+            if (state.matches("[A-Za-z]*")) {
+                doct.setState(state);
+            }else{
+                System.out.println("Please enter valid input:");
+            }
+        }while (doct.getState() == null);
 
         int status = RegisterDoctorDAO.addDoctor(doct);
         if(status ==1 )
@@ -99,8 +190,6 @@ public class RegisterDoctor {
         {
             System.out.println("ERROR while adding details");
         }
-
-
     }
 
     /* The details of the doctor can be updated
@@ -129,9 +218,8 @@ public class RegisterDoctor {
         System.out.println("11. Experience* :" + doct1.getExperience());
         System.out.println("12. Specialization*:" + doct1.getSpecialization());
         System.out.println("13. Department* :" + doct1.getSpecialization());
-        System.out.println("14. Save");
-        System.out.println("15. Exit");
-        System.out.println("Select a number from 1 to 13 to update any record. For any other action select 14 or 15");
+        System.out.println("14. Exit");
+        System.out.println("Select a number from 1 to 13 to update any record. For exit select 14");
 
         int input = scanner.nextInt();
 
@@ -200,6 +288,8 @@ public class RegisterDoctor {
                 System.out.println("Enter Department :");
                 String department = scanner.next();
                 str = "department = " + "'" + department + "'";
+                break;
+            case 14:
                 break;
             default:
                 System.out.println("Invalid Input, Please choose either 1 or 2 ");
