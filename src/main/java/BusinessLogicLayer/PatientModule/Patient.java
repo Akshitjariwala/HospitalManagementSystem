@@ -17,7 +17,7 @@ public class Patient {
     private String password=null;
     private Scanner readInput=new Scanner(System.in);
 
-    public Patient(String firstName, String lastName, String middleName, String emaiID, String phoneNumber, String address, String cityName, String stateName, String emergencyContactName, String emergencyContactNumber, String userID, String password, Scanner readInput) {
+    public Patient(String firstName, String lastName, String middleName, String emaiID, String phoneNumber, String address, String cityName, String stateName, String emergencyContactName, String emergencyContactNumber, String userID, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -30,9 +30,7 @@ public class Patient {
         this.emergencyContactNumber = emergencyContactNumber;
         this.userID = userID;
         this.password = password;
-        this.readInput = readInput;
     }
-
     public Patient(){
 
     }
@@ -83,10 +81,6 @@ public class Patient {
 
     public String getPassword() {
         return password;
-    }
-
-    public Scanner getReadInput() {
-        return readInput;
     }
 
     public String setFirstName() {
