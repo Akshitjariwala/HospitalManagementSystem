@@ -33,7 +33,7 @@ public class AppointmentDAOTest {
   void updateAppointmentStatusTest() {
     Appointment appointment1 = new Appointment(1, "joe999", "janki123", "09/07/2021", "Morning", "In Person", "Pending");
     appointment1.setAppointmentStatus("Confirm");
-    Mockito.when(appointmentDAO.updateAppointmentStatus(1)).thenReturn(true);
-    assertTrue(appointmentDAO.updateAppointmentStatus(1));
+    Mockito.when(appointmentDAO.updateAppointmentStatus(1, "Confirm")).thenReturn(true);
+    assertTrue(appointmentDAO.updateAppointmentStatus(1, "Confirm"));
   }
 }
