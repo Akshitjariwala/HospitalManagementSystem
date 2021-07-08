@@ -21,6 +21,35 @@ public class WardDAO {
     databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
+  public ArrayList<Ward> getWardsList() {
+    ArrayList<Ward> wards = new ArrayList<>();
+    connection = databaseConnection.openDBConnection();
+    String query = "SELECT * FROM wards";
+    PreparedStatement statement = null;
+    try {
+      statement = connection.prepareStatement(query);
+
+      ResultSet rs = statement.executeQuery();
+
+      while (rs.next()) {
+        Ward ward = new Ward();
+        ward.setWardId(rs.getInt("ward_id"));
+        ward.setWardName(rs.getString("name"));
+        ward.setWardType(rs.getString("ward_type"));
+        ward.setLocation(rs.getString("location"));
+        ward.setBedType(rs.getString("bed_type"));
+        ward.setTotalBeds(rs.getInt("total_beds"));
+        wards.add(ward);
+      }
+      return wards;
+    } catch (SQLException sqlException) {
+      sqlException.printStackTrace();
+    } finally {
+      databaseConnection.closeDBConnection();
+    }
+    return new ArrayList<>();
+  }
+
   public Ward getWard(int wardId) {
     connection = databaseConnection.openDBConnection();
     String query = "SELECT * FROM wards WHERE ward_id = ? LIMIT 1";
