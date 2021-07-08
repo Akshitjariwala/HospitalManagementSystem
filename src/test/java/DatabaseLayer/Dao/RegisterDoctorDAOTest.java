@@ -1,7 +1,5 @@
-package BusinessLogicLayer.Dao;
+package DatabaseLayer.Dao;
 
-import BusinessLogicLayer.AdmissionDischargeModule.Admission;
-import BusinessLogicLayer.AdmissionDischargeModule.AdmissionDAO;
 import BusinessLogicLayer.BeanClasses.Doctor;
 import org.junit.jupiter.api.Test;
 
@@ -31,14 +29,10 @@ class RegisterDoctorDAOTest {
         assertEquals("Test1"+" "+"Test2" + " "+ "Test3" +" "+ "Colony"+ " "+ "City"+" "+
                 "2"+" "+"Department"+ " "+ "email@email"+ " "+ "password"+ " "+ "12345"+ " "+ "cardio"+ " "+
                 "State"+" "+ "999999999", doc.getFirstName()+" "+ doc.getMiddleName()+" "+ doc.getLastName()+" "+
-                        doc.getAddress()+" "+ doc.getCity()+" "+ doc.getExperience()+ " "+ doc.getDepartment()+ " "+
+                doc.getAddress()+" "+ doc.getCity()+" "+ doc.getExperience()+ " "+ doc.getDepartment()+ " "+
                 doc.getEmailId()+ " " + doc.getPassword()+ " "+ doc.getMedicalLicenseId()+ " "+ doc.getSpecialization()+" "+
                 doc.getState()+ " "+ doc.getPhoneNumber(), "Test Failed!. Incorrect or No value received.");
 
-    }
-
-    @Test
-    void getDoctor() {
     }
 
     @Test

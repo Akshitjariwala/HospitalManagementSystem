@@ -11,7 +11,7 @@ import BusinessLogicLayer.BeanClasses.Doctor;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import BusinessLogicLayer.Dao.RegisterDoctorDAO;
+import DatabaseLayer.Dao.RegisterDoctorDAO;
 
 public class RegisterDoctor {
     String str = "";

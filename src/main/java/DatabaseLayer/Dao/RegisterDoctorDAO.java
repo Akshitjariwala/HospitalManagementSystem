@@ -4,7 +4,7 @@
  * @description: This program handles doctor registration
  *
  * */
-package BusinessLogicLayer.Dao;
+package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
