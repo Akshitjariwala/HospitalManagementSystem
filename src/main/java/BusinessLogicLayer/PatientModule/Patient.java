@@ -125,11 +125,15 @@ public class Patient {
 
     public String setEmergencyContactName() {
         emergencyContactName=readInput.nextLine();
+        if (emergencyContactName=="")
+            emergencyContactName=null;
         return emergencyContactName;
     }
 
     public String setEmergencyContactNumber() {
         emergencyContactNumber=readInput.nextLine();
+        if (emergencyContactNumber=="")
+            emergencyContactNumber=null;
         return emergencyContactNumber;
     }
 
