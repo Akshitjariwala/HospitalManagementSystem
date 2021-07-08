@@ -270,9 +270,9 @@ public class UpdatePersonalDetails {
                     "VALUES ('"+patient.getUserID()+"','"+patient.getPassword()+"','"+patient.getLastName()+"','"+patient.getFirstName()+"','"+patient.getMiddleName()+"','"+patient.getEmaiID()+"','"+patient.getPhoneNumber()+"','"+patient.getAddress()+"','"+patient.getCityName()+"','"+patient.getStateName()+"','Patient','"+patient.getEmergencyContactName()+"','"+patient.getEmergencyContactNumber()+ "');";
              statement.executeUpdate(query1);
             String query2="INSERT INTO login_cred VALUES ('"+patient.getUserID()+"','"+patient.getPassword()+"','Patient');";
-            //statement.addBatch(query1);
-           // statement.addBatch(query2);
-            //statement.executeBatch();
+            statement.addBatch(query1);
+            statement.addBatch(query2);
+            statement.executeBatch();
         }
         catch (Exception E){
             E.printStackTrace();
