@@ -29,7 +29,7 @@ public class Appointment {
    * @return appointment id
    */
   public int getAppointmentId() {
-    return -1;
+    return this.appointmentId;
   }
 
   /**
@@ -38,6 +38,7 @@ public class Appointment {
    * @param appointmentId to be set
    */
   public void setAppointmentId(int appointmentId) {
+    this.appointmentId = appointmentId;
   }
 
   /**
@@ -46,7 +47,7 @@ public class Appointment {
    * @return patient id
    */
   public String getPatientId() {
-    return "patientId";
+    return this.patientId;
   }
 
   /**
@@ -55,6 +56,7 @@ public class Appointment {
    * @param patientId to be set
    */
   public void setPatientId(String patientId) {
+    this.patientId = patientId;
   }
 
   /**
@@ -63,7 +65,7 @@ public class Appointment {
    * @return doctor id
    */
   public String getDoctorId() {
-    return "doctorId";
+    return this.doctorId;
   }
 
   /**
@@ -72,6 +74,7 @@ public class Appointment {
    * @param doctorId - to be set
    */
   public void setDoctorId(String doctorId) {
+    this.doctorId = doctorId;
   }
 
   /**
@@ -80,7 +83,7 @@ public class Appointment {
    * @return appointment date
    */
   public String getDate() {
-    return "01/01/2021";
+    return this.date;
   }
 
   /**
@@ -89,6 +92,7 @@ public class Appointment {
    * @param date - on which you want to book appointment
    */
   public void setDate(String date) {
+    this.date = date;
   }
 
   /**
@@ -97,7 +101,7 @@ public class Appointment {
    * @return preferred slot
    */
   public String getPreferredSlot() {
-    return "preferredSlot";
+    return this.preferredSlot;
   }
 
   /**
@@ -106,6 +110,7 @@ public class Appointment {
    * @param preferredSlot in ward
    */
   public void setPreferredSlot(String preferredSlot) {
+    this.preferredSlot = preferredSlot;
   }
 
   /**
@@ -114,7 +119,7 @@ public class Appointment {
    * @return type of appointment
    */
   public String getTypeOfAppointment() {
-    return "typeOfAppointment";
+    return this.typeOfAppointment;
   }
 
   /**
@@ -123,6 +128,7 @@ public class Appointment {
    * @param typeOfAppointment available for appointment
    */
   public void setTypeOfAppointment(String typeOfAppointment) {
+    this.typeOfAppointment = typeOfAppointment;
   }
 
   /**
@@ -131,7 +137,7 @@ public class Appointment {
    * @return appointment status
    */
   public String getAppointmentStatus() {
-    return "appointmentStatus";
+    return this.appointmentStatus;
   }
 
   /**
@@ -140,5 +146,6 @@ public class Appointment {
    * @param appointmentStatus for current appointment
    */
   public void setAppointmentStatus(String appointmentStatus) {
+    this.appointmentStatus = appointmentStatus;
   }
 }

@@ -67,7 +67,7 @@ public class AppointmentTest {
   @Test
   void setPreferredSlotTest() {
     Appointment appointment = new Appointment();
-    appointment.setPreferredSlot("08/07/2021");
+    appointment.setPreferredSlot("Morning");
     assertEquals("Morning", appointment.getPreferredSlot(), "Appointment Preferred Slot is not matching");
   }
 
