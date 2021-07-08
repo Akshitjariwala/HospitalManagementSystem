@@ -38,12 +38,12 @@ public class RegisterDoctorDAO {
         int status = 0;
         try {
 
-            String insertQuery = "INSERT INTO  doctors VALUES ('"+ doct.getMedicalLicenseId() +"', '"+ doct.getPassword() +"','"+
+            String insertQuery = "INSERT INTO  doctors VALUES ('"+ doct.getId() +"','"+ doct.getMedicalLicenseId() +"', '"+ doct.getPassword() +"','"+
                     doct.getLastName() +"', '"+ doct.getFirstName() +"','"+ doct.getMiddleName() +"', " +
                     "'"+ doct.getEmailId() +"', '"+ doct.getPhoneNumber() +"' ," +
                     " '"+ doct.getAddress() +"' ,'"+ doct.getCity() +"' , " +
                     "'"+ doct.getState() +"', '"+ doct.getExperience() +"','"+ doct.getSpecialization() +"', " +
-                    "'"+ doct.getDepartment() +"','"+ doct.getId() +"')" ;
+                    "'"+ doct.getDepartment() +"')" ;
 
             status = statement.executeUpdate(insertQuery);  //if successful status should return 1
         }
@@ -64,6 +64,7 @@ public class RegisterDoctorDAO {
             String query1 = "SELECT * from doctors where doc_id = '" + id + "' ";
             ResultSet rs = statement.executeQuery(query1);
             while(rs.next()) {
+                doct.setId(rs.getInt("id"));
                 doct.setMedicalLicenseId(rs.getString("doc_id"));
                 doct.setPassword(rs.getString("password"));
                 doct.setLastName(rs.getString("last_name"));
@@ -77,7 +78,7 @@ public class RegisterDoctorDAO {
                 doct.setExperience(rs.getString("experience_years"));
                 doct.setSpecialization(rs.getString("specialization"));
                 doct.setDepartment(rs.getString("department"));
-                doct.setId(rs.getInt("id"));
+
             }
         }
         catch(Exception e) {
