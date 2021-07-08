@@ -6,7 +6,7 @@ stages:
 build:
   stage: build
   tags:
-    - ugrad
+    - grad
   except:
     - release
     - master
