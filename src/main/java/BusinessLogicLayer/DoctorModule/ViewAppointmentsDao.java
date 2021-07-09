@@ -21,14 +21,16 @@ public class ViewAppointmentsDao {
 		databaseConnection = databaseConnectionFactory.getDatabaseConnection();
 	}
 
-	public ArrayList<Appointment> getAppointmentList(String query) {
+	public ArrayList<Appointment> getAppointmentList(String docId,String status) {
 		// TODO Auto-generated method stub
+		String query="Select * from appointments where doc_id=? and appointment_status=?";
 		ArrayList<Appointment> appointments = new ArrayList<>();
 		connection = databaseConnection.openDBConnection();
 		PreparedStatement statement;
 		try {
 			statement = connection.prepareStatement(query);
-
+			statement.setString(1, docId);
+			statement.setString(2, status);
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
@@ -46,7 +48,7 @@ public class ViewAppointmentsDao {
 		} finally {
 			databaseConnection.closeDBConnection();
 		}
-		return new ArrayList<>();
+		return new ArrayList<Appointment>();
 	}
 }
 

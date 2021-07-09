@@ -7,14 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import BusinessLogicLayer.PatientModule.Patient;
-import BusinessLogicLayer.WardModule.Ward;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
 
 public class ViewPatientsDao {
-
+	String docId;
 	Connection connection = null;
 	IDatabaseConnection databaseConnection;
 	IDatabaseConnectionFactory databaseConnectionFactory;
@@ -26,54 +25,59 @@ public class ViewPatientsDao {
 	}
 
 	public ArrayList<Patient> getPatients(String docId) {
-		// TODO Auto-generated method stub
-		ArrayList<String> patientidlist=getPatientIds(docId);
-		ArrayList<Patient> patientlist=new ArrayList<Patient>();
-		connection = databaseConnection.openDBConnection();
-		String query="Select * from patients where patient_id= ? Limit 1";
-		for(String id:patientidlist)
-		{
-			PreparedStatement statement;
-			try
-			{
-				statement=connection.prepareStatement(query);
-				statement.setString(1, id);
-				ResultSet rs=statement.executeQuery();
-				while(rs.next())
-				{
-					Patient p=new Patient();
-					//Kishan uncomment this after fixing patientid setter
-//					p.setUserID(rs.getString("patient_id"));
-//					p.setAddress(rs.getString("address"));
-//					p.setCityName(rs.getString("city"));
-//					p.setEmaiID()rs.getString("email"));
-//					p.setEmergencyContactName(rs.getString("emg_contact_name"));
-//					p.setEmergencyContactNumber(rs.getString("emg_contact_phone"));
-//					p.setFirstName(rs.getString("first_name"));
-//					p.setLastName(rs.getString("last_name"));
-//					p.setMiddleName(rs.getString("middle_name"));
-//					p.setPhoneNumber(rs.getString("phone_number"));
-//					p.setStateName(rs.getString("state"));
-					patientlist.add(p);				
-					
-				}
-				return patientlist;
 
-			}
-			catch (SQLException sqlException) {
-				sqlException.printStackTrace();
-			} finally {
-				databaseConnection.closeDBConnection();
+		// TODO Auto-generated method stub
+		ArrayList<String> patientidlist=new ArrayList<String>();
+		patientidlist=getPatientIds(docId);
+		if(patientidlist!=null) {
+			ArrayList<Patient> patientlist=new ArrayList<Patient>();
+			connection = databaseConnection.openDBConnection();
+			String query="Select * from patients where patient_id= ? Limit 1";
+			for(String id:patientidlist)
+			{
+				PreparedStatement statement;
+				try
+				{
+					statement=connection.prepareStatement(query);
+					statement.setString(1, id);
+					ResultSet rs=statement.executeQuery();
+					while(rs.next())
+					{
+						Patient p=new Patient();
+						//					Kishan uncomment this after fixing patientid setter
+						p.setUserID(rs.getString("patient_id"));
+						p.setAddress(rs.getString("address"));
+						p.setCityName(rs.getString("city"));
+						p.setEmaiID(rs.getString("email"));
+						p.setEmergencyContactName(rs.getString("emg_contact_name"));
+						p.setEmergencyContactNumber(rs.getString("emg_contact_phone"));
+						p.setFirstName(rs.getString("first_name"));
+						p.setLastName(rs.getString("last_name"));
+						p.setMiddleName(rs.getString("middle_name"));
+						p.setPhoneNumber(rs.getString("phone_number"));
+						p.setStateName(rs.getString("state"));
+						patientlist.add(p);				
+
+					}
+					return patientlist;
+
+				}
+				catch (SQLException sqlException) {
+					sqlException.printStackTrace();
+				} finally {
+					databaseConnection.closeDBConnection();
+				}
 			}
 		}
 
+		return new ArrayList<>();
 
-		return null;
 	}
 	private ArrayList<String> getPatientIds(String docId)
 	{
+		connection = databaseConnection.openDBConnection();
 		ArrayList<String> patientIdlist=new ArrayList<String>();
-		String query = "SELECT * FROM patients_doctors_mapping where doc_id=? Limit 1";
+		String query = "SELECT * FROM patients_doctors_mapping where doc_id=?";
 		PreparedStatement statement;
 		try {
 			statement = connection.prepareStatement(query);
@@ -89,7 +93,7 @@ public class ViewPatientsDao {
 		} finally {
 			databaseConnection.closeDBConnection();
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 

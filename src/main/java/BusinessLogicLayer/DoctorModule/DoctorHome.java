@@ -12,7 +12,7 @@ public class DoctorHome {
 	{
 		Scanner sc=new Scanner(System.in);
 		System.out.println("=================================================");
-		System.out.println("Welcome Doctor"+"/t"+this.docId);
+		System.out.println("Welcome Doctor"+"\t"+this.docId);
 		System.out.println("=================================================");
 		do
 		{
@@ -25,6 +25,7 @@ public class DoctorHome {
 			if (choice > 0 && choice <= 4) {
 				switch (choice) {
 				case 1:	
+
 					System.out.println("Enter appointment status");
 					String appointmentstatus=sc.next();
 					ViewAppointments v1=new ViewAppointments(this.docId,appointmentstatus);
@@ -34,13 +35,19 @@ public class DoctorHome {
 
 					break;
 				case 2:
-					
+					ViewPatients viewpatients=new ViewPatients(this.docId);
+					boolean flag2=viewpatients.viewAllPatients();
+					if(flag2==false) 
+						System.out.println("Try a different option");
+
+
+
 					break;
 				case 3:
 					break;
 				case 4:
 					System.exit(1);// exit()
-					
+
 				}
 			} else {
 				System.out.printf("%n");
@@ -53,5 +60,9 @@ public class DoctorHome {
 
 		}while(true);
 	}
-
+	public static void main(String args[])
+	{
+		DoctorHome doc=new DoctorHome("12345");
+		doc.doctorHomePage();
+	}
 }

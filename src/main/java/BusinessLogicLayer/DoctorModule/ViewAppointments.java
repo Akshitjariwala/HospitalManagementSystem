@@ -20,8 +20,7 @@ public class ViewAppointments {
 	  public boolean viewAllAppointments() {
 		// TODO Auto-generated method stub
 		ArrayList<Appointment> appointments=new ArrayList<Appointment>();
-		String query="Select * from appointments where docid="+this.docId+"and appointment_status="+this.status;
-		appointments=vdao.getAppointmentList(query);
+		appointments=vdao.getAppointmentList(this.docId,status);
 		System.out.println("=================================================");
 		System.out.println("\t\t\t\tYour appointments\t\t\t\t");
 		System.out.println("=================================================");
