@@ -77,6 +77,4 @@ public class PatientTest {
         Patient patient =new Patient();
         assertEquals("Qawsedzx@234",patient.getPassword(),"getPasswordTest Failed : Incorrect value or False value received ! ! !");
     }
-
-
 }

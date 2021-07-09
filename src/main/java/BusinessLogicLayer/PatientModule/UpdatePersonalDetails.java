@@ -279,44 +279,12 @@ public class UpdatePersonalDetails {
         }
     }
 
-    public void patientLogin(){
-        String userID=null;
-        String password=null;
-        String providedPassword=null;
-        ResultSet resultSet=null;
-
-        System.out.println("===========================================\n" +
-                "\t\t\t\tPatient Login\n" +
-                "===========================================\n");
-        do{
-            if(userID!=null || password!=null)
-                System.out.println("*** Invalid user ID or Password ***");
-
-            System.out.println("User ID:");
-            userID=readInput.nextLine();
-            System.out.println("Password:");
-            password=readInput.nextLine();
-
-            try{
-                statement=connection.createStatement();
-                resultSet=statement.executeQuery("SELECT password FROM login_cred WHERE userid='"+userID+"';");
-                while (resultSet.next()){
-                    providedPassword=resultSet.getString(1);
-                }
-            }
-            catch (Exception E){
-                E.printStackTrace();
-            }
-        }while (!password.equals(providedPassword));
-        System.out.println("Welcome "+userID);
-    }
 
 
     public static void main(String[] args) {
         UpdatePersonalDetails updatePersonalDetails=new UpdatePersonalDetails();
-       // updatePersonalDetails.newPatientRegistration();
-        System.out.println("====================");
-        updatePersonalDetails.patientLogin();
+        updatePersonalDetails.newPatientRegistration();
+
     }
 }
 
