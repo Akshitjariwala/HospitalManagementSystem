@@ -133,7 +133,81 @@ public class BookAppointments {
     }
 
     private void changeAppointmentDetails(){
+        System.out.println("Enter your choice:");
+        int updateChoice=readInput.nextInt();
+        try {
+            switch (updateChoice) {
+                case 2:
+                    displayDoctorList();
+                    Boolean doctorFlag=false;
+                    do{
+                        if(doctorChoice!=0 || doctorFlag==true)
+                            System.err.println("*** Please enter correct doctor prefenence ***\n");
 
+                        System.out.println("Please enter new doctor: ");
+                        doctorChoice=readInput.nextInt();
+                        doctorFlag=true;
+                    }while (!(doctorChoice>0  && doctorChoice<doctorList.size()));
+                    appointmentWithDoctor.setDoctorName(doctorList.get(doctorChoice-1));
+                    displayAppointmentDetails();
+                    break;
+
+                case 3:
+
+                    Boolean dateFlag=false;
+                    do{
+                        if(date!=null || dateFlag==true)
+                            System.err.println("*** Please enter correct Date of Appointment  ***\n");
+
+                        System.out.println("Please enter new Date: ");
+                        date= readInput.next();
+                        dateFlag=true;
+                    }while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([./-])(0[1-9]|1[012])([./-])(19|20)\\d\\d$"));
+                    appointmentWithDoctor.setAppointmentDate(date);
+                    displayAppointmentDetails();
+                    break;
+
+                case 4:
+                    System.out.println("New Time Slot 1)Morning 2) Afternoon 3) Evening:");
+                    do{
+                        if(timeSlotChoice!=0)
+                            System.err.println("*** Please enter correct Time Slot ***\n");
+
+                        System.out.println("Preferred Time Slot 1)Morning 2) Afternoon 3) Evening:");
+                        timeSlotChoice=readInput.nextInt();
+                    }while (!(timeSlotChoice==1 || timeSlotChoice==2 || timeSlotChoice==3));
+                    appointmentWithDoctor.setTimeSlot(timeSlotList.get(timeSlotChoice-1));
+                    displayAppointmentDetails();
+                    break;
+
+                case 5:
+                    System.out.println("Type of appointment 1)In Person 2) Online Consultation:");
+                    Boolean appointmentFlag=false;
+                    do{
+                        if(appointment!=0 || appointmentFlag==true)
+                            System.err.println("*** Please enter correct Appointment Type ***\n");
+
+                        System.out.println("Change Appointment Type: ");
+                        appointment=readInput.nextInt();
+                        appointmentFlag=true;
+                    }while (!(appointment>0 && appointment<3));
+                    appointmentWithDoctor.setTypeOfAppointment(typeOfAppointmenList.get(appointment-1));
+                    displayAppointmentDetails();
+                    break;
+
+                case 6:
+                    saveAppointment(appointmentWithDoctor.getPatientName(),appointmentWithDoctor.getDoctorName());
+                    break;
+
+                default:
+                    System.err.println("Wrong Input");
+                    changeAppointmentDetails();
+                    break;
+            }
+        }
+        catch (SQLException E){
+            System.err.println("Sql ERROR !!!");
+        }
     }
 
     private void saveAppointment(String patient,String doctor){
