@@ -1,5 +1,6 @@
 package BusinessLogicLayer.WardModule;
 
+import DatabaseLayer.ActionDatabase.Admin.ManageWardDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,19 +12,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WardDAOTest {
 
-  private WardDAO wardDAO;
+  private ManageWardDatabase manageWardDatabase;
 
   @BeforeEach
   void setup() {
-    wardDAO = Mockito.mock(WardDAO.class);
+    manageWardDatabase = Mockito.mock(ManageWardDatabase.class);
   }
 
   @Test
   void getWardTest() {
     Ward ward = new Ward(1, "WARD A", "COVID", "C Wing", 100, "General");
 
-    Mockito.when(wardDAO.getWard(1)).thenReturn(ward);
-    assertEquals(ward.getWardName(), wardDAO.getWard(1).getWardName(), "Ward is not matching");
+    Mockito.when(manageWardDatabase.getWard(1)).thenReturn(ward);
+    assertEquals(ward.getWardName(), manageWardDatabase.getWard(1).getWardName(), "Ward is not matching");
   }
 
   @Test
@@ -33,8 +34,8 @@ public class WardDAOTest {
     Bed bed2 = new Bed(1, "10002-12", ward, true, "ICU");
     ArrayList<Bed> bedArrayList = new ArrayList<>(Arrays.asList(bed1, bed2));
 
-    Mockito.when(wardDAO.getWardBeds(1)).thenReturn(bedArrayList);
-    assertEquals(wardDAO.getWardBeds(1).size(), bedArrayList.size(), "No. of Bed in ward is not matching");
+    Mockito.when(manageWardDatabase.getWardBeds(1)).thenReturn(bedArrayList);
+    assertEquals(manageWardDatabase.getWardBeds(1).size(), bedArrayList.size(), "No. of Bed in ward is not matching");
   }
 
   @Test
@@ -48,7 +49,7 @@ public class WardDAOTest {
     PatientBed pb2 = new PatientBed("John Due", bed1, "patient2");
     ArrayList<PatientBed> patientBedArrayList = new ArrayList<>(Arrays.asList(pb1, pb2));
 
-    Mockito.when(wardDAO.getPatientBed(1)).thenReturn(patientBedArrayList);
-    assertEquals(wardDAO.getPatientBed(1).size(), patientBedArrayList.size(), "No. of Patient-Bed in ward is not matching");
+    Mockito.when(manageWardDatabase.getPatientBed(1)).thenReturn(patientBedArrayList);
+    assertEquals(manageWardDatabase.getPatientBed(1).size(), patientBedArrayList.size(), "No. of Patient-Bed in ward is not matching");
   }
 }

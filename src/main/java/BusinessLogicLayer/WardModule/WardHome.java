@@ -1,25 +1,13 @@
 package BusinessLogicLayer.WardModule;
 
-import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
-import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
-import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
+import DatabaseLayer.ActionDatabase.Admin.ManageWardDatabase;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class WardHome {
-
-  Connection connection = null;
-  IDatabaseConnection databaseConnection;
-  IDatabaseConnectionFactory databaseConnectionFactory;
-  WardDAO wardDAO;
+public class WardHome extends ManageWardDatabase implements IWardActions {
 
   public WardHome() {
-    databaseConnectionFactory = new DatabaseConnectionFactory();
-    databaseConnection = databaseConnectionFactory.getDatabaseConnection();
-    wardDAO = new WardDAO();
   }
 
   public static void main(String[] args) {
@@ -76,14 +64,17 @@ public class WardHome {
     } while (flag == 0);
   }
 
+  @Override
   public void checkBedAvailability() {
 
   }
 
+  @Override
   public void addNewWards() {
 
   }
 
+  @Override
   public void checkPatientWiseBedDetails() {
     System.out.println("==================================================");
     System.out.println("\t\t\t\tPatient-wise Bed Details\t\t\t\t");
@@ -92,13 +83,13 @@ public class WardHome {
     int wardId = -1;
     do {
       if (wardId == -1) {
-        wardId = displayWard();
+        wardId = getSelectedWard();
         System.out.println(" Fetching Details... ");
       }
     } while (wardId == -1);
 
     if (wardId != -1) {
-      ArrayList<PatientBed> patientBeds = wardDAO.getPatientBed(wardId);
+      ArrayList<PatientBed> patientBeds = getPatientBed(wardId);
       if (patientBeds.size() != 0) {
         System.out.println("================================================================");
         System.out.println("\t\t\t\t\tPatients with Occupied Beds\t\t\t\t\t");
@@ -115,7 +106,8 @@ public class WardHome {
     }
   }
 
-  public int displayWard() {
+  @Override
+  public int getSelectedWard() {
     int flag = 0;
     int wardId = -1;
     do {
@@ -124,7 +116,7 @@ public class WardHome {
 
       System.out.println(" Select a ward first to get Patient-wise Bed Details ");
       System.out.println(" Loading... ");
-      ArrayList<Ward> result = wardDAO.getWardsList();
+      ArrayList<Ward> result = getWardsList();
       System.out.printf("%n");
       System.out.printf("%-10s %-10s %-10s%n", "Ward Id", " | ", "Ward Name");
       System.out.println("=====================================");
