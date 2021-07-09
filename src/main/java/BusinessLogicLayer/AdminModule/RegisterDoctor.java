@@ -182,12 +182,9 @@ public class RegisterDoctor {
         }while (doct.getState() == null);
 
         int status = RegisterDoctorDAO.addDoctor(doct);
-        if(status ==1 )
-        {
+        if(status ==1 ) {
             System.out.println("Doctor details added successfully");
-        }
-        else
-        {
+        } else {
             System.out.println("ERROR while adding details");
         }
     }

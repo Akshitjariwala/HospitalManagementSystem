@@ -52,13 +52,5 @@ public class Wards {
         this.wardType = wardType;
     }
 
-    public String getAdditionalDetails() {
-        return additionalDetails;
-    }
-    public void setAdditionalDetails(String additionalDetails) {
-        this.additionalDetails = additionalDetails;
-    }
-
-
 
 }
