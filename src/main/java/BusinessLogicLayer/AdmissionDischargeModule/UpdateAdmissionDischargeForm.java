@@ -1,4 +1,4 @@
-package AdmissionDischargeModule;
+package BusinessLogicLayer.AdmissionDischargeModule;
 
 public class UpdateAdmissionDischargeForm {
 }
