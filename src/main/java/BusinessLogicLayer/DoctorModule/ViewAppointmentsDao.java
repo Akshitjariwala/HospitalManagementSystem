@@ -6,9 +6,9 @@ import BusinessLogicLayer.AdminModule.Appointment;
 
 public class ViewAppointmentsDao {
 
-	public boolean getAppointmentList() {
+	public ArrayList<Appointment> getAppointmentList(String query) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 }
