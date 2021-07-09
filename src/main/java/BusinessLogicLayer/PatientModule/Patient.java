@@ -83,67 +83,56 @@ public class Patient {
         return password;
     }
 
-    public String setFirstName() {
-        firstName=readInput.nextLine();
-        return firstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String setLastName() {
-        lastName=readInput.nextLine();
-        return lastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String setMiddleName() {
-        middleName=readInput.nextLine();
-        return middleName;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
-    public String setEmaiID() {
-        emaiID=readInput.nextLine();
-        return emaiID;
+    public void setEmaiID(String emaiID) {
+        this.emaiID = emaiID;
     }
 
-    public String setPhoneNumber() {
-        phoneNumber=readInput.nextLine();
-        return phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String setAddress() {
-        address=readInput.nextLine();
-        return address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String setCityName() {
-        cityName=readInput.nextLine();
-        return cityName;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
-    public String setStateName() {
-        stateName=readInput.nextLine();
-        return stateName;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
-    public String setEmergencyContactName() {
-        emergencyContactName=readInput.nextLine();
-        if (emergencyContactName=="")
-            emergencyContactName=null;
-        return emergencyContactName;
+    public void setEmergencyContactName(String emergencyContactName) {
+        this.emergencyContactName = emergencyContactName;
     }
 
-    public String setEmergencyContactNumber() {
-        emergencyContactNumber=readInput.nextLine();
-        if (emergencyContactNumber=="")
-            emergencyContactNumber=null;
-        return emergencyContactNumber;
+    public void setEmergencyContactNumber(String emergencyContactNumber) {
+        this.emergencyContactNumber = emergencyContactNumber;
     }
 
-    public String setUserID() {
-        userID=readInput.nextLine();
-        return userID;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
-    public String setPassword() {
-        password=readInput.nextLine();
-        return password;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    public void setReadInput(Scanner readInput) {
+        this.readInput = readInput;
+    }
+
 }

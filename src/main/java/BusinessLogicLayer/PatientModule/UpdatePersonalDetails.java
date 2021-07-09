@@ -56,8 +56,9 @@ public class UpdatePersonalDetails {
                 System.out.println("*** Please enter your first Name ***");
 
             System.out.println("First Name *:");
-            firstName=patient.setFirstName();
+            firstName=readInput.nextLine();
         }while (!firstName.matches("[A-Za-z]+"));
+        patient.setFirstName(firstName);
 
         //Last Name
         do{
@@ -65,12 +66,14 @@ public class UpdatePersonalDetails {
                 System.out.println("*** Please enter your last Name ***");
 
             System.out.println("Last Name *:");
-            lastName=patient.setLastName();
+            lastName=readInput.nextLine();
         }while (!lastName.matches("[A-Za-z]+"));
+        patient.setLastName(lastName);
 
         //Middle Name
         System.out.println("Middle Name:");
-        middleName=patient.setMiddleName();
+        middleName=readInput.nextLine();
+        patient.setMiddleName(middleName);
 
         //Email
         do{
@@ -78,20 +81,24 @@ public class UpdatePersonalDetails {
                 System.out.println("*** Please enter correct Email ID ***");
 
             System.out.println("Email ID *:");
-            emaiID=patient.setEmaiID();
+            emaiID=readInput.nextLine();
         }while (!emaiID.matches("^(.+)@(.+)$"));
+        patient.setEmaiID(emaiID);
+
         //Phone Number
         do{
             if(phoneNumber!=null)
                 System.out.println("*** Please enter correct number ***");
 
             System.out.println("Contact Number *:");
-            phoneNumber=patient.setPhoneNumber();
+            phoneNumber=readInput.nextLine();
         }while (!phoneNumber.matches("^\\d+$"));
+        patient.setPhoneNumber(phoneNumber);
 
         //Address
         System.out.println("Address:");
-        address=patient.setAddress();
+        address=readInput.nextLine();
+        patient.setAddress(address);
 
         //City
         do{
@@ -99,8 +106,9 @@ public class UpdatePersonalDetails {
                 System.out.println("*** Please enter your city ***");
 
             System.out.println("City *:");
-            cityName=patient.setCityName();
+            cityName=readInput.nextLine();
         }while (!cityName.matches("[A-Za-z]+"));
+        patient.setCityName(cityName);
 
         //State
         do{
@@ -108,14 +116,17 @@ public class UpdatePersonalDetails {
                 System.out.println("*** Please enter your State ***");
 
             System.out.println("State *:");
-            stateName=patient.setStateName();
+            stateName=readInput.nextLine();
         }while (!stateName.matches("[A-Za-z]+"));
+        patient.setStateName(stateName);
 
         //Emergency Contact Details
         System.out.println("Emergency Contact Name:");
-        emergencyContactName=patient.setEmergencyContactName();
+        emergencyContactName=readInput.nextLine();
+        patient.setEmergencyContactName(emergencyContactName);
         System.out.println("Emergency Contact Number:");
-        emergencyContactNumber=patient.setEmergencyContactNumber();
+        emergencyContactNumber=readInput.nextLine();
+        patient.setEmergencyContactNumber(emergencyContactNumber);
 
 
         //User ID
@@ -124,8 +135,9 @@ public class UpdatePersonalDetails {
                 System.out.println("*** Please enter your user ID ***");
 
             System.out.println("User ID *:");
-            userID=patient.setUserID();
+            userID=readInput.nextLine();
         }while (!stateName.matches("[A-Za-z0-9]+"));
+        patient.setUserID(userID);
 
         //Password
         do{
@@ -136,8 +148,9 @@ public class UpdatePersonalDetails {
                         "Must be 8 to 20 characters ***");
 
             System.out.println("Password *:");
-            stateName=patient.setPassword();
-        }while (!stateName.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&()=+])(?=.*\\S+$).{8,20}$"));
+            password=readInput.nextLine();
+        }while (!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&()=+])(?=.*\\S+$).{8,20}$"));
+        patient.setPassword(password);
 
         displaynewPatientdetails();
 
@@ -169,82 +182,91 @@ public class UpdatePersonalDetails {
 
                 case 1:
                     System.out.println("Enter new Last Name: ");
-                    lastName = patient.setLastName();
+                    lastName = readInput.next();
+                    patient.setLastName(lastName);
                     displaynewPatientdetails();
                     break;
 
                 case 2:
                     System.out.println("Enter new First Name: ");
-                    firstName = patient.setFirstName();
-                    
+                    firstName = readInput.next();
+                    patient.setFirstName(firstName);
                     displaynewPatientdetails();
                     break;
 
                 case 3:
                     System.out.println("Enter new Middle Name: ");
-                    middleName = patient.setMiddleName();
-                    
+                    middleName = readInput.next();
+                    patient.setMiddleName(middleName);
                     displaynewPatientdetails();
                     break;
 
                 case 4:
                     System.out.println("Enter new Email: ");
-                    emaiID = patient.setEmaiID();
+                    emaiID =readInput.next();
+                    patient.setEmaiID(emaiID);
                     
                     displaynewPatientdetails();
                     break;
 
                 case 5:
                     System.out.println("Enter new Phone Number: ");
-                    phoneNumber = patient.setPhoneNumber();
+                    phoneNumber = readInput.next();
+                    patient.setPhoneNumber(phoneNumber);
                     displaynewPatientdetails();
                     break;
 
                 case 6:
                     System.out.println("Enter new Emergency Contact Name: ");
-                    emergencyContactName = patient.setEmergencyContactName();
+                    emergencyContactName = readInput.next();
+                    patient.setEmergencyContactName(emergencyContactName);
                     
                     displaynewPatientdetails();
                     break;
 
                 case 7:
                     System.out.println("Enter new Emergency Contact Number: ");
-                    emergencyContactNumber = patient.setEmergencyContactNumber();
+                    emergencyContactNumber = readInput.next();
+                    patient.setEmergencyContactNumber(emergencyContactNumber);
                     
                     displaynewPatientdetails();
                     break;
 
                 case 8:
                     System.out.println("Enter new Address: ");
-                    address = patient.setAddress();
-                    
+                    address =readInput.next();
+                    patient.setAddress(address);
                     displaynewPatientdetails();
                     break;
 
                 case 9:
                     System.out.println("Enter new City: ");
-                    cityName = patient.setCityName();
+                    cityName = readInput.next();
+                    patient.setCityName(cityName);
                     
                     displaynewPatientdetails();
                     break;
 
                 case 10:
                     System.out.println("Enter new State: ");
-                    stateName = patient.setStateName();
+                    stateName = readInput.next();
+                    patient.setStateName(stateName);
                     
                     displaynewPatientdetails();
                     break;
 
                 case 11:
                     System.out.println("Enter new UserID: ");
-                    userID = patient.setUserID();
+                    userID = readInput.next();
+                    patient.setUserID(userID);
                     
                     displaynewPatientdetails();
                     break;
 
                 case 12:
                     System.out.println("Enter new Password: ");
-                    password = patient.setPassword();
+                    password =readInput.next();
+                    patient.setPassword(password);
                     
                     displaynewPatientdetails();
                     break;
@@ -313,9 +335,8 @@ public class UpdatePersonalDetails {
 
     public static void main(String[] args) {
         UpdatePersonalDetails updatePersonalDetails=new UpdatePersonalDetails();
-       // updatePersonalDetails.newPatientRegistration();
-        System.out.println("====================");
-        updatePersonalDetails.patientLogin();
+        updatePersonalDetails.newPatientRegistration();
+
     }
 }
 
