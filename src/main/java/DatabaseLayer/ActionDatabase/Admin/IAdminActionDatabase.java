@@ -5,4 +5,6 @@ public interface IAdminActionDatabase {
   IManageWardDatabase manageWard();
 
   IAdmissionDischargeDatabase admissionDischarge();
+
+  IManageAppointmentDatabase manageAppointments();
 }

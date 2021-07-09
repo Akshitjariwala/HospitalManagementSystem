@@ -4,11 +4,16 @@ public class AdminActionDatabase implements IAdminActionDatabase {
 
   @Override
   public IManageWardDatabase manageWard() {
-    return null;
+    return new ManageWardDatabase();
   }
 
   @Override
   public IAdmissionDischargeDatabase admissionDischarge() {
     return null;
+  }
+
+  @Override
+  public IManageAppointmentDatabase manageAppointments() {
+    return new ManageAppointmentDatabase();
   }
 }
