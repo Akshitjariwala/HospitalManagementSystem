@@ -6,12 +6,12 @@ public class Admission {
     private int admissionType;
     private int wardID;
     private int bedID;
-    private String doctorID;
+    private int doctorID;
     private String diseaseID;
 
     public Admission(){};
 
-    public Admission(String patientID,int admissionType,int wardID,int bedID,String doctorID,String diseaseID){
+    public Admission(String patientID,int admissionType,int wardID,int bedID,int doctorID,String diseaseID){
         this.patientID = patientID;
         this.admissionType = admissionType;
         this.wardID = wardID;
@@ -48,10 +48,10 @@ public class Admission {
         this.bedID = bedID;
     }
 
-    public String getDoctorID() {
+    public int getDoctorID() {
         return this.doctorID;
     }
-    public void setDoctorID(String doctorID){
+    public void setDoctorID(int doctorID){
         this.doctorID =doctorID;
     }
 

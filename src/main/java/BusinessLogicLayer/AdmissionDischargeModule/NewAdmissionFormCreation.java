@@ -344,15 +344,14 @@ public class NewAdmissionFormCreation {
             }
             System.out.printf("%n");
             System.out.printf("Enter Selection\t\t: ");
-            String doctorID = userInput.nextLine();
+            int docID = userInput.nextInt();
             totalRows--;
-            String regex = "[1-" + totalRows + "]";
+  /*          String regex = "[1-" + totalRows + "]";
             Pattern p = Pattern.compile(regex);
-            Matcher m = p.matcher(doctorID);
-            if(m.find()){
-                doctorName = admissionDao.getDoctorName(Integer.parseInt(doctorID));
-                doctorID = admissionDao.getDoctor(Integer.parseInt(doctorID));
-                admission.setDoctorID(doctorID);
+            Matcher m = p.matcher(doctorID);*/
+            if(docID<=totalRows && docID>0){
+                doctorName = admissionDao.getDoctorName(docID);
+                admission.setDoctorID(admissionDao.getDoctor(docID));
                 flag = 1;
             }else{
                     System.out.printf("%n");
