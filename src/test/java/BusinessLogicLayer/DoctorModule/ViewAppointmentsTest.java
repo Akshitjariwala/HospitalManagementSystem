@@ -23,23 +23,28 @@ class ViewAppointmentsTest {
 	@Test
 	void viewappointments_confirmed() {
 		ViewAppointments v1=new ViewAppointments("janki123","CONFIRM");
+		viewappointment.docId=v1.docId;
+		viewappointment.status=v1.status;
 	    Mockito.when(viewappointment.viewAllAppointments()).thenReturn(true);
 
-		assertEquals(false,v1.viewAllAppointments());
+		assertEquals(true, Mockito.when(viewappointment.viewAllAppointments()).thenReturn(true));
 		
 	}
 	@Test
 	void viewappointments_pending() {
 		ViewAppointments v1=new ViewAppointments("janki123","Pending");
-	    Mockito.when(viewappointment.viewAllAppointments()).thenReturn(true);
-		assertEquals(false, v1.viewAllAppointments());
+		viewappointment.docId=v1.docId;
+		viewappointment.status=v1.status;
+		assertEquals(true,Mockito.when(viewappointment.viewAllAppointments()).thenReturn(true));
+
 	}
 	@Test
 	void viewappointments_NoAppointmentfound() {
 		ViewAppointments v1=new ViewAppointments("janki1234","CONFIRM");
-	    Mockito.when(viewappointment.viewAllAppointments()).thenReturn(false);
+		viewappointment.docId=v1.docId;
+		viewappointment.status=v1.status;
+		assertEquals(false,Mockito.when(viewappointment.viewAllAppointments()).thenReturn(false));
 
-		assertEquals(false,v1.viewAllAppointments());
 	}
 
 

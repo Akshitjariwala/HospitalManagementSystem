@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import BusinessLogicLayer.AdminModule.Appointment;
 
 public class ViewAppointments {
-	private String docId;
-	private String status;
+	String docId;
+	String status;
 	ViewAppointmentsDao vdao;
 	public ViewAppointments(String docId,String status)
 	{
@@ -36,7 +36,7 @@ public class ViewAppointments {
 			return true;
 		}
 		else		{
-			System.out.println("No appointments scheduled for you");
+			System.out.println("No appointments of "+this.status+ "status for you");
 			return false;
 		}
 	}
