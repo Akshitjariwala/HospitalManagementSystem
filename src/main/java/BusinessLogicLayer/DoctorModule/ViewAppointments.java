@@ -16,7 +16,8 @@ public class ViewAppointments {
 		vdao=new ViewAppointmentsDao();
 
 	}
-	public boolean viewAllAppointments() {
+	
+	  public boolean viewAllAppointments() {
 		// TODO Auto-generated method stub
 		ArrayList<Appointment> appointments=new ArrayList<Appointment>();
 		String query="Select * from appointments where docid="+this.docId+"and appointment_status="+this.status;
