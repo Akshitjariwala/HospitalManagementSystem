@@ -93,17 +93,4 @@ class WardsTest {
         assertEquals("Covid Ward",ward.getWardType(),"The ward type doesnt match ");
     }
 
-    @Test
-    void getAdditionalDetails() {
-        Wards ward = new Wards();
-        ward.setAdditionalDetails("Comments");
-        assertEquals("Comments",ward.getAdditionalDetails(),"The details  doesnt match ");
-    }
-
-    @Test
-    void setAdditionalDetails() {
-        Wards ward = new Wards();
-        ward.setAdditionalDetails("Comments");
-        assertEquals("Comments",ward.getAdditionalDetails(),"The details  doesnt match ");
-    }
 }
