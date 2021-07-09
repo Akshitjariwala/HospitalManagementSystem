@@ -175,7 +175,7 @@ public class BookAppointments {
                         if(timeSlotChoice!=0 && timeFlag==true)
                             System.err.println("*** Please enter correct Time Slot ***\n");
 
-                        System.out.println("Preferred Time Slot 1)Morning 2) Afternoon 3) Evening:");
+                        System.out.println("Preferred Time Slot:");
                         timeSlotChoice=readInput.nextInt();
                         timeFlag=true;
                     }while (!(timeSlotChoice==1 || timeSlotChoice==2 || timeSlotChoice==3));
