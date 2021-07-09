@@ -20,6 +20,7 @@ public class PatientLogin {
         String userID=null;
         String password=null;
         String providedPassword=null;
+        String patientName=null;
         ResultSet resultSet=null;
 
         System.out.println("===========================================\n" +
@@ -36,16 +37,20 @@ public class PatientLogin {
 
             try{
                 statement=connection.createStatement();
-                resultSet=statement.executeQuery("SELECT password FROM login_cred WHERE userid='"+userID+"';");
+                String query="SELECT lc.password as login_password,concat(first_name,' ', last_name) as patient_name from patients pt join login_cred lc\n" +
+                        " where pt.patient_id='"+userID+"' and lc.userid='"+userID+"'";
+                resultSet=statement.executeQuery(query);
                 while (resultSet.next()){
                     providedPassword=resultSet.getString(1);
+                    patientName=resultSet.getString(2);
                 }
             }
             catch (Exception E){
                 E.printStackTrace();
             }
         }while (!password.equals(providedPassword));
-        System.out.println("Welcome "+userID);
+
+        System.out.println("Welcome "+patientName);
     }
 
     public static void main(String[] args) {
