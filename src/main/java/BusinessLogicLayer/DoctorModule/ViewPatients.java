@@ -18,7 +18,7 @@ public class ViewPatients {
 	}
 	public boolean viewAllPatients() {
 		// TODO Auto-generated method stub
-		ArrayList<Patient> patients=pdao.getPatients();
+		ArrayList<Patient> patients=pdao.getPatients(this.docId);
 		System.out.println("================================================================");
 		System.out.println("\t\t\t\tPatients under your supervision\t\t\t\t");
 		System.out.println("================================================================");
