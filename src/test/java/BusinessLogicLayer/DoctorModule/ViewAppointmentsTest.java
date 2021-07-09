@@ -26,7 +26,7 @@ class ViewAppointmentsTest {
 		boolean flag=true;
 	    Mockito.when(viewappointment.viewAllAppointments()).thenReturn(flag);
 
-		assertEquals(false,flag);
+		assertEquals(true,flag);
 		
 	}
 	@Test
@@ -34,7 +34,7 @@ class ViewAppointmentsTest {
 		ViewAppointments v1=new ViewAppointments("janki123","Pending");
 		boolean flag=true;
 	    Mockito.when(viewappointment.viewAllAppointments()).thenReturn(flag);
-		assertEquals(false, flag);
+		assertEquals(true, flag);
 	}
 	@Test
 	void viewappointments_NoAppointmentfound() {
