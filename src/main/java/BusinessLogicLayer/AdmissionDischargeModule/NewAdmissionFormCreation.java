@@ -2,10 +2,11 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 
-import java.io.IOException;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +31,6 @@ public class NewAdmissionFormCreation {
 
 
     public static void main(String args[]) throws Exception {
-        establishConnection();
         NewAdmissionFormCreation admissionModule = new NewAdmissionFormCreation();
         admissionModule.admissionHomePage();
     }
@@ -57,16 +57,16 @@ public class NewAdmissionFormCreation {
             if(choice > 0 && choice <=4){
                 switch (choice) {
                     case 1:
-                        admissionFormPage();flag=1;
+                        admissionFormPage();flag=0;
                         break;
                     case 2:
-                        dischargeFormPage();flag=1;
+                        dischargeFormPage();flag=0;
                         break;
                     case 3:
-                        patientRegistrationPage();flag=1;
+                        patientRegistrationPage();flag=0;
                         break;
                     case 4:
-                        exitToMainPage();flag=1;
+                        exitToMainPage();flag=0;
                 }
             }else{
                 System.out.printf("%n");
@@ -74,6 +74,9 @@ public class NewAdmissionFormCreation {
                 System.out.printf("%n");
             }
         }while(flag==0);
+
+        // Go to Application Main Page for Admission Discharge.
+        // Insert Method Call here.
     }
 
     public void admissionFormPage() throws Exception {
@@ -85,22 +88,25 @@ public class NewAdmissionFormCreation {
             System.out.printf("%n");
             System.out.println("1. Generate New Admission Form.");
             System.out.println("2. Update Existing Admission Form.");
+            System.out.println("3. Go Back To Home Page.");
             System.out.printf("%n");
-            System.out.println("Select number between 1-2 to perform appropriate action.");
+            System.out.println("Select number between 1-3 to perform appropriate action.");
             System.out.printf("%n");
             System.out.printf("Enter Selection : ");
 
             Scanner userInput = new Scanner(System.in);
             int choice = userInput.nextInt();
-            if(choice >0 && choice<=2)
+            if(choice >0 && choice<=3)
             {
                 switch (choice) {
                     case 1:
-                        newAdmissionForm();flag=1;
+                        newAdmissionForm();flag=0;
                         break;
                     case 2:
-                        updateAdmissionForm();flag=1;
+                        updateAdmissionForm();flag=0;
                         break;
+                    case 3:
+                        flag=1; break;
                 }
             }else{
                 System.out.printf("%n");
@@ -234,14 +240,26 @@ public class NewAdmissionFormCreation {
                                     admission.setPatientID(patientID);
                                     flag1 = 1;
                                     break;
-                            case 2: admissionType = displayAdmissionType();flag1 = 1; break;
-                            case 3: diseaseName = displayDiagnose(); flag1 = 1; break;
-                            case 4: doctorName = displayDoctor(); flag1 = 1; break;
-                            case 5: wardCode = displayWard(); flag1 = 1; break;
-                            case 6: bedCode = displayBed(); flag1 = 1; break;
-                            case 8: finalResult = admissionDao.saveAdmissionForm(admission);if(finalResult == 1)
-                                    System.out.println("Admission Form Created.");else {System.out.println("Admission Form Creation Failed.");}flag1 = 0; break;
-                            case 9: System.out.println("Go to Main page"); /// Add link to home page.
+                            case 2: admissionType = displayAdmissionType();
+                                    flag1 = 1; break;
+                            case 3: diseaseName = displayDiagnose();
+                                    flag1 = 1; break;
+                            case 4: doctorName = displayDoctor();
+                                    flag1 = 1; break;
+                            case 5: wardCode = displayWard();
+                                    flag1 = 1; break;
+                            case 6: bedCode = displayBed();
+                                    flag1 = 1; break;
+                            case 8: finalResult = admissionDao.saveAdmissionForm(admission);
+                                    if(finalResult == 1) {
+                                        System.out.println("Admission Form Created.");
+                                    }
+                                    else {
+                                        System.out.println("Admission Form Creation Failed.");
+                                    }
+                                    flag1 = 0; break;
+                            case 9: System.out.println("Go to Main page");
+                                    flag1 =0;
                         }
                     }else{
                         System.out.printf("%n");
@@ -250,6 +268,7 @@ public class NewAdmissionFormCreation {
                         flag1 = 1;
                     }
                     }while(flag1 == 1);
+                    // Go back to home page.
                 }
     }
 
@@ -291,7 +310,6 @@ public class NewAdmissionFormCreation {
     public String displayDiagnose() throws SQLException {
 
         int flag = 0;
-        String diseaseCode = null;
         String diseaseName = null;
         do {
             int totalRows = 1;
@@ -312,9 +330,8 @@ public class NewAdmissionFormCreation {
             Pattern p = Pattern.compile(regex);
             Matcher m = p.matcher(diseaseID);
             if(m.find()) {
-                diseaseCode = admissionDao.getDiseaseCode(Integer.parseInt(diseaseID));
                 diseaseName = admissionDao.getDiseaseName(Integer.parseInt(diseaseID));
-                admission.setDiseaseID(diseaseCode);
+                admission.setDiseaseID(Integer.parseInt(diseaseName));
                 flag = 1;
             }
             else{
@@ -346,9 +363,6 @@ public class NewAdmissionFormCreation {
             System.out.printf("Enter Selection\t\t: ");
             int docID = userInput.nextInt();
             totalRows--;
-  /*          String regex = "[1-" + totalRows + "]";
-            Pattern p = Pattern.compile(regex);
-            Matcher m = p.matcher(doctorID);*/
             if(docID<=totalRows && docID>0){
                 doctorName = admissionDao.getDoctorName(docID);
                 admission.setDoctorID(admissionDao.getDoctor(docID));
@@ -440,9 +454,94 @@ public class NewAdmissionFormCreation {
 
     // Enter Save Method here.
 
+    public void updateAdmissionForm() throws Exception {
 
-    public void updateAdmissionForm(){
+        int flag = 0;
+        int formFlag = 0;
+        String admissionType = null;
+        String diseaseName  = null;
+        String doctorName = null;
+        String wardCode = null;
+        String bedCode= null;
+        int finalResult;
+        do{
+            Scanner userInput = new Scanner(System.in);
+            System.out.printf("Enter Patient ID : ");
+            String patientID = userInput.nextLine();
+            boolean result = admissionDao.ifPatientExists(patientID);
+            Admission updateUser;
+            if(result){
+                updateUser = admissionDao.getAdmissionDetails(patientID);
+                if(!Objects.isNull(updateUser)){
+                    do{
+                        System.out.println("=================================================");
+                        System.out.println("\t\t\t\t\tUpdate Form\t\t\t\t");
+                        System.out.println("=================================================");
+                        System.out.println("1. Patient ID      :\t"+updateUser.getPatientID());
+                        System.out.println("2. Admission Type  :\t"+admissionDao.getAdmissionType(updateUser.getAdmissionType()));
+                        System.out.println("3. Diagnose Code   :\t"+admissionDao.getDiseaseName(updateUser.getDiseaseID()));
+                        System.out.println("4. Physician       :\t"+admissionDao.getDoctorName(updateUser.getDoctorID()));
+                        System.out.println("5. Ward            :\t"+admissionDao.getWardCode(updateUser.getWardID()));
+                        System.out.println("6. Bed ID          :\t"+admissionDao.getBedCode(updateUser.getBedID()));
+                        System.out.println("7. Save Form       :\t");
+                        System.out.println("8. Main Menu       :\t");
+                        System.out.printf("%n");
+                        System.out.println("To change or update the details please enter\n" +
+                                "a associated number between 1-6. Select 8 to \n" +
+                                "save the Admission form and 9 to return to \n" +
+                                "Main Menu.");
+                        System.out.printf("Enter Selection : ");
 
+                        int userResponse = userInput.nextInt();
+                        if(userResponse > 0 && userResponse <=8)
+                        {
+                            switch (userResponse) {
+                                case 1: System.out.println("Enter Patient ID : ");
+                                        userInput = new Scanner(System.in);
+                                        patientID = userInput.nextLine();
+                                        admission.setPatientID(patientID);
+                                        formFlag = 1;
+                                        break;
+                                case 2: displayAdmissionType();
+                                        updateUser.setAdmissionType(admission.getAdmissionType());
+                                        formFlag = 1; break;
+                                case 3: displayDiagnose();
+                                        updateUser.setDiseaseID(admission.getDiseaseID());
+                                        formFlag = 1; break;
+                                case 4: displayDoctor();
+                                        updateUser.setDoctorID(admission.getDoctorID());
+                                        formFlag = 1; break;
+                                case 5: displayWard();
+                                        updateUser.setWardID(admission.getWardID());
+                                        formFlag = 1; break;
+                                case 6: displayBed(); updateUser.setBedID(admission.getBedID());
+                                        formFlag = 1; break;
+                                case 8: finalResult   = admissionDao.saveAdmissionForm(admission);
+                                        if(finalResult == 1)
+                                            System.out.println("Admission Form Saved Successfully.");
+                                        else {
+                                            System.out.println("Admission Form Update Failed.");
+                                        }
+                                        formFlag = 0; break;
+                                case 9: System.out.println("Go to Main page");
+                                        formFlag = 0;
+                            }
+                        }else{
+                            System.out.printf("%n");
+                            System.out.println("Invalid Input Received! Please Enter Valid Selection.");
+                            System.out.printf("%n");
+                            formFlag = 1;
+                        }
+                    }while(formFlag == 1);
+                    flag = 1;
+                } else {
+                    System.out.println("Entered Patient does not have any Admission/Discharge records. Please enter other Patient ID.");
+                }
+            }else{
+                System.out.println("Entered Patient ID does not existing in the system. Please enter valid Patient ID.");
+            }
+        }while(flag == 0);
+        // Go back to Main menu.
     }
 
     public void dischargeFormPage() {
@@ -456,21 +555,5 @@ public class NewAdmissionFormCreation {
     //Exit to main page of Hospital Management System.
     public void exitToMainPage(){
 
-    }
-
-    // Create database connection.
-    private static void establishConnection() {
-
-        String connectionUrl = "jdbc:mysql://db-5308.cs.Dal.ca:3306/CSCI5308_6_DEVINT";
-        String user = "CSCI5308_6_DEVINT_USER";
-        String password = "ZD8gnU7BsJR";
-
-        try{
-            connection = DriverManager.getConnection(connectionUrl,user,password);
-            statement = connection.createStatement();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
 }

@@ -64,15 +64,15 @@ class AdmissionDAOTest {
   // getDisease() returns Disease code associated with provided disease id.
   @Test
   void getDiseaseName() throws SQLException {
-    Mockito.when(admissionDAO.getDiseaseName(3)).thenReturn("Disease");
-    assertEquals("Disease", admissionDAO.getDiseaseName(3), "Test Failed!. Incorrect or No value received.");
+    Mockito.when(admissionDAO.getDiseaseName(3)).thenReturn("DI100012");
+    assertEquals("DI100012", admissionDAO.getDiseaseName(3), "Test Failed!. Incorrect or No value received.");
   }
 
   //
   @Test
   void getDiseaseCode() throws SQLException {
-    Mockito.when(admissionDAO.getDiseaseCode(1)).thenReturn("COVID-19");
-    assertEquals("COVID-19", admissionDAO.getDiseaseCode(1), "Test Failed!. Incorrect or No value received.");
+    Mockito.when(admissionDAO.getDiseaseName(1)).thenReturn("COVID-19");
+    assertEquals("COVID-19", admissionDAO.getDiseaseName(1), "Test Failed!. Incorrect or No value received.");
   }
 
   // getDoctorList() returns ArrayList object with list of Doctors from database.
@@ -149,8 +149,24 @@ class AdmissionDAOTest {
   // saveAdmissionForm() saves the Admission object data in the database.
   @Test
   void saveAdmissionForm() throws SQLException {
-    Admission admission = new Admission("doe999", 1, 4, 5, 7, "DI100015");
+    Admission admission = new Admission("doe999", 1, 4, 5, 7, 6);
     Mockito.when(admissionDAO.saveAdmissionForm(admission)).thenReturn(1);
     assertEquals(1, admissionDAO.saveAdmissionForm(admission), "Test Failed!. Incorrect or No value received.");
   }
+
+/*  ifPatientExists() checks if user exists in the system.
+    If exists it returns true
+  else it returns false.*/
+  @Test
+  void ifPatientExists(){
+    assertTrue(admissionDAO.ifPatientExists("doe999"),"Test Failed!. False or Incorrect value received.");
+  }
+
+  // This method will return Admission details of the patient.
+  @Test
+  void getAdmissionDetails(){
+    Admission admission = new Admission("doe999", 1, 4, 5, 7, 6);
+    assertEquals(admission,admissionDAO.getAdmissionDetails("doe999"),"Test Failed!. Incorrect or No value received.");
+  }
+
 }

@@ -30,6 +30,13 @@ public class AdmissionDAO {
         return patientName;
     }
 
+    // This Method will return true if user exists in the system and false otherwise.
+    public Boolean ifPatientExists(String patientID){
+      Boolean bool = false;
+
+      return bool;
+    }
+
 
     public String getAdmissionType(int admissionTypeID) throws SQLException {
         String admissionType = null;
@@ -55,7 +62,7 @@ public class AdmissionDAO {
         ResultSet diseases = statement.executeQuery("SELECT * FROM disease");
 
         while(diseases.next()){
-            disease.add(diseases.getString("disease_name"));
+            disease.add(diseases.getString("disease_code"));
         }
         return disease;
     }
@@ -65,13 +72,13 @@ public class AdmissionDAO {
         ResultSet disease = statement.executeQuery("SELECT * FROM disease WHERE disease_id = '" + diseaseID + "'");
 
         while(disease.next()){
-            diseaseName = disease.getString("disease_name");
+            diseaseName = disease.getString("disease_code");
         }
 
         return diseaseName;
     }
 
-    public String getDiseaseCode(int diseaseID) throws SQLException {
+   /* public String getDiseaseCode(int diseaseID) throws SQLException {
         String diseaseCode = null;
         ResultSet disease = statement.executeQuery("SELECT * FROM disease WHERE disease_id = '" + diseaseID + "'");
 
@@ -79,7 +86,7 @@ public class AdmissionDAO {
             diseaseCode = disease.getString("disease_code");
         }
         return diseaseCode;
-    }
+    }*/
 
     public ArrayList<String> getDoctorList() throws SQLException {
         ArrayList<String> doctorList = new ArrayList<>();
@@ -163,7 +170,7 @@ public class AdmissionDAO {
         ps.setInt(4,admission.getWardID());
         ps.setInt(5,admission.getBedID());
         ps.setInt(6,admission.getDoctorID());
-        ps.setString(7,admission.getDiseaseID());
+        ps.setInt(7,admission.getDiseaseID());
 
         result = ps.executeUpdate();
 
@@ -171,5 +178,10 @@ public class AdmissionDAO {
             statement.executeUpdate("UPDATE beds SET isOccupied = 1 WHERE bed_id = "+admission.getBedID());
         }
         return result;
+    }
+
+    // This method will return Admission details of the patient.
+    public Admission getAdmissionDetails(String patientID){
+        return new Admission();
     }
 }
