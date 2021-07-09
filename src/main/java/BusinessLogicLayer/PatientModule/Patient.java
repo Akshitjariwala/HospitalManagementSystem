@@ -31,6 +31,7 @@ public class Patient {
         this.userID = userID;
         this.password = password;
     }
+
     public Patient(){
 
     }
