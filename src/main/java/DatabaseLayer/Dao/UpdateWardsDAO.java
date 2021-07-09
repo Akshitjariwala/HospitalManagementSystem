@@ -26,7 +26,13 @@ public class UpdateWardsDAO {
      * The details are updated using SQL query
      */
     public static void updateWard(String str, int id) throws SQLException, ClassNotFoundException {
-
+        try {
+            String updateQuery = "UPDATE wards set" + "\t" + str + "\t"+ "where ward_id = " + id ;
+            System.out.println(updateQuery);
+            statement.executeUpdate(updateQuery);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /* The details of the ward for which the details have to be updated the id is passed
