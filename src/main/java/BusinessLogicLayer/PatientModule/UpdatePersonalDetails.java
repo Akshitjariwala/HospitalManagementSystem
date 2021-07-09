@@ -279,8 +279,6 @@ public class UpdatePersonalDetails {
         }
     }
 
-
-
     public static void main(String[] args) {
         UpdatePersonalDetails updatePersonalDetails=new UpdatePersonalDetails();
         updatePersonalDetails.newPatientRegistration();
