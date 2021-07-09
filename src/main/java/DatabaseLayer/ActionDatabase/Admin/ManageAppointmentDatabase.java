@@ -1,5 +1,6 @@
-package BusinessLogicLayer.AdminModule;
+package DatabaseLayer.ActionDatabase.Admin;
 
+import BusinessLogicLayer.AdminModule.Appointment;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
@@ -10,17 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AppointmentDAO {
+public class ManageAppointmentDatabase implements IManageAppointmentDatabase {
 
   Connection connection = null;
   IDatabaseConnection databaseConnection;
   IDatabaseConnectionFactory databaseConnectionFactory;
 
-  public AppointmentDAO() {
+  public ManageAppointmentDatabase() {
     databaseConnectionFactory = new DatabaseConnectionFactory();
     databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
+  @Override
   public ArrayList<Appointment> getAppointmentList() {
     ArrayList<Appointment> appointments = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
@@ -51,6 +53,7 @@ public class AppointmentDAO {
     return new ArrayList<>();
   }
 
+  @Override
   public boolean updateAppointmentStatus(int appId, String newStatus) {
     connection = databaseConnection.openDBConnection();
     String query = "UPDATE appointments SET appointment_status = ? WHERE app_id = ?";

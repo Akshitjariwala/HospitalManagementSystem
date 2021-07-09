@@ -1,26 +1,84 @@
-package BusinessLogicLayer.WardModule;
+package DatabaseLayer.ActionDatabase.Admin;
 
-import BusinessLogicLayer.User.Patient;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import BusinessLogicLayer.WardModule.Bed;
+import BusinessLogicLayer.WardModule.PatientBed;
+import BusinessLogicLayer.WardModule.Ward;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WardDAO {
+public class ManageWardDatabase implements IManageWardDatabase {
 
   Connection connection = null;
   IDatabaseConnection databaseConnection;
   IDatabaseConnectionFactory databaseConnectionFactory;
 
-  public WardDAO() {
+  public ManageWardDatabase() {
     databaseConnectionFactory = new DatabaseConnectionFactory();
     databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
+  @Override
+  public Ward getWard(int wardId) {
+    connection = databaseConnection.openDBConnection();
+    String query = "SELECT * FROM wards WHERE ward_id = ? LIMIT 1";
+    PreparedStatement statement;
+    try {
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, wardId);
+      ResultSet rs = statement.executeQuery();
+      Ward ward = new Ward();
+      if (rs.next()) {
+        ward.setWardId(wardId);
+        ward.setWardName(rs.getString("name"));
+        ward.setWardType(rs.getString("ward_type"));
+        ward.setLocation(rs.getString("location"));
+        ward.setBedType(rs.getString("bed_type"));
+        ward.setTotalBeds(rs.getInt("total_beds"));
+      }
+      return ward;
+    } catch (SQLException sqlException) {
+      sqlException.printStackTrace();
+    } finally {
+      databaseConnection.closeDBConnection();
+    }
+    return null;
+  }
+
+  @Override
+  public Bed getBed(int bedId) {
+    connection = databaseConnection.openDBConnection();
+    String query = "SELECT * FROM beds WHERE bed_id = ? LIMIT 1";
+    PreparedStatement statement;
+    try {
+      statement = connection.prepareStatement(query);
+      statement.setInt(1, bedId);
+      ResultSet rs = statement.executeQuery();
+      Bed bed = new Bed();
+      if (rs.next()) {
+        bed.setWard(getWard(rs.getInt("ward_id")));
+        bed.setBedId(rs.getInt("bed_id"));
+        bed.setBedType(rs.getString("bed_type"));
+        bed.setBedCode(rs.getString("bed_code"));
+        bed.setOccupied(rs.getBoolean("isOccupied"));
+      }
+      return bed;
+    } catch (SQLException sqlException) {
+      sqlException.printStackTrace();
+    } finally {
+      databaseConnection.closeDBConnection();
+    }
+    return null;
+  }
+
+  @Override
   public ArrayList<Ward> getWardsList() {
     ArrayList<Ward> wards = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
@@ -50,32 +108,7 @@ public class WardDAO {
     return new ArrayList<>();
   }
 
-  public Ward getWard(int wardId) {
-    connection = databaseConnection.openDBConnection();
-    String query = "SELECT * FROM wards WHERE ward_id = ? LIMIT 1";
-    PreparedStatement statement;
-    try {
-      statement = connection.prepareStatement(query);
-      statement.setInt(1, wardId);
-      ResultSet rs = statement.executeQuery();
-      Ward ward = new Ward();
-      if (rs.next()) {
-        ward.setWardId(wardId);
-        ward.setWardName(rs.getString("name"));
-        ward.setWardType(rs.getString("ward_type"));
-        ward.setLocation(rs.getString("location"));
-        ward.setBedType(rs.getString("bed_type"));
-        ward.setTotalBeds(rs.getInt("total_beds"));
-      }
-      return ward;
-    } catch (SQLException sqlException) {
-      sqlException.printStackTrace();
-    } finally {
-      databaseConnection.closeDBConnection();
-    }
-    return null;
-  }
-
+  @Override
   public ArrayList<Bed> getWardBeds(int wardId) {
     connection = databaseConnection.openDBConnection();
     String query = "SELECT * FROM beds WHERE ward_id = ? AND isOccupied = 1";
@@ -103,6 +136,7 @@ public class WardDAO {
     return new ArrayList<>();
   }
 
+  @Override
   public ArrayList<PatientBed> getPatientBed(int wardId) {
     ArrayList<Bed> beds = getWardBeds(wardId);
     List<Integer> bedIds = new ArrayList<>();
@@ -132,30 +166,5 @@ public class WardDAO {
       databaseConnection.closeDBConnection();
     }
     return new ArrayList<>();
-  }
-
-  public Bed getBed(int bedId) {
-    connection = databaseConnection.openDBConnection();
-    String query = "SELECT * FROM beds WHERE bed_id = ? LIMIT 1";
-    PreparedStatement statement;
-    try {
-      statement = connection.prepareStatement(query);
-      statement.setInt(1, bedId);
-      ResultSet rs = statement.executeQuery();
-      Bed bed = new Bed();
-      if (rs.next()) {
-        bed.setWard(getWard(rs.getInt("ward_id")));
-        bed.setBedId(rs.getInt("bed_id"));
-        bed.setBedType(rs.getString("bed_type"));
-        bed.setBedCode(rs.getString("bed_code"));
-        bed.setOccupied(rs.getBoolean("isOccupied"));
-      }
-      return bed;
-    } catch (SQLException sqlException) {
-      sqlException.printStackTrace();
-    } finally {
-      databaseConnection.closeDBConnection();
-    }
-    return null;
   }
 }

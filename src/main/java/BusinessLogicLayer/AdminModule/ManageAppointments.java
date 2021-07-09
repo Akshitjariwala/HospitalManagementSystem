@@ -1,13 +1,13 @@
 package BusinessLogicLayer.AdminModule;
 
+import DatabaseLayer.ActionDatabase.Admin.ManageAppointmentDatabase;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ManageAppointments {
-  AppointmentDAO appointmentDAO;
+public class ManageAppointments extends ManageAppointmentDatabase {
 
   public ManageAppointments() {
-    appointmentDAO = new AppointmentDAO();
   }
 
   public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class ManageAppointments {
 
   public void manageAppointmentHome() {
     System.out.println(" Fetching Details... ");
-    ArrayList<Appointment> appointments = appointmentDAO.getAppointmentList();
+    ArrayList<Appointment> appointments = getAppointmentList();
     if (appointments.size() != 0) {
       int flag = 0;
       Scanner appIdInput = new Scanner(System.in);
@@ -46,7 +46,7 @@ public class ManageAppointments {
               String appStatus = appIdInput.next();
               if (appStatus.equalsIgnoreCase("confirm") || appStatus.equalsIgnoreCase("reject")) {
                 System.out.println("Status Updating...");
-                appointmentDAO.updateAppointmentStatus(appId, appStatus.toUpperCase());
+                updateAppointmentStatus(appId, appStatus.toUpperCase());
                 System.out.println("Status Updated Successfully");
                 statusFlag = 1;
                 System.out.println("\nUpdate Another Appointment Status ? (y / any other char)");
@@ -54,7 +54,7 @@ public class ManageAppointments {
                 if (!flagText.equalsIgnoreCase("y")) {
                   flag = 1;
                 } else {
-                  appointments = appointmentDAO.getAppointmentList();
+                  appointments = getAppointmentList();
                 }
               } else {
                 System.out.printf("%n");
