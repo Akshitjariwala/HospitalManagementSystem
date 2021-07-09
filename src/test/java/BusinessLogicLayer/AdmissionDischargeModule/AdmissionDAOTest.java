@@ -95,8 +95,8 @@ class AdmissionDAOTest {
   // getDoctor() returns Doctor Code associated with provided doctor id.
   @Test
   void getDoctor() throws SQLException {
-    Mockito.when(admissionDAO.getDoctor(4)).thenReturn("123000034");
-    assertEquals("123000034", admissionDAO.getDoctor(4), "Test Failed!. Incorrect or No value received.");
+    Mockito.when(admissionDAO.getDoctor(4)).thenReturn(4);
+    assertEquals(4, admissionDAO.getDoctor(4), "Test Failed!. Incorrect or No value received.");
   }
 
   // getDoctorName() returns  DoctorName associated with provided doctor id.
@@ -149,7 +149,7 @@ class AdmissionDAOTest {
   // saveAdmissionForm() saves the Admission object data in the database.
   @Test
   void saveAdmissionForm() throws SQLException {
-    Admission admission = new Admission("doe999", 1, 4, 5, "7", "DI100015");
+    Admission admission = new Admission("doe999", 1, 4, 5, 7, "DI100015");
     Mockito.when(admissionDAO.saveAdmissionForm(admission)).thenReturn(1);
     assertEquals(1, admissionDAO.saveAdmissionForm(admission), "Test Failed!. Incorrect or No value received.");
   }

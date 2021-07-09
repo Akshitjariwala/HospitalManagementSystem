@@ -91,12 +91,12 @@ public class AdmissionDAO {
         return doctorList;
     }
 
-    public String getDoctor(int doctorID) throws SQLException {
-        String doctorId = null;
+    public int getDoctor(int doctorID) throws SQLException {
+        int doctorId=0;
         ResultSet doctor = statement.executeQuery("SELECT * FROM doctors WHERE id = '" + doctorID + "'");
 
         while(doctor.next()){
-            doctorId = doctor.getString("doc_id");
+            doctorId = doctor.getInt("id");
         }
         return doctorId;
     }
@@ -162,7 +162,7 @@ public class AdmissionDAO {
         ps.setInt(3,admission.getAdmissionType());
         ps.setInt(4,admission.getWardID());
         ps.setInt(5,admission.getBedID());
-        ps.setString(6,admission.getDoctorID());
+        ps.setInt(6,admission.getDoctorID());
         ps.setString(7,admission.getDiseaseID());
 
         result = ps.executeUpdate();
