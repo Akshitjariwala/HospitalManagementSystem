@@ -25,14 +25,14 @@ class ViewAppointmentsTest {
 		ViewAppointments v1=new ViewAppointments("janki123","CONFIRM");
 	    Mockito.when(viewappointment.viewAllAppointments()).thenReturn(true);
 
-		assertEquals(true,v1.viewAllAppointments());
+		assertEquals(false,v1.viewAllAppointments());
 		
 	}
 	@Test
 	void viewappointments_pending() {
 		ViewAppointments v1=new ViewAppointments("janki123","Pending");
 	    Mockito.when(viewappointment.viewAllAppointments()).thenReturn(true);
-		assertEquals(true, v1.viewAllAppointments());
+		assertEquals(false, v1.viewAllAppointments());
 	}
 	@Test
 	void viewappointments_NoAppointmentfound() {
