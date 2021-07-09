@@ -8,7 +8,6 @@ public class Wards {
     String bedType;
     int totalBeds;
     String wardType;
-    String additionalDetails;
 
     public int getWardId() {
         return wardId;
