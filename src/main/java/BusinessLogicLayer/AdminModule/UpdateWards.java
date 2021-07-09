@@ -6,9 +6,7 @@
  * */
 package BusinessLogicLayer.AdminModule;
 
-import BusinessLogicLayer.BeanClasses.Doctor;
 import BusinessLogicLayer.BeanClasses.Wards;
-import DatabaseLayer.Dao.RegisterDoctorDAO;
 import DatabaseLayer.Dao.UpdateWardsDAO;
 
 import java.sql.SQLException;
@@ -33,6 +31,43 @@ public class UpdateWards {
         System.out.println("5.  Bed Type :" + ward.getBedType() );
         System.out.println("6. Exit");
 
+        int input = scanner.nextInt();
+        switch (input) {
+            case 1:
+                System.out.println("Enter Ward Type :");
+                String wardType = scanner.next();
+                updateStr = "ward_type = " + "'" + wardType + "'";
+                break;
+            case 2:
+                System.out.println("Enter Ward Name :");
+                String wardName = scanner.next();
+                updateStr = "name = " + "'" + wardName + "'";
+                break;
+            case 3:
+                System.out.println("Enter Ward Location :");
+                String wardLocation = scanner.next();
+                updateStr = "location = " + "'" + wardLocation + "'";
+                break;
+            case 4:
+                System.out.println("Enter Total Beds :");
+                String totalBeds = scanner.next();
+                updateStr = "total_beds = " + totalBeds;
+                break;
+            case 5:
+                System.out.println("Enter Bed Type :");
+                String bedType = scanner.next();
+                updateStr = "bed_type = " + "'" + bedType + "'";
+                break;
+            case 6:
+                break;
+            default:
+                System.out.println("Invalid Input, Please choose valid input ");
+
+        }
+        if(!updateStr.isEmpty()){
+
+            UpdateWardsDAO.updateWard(updateStr, wardId );
+        }
 
     }
 }
