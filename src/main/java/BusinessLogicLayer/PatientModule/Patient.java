@@ -92,7 +92,10 @@ public class Patient {
     }
 
     public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+        if (middleName=="")
+            this.middleName = null;
+        else
+             this.middleName = middleName;
     }
 
     public void setEmaiID(String emaiID) {
@@ -104,6 +107,9 @@ public class Patient {
     }
 
     public void setAddress(String address) {
+        if (address=="")
+            this.address = null;
+        else
         this.address = address;
     }
 
@@ -116,11 +122,17 @@ public class Patient {
     }
 
     public void setEmergencyContactName(String emergencyContactName) {
-        this.emergencyContactName = emergencyContactName;
+        if (emergencyContactName=="")
+            this.emergencyContactName = null;
+        else
+            this.emergencyContactName = emergencyContactName;
     }
 
     public void setEmergencyContactNumber(String emergencyContactNumber) {
-        this.emergencyContactNumber = emergencyContactNumber;
+        if (emergencyContactNumber=="")
+            this.emergencyContactNumber = null;
+        else
+            this.emergencyContactNumber = emergencyContactNumber;
     }
 
     public void setUserID(String userID) {
