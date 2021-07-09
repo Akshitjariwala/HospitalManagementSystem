@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class AddWards {
 
-    public void addWards(){
+    public static void addWards(){
 
         Wards ward = new Wards();
         Scanner inputData = new Scanner(System.in);

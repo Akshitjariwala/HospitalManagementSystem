@@ -289,7 +289,7 @@ public class RegisterDoctor {
             case 14:
                 break;
             default:
-                System.out.println("Invalid Input, Please choose either 1 or 2 ");
+                System.out.println("Invalid Input, Please select valid number ");
         }
 
         if(!str.isEmpty()){
