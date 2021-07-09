@@ -29,8 +29,21 @@ public class AddWardsDAO {
     /* The details of the ward can be added
      * The details are added by using SQL query
      */
-    public static void addWard(Wards ward){
+    public static int addWard(Wards ward){
+        int status = 0;
+        try {
 
+            String insertQuery = "INSERT INTO  wards VALUES ('"+ ward.getWardId() +"','"+ ward.getWardType() +"', '"+
+                    ward.getWardName() +"','"+ ward.getLocation() +"', '"+ ward.getTotalBeds() +"','"+
+                    ward.getBedType() +"')" ;
+
+            //if successful status returns 1
+            status = statement.executeUpdate(insertQuery);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return status;
 
 
     }
