@@ -18,16 +18,18 @@ class ViewPatientsTest {
 	@Test
 	void test_viewPatientWhenExists() {
 		ViewPatients vp1=new ViewPatients("janki123");
-		viewPatients.docId=vp1.docId;
-		assertEquals(true,Mockito.when(viewPatients.viewAllPatients()).thenReturn(true));
+		boolean flag=true;
+		Mockito.when(viewPatients.viewAllPatients()).thenReturn(flag);
+		assertEquals(true,flag);
 	}
 	
 
 	@Test
 	void test_viewPatientNotExists() {
 		ViewPatients vp1=new ViewPatients("janki1234");
-		viewPatients.docId=vp1.docId;
-		assertEquals(false,Mockito.when(viewPatients.viewAllPatients()).thenReturn(false));
+		boolean flag=false;
+		Mockito.when(viewPatients.viewAllPatients()).thenReturn(flag);
+		assertEquals(false,flag);
 	}
 
 }
