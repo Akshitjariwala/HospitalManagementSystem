@@ -311,7 +311,6 @@ public class UpdatePersonalDetails {
         System.out.println("Welcome "+userID);
     }
 
-
     public static void main(String[] args) {
         UpdatePersonalDetails updatePersonalDetails=new UpdatePersonalDetails();
        // updatePersonalDetails.newPatientRegistration();
