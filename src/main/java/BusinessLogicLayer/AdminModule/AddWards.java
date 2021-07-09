@@ -72,7 +72,12 @@ public class AddWards {
             }
         }while (ward.getWardType() == null);
 
-
+        int status = AddWardsDAO.addWard(ward);
+        if(status ==1 ) {
+            System.out.println("Ward details added successfully");
+        } else {
+            System.out.println("ERROR while adding ward");
+        }
 
     }
 
