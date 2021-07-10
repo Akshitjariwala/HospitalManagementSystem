@@ -1,8 +1,7 @@
 /*
  * CSCI 5308 Group Project
  * @author: Kishan Kahodariya
- * @description: This program handles new patient registration,
- * and also handles login process of patient.
+ * @description: This program handles new patient registration.
  * The database access is done using common DatabaseConnection class
  *
  * */
