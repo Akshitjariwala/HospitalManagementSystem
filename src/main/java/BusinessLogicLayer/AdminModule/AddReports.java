@@ -2,11 +2,11 @@ package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Reports;
 import DatabaseLayer.Dao.AddReportsDAO;
-import DatabaseLayer.Dao.AddWardsDAO;
 
 import java.util.Scanner;
 
 public class AddReports {
+
     public static void addReports(){
         Reports report = new Reports();
         Scanner inputData = new Scanner(System.in);
