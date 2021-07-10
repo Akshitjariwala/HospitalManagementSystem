@@ -9,73 +9,85 @@ public class PatientTest {
     @Test
     public void getFirstNameTest(){
         Patient patient=new Patient();
-        assertEquals(null,patient.getFirstName(),"getFirstNameTest Failed : Incorrect value or False value received ! ! !");
+        patient.setFirstName("Kishan");
+        assertEquals("Kishan",patient.getFirstName(),"getFirstNameTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getLastNameTest(){
         Patient patient=new Patient();
-        assertEquals(null,patient.getLastName(),"getLastNameTest Failed : Incorrect value or False value received ! ! !");
+        patient.setLastName("Patel");
+        assertEquals("Patel",patient.getLastName(),"getLastNameTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getMiddleNameTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getMiddleName(),"getMiddleNameTest Failed : Incorrect value or False value received ! ! !");
+        patient.setMiddleName("Mahesh");
+        assertEquals("Mahesh",patient.getMiddleName(),"getMiddleNameTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getEmaiIDTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getEmaiID(),"getEmaiIDTest Failed : Incorrect value or False value received ! ! !");
+        patient.setEmaiID("user123@gmail.com");
+        assertEquals("user123@gmail.com",patient.getEmaiID(),"getEmaiIDTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getPhoneNumberTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getPhoneNumber(),"getPhoneNumberTest Failed : Incorrect value or False value received ! ! !");
+        patient.setPhoneNumber("3344555443");
+        assertEquals("3344555443",patient.getPhoneNumber(),"getPhoneNumberTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getAddressTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getAddress(),"getAddressTest Failed : Incorrect value or False value received ! ! !");
+        patient.setAddress("24 harbour View");
+        assertEquals("24 harbour View",patient.getAddress(),"getAddressTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getCityNameTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getCityName(),"getCityNameTest Failed : Incorrect value or False value received ! ! !");
+        patient.setCityName("mumbai");
+        assertEquals("mumbai",patient.getCityName(),"getCityNameTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getStateNameTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getStateName(),"getStateNameTest Failed : Incorrect value or False value received ! ! !");
+        patient.setStateName("Nova Scotia");
+        assertEquals("Nova Scotia",patient.getStateName(),"getStateNameTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getEmergencyContactNameTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getEmergencyContactName(),"getEmergencyContactNameTest Failed : Incorrect value or False value received ! ! !");
+        patient.setEmergencyContactName("lily");
+        assertEquals("lily",patient.getEmergencyContactName(),"getEmergencyContactNameTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getEmergencyContactNumberTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getEmergencyContactName(),"getEmergencyContactNumberTest Failed : Incorrect value or False value received ! ! !");
+        patient.setEmergencyContactNumber("1122333221");
+        assertEquals("1122333221",patient.getEmergencyContactNumber(),"getEmergencyContactNumberTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getUserIDTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getEmergencyContactName(),"getUserIDTest Failed : Incorrect value or False value received ! ! !");
+        patient.setUserID("User2409");
+        assertEquals("User2409",patient.getUserID(),"getUserIDTest Failed : Incorrect value or False value received ! ! !");
     }
 
     @Test
     public void getPasswordTest(){
         Patient patient =new Patient();
-        assertEquals(null,patient.getPassword(),"getPasswordTest Failed : Incorrect value or False value received ! ! !");
+        patient.setPassword("Passwors@123");
+        assertEquals("Passwors@123",patient.getPassword(),"getPasswordTest Failed : Incorrect value or False value received ! ! !");
     }
 
 
