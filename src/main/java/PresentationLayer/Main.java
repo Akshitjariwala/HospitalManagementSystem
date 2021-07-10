@@ -27,6 +27,8 @@ public class Main {
             break;
           case 2:
             System.out.println("Patient Login");
+            PatientUI patientUI=new PatientUI();
+            patientUI.loginOrRegistrationUI();
             flag = 1;
             break;
           case 3:

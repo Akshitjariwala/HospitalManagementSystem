@@ -35,7 +35,7 @@ public class PatientLogin {
        try {
            do {
                if (userID != null || password != null)
-                   System.err.println("*** Invalid user ID or Password ***");
+                   System.err.println("\n*** Invalid user ID or Password ***\n");
 
                System.out.println("User ID:");
                userID =reader.readLine();
@@ -57,8 +57,8 @@ public class PatientLogin {
               patientName=resultSet.getString(1);
            }
 
-           //Redirect to PatientUI
-           patientUI.mainUI(userID, patientName);
+           //Redirect to mainPatientUI
+           patientUI.mainPatientUI(userID, patientName);
 
        }catch (IOException e){
            System.out.println("I/O ERROR");

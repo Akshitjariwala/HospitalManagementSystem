@@ -67,7 +67,7 @@ public class BookAppointments {
                 System.out.println("Select doctor (Option) with whom you want to book an appointment:");
                 doctorChoice= Integer.parseInt(reader.readLine());
                 doctorFlag=true;
-            }while (!(doctorChoice>0  && doctorChoice<doctorList.size()));
+            }while (!(doctorChoice>0  && doctorChoice<=doctorList.size()));
                 appointmentWithDoctor.setDoctorName(doctorList.get(doctorChoice-1));
             System.out.println("\n\nPlease enter below details to book an appoint with "+appointmentWithDoctor.getDoctorName()+" :");
 
@@ -237,7 +237,7 @@ public class BookAppointments {
         String appointmentStatus="PENDING";
         try {
             statement=connection.createStatement();
-            System.out.println(patient+" *** "+doctor);
+           // System.out.println(patient+" *** "+doctor);
             String querytoFindID="Select dr.id from doctors dr " +
                     " where concat(\"Dr.\",dr.first_name,\" \",dr.last_name)='"+doctor+"';";
 
@@ -247,7 +247,7 @@ public class BookAppointments {
                 doctor_id= resultSet.getInt(1);
             }
 
-            System.out.println(doctor_id+":"+patient_id);
+          //  System.out.println(doctor_id+":"+patient_id);
             String queryToSaveAppointment="INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
                     "VALUES ('"+patient_id+"','"+doctor_id+"','"+appointmentWithDoctor.getAppointmentDate()+"','"+appointmentWithDoctor.getTimeSlot()+"','"+appointmentWithDoctor.getTypeOfAppointment()+"','"+appointmentStatus+"');";
 
