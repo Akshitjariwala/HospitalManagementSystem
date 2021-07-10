@@ -29,31 +29,32 @@ public class Admission {
 
     // getAdmissionDate() returns the date of Admission.
     public LocalDate getAdmissionDate() {
-      LocalDate date = LocalDate.of(2020, 1, 8);
-      return date;
+      return admissionDate;
     }
 
     // setAdmissionDate() sets the date of Admission.
     public void setAdmissionDate(LocalDate admissionDate) {
+      this.admissionDate = admissionDate;
     }
 
     // getDischargeDate() returns the date of Discharge.
     public LocalDate getDischargeDate() {
-      LocalDate date = LocalDate.of(2020, 1, 8);
-      return date;
+      return dischargeDate;
     }
 
     // setAdmissionDate() sets the date of Discharge.
     public void setDischargeDate(LocalDate dischargeDate) {
+      this.dischargeDate = dischargeDate;
     }
 
     // getDischargeComment() returns Discharge comment.
     public String getDischargeComment() {
-      return "";
+      return dischargeComment;
     }
 
     // setDischargeComment() sets Discharge comment.
     public void setDischargeComment(String dischargeComment) {
+      this.dischargeComment = dischargeComment;
     }
 
     public int getAdmissionID() {
