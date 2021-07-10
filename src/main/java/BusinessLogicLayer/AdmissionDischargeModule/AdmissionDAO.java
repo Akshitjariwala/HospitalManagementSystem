@@ -31,10 +31,15 @@ public class AdmissionDAO {
     }
 
     // This Method will return true if user exists in the system and false otherwise.
-    public Boolean ifPatientExists(String patientID){
-      Boolean bool = false;
+    public boolean ifPatientExists(String patientID) throws SQLException {
+      boolean res = false;
+      String SQL = "SELECT * FROM patients WHERE patient_id = '" + patientID + "'";
+      ResultSet result = statement.executeQuery(SQL);
 
-      return bool;
+      if(result.next()){
+          res = true;
+      }
+      return res;
     }
 
 
@@ -77,16 +82,6 @@ public class AdmissionDAO {
 
         return diseaseName;
     }
-
-   /* public String getDiseaseCode(int diseaseID) throws SQLException {
-        String diseaseCode = null;
-        ResultSet disease = statement.executeQuery("SELECT * FROM disease WHERE disease_id = '" + diseaseID + "'");
-
-        while(disease.next()){
-            diseaseCode = disease.getString("disease_code");
-        }
-        return diseaseCode;
-    }*/
 
     public ArrayList<String> getDoctorList() throws SQLException {
         ArrayList<String> doctorList = new ArrayList<>();
@@ -162,7 +157,7 @@ public class AdmissionDAO {
     public int saveAdmissionForm(Admission admission) throws SQLException {
 
         int result;
-        PreparedStatement ps =connection.prepareStatement("INSERT INTO admission(patient_id,date_of_admission,admission_type,ward_id,bed_id,doc_id,diesease_code) VALUES(?,?,?,?,?,?,?)");
+        PreparedStatement ps =connection.prepareStatement("INSERT INTO admission(patient_id,date_of_admission,admission_type,ward_id,bed_id,doc_id,disease_code) VALUES(?,?,?,?,?,?,?)");
 
         ps.setString(1,admission.getPatientID());
         ps.setDate(2, Date.valueOf(todayDate));
@@ -181,7 +176,39 @@ public class AdmissionDAO {
     }
 
     // This method will return Admission details of the patient.
-    public Admission getAdmissionDetails(String patientID){
-        return new Admission();
+    public Admission getAdmissionDetails(String patientID) throws SQLException {
+        Admission admission = new Admission();
+        String updateSQL = "SELECT * FROM admission WHERE patient_id = '"+patientID+"' and date_of_discharge is null";
+
+        ResultSet admissionDetails = statement.executeQuery(updateSQL);
+
+        while(admissionDetails.next()){
+            admission.setAdmissionID(admissionDetails.getInt("admissionID"));
+            admission.setPatientID(admissionDetails.getString("patient_id"));
+            admission.setAdmissionType(admissionDetails.getInt("admission_type"));
+            admission.setDiseaseID(admissionDetails.getInt("disease_code"));
+            admission.setDoctorID(admissionDetails.getInt("doc_id"));
+            admission.setWardID(admissionDetails.getInt("ward_id"));
+            admission.setBedID(admissionDetails.getInt("bed_id"));
+        }
+        return admission;
+    }
+
+    public int updateAdmissionForm(Admission admission) throws SQLException {
+
+        String updateSQL = "UPDATE admission SET patient_id = ? , admission_type = ? , ward_id = ? , bed_id = ? , doc_id = ? , disease_code = ? WHERE admissionID = ?";
+        int result;
+        PreparedStatement ps = connection.prepareStatement(updateSQL);
+        ps.setString(1,admission.getPatientID());
+        ps.setInt(2,admission.getAdmissionType());
+        ps.setInt(3,admission.getWardID());
+        ps.setInt(4,admission.getBedID());
+        ps.setInt(5,admission.getDoctorID());
+        ps.setInt(6,admission.getDiseaseID());
+        ps.setInt(7,admission.getAdmissionID());
+
+        result = ps.executeUpdate();
+
+        return result;
     }
 }

@@ -18,6 +18,8 @@ class AdmissionDAOTest {
     admissionDAO = Mockito.mock(AdmissionDAO.class);
   }
 
+  private AdmissionDAO demoDAO = new AdmissionDAO();
+
   // This Returns patient record with provided patient ID.
   @Test
   void getPatient() throws SQLException {
@@ -158,15 +160,26 @@ class AdmissionDAOTest {
     If exists it returns true
   else it returns false.*/
   @Test
-  void ifPatientExists(){
+  void ifPatientExists() throws SQLException {
+    Mockito.when(admissionDAO.ifPatientExists("doe999")).thenReturn(Boolean.valueOf("true"));
     assertTrue(admissionDAO.ifPatientExists("doe999"),"Test Failed!. False or Incorrect value received.");
   }
 
   // This method will return Admission details of the patient.
   @Test
-  void getAdmissionDetails(){
-    Admission admission = new Admission("doe999", 1, 4, 5, 7, 6);
-    assertEquals(admission,admissionDAO.getAdmissionDetails("doe999"),"Test Failed!. Incorrect or No value received.");
+  void getAdmissionDetails() throws SQLException {
+    Admission admission = new Admission("doe999", 3, 5, 2, 7, 5);
+    Mockito.when(admissionDAO.getAdmissionDetails("doe999")).thenReturn(admission);
+    Admission testAdmission = admissionDAO.getAdmissionDetails("doe999");
+    assertEquals(admission.getPatientID(),testAdmission.getPatientID(),"Test Failed!. Incorrect or No value received.");
+  }
+
+  @Test
+  void updateAdmissionForm() throws SQLException {
+    Admission admission = new Admission("doe999", 2, 3, 1, 3, 4);
+    admission.setAdmissionID(50);
+    Mockito.when(admissionDAO.updateAdmissionForm(admission)).thenReturn(1);
+    assertEquals(1,admissionDAO.updateAdmissionForm(admission),"Test Failed!. Incorrect or No value received.");
   }
 
 }

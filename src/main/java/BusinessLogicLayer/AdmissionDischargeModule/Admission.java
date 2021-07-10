@@ -2,6 +2,7 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 
 public class Admission {
 
+  private int admissionID;
     private String patientID;
     private int admissionType;
     private int wardID;
@@ -18,6 +19,14 @@ public class Admission {
         this.bedID = bedID;
         this.doctorID = doctorID;
         this.diseaseID = diseaseID;
+    }
+
+    public int getAdmissionID() {
+      return admissionID;
+    }
+
+    public void setAdmissionID(int admissionID) {
+      this.admissionID = admissionID;
     }
 
     public String getPatientID() {

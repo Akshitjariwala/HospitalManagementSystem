@@ -7,6 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AdmissionTest {
 
   @Test
+  public void getAdmissionID() {
+    Admission admission = new Admission();
+    admission.setAdmissionID(50);
+    assertEquals(50, admission.getAdmissionID(), "Test Failed!. Incorrect or No value received.");
+  }
+
+  @Test
   public void getPatientID() {
     Admission admission = new Admission("doe999", 1, 1, 1, 1, 6);
     assertEquals("doe999", admission.getPatientID(), "Test Failed!. Incorrect or No value received.");
