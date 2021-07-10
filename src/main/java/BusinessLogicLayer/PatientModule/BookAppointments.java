@@ -29,6 +29,7 @@ public class BookAppointments {
     private String timeSlotSelected=null;
     private int doctorChoice=0;
     private int timeSlotChoice=0;
+    private String globalPatientID=null;
     private List<String> doctorList=new ArrayList<>();
     private PatientAppointmentWithDoctor appointmentWithDoctor=new PatientAppointmentWithDoctor();
     private static List<String> typeOfAppointmenList= new ArrayList<String>(){{
@@ -49,10 +50,14 @@ public class BookAppointments {
             System.out.println("\n");
 
             //Patient
-            //appointmentWithDoctor.setPatientName(patientName);
+            globalPatientID=patientid;
             statement=connection.createStatement();
             String queryToGetPatientName="SELECT concat(first_name,\" \",last_name) FROM CSCI5308_6_DEVINT.patients where patient_id='"+patientid+"';";
-            resultSet=statement.executeQuery(queryToGetPatientName);
+           resultSet=statement.executeQuery(queryToGetPatientName);
+           while (resultSet.next()){
+               appointmentWithDoctor.setPatientName(resultSet.getString(1));
+           }
+
             //Select doctor
             Boolean doctorFlag=false;
             do{
@@ -209,7 +214,7 @@ public class BookAppointments {
                     break;
 
                 case 6:
-                    saveAppointment(appointmentWithDoctor.getPatientName(),appointmentWithDoctor.getDoctorName());
+                    saveAppointment(globalPatientID,appointmentWithDoctor.getDoctorName());
                     break;
 
                 default:
@@ -227,32 +232,33 @@ public class BookAppointments {
 
     private void saveAppointment(String patient,String doctor){
 
-        String patient_id="";
-        String doctor_id="";
+        String patient_id=patient;
+        int doctor_id=0;
         String appointmentStatus="PENDING";
         try {
             statement=connection.createStatement();
-            String querytoFindID="Select dr.doc_id,pt.patient_id from doctors dr join patients pt " +
-                    " where concat(\"Dr.\",dr.first_name,\" \",dr.last_name)='"+doctor+"'" +
-                    " AND concat(pt.first_name,\" \",pt.last_name)='"+patient+"';";
+            System.out.println(patient+" *** "+doctor);
+            String querytoFindID="Select dr.id from doctors dr " +
+                    " where concat(\"Dr.\",dr.first_name,\" \",dr.last_name)='"+doctor+"';";
+
             resultSet= statement.executeQuery(querytoFindID);
 
             while (resultSet.next()){
-                doctor_id=resultSet.getString(1);
-                patient_id=resultSet.getString(2);
+                doctor_id= resultSet.getInt(1);
             }
+
             System.out.println(doctor_id+":"+patient_id);
             String queryToSaveAppointment="INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
                     "VALUES ('"+patient_id+"','"+doctor_id+"','"+appointmentWithDoctor.getAppointmentDate()+"','"+appointmentWithDoctor.getTimeSlot()+"','"+appointmentWithDoctor.getTypeOfAppointment()+"','"+appointmentStatus+"');";
 
             int tempResultSet=statement.executeUpdate(queryToSaveAppointment);
         }catch (SQLException e){
-            System.err.println("SQL ERROR");
-            e.printStackTrace();
+            System.err.println("New Appointment failed to save");
+
         }
     }
     public static void main(String[] args) {
         BookAppointments bookAppointments=new BookAppointments();
-        bookAppointments.appointmentBookingPortalofPatient("jash kuon");
+        bookAppointments.appointmentBookingPortalofPatient("patient234");
     }
 }
