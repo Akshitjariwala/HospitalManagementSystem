@@ -79,7 +79,7 @@ public class AddReportsDAO {
             while (rs.next()){
                 str=rs.getString("patient_id");
             }
-
+            System.out.println(str);
         }catch (Exception e){
             System.out.println(e);
         }
