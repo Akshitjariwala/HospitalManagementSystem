@@ -157,7 +157,7 @@ public class BookAppointments {
                     displayDoctorList();
                     Boolean doctorFlag=false;
                     do{
-                        if(doctorChoice!=0 && doctorFlag==true)
+                        if(doctorChoice!=999999 && doctorFlag==true)
                             System.err.println("*** Please enter correct doctor prefenence ***\n");
 
                         System.out.println("Please enter new doctor: ");
@@ -187,7 +187,7 @@ public class BookAppointments {
                     System.out.println("New Time Slot 1)Morning 2) Afternoon 3) Evening:");
                     Boolean timeFlag=false;
                     do{
-                        if(timeSlotChoice!=0 && timeFlag==true)
+                        if(timeSlotChoice!=999999 && timeFlag==true)
                             System.err.println("*** Please enter correct Time Slot ***\n");
 
                         System.out.println("Preferred Time Slot:");
@@ -202,7 +202,7 @@ public class BookAppointments {
                     System.out.println("Type of appointment 1)In Person 2) Online Consultation:");
                     Boolean appointmentFlag=false;
                     do{
-                        if(appointment!=0 && appointmentFlag==true)
+                        if(appointment!=999999 && appointmentFlag==true)
                             System.err.println("*** Please enter correct Appointment Type ***\n");
 
                         System.out.println("Change Appointment Type: ");
@@ -255,6 +255,7 @@ public class BookAppointments {
         }catch (SQLException e){
             System.err.println("New Appointment failed to save");
         }
+        System.out.println("NEW APPOINTMENT CREATED");
     }
     public static void main(String[] args) {
         BookAppointments bookAppointments=new BookAppointments();
