@@ -17,6 +17,9 @@ public class CreateLabReports {
             case 1:
                 AddReports.addReports();
                 break;
+            case 2:
+                UpdateReports.updateReports();
+                break;
 
         }
     }
