@@ -38,7 +38,7 @@ public class BookAppointments {
         add("Morning");add("Afternoon");add("Evening");
     }};
 
-    public boolean appointmentBookingPortalofPatient(String patientName) {
+    public boolean appointmentBookingPortalofPatient(String patientid) {
 
         System.out.println("==============================\nBOOK APPOINTMENT\n==============================");
 
@@ -49,8 +49,10 @@ public class BookAppointments {
             System.out.println("\n");
 
             //Patient
-            appointmentWithDoctor.setPatientName(patientName);
-
+            //appointmentWithDoctor.setPatientName(patientName);
+            statement=connection.createStatement();
+            String queryToGetPatientName="SELECT concat(first_name,\" \",last_name) FROM CSCI5308_6_DEVINT.patients where patient_id='"+patientid+"';";
+            resultSet=statement.executeQuery(queryToGetPatientName);
             //Select doctor
             Boolean doctorFlag=false;
             do{
