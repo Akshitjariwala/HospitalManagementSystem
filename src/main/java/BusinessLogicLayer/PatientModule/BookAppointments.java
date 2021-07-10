@@ -2,6 +2,9 @@ package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +18,7 @@ public class BookAppointments {
 
     private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
     private static Connection connection = databaseConnection.openDBConnection();
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Statement statement=null;
     private ResultSet resultSet=null;
     private Scanner readInput=new Scanner(System.in);
@@ -53,7 +57,7 @@ public class BookAppointments {
                     System.err.println("*** Please enter correct doctor prefenence ***\n");
 
                 System.out.println("Select doctor (Option) with whom you want to book an appointment:");
-                doctorChoice=readInput.nextInt();
+                doctorChoice= Integer.parseInt(reader.readLine());
                 doctorFlag=true;
             }while (!(doctorChoice>0  && doctorChoice<doctorList.size()));
                 appointmentWithDoctor.setDoctorName(doctorList.get(doctorChoice-1));
@@ -66,7 +70,7 @@ public class BookAppointments {
                     System.err.println("*** Please enter correct Appointment Type ***\n");
 
                 System.out.println("Type of appointment 1)In Person 2) Online Consultation:");
-                appointment=readInput.nextInt();
+                appointment=Integer.parseInt(reader.readLine());
                 appointmentFlag=true;
             }while (!(appointment>0 && appointment<3));
                 appointmentWithDoctor.setTypeOfAppointment(typeOfAppointmenList.get(appointment-1));
@@ -78,7 +82,7 @@ public class BookAppointments {
                     System.err.println("*** Please enter correct Date of Appointment  ***\n");
 
                 System.out.println("Date (dd/mm/yyyy):");
-                date= readInput.next();
+                date= reader.readLine();
                 dateFlag=true;
             }while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([./-])(0[1-9]|1[012])([./-])(19|20)\\d\\d$"));
             appointmentWithDoctor.setAppointmentDate(date);
@@ -89,7 +93,7 @@ public class BookAppointments {
                     System.err.println("*** Please enter correct Time Slot ***\n");
 
                 System.out.println("Preferred Time Slot 1)Morning 2) Afternoon 3) Evening:");
-                timeSlotChoice=readInput.nextInt();
+                timeSlotChoice=Integer.parseInt(reader.readLine());
             }while (!(timeSlotChoice==1 || timeSlotChoice==2 || timeSlotChoice==3));
                 appointmentWithDoctor.setTimeSlot(timeSlotList.get(timeSlotChoice-1));
 
@@ -100,6 +104,9 @@ public class BookAppointments {
             return false;
         }catch (SQLException e){
             System.err.println("Sql ERROR");
+        }catch (IOException e){
+            System.err.println("I/O ERROR");
+
         }
         return true;
     }
@@ -135,8 +142,8 @@ public class BookAppointments {
 
     private void changeAppointmentDetails(){
         System.out.println("Enter your choice:");
-        int updateChoice=readInput.nextInt();
         try {
+            int updateChoice=Integer.parseInt(reader.readLine());
             switch (updateChoice) {
                 case 2:
                     displayDoctorList();
@@ -146,7 +153,7 @@ public class BookAppointments {
                             System.err.println("*** Please enter correct doctor prefenence ***\n");
 
                         System.out.println("Please enter new doctor: ");
-                        doctorChoice=readInput.nextInt();
+                        doctorChoice=Integer.parseInt(reader.readLine());
                         doctorFlag=true;
                     }while (!(doctorChoice>0  && doctorChoice<doctorList.size()));
                     appointmentWithDoctor.setDoctorName(doctorList.get(doctorChoice-1));
@@ -161,7 +168,7 @@ public class BookAppointments {
                             System.err.println("*** Please enter correct Date of Appointment  ***\n");
 
                         System.out.println("Please enter new Date: ");
-                        date= readInput.next();
+                        date= reader.readLine();
                         dateFlag=true;
                     }while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([./-])(0[1-9]|1[012])([./-])(19|20)\\d\\d$"));
                     appointmentWithDoctor.setAppointmentDate(date);
@@ -176,7 +183,7 @@ public class BookAppointments {
                             System.err.println("*** Please enter correct Time Slot ***\n");
 
                         System.out.println("Preferred Time Slot:");
-                        timeSlotChoice=readInput.nextInt();
+                        timeSlotChoice=Integer.parseInt(reader.readLine());
                         timeFlag=true;
                     }while (!(timeSlotChoice==1 || timeSlotChoice==2 || timeSlotChoice==3));
                     appointmentWithDoctor.setTimeSlot(timeSlotList.get(timeSlotChoice-1));
@@ -191,7 +198,7 @@ public class BookAppointments {
                             System.err.println("*** Please enter correct Appointment Type ***\n");
 
                         System.out.println("Change Appointment Type: ");
-                        appointment=readInput.nextInt();
+                        appointment=Integer.parseInt(reader.readLine());
                         appointmentFlag=true;
                     }while (!(appointment>0 && appointment<3));
                     appointmentWithDoctor.setTypeOfAppointment(typeOfAppointmenList.get(appointment-1));
@@ -210,6 +217,8 @@ public class BookAppointments {
         }
         catch (SQLException E){
             System.err.println("SQL ERROR !!!");
+        }catch (IOException e){
+            System.err.println("I/O ERROR !!!");
         }
     }
 
