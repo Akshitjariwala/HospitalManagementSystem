@@ -20,11 +20,13 @@ public class PatientLogin {
     private  static Connection connection=databaseConnection.openDBConnection();
     private Statement statement=null;
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private PatientUI patientUI=new PatientUI();
 
     public void patientLogin(){
         String userID=null;
         String password=null;
         String providedPassword=null;
+        String patientName=null;
         ResultSet resultSet=null;
 
         System.out.println("===========================================\n" +
@@ -33,7 +35,7 @@ public class PatientLogin {
        try {
            do {
                if (userID != null || password != null)
-                   System.out.println("*** Invalid user ID or Password ***");
+                   System.err.println("*** Invalid user ID or Password ***");
 
                System.out.println("User ID:");
                userID =reader.readLine();
@@ -48,16 +50,23 @@ public class PatientLogin {
                    }
            } while (!password.equals(providedPassword));
 
+           statement=connection.createStatement();
+           String queryToGetPatientName="SELECT concat(first_name,\" \",last_name) FROM CSCI5308_6_DEVINT.patients where patient_id='"+userID+"';";
+           resultSet=statement.executeQuery(queryToGetPatientName);
+           while (resultSet.next()){
+              patientName=resultSet.getString(1);
+           }
+
            //Redirect to PatientUI
-           PatientUI patientUI=new PatientUI();
-           patientUI.mainUI(userID);
+           patientUI.mainUI(userID, patientName);
+
        }catch (IOException e){
            System.out.println("I/O ERROR");
        }catch (SQLException e){
            System.out.println("SQL ERROR");
        }
     }
-
+        //User2409	PAss@2345
     public static void main(String[] args) {
         PatientLogin patientLogin=new PatientLogin();
         patientLogin.patientLogin();
