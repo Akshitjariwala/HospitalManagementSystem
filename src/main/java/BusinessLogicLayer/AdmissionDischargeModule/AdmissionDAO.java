@@ -211,4 +211,11 @@ public class AdmissionDAO {
 
         return result;
     }
+
+    // dischargePatient() saves discharge information in the database.
+    // Returns 1 is successful. Returns 0 if update fails.
+    public int dischargePatient(int admissionId){
+        int a=0;
+        return a;
+    }
 }

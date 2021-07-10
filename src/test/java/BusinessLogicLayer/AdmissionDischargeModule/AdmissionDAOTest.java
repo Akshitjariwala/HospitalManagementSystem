@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdmissionDAOTest {
 
@@ -180,6 +181,12 @@ class AdmissionDAOTest {
     admission.setAdmissionID(50);
     Mockito.when(admissionDAO.updateAdmissionForm(admission)).thenReturn(1);
     assertEquals(1,admissionDAO.updateAdmissionForm(admission),"Test Failed!. Incorrect or No value received.");
+  }
+
+  @Test
+  void dischargePatient(){
+    int admissionID = 1;
+    assertEquals(1,admissionDAO.dischargePatient(admissionID),"Test Failed!. Incorrect or No value received.");
   }
 
 }

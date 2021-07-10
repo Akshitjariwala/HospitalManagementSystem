@@ -1,5 +1,7 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import java.time.LocalDate;
+
 public class Admission {
 
   private int admissionID;
@@ -9,6 +11,9 @@ public class Admission {
     private int bedID;
     private int doctorID;
     private int diseaseID;
+    private LocalDate admissionDate;
+    private LocalDate dischargeDate;
+    private String dischargeComment;
 
     public Admission(){};
 
@@ -19,6 +24,36 @@ public class Admission {
         this.bedID = bedID;
         this.doctorID = doctorID;
         this.diseaseID = diseaseID;
+    }
+
+
+    // getAdmissionDate() returns the date of Admission.
+    public LocalDate getAdmissionDate() {
+      LocalDate date = LocalDate.of(2020, 1, 8);
+      return date;
+    }
+
+    // setAdmissionDate() sets the date of Admission.
+    public void setAdmissionDate(LocalDate admissionDate) {
+    }
+
+    // getDischargeDate() returns the date of Discharge.
+    public LocalDate getDischargeDate() {
+      LocalDate date = LocalDate.of(2020, 1, 8);
+      return date;
+    }
+
+    // setAdmissionDate() sets the date of Discharge.
+    public void setDischargeDate(LocalDate dischargeDate) {
+    }
+
+    // getDischargeComment() returns Discharge comment.
+    public String getDischargeComment() {
+      return "";
+    }
+
+    // setDischargeComment() sets Discharge comment.
+    public void setDischargeComment(String dischargeComment) {
     }
 
     public int getAdmissionID() {

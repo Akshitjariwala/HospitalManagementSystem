@@ -113,14 +113,13 @@ public class NewAdmissionFormCreation {
 
         Scanner userInput = new Scanner(System.in);
 
-        String patientID = null;
         String patientName = null;
         String admissionType = null;
         String diseaseName = null;
         String doctorName = null;
         String wardCode = null;
         String bedCode = null;
-        int flag = 0,flag1 = 0;
+        int flag1 = 0;
         int finalResult=0;
 
         System.out.println("\n==================================================");
