@@ -8,7 +8,6 @@ public class Wards {
     String bedType;
     int totalBeds;
     String wardType;
-    String additionalDetails;
 
     public int getWardId() {
         return wardId;
@@ -51,14 +50,6 @@ public class Wards {
     public void setWardType(String wardType) {
         this.wardType = wardType;
     }
-
-    public String getAdditionalDetails() {
-        return additionalDetails;
-    }
-    public void setAdditionalDetails(String additionalDetails) {
-        this.additionalDetails = additionalDetails;
-    }
-
 
 
 }

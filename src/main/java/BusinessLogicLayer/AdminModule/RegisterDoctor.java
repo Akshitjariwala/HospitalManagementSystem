@@ -182,12 +182,9 @@ public class RegisterDoctor {
         }while (doct.getState() == null);
 
         int status = RegisterDoctorDAO.addDoctor(doct);
-        if(status ==1 )
-        {
+        if(status ==1 ) {
             System.out.println("Doctor details added successfully");
-        }
-        else
-        {
+        } else {
             System.out.println("ERROR while adding details");
         }
     }
@@ -292,7 +289,7 @@ public class RegisterDoctor {
             case 14:
                 break;
             default:
-                System.out.println("Invalid Input, Please choose either 1 or 2 ");
+                System.out.println("Invalid Input, Please select valid number ");
         }
 
         if(!str.isEmpty()){
