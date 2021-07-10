@@ -28,7 +28,7 @@ public class PatientUI {
         try{
             Boolean optionFlag=false;
             do{
-                if(optionSelected!=0 && optionFlag==true)
+                if(optionSelected!=999999 && optionFlag==true)
                     System.err.println("*** Please choose either 1 or 2***\n");
 
                 System.out.println("Select Option:");
@@ -64,7 +64,7 @@ public class PatientUI {
         try{
             Boolean optionFlag=false;
             do{
-                if(optionSelected!=0 && optionFlag==true)
+                if(optionSelected!=999999 && optionFlag==true)
                     System.err.println("\n*** Please choose either 1 or 2***\n");
 
                 System.out.println("Select Option:");
