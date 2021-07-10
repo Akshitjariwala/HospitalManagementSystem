@@ -100,7 +100,7 @@ public class BookAppointments {
                 System.out.println("Date (dd/mm/yyyy):");
                 date= reader.readLine();
                 dateFlag=true;
-            }while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([./-])(0[1-9]|1[012])([./-])(19|20)\\d\\d$"));
+            }while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([/])(0[1-9]|1[012])([/])(19|20)\\d\\d$"));
             appointmentWithDoctor.setAppointmentDate(date);
 
             //Select Time

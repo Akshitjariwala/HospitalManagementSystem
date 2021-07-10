@@ -7,7 +7,7 @@
  *
  * */
 
-package BusinessLogicLayer.BeanClasses;
+package BusinessLogicLayer.PatientModule;
 
 public class PatientAppointmentWithDoctor {
 
@@ -71,9 +71,5 @@ public class PatientAppointmentWithDoctor {
         this.typeOfAppointment = typeOfAppointment;
         return true;
     }
-
-
-
-
 
 }

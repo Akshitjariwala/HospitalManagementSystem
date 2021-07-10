@@ -6,7 +6,7 @@
  * The database access is done using common DatabaseConnection class
  *
  * */
-package BusinessLogicLayer.BeanClasses;
+package BusinessLogicLayer.PatientModule;
 
 import java.util.Scanner;
 
