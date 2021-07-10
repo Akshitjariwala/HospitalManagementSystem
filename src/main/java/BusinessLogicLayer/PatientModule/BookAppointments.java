@@ -254,7 +254,6 @@ public class BookAppointments {
             int tempResultSet=statement.executeUpdate(queryToSaveAppointment);
         }catch (SQLException e){
             System.err.println("New Appointment failed to save");
-
         }
     }
     public static void main(String[] args) {

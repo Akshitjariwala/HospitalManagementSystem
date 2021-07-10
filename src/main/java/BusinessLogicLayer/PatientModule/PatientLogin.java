@@ -1,12 +1,14 @@
 package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import PresentationLayer.PatientUI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -17,7 +19,6 @@ public class PatientLogin {
 
     private  static Connection connection=databaseConnection.openDBConnection();
     private Statement statement=null;
-    private Scanner readInput=new Scanner(System.in);
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public void patientLogin(){
@@ -39,19 +40,21 @@ public class PatientLogin {
                System.out.println("Password:");
                password = reader.readLine();
 
-               try {
+
                    statement = connection.createStatement();
                    resultSet = statement.executeQuery("SELECT password FROM login_cred WHERE userid='" + userID + "';");
                    while (resultSet.next()) {
                        providedPassword = resultSet.getString(1);
                    }
-               } catch (Exception E) {
-                   E.printStackTrace();
-               }
            } while (!password.equals(providedPassword));
-           System.out.println("Welcome " + userID);
+
+           //Redirect to PatientUI
+           PatientUI patientUI=new PatientUI();
+           patientUI.mainUI(userID);
        }catch (IOException e){
            System.out.println("I/O ERROR");
+       }catch (SQLException e){
+           System.out.println("SQL ERROR");
        }
     }
 
