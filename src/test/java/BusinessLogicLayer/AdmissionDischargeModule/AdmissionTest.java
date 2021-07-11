@@ -66,7 +66,7 @@ public class AdmissionTest {
   public void getAdmissionDate(){
     Admission admission = new Admission();
     admission.setAdmissionDate(date);
-    assertEquals(java.time.LocalDate.now(),admission.getAdmissionDate(),"Test Failed!. Incorrect or No value received.");
+    assertEquals(date,admission.getAdmissionDate(),"Test Failed!. Incorrect or No value received.");
   }
 
   // getDischargeDate() returns the date of Discharge.
@@ -74,7 +74,7 @@ public class AdmissionTest {
   public void getDischargeDate(){
     Admission admission = new Admission();
     admission.setDischargeDate(date);
-    assertEquals(java.time.LocalDate.now(),admission.getDischargeDate(),"Test Failed!. Incorrect or No value received.");
+    assertEquals(date,admission.getDischargeDate(),"Test Failed!. Incorrect or No value received.");
   }
 
   @Test
