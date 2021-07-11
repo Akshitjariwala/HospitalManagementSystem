@@ -2,7 +2,7 @@ package BusinessLogicLayer.DoctorModule;
 
 import java.util.ArrayList;
 
-
+import DatabaseLayer.Dao.ViewAppointmentsDao;
 import BusinessLogicLayer.AdminModule.Appointment;
 
 public class ViewAppointments {

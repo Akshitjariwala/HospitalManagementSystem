@@ -1,4 +1,4 @@
-package BusinessLogicLayer.DoctorModule;
+package DatabaseLayer.Dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 

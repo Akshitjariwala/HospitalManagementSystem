@@ -71,5 +71,8 @@ public class PatientAppointmentWithDoctor {
         this.typeOfAppointment = typeOfAppointment;
         return true;
     }
+	public static void main(String[] args) {
+		
+	}
 
 }
