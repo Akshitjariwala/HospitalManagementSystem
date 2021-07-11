@@ -2,6 +2,8 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 
 import BusinessLogicLayer.PatientModule.PatientRegistration;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import PresentationLayer.Main;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -64,12 +66,12 @@ public class NewAdmissionFormCreation {
                         patientRegistration.newPatientRegistration();flag=0;
                         break;
                     case 4:
-                        flag=1;break;
+                        Main main = new Main();
+                        main.mainMethod();
+                        break; // Go to Admin Home Page.
                 }
             }else{
-                System.out.printf("%n");
-                System.out.println("Invalid Input Received! Please Enter Valid Selection.");
-                System.out.printf("%n");
+                System.out.println("\nInvalid Input Received! Please Enter Valid Selection.\n");
             }
         }while(flag==0);
 
