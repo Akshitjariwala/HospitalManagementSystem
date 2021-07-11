@@ -3,7 +3,11 @@ package PresentationLayer;
 import java.util.Scanner;
 
 public class Main {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
+    mainMethod();
+  }
+
+  public static void mainMethod() throws Exception {
     System.out.println("============================================================");
     System.out.println("\t\tWelcome to our Hospital Management System!!!\t\t");
     System.out.println("============================================================");
@@ -33,6 +37,8 @@ public class Main {
             break;
           case 3:
             System.out.println("Admin Login");
+            AdminLogin adminLogin = new AdminLogin();
+            adminLogin.AdminLoginPage();
             flag = 1;
             break;
           case 4:

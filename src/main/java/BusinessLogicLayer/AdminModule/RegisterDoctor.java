@@ -16,7 +16,7 @@ import DatabaseLayer.Dao.RegisterDoctorDAO;
 public class RegisterDoctor {
     String str = "";
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void registerDoctor() throws SQLException, ClassNotFoundException {
         RegisterDoctor registration = new RegisterDoctor();
         System.out.println("Press 1 to register");
         System.out.println("Press 2 to update the records ");
@@ -33,9 +33,6 @@ public class RegisterDoctor {
         else{
             System.out.println("Invalid Input, Please choose either 1 or 2 ");
         }
-
-
-
     }
 
     /* Doctor Details are taken as input
