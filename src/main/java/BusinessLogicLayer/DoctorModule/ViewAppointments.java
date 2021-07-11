@@ -29,7 +29,7 @@ public class ViewAppointments {
 		{
 			for(Appointment a:appointments) {
 				System.out.printf("%-10s %-10s %-10s",a.getAppointmentId(),"|",a.getPatientId());
-				System.out.printf("%-10s %-10s %-10s  %-10s  %-10s%n",a.getDate(),"|",a.getPreferredSlot(),"|",a.getPreferredSlot());
+				System.out.printf("%-10s %-10s %-10s %-10s %-10s%n",a.getDate(),"|",a.getPreferredSlot(),"|",a.getPreferredSlot());
 			}
 			System.out.printf("%n");
 
