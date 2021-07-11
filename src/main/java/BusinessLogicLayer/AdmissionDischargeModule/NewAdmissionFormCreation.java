@@ -2,6 +2,7 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 
 import BusinessLogicLayer.PatientModule.PatientRegistration;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import PresentationLayer.AdminLogin;
 import PresentationLayer.Main;
 
 import java.sql.*;
@@ -66,8 +67,8 @@ public class NewAdmissionFormCreation {
                         patientRegistration.newPatientRegistration();flag=0;
                         break;
                     case 4:
-                        Main main = new Main();
-                        main.mainMethod();
+                        AdminLogin adminLogin = new AdminLogin();
+                        adminLogin.AdminPage();
                         break; // Go to Admin Home Page.
                 }
             }else{
