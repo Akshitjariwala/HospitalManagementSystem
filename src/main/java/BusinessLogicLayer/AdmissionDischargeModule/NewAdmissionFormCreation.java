@@ -1,5 +1,6 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import BusinessLogicLayer.PatientModule.PatientRegistration;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import java.sql.*;
 import java.time.LocalDate;
@@ -59,10 +60,11 @@ public class NewAdmissionFormCreation {
                         dischargeForm.dischargeForm();flag=0;
                         break;
                     case 3:
-                        patientRegistrationPage();flag=0;
+                        PatientRegistration patientRegistration = new PatientRegistration();
+                        patientRegistration.newPatientRegistration();flag=0;
                         break;
                     case 4:
-                        exitToMainPage();flag=1;
+                        flag=1;break;
                 }
             }else{
                 System.out.printf("%n");
@@ -442,11 +444,6 @@ public class NewAdmissionFormCreation {
 
         int flag = 0;
         int formFlag = 0;
-        String admissionType = null;
-        String diseaseName  = null;
-        String doctorName = null;
-        String wardCode = null;
-        String bedCode= null;
         int finalResult;
         do{
             Scanner userInput = new Scanner(System.in);
@@ -523,14 +520,5 @@ public class NewAdmissionFormCreation {
             }
         }while(flag == 0);
         // Go back to Main menu.
-    }
-
-    public void patientRegistrationPage(){
-
-    }
-
-    //Exit to main page of Hospital Management System.
-    public void exitToMainPage(){
-
     }
 }
