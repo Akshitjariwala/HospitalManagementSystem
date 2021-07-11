@@ -192,7 +192,8 @@ class AdmissionDAOTest {
     admission.setDischargeDate(date);
     admission.setAdmissionID(50);
     admission.setDischargeComment("Patient is allowed to leave.");
-    assertTrue(demoDAO.dischargePatient(admission),"Test Failed!. Incorrect or No value received.");
+    Mockito.when(admissionDAO.dischargePatient(admission)).thenReturn(Boolean.valueOf("true"));
+    assertTrue(admissionDAO.dischargePatient(admission),"Test Failed!. Incorrect or No value received.");
   }
 
 }
