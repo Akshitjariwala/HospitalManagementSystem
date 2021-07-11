@@ -42,9 +42,9 @@ public class ManageAppointments extends ManageAppointmentDatabase {
           if (appIds.contains(appId)) {
             int statusFlag = 0;
             do {
-              System.out.println("Enter New Status (Confirm / Reject): ");
+              System.out.println("Enter New Status (Confirmed / Reject): ");
               String appStatus = appIdInput.next();
-              if (appStatus.equalsIgnoreCase("confirm") || appStatus.equalsIgnoreCase("reject")) {
+              if (appStatus.equalsIgnoreCase("confirmed") || appStatus.equalsIgnoreCase("reject")) {
                 System.out.println("Status Updating...");
                 updateAppointmentStatus(appId, appStatus.toUpperCase());
                 System.out.println("Status Updated Successfully");

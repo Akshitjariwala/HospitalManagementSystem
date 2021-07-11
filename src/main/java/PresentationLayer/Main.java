@@ -1,5 +1,7 @@
 package PresentationLayer;
 
+import BusinessLogicLayer.DoctorModule.DoctorLogin;
+
 import java.util.Scanner;
 
 public class Main {
@@ -26,7 +28,8 @@ public class Main {
       if (choice > 0 && choice <= 4) {
         switch (choice) {
           case 1:
-            System.out.println("Doctor Login");
+            DoctorLogin doctorLogin = new DoctorLogin();
+            doctorLogin.login();
             flag = 1;
             break;
           case 2:

@@ -1,18 +1,16 @@
 package BusinessLogicLayer.WardModule;
 
+import BusinessLogicLayer.AdminModule.AddWards;
+import BusinessLogicLayer.AdminModule.UpdateWards;
 import DatabaseLayer.ActionDatabase.Admin.ManageWardDatabase;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WardHome extends ManageWardDatabase implements IWardActions {
 
   public WardHome() {
-  }
-
-  public static void main(String[] args) {
-    WardHome wardHome = new WardHome();
-    wardHome.wardManageHomePage();
   }
 
   // wardManageHomePage() method returns Ward module home page.
@@ -24,12 +22,13 @@ public class WardHome extends ManageWardDatabase implements IWardActions {
       System.out.println("=================================================");
       System.out.printf("%n");
       System.out.println("1. Add new Wards");
-      System.out.println("2. Show bed Availability");
-      System.out.println("3. Patient-wise bed details");
-      System.out.println("4. Main Menu");
-      System.out.println("5. Exit");
+      System.out.println("2. Update existing Wards");
+      System.out.println("3. Show bed Availability");
+      System.out.println("4. Patient-wise bed details");
+      System.out.println("5. Main Menu");
+      System.out.println("6. Exit");
       System.out.printf("%n");
-      System.out.print("Select number between 1-5 to perform appropriate action.");
+      System.out.print("Select number between 1-6 to perform appropriate action.");
       System.out.printf("%n");
       System.out.print("Enter Selection : ");
 
@@ -38,21 +37,31 @@ public class WardHome extends ManageWardDatabase implements IWardActions {
       if (choice > 0 && choice <= 5) {
         switch (choice) {
           case 1:
-            addNewWards();// call add new wards method here
+            AddWards.addWards();// call add new wards method here
             flag = 1;
             break;
           case 2:
-            checkBedAvailability();// call check bed availability method here
+            try {
+              UpdateWards.updateWards();// call check bed availability method here
+            } catch (SQLException sqlException) {
+              sqlException.printStackTrace();
+            } catch (ClassNotFoundException e) {
+              e.printStackTrace();
+            }
             flag = 1;
             break;
           case 3:
-            checkPatientWiseBedDetails();// call patient-wise bed details method here
+            //checkBedAvailability();// call patient-wise bed details method here
             flag = 1;
             break;
           case 4:
+            checkPatientWiseBedDetails();// call patient-wise bed details method here
+            flag = 1;
+            break;
+          case 5:
             // call main menu
             flag = 1;
-          case 5:
+          case 6:
             System.exit(1);// exit()
             flag = 1;
         }

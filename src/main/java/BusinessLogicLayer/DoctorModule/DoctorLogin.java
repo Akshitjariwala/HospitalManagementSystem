@@ -26,7 +26,8 @@ public class DoctorLogin {
             if (temp == 1) {
                 doct.setMedicalLicenseId(doctorId);
                 System.out.println("==================LOGIN SUCCESSFULL ================");
-                RedirectToDoctorLogin.redirectLogin();
+                DoctorHome doctorHome = new DoctorHome(doctorId);
+                doctorHome.doctorHomePage();
 
             } else {
                 System.out.println("Invalid details. Please login again");

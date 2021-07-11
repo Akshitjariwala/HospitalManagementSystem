@@ -38,7 +38,7 @@ public class ManageAppointmentDatabase implements IManageAppointmentDatabase {
         appointment.setAppointmentId(rs.getInt("app_id"));
         appointment.setPatientId(rs.getString("patient_id"));
         appointment.setDoctorId(rs.getString("doc_id"));
-        appointment.setDate(rs.getString("date"));
+        appointment.setDate(rs.getString("appointment_date"));
         appointment.setPreferredSlot(rs.getString("preferred_slot"));
         appointment.setTypeOfAppointment(rs.getString("type_of_appo"));
         appointment.setAppointmentStatus(rs.getString("appointment_status"));
