@@ -3,9 +3,14 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 import org.junit.jupiter.api.Test;
 
 
+import java.sql.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AdmissionTest {
+
+  long timeToMil = System.currentTimeMillis();
+  Date date = new Date(timeToMil);
 
   @Test
   public void getAdmissionID() {
@@ -60,7 +65,7 @@ public class AdmissionTest {
   @Test
   public void getAdmissionDate(){
     Admission admission = new Admission();
-    admission.setAdmissionDate(java.time.LocalDate.now());
+    admission.setAdmissionDate(date);
     assertEquals(java.time.LocalDate.now(),admission.getAdmissionDate(),"Test Failed!. Incorrect or No value received.");
   }
 
@@ -68,7 +73,7 @@ public class AdmissionTest {
   @Test
   public void getDischargeDate(){
     Admission admission = new Admission();
-    admission.setDischargeDate(java.time.LocalDate.now());
+    admission.setDischargeDate(date);
     assertEquals(java.time.LocalDate.now(),admission.getDischargeDate(),"Test Failed!. Incorrect or No value received.");
   }
 

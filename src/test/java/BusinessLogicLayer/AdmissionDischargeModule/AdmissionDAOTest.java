@@ -3,16 +3,17 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdmissionDAOTest {
 
   private AdmissionDAO admissionDAO;
+  private long timeToMil = System.currentTimeMillis();
+  private Date date = new Date(timeToMil);
 
   @BeforeEach
   void setup() {
@@ -183,10 +184,15 @@ class AdmissionDAOTest {
     assertEquals(1,admissionDAO.updateAdmissionForm(admission),"Test Failed!. Incorrect or No value received.");
   }
 
+  // dischargePatient() saves discharge information in the database.
+  // Returns 1 is successful. Returns 0 if update fails.
   @Test
-  void dischargePatient(){
-    int admissionID = 1;
-    assertEquals(1,admissionDAO.dischargePatient(admissionID),"Test Failed!. Incorrect or No value received.");
+  void dischargePatient() throws SQLException {
+    Admission admission = new Admission("doe999", 2, 3, 1, 3, 4);
+    admission.setDischargeDate(date);
+    admission.setAdmissionID(50);
+    admission.setDischargeComment("Patient is allowed to leave.");
+    assertTrue(demoDAO.dischargePatient(admission),"Test Failed!. Incorrect or No value received.");
   }
 
 }

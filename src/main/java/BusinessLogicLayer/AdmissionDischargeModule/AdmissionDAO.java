@@ -4,6 +4,7 @@ import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class AdmissionDAO {
@@ -190,6 +191,7 @@ public class AdmissionDAO {
             admission.setDoctorID(admissionDetails.getInt("doc_id"));
             admission.setWardID(admissionDetails.getInt("ward_id"));
             admission.setBedID(admissionDetails.getInt("bed_id"));
+            admission.setAdmissionDate(admissionDetails.getDate("date_of_admission"));
         }
         return admission;
     }
@@ -214,8 +216,26 @@ public class AdmissionDAO {
 
     // dischargePatient() saves discharge information in the database.
     // Returns 1 is successful. Returns 0 if update fails.
-    public int dischargePatient(int admissionId){
-        int a=0;
-        return a;
+    public boolean dischargePatient(Admission admission) throws SQLException {
+        int result = 0;
+        int response = 0;
+        boolean bool = false;
+        Date date = admission.getDischargeDate();
+        String dischargeSQL = "UPDATE admission SET date_of_discharge = ? , comments = ? WHERE admissionID = ?";
+        String updateBed = "UPDATE beds SET isOccupied = 0 WHERE bed_id = "+admission.getBedID();
+        PreparedStatement ps = connection.prepareStatement(dischargeSQL);
+        ps.setDate(1,date);
+        ps.setString(2,admission.getDischargeComment());
+        ps.setInt(3,admission.getAdmissionID());
+
+        result = ps.executeUpdate();
+
+        if(result == 1){
+            response = statement.executeUpdate(updateBed);
+            if(response == 1){
+                bool = true;
+            }
+        }
+        return bool;
     }
 }

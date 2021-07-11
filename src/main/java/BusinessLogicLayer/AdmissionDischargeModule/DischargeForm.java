@@ -1,8 +1,7 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class DischargeForm {
@@ -12,17 +11,21 @@ public class DischargeForm {
   public void dischargeForm() throws SQLException {
 
     int flag = 0;
+    int flag1 = 0;
+    int flag2 = 0;
     String dischargeComment = null;
-    LocalDate dischargeDate = java.time.LocalDate.now();
-    Scanner userInput = new Scanner(System.in);
-    System.out.print("\nEnter Patient ID  : ");
-    String patientID = userInput.nextLine();
-    boolean result = admissionDao.ifPatientExists(patientID);
-    if(result){
-      Admission admissionDetails = admissionDao.getAdmissionDetails(patientID);
-      if(!Objects.isNull(admissionDetails))
-      {
-        do {
+    long timeToMil = System.currentTimeMillis();
+    Date date = new Date(timeToMil);
+
+    do {
+      Scanner userInput = new Scanner(System.in);
+      System.out.print("\nEnter Patient ID  : ");
+      String patientID = userInput.nextLine();
+      boolean result = admissionDao.ifPatientExists(patientID);
+      if (result) {
+        do{
+        Admission admissionDetails = admissionDao.getAdmissionDetails(patientID);
+        if (admissionDetails.getPatientID() != null) {
           System.out.println("\n=================================================");
           System.out.println("\t\t\t\tDischarge Form\t\t\t\t");
           System.out.println("=================================================");
@@ -33,36 +36,43 @@ public class DischargeForm {
           System.out.println("5. Ward            :\t" + admissionDao.getWardCode(admissionDetails.getWardID()));
           System.out.println("6. Bed ID          :\t" + admissionDao.getBedCode(admissionDetails.getBedID()));
           System.out.println("7. Admission Date  :\t" + admissionDetails.getAdmissionDate());
-          System.out.println("8. Discharge Date  :\t" + dischargeDate);
+          System.out.println("8. Discharge Date  :\t" + date);
           System.out.print("9. Add Comment     :\t");
           Scanner userComment = new Scanner(System.in);
           dischargeComment = userComment.nextLine();
           admissionDetails.setDischargeComment(dischargeComment);
-          admissionDetails.setDischargeDate(dischargeDate);
-          System.out.printf("\n Select 0 to save the discharge form.");
-          Scanner option = new Scanner(System.in);
-          int response = option.nextInt();
+          admissionDetails.setDischargeDate(date);
 
           do {
-            if(response == 0) {
-              int res = admissionDao.dischargePatient(admissionDetails.getAdmissionID());
-              if(res == 1){
-                System.out.println("User Discharge Successful.");
-              } else {
-                System.out.println("User Discharge Failed.");
-              }
-            } else {
-              System.out.println("Invalid Input Received! Please Enter Valid Input.");
+            System.out.println("\n\nSelect 0 to save the discharge form or Select 1 to edit Discharge Comment.");
+            Scanner option = new Scanner(System.in);
+            int response = option.nextInt();
+
+            switch (response) {
+              case 0:
+                boolean res = admissionDao.dischargePatient(admissionDetails);
+                if (res) {
+                  System.out.println("\nUser Successfully Discharged.");
+                  flag1 = 1;
+                  flag = 1;
+                  flag2 = 1;
+                } else {
+                  System.out.println("\nUser Discharge Failed.");
+                }
+                break;
+              case 1:
+                flag = 0;
+                flag1 = 1;
             }
-          } while(!(response ==0));
+          } while (flag1 == 0);
 
-        }while(flag==0);
+        } else {
+          System.out.println("\nEntered Patient does not have any Admission/Discharge records. Please enter other Patient ID.");
+        }
+      }while(flag2==0);
       } else {
-        System.out.println("Entered Patient does not have any Admission/Discharge records. Please enter other Patient ID.");
+        System.out.println("\nEntered Patient ID does not existing in the system. Please enter valid Patient ID.");
       }
-    } else {
-      System.out.println("Entered Patient ID does not existing in the system. Please enter valid Patient ID.");
-    }
-
+    }while(flag == 0);
   }
 }

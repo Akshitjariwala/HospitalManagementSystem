@@ -17,6 +17,7 @@ public class NewAdmissionFormCreation {
     public static Connection connection = databaseConnection.openDBConnection();
     public static Statement statement;
     public static AdmissionDAO admissionDao = new AdmissionDAO();
+    public static DischargeForm dischargeForm = new DischargeForm();
 
     static {
         try {
@@ -39,7 +40,7 @@ public class NewAdmissionFormCreation {
     public void admissionHomePage() throws Exception {
         int flag = 0;
         do {
-            System.out.println("=================================================");
+            System.out.println("\n=================================================");
             System.out.println("\t\t\t\tMain Menu\t\t\t\t");
             System.out.println("=================================================");
             System.out.printf("%n");
@@ -57,7 +58,7 @@ public class NewAdmissionFormCreation {
                         admissionFormPage();flag=0;
                         break;
                     case 2:
-                        dischargeFormPage();flag=0;
+                        dischargeForm.dischargeForm();flag=0;
                         break;
                     case 3:
                         patientRegistrationPage();flag=0;
@@ -524,10 +525,6 @@ public class NewAdmissionFormCreation {
             }
         }while(flag == 0);
         // Go back to Main menu.
-    }
-
-    public void dischargeFormPage() {
-
     }
 
     public void patientRegistrationPage(){

@@ -1,18 +1,18 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Admission {
 
-  private int admissionID;
+    private int admissionID;
     private String patientID;
     private int admissionType;
     private int wardID;
     private int bedID;
     private int doctorID;
     private int diseaseID;
-    private LocalDate admissionDate;
-    private LocalDate dischargeDate;
+    private Date admissionDate;
+    private Date dischargeDate;
     private String dischargeComment;
 
     public Admission(){};
@@ -28,22 +28,22 @@ public class Admission {
 
 
     // getAdmissionDate() returns the date of Admission.
-    public LocalDate getAdmissionDate() {
+    public Date getAdmissionDate() {
       return admissionDate;
     }
 
     // setAdmissionDate() sets the date of Admission.
-    public void setAdmissionDate(LocalDate admissionDate) {
+    public void setAdmissionDate(Date admissionDate) {
       this.admissionDate = admissionDate;
     }
 
     // getDischargeDate() returns the date of Discharge.
-    public LocalDate getDischargeDate() {
+    public Date getDischargeDate() {
       return dischargeDate;
     }
 
     // setAdmissionDate() sets the date of Discharge.
-    public void setDischargeDate(LocalDate dischargeDate) {
+    public void setDischargeDate(Date dischargeDate) {
       this.dischargeDate = dischargeDate;
     }
 
