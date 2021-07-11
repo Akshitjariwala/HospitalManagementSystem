@@ -37,7 +37,7 @@ public class ViewAppointmentsDao {
 				Appointment appointment = new Appointment();
 				appointment.setAppointmentId(rs.getInt("app_id"));
 				appointment.setPatientId(rs.getString("patient_id"));
-				appointment.setDate(rs.getString("date"));
+				appointment.setDate(rs.getString("appointment_date"));
 				appointment.setPreferredSlot(rs.getString("preferred_slot"));
 				appointment.setTypeOfAppointment(rs.getString("type_of_appo"));
 				appointments.add(appointment);

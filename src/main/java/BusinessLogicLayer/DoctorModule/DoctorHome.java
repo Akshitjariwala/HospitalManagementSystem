@@ -62,7 +62,7 @@ public class DoctorHome {
 	}
 	public static void main(String args[])
 	{
-		DoctorHome doc=new DoctorHome("12345");
+		DoctorHome doc=new DoctorHome("2");
 		doc.doctorHomePage();
 	}
 }
