@@ -75,7 +75,7 @@ public class PatientLogin {
            System.out.println("SQL ERROR");
        }
     }
-        //User2409	PAss@2345
+
     public static void main(String[] args) {
         PatientLogin patientLogin=new PatientLogin();
         patientLogin.patientLogin();

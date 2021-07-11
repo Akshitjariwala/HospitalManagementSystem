@@ -166,7 +166,7 @@ public class BookAppointments {
                     Boolean doctorFlag=false;
                     do{
                         if(doctorChoice!=999999 && doctorFlag==true)
-                            System.err.println("*** Please enter correct doctor prefenence ***\n");
+                            System.err.println("*** Please enter correct doctor preference ***\n");
 
                         System.out.println("Please enter new doctor: ");
                         doctorChoice=Integer.parseInt(reader.readLine());
@@ -255,15 +255,22 @@ public class BookAppointments {
                 doctor_id= resultSet.getInt(1);
             }
 
-          //  System.out.println(doctor_id+":"+patient_id);
             String queryToSaveAppointment="INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
                     "VALUES ('"+patient_id+"','"+doctor_id+"','"+appointmentWithDoctor.getAppointmentDate()+"','"+appointmentWithDoctor.getTimeSlot()+"','"+appointmentWithDoctor.getTypeOfAppointment()+"','"+appointmentStatus+"');";
 
-            int tempResultSet=statement.executeUpdate(queryToSaveAppointment);
+            String queryToMapPatientWithDoctor="INSERT INTO  CSCI5308_6_DEVINT.patients_doctors_mapping (patient_id, doc_id) \n" +
+                    "VALUES ('"+patient_id+"','"+doctor_id+"');";
+
+            statement.addBatch(queryToSaveAppointment);
+            statement.addBatch(queryToMapPatientWithDoctor);
+
+            int[] tempResult=statement.executeBatch();
+            System.out.println("NEW APPOINTMENT CREATED");
+
         }catch (SQLException e){
-            System.err.println("New Appointment failed to save");
+            System.err.println("New APPOINTMENT FAIL TO SAVE");
+            e.printStackTrace();
         }
-        System.out.println("NEW APPOINTMENT CREATED");
     }
     public static void main(String[] args) {
         BookAppointments bookAppointments=new BookAppointments();
