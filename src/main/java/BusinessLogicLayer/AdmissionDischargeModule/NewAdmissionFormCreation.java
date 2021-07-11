@@ -1,8 +1,6 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
-
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
