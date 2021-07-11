@@ -3,20 +3,24 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdmissionDAOTest {
 
   private AdmissionDAO admissionDAO;
+  private long timeToMil = System.currentTimeMillis();
+  private Date date = new Date(timeToMil);
 
   @BeforeEach
   void setup() {
     admissionDAO = Mockito.mock(AdmissionDAO.class);
   }
+
+  private AdmissionDAO demoDAO = new AdmissionDAO();
 
   // This Returns patient record with provided patient ID.
   @Test
@@ -64,15 +68,15 @@ class AdmissionDAOTest {
   // getDisease() returns Disease code associated with provided disease id.
   @Test
   void getDiseaseName() throws SQLException {
-    Mockito.when(admissionDAO.getDiseaseName(3)).thenReturn("Disease");
-    assertEquals("Disease", admissionDAO.getDiseaseName(3), "Test Failed!. Incorrect or No value received.");
+    Mockito.when(admissionDAO.getDiseaseName(3)).thenReturn("DI100012");
+    assertEquals("DI100012", admissionDAO.getDiseaseName(3), "Test Failed!. Incorrect or No value received.");
   }
 
   //
   @Test
   void getDiseaseCode() throws SQLException {
-    Mockito.when(admissionDAO.getDiseaseCode(1)).thenReturn("COVID-19");
-    assertEquals("COVID-19", admissionDAO.getDiseaseCode(1), "Test Failed!. Incorrect or No value received.");
+    Mockito.when(admissionDAO.getDiseaseName(1)).thenReturn("COVID-19");
+    assertEquals("COVID-19", admissionDAO.getDiseaseName(1), "Test Failed!. Incorrect or No value received.");
   }
 
   // getDoctorList() returns ArrayList object with list of Doctors from database.
@@ -149,8 +153,46 @@ class AdmissionDAOTest {
   // saveAdmissionForm() saves the Admission object data in the database.
   @Test
   void saveAdmissionForm() throws SQLException {
-    Admission admission = new Admission("doe999", 1, 4, 5, 7, "DI100015");
+    Admission admission = new Admission("doe999", 1, 4, 5, 7, 6);
     Mockito.when(admissionDAO.saveAdmissionForm(admission)).thenReturn(1);
     assertEquals(1, admissionDAO.saveAdmissionForm(admission), "Test Failed!. Incorrect or No value received.");
   }
+
+/*  ifPatientExists() checks if user exists in the system.
+    If exists it returns true
+  else it returns false.*/
+  @Test
+  void ifPatientExists() throws SQLException {
+    Mockito.when(admissionDAO.ifPatientExists("doe999")).thenReturn(Boolean.valueOf("true"));
+    assertTrue(admissionDAO.ifPatientExists("doe999"),"Test Failed!. False or Incorrect value received.");
+  }
+
+  // This method will return Admission details of the patient.
+  @Test
+  void getAdmissionDetails() throws SQLException {
+    Admission admission = new Admission("doe999", 3, 5, 2, 7, 5);
+    Mockito.when(admissionDAO.getAdmissionDetails("doe999")).thenReturn(admission);
+    Admission testAdmission = admissionDAO.getAdmissionDetails("doe999");
+    assertEquals(admission.getPatientID(),testAdmission.getPatientID(),"Test Failed!. Incorrect or No value received.");
+  }
+
+  @Test
+  void updateAdmissionForm() throws SQLException {
+    Admission admission = new Admission("doe999", 2, 3, 1, 3, 4);
+    admission.setAdmissionID(50);
+    Mockito.when(admissionDAO.updateAdmissionForm(admission)).thenReturn(1);
+    assertEquals(1,admissionDAO.updateAdmissionForm(admission),"Test Failed!. Incorrect or No value received.");
+  }
+
+  // dischargePatient() saves discharge information in the database.
+  // Returns 1 is successful. Returns 0 if update fails.
+  @Test
+  void dischargePatient() throws SQLException {
+    Admission admission = new Admission("doe999", 2, 3, 1, 3, 4);
+    admission.setDischargeDate(date);
+    admission.setAdmissionID(50);
+    admission.setDischargeComment("Patient is allowed to leave.");
+    assertTrue(demoDAO.dischargePatient(admission),"Test Failed!. Incorrect or No value received.");
+  }
+
 }

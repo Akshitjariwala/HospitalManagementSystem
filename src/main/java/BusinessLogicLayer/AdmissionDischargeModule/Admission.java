@@ -1,23 +1,68 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import java.sql.Date;
+
 public class Admission {
 
+    private int admissionID;
     private String patientID;
     private int admissionType;
     private int wardID;
     private int bedID;
     private int doctorID;
-    private String diseaseID;
+    private int diseaseID;
+    private Date admissionDate;
+    private Date dischargeDate;
+    private String dischargeComment;
 
     public Admission(){};
 
-    public Admission(String patientID,int admissionType,int wardID,int bedID,int doctorID,String diseaseID){
+    public Admission(String patientID,int admissionType,int wardID,int bedID,int doctorID,int diseaseID){
         this.patientID = patientID;
         this.admissionType = admissionType;
         this.wardID = wardID;
         this.bedID = bedID;
         this.doctorID = doctorID;
         this.diseaseID = diseaseID;
+    }
+
+
+    // getAdmissionDate() returns the date of Admission.
+    public Date getAdmissionDate() {
+      return admissionDate;
+    }
+
+    // setAdmissionDate() sets the date of Admission.
+    public void setAdmissionDate(Date admissionDate) {
+      this.admissionDate = admissionDate;
+    }
+
+    // getDischargeDate() returns the date of Discharge.
+    public Date getDischargeDate() {
+      return dischargeDate;
+    }
+
+    // setAdmissionDate() sets the date of Discharge.
+    public void setDischargeDate(Date dischargeDate) {
+      this.dischargeDate = dischargeDate;
+    }
+
+    // getDischargeComment() returns Discharge comment.
+    public String getDischargeComment() {
+      return dischargeComment;
+    }
+
+    // setDischargeComment() sets Discharge comment.
+    public void setDischargeComment(String dischargeComment) {
+      this.dischargeComment = dischargeComment;
+    }
+
+    public int getAdmissionID() {
+      return admissionID;
+    }
+
+    public void setAdmissionID(int admissionID) {
+      this.admissionID = admissionID;
     }
 
     public String getPatientID() {
@@ -55,10 +100,10 @@ public class Admission {
         this.doctorID =doctorID;
     }
 
-    public String getDiseaseID() {
+    public int getDiseaseID() {
         return this.diseaseID;
     }
-    public void setDiseaseID(String diseaseID){
+    public void setDiseaseID(int diseaseID){
         this.diseaseID =diseaseID;
     }
 
