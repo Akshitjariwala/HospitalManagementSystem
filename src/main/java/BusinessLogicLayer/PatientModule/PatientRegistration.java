@@ -9,7 +9,6 @@
 package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
-import BusinessLogicLayer.PatientModule.Patient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.sql.Statement;
 
 
 
-public class UpdatePersonalDetails {
+public class PatientRegistration {
 
     private static DatabaseConnection databaseConnection=DatabaseConnection.createInstance();
 
@@ -363,7 +362,7 @@ public class UpdatePersonalDetails {
     }
 
     public static void main(String[] args) {
-        UpdatePersonalDetails updatePersonalDetails=new UpdatePersonalDetails();
+        PatientRegistration updatePersonalDetails=new PatientRegistration();
         updatePersonalDetails.newPatientRegistration();
 
     }

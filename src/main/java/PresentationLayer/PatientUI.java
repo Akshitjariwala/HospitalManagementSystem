@@ -2,7 +2,7 @@ package PresentationLayer;
 
 import BusinessLogicLayer.PatientModule.BookAppointments;
 import BusinessLogicLayer.PatientModule.PatientLogin;
-import BusinessLogicLayer.PatientModule.UpdatePersonalDetails;
+import BusinessLogicLayer.PatientModule.PatientRegistration;
 import BusinessLogicLayer.PatientModule.ViewPatientReports;
 
 import java.io.BufferedReader;
@@ -55,7 +55,7 @@ public class PatientUI {
     }
 
     public void loginOrRegistrationUI(){
-        UpdatePersonalDetails newPatient=new UpdatePersonalDetails();
+        PatientRegistration newPatient=new PatientRegistration();
         PatientLogin patientLogin=new PatientLogin();
         int optionSelected=0;
         System.out.println("==============================\n\t\tType of Patient\n==============================\n");
