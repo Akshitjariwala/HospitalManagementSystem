@@ -1,3 +1,11 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Kishan Kahodariya
+ * @description: This program handles login process of patients i.e.
+ * it verifies if a patient is registered in the system or not.
+ * The database access is done using common DatabaseConnection class
+ *
+ * */
 package BusinessLogicLayer.PatientModule;
 
 import java.util.Scanner;

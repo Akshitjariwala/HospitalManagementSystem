@@ -1,3 +1,11 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Kishan Kahodariya
+ * @description: This program handles booking of new appointments
+ * once the patient has logged in.
+ * The database access is done using common DatabaseConnection class
+ *
+ * */
 package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
@@ -29,6 +37,7 @@ public class BookAppointments {
     private String timeSlotSelected=null;
     private int doctorChoice=0;
     private int timeSlotChoice=0;
+    private String globalPatientID=null;
     private List<String> doctorList=new ArrayList<>();
     private PatientAppointmentWithDoctor appointmentWithDoctor=new PatientAppointmentWithDoctor();
     private static List<String> typeOfAppointmenList= new ArrayList<String>(){{
@@ -38,7 +47,7 @@ public class BookAppointments {
         add("Morning");add("Afternoon");add("Evening");
     }};
 
-    public boolean appointmentBookingPortalofPatient(String patientName) {
+    public boolean appointmentBookingPortalofPatient(String patientid) {
 
         System.out.println("==============================\nBOOK APPOINTMENT\n==============================");
 
@@ -49,7 +58,13 @@ public class BookAppointments {
             System.out.println("\n");
 
             //Patient
-            appointmentWithDoctor.setPatientName(patientName);
+            globalPatientID=patientid;
+            statement=connection.createStatement();
+            String queryToGetPatientName="SELECT concat(first_name,\" \",last_name) FROM CSCI5308_6_DEVINT.patients where patient_id='"+patientid+"';";
+           resultSet=statement.executeQuery(queryToGetPatientName);
+           while (resultSet.next()){
+               appointmentWithDoctor.setPatientName(resultSet.getString(1));
+           }
 
             //Select doctor
             Boolean doctorFlag=false;
@@ -60,7 +75,7 @@ public class BookAppointments {
                 System.out.println("Select doctor (Option) with whom you want to book an appointment:");
                 doctorChoice= Integer.parseInt(reader.readLine());
                 doctorFlag=true;
-            }while (!(doctorChoice>0  && doctorChoice<doctorList.size()));
+            }while (!(doctorChoice>0  && doctorChoice<=doctorList.size()));
                 appointmentWithDoctor.setDoctorName(doctorList.get(doctorChoice-1));
             System.out.println("\n\nPlease enter below details to book an appoint with "+appointmentWithDoctor.getDoctorName()+" :");
 
@@ -85,7 +100,7 @@ public class BookAppointments {
                 System.out.println("Date (dd/mm/yyyy):");
                 date= reader.readLine();
                 dateFlag=true;
-            }while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([./-])(0[1-9]|1[012])([./-])(19|20)\\d\\d$"));
+            }while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([/])(0[1-9]|1[012])([/])(19|20)\\d\\d$"));
             appointmentWithDoctor.setAppointmentDate(date);
 
             //Select Time
@@ -150,8 +165,8 @@ public class BookAppointments {
                     displayDoctorList();
                     Boolean doctorFlag=false;
                     do{
-                        if(doctorChoice!=0 && doctorFlag==true)
-                            System.err.println("*** Please enter correct doctor prefenence ***\n");
+                        if(doctorChoice!=999999 && doctorFlag==true)
+                            System.err.println("*** Please enter correct doctor preference ***\n");
 
                         System.out.println("Please enter new doctor: ");
                         doctorChoice=Integer.parseInt(reader.readLine());
@@ -180,7 +195,7 @@ public class BookAppointments {
                     System.out.println("New Time Slot 1)Morning 2) Afternoon 3) Evening:");
                     Boolean timeFlag=false;
                     do{
-                        if(timeSlotChoice!=0 && timeFlag==true)
+                        if(timeSlotChoice!=999999 && timeFlag==true)
                             System.err.println("*** Please enter correct Time Slot ***\n");
 
                         System.out.println("Preferred Time Slot:");
@@ -195,7 +210,7 @@ public class BookAppointments {
                     System.out.println("Type of appointment 1)In Person 2) Online Consultation:");
                     Boolean appointmentFlag=false;
                     do{
-                        if(appointment!=0 && appointmentFlag==true)
+                        if(appointment!=999999 && appointmentFlag==true)
                             System.err.println("*** Please enter correct Appointment Type ***\n");
 
                         System.out.println("Change Appointment Type: ");
@@ -207,7 +222,7 @@ public class BookAppointments {
                     break;
 
                 case 6:
-                    saveAppointment(appointmentWithDoctor.getPatientName(),appointmentWithDoctor.getDoctorName());
+                    saveAppointment(globalPatientID,appointmentWithDoctor.getDoctorName());
                     break;
 
                 default:
@@ -225,32 +240,40 @@ public class BookAppointments {
 
     private void saveAppointment(String patient,String doctor){
 
-        String patient_id="";
-        String doctor_id="";
+        String patient_id=patient;
+        int doctor_id=0;
         String appointmentStatus="PENDING";
         try {
             statement=connection.createStatement();
-            String querytoFindID="Select dr.doc_id,pt.patient_id from doctors dr join patients pt " +
-                    " where concat(\"Dr.\",dr.first_name,\" \",dr.last_name)='"+doctor+"'" +
-                    " AND concat(pt.first_name,\" \",pt.last_name)='"+patient+"';";
+           // System.out.println(patient+" *** "+doctor);
+            String querytoFindID="Select dr.id from doctors dr " +
+                    " where concat(\"Dr.\",dr.first_name,\" \",dr.last_name)='"+doctor+"';";
+
             resultSet= statement.executeQuery(querytoFindID);
 
             while (resultSet.next()){
-                doctor_id=resultSet.getString(1);
-                patient_id=resultSet.getString(2);
+                doctor_id= resultSet.getInt(1);
             }
-            System.out.println(doctor_id+":"+patient_id);
+
             String queryToSaveAppointment="INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
                     "VALUES ('"+patient_id+"','"+doctor_id+"','"+appointmentWithDoctor.getAppointmentDate()+"','"+appointmentWithDoctor.getTimeSlot()+"','"+appointmentWithDoctor.getTypeOfAppointment()+"','"+appointmentStatus+"');";
 
-            int tempResultSet=statement.executeUpdate(queryToSaveAppointment);
+            String queryToMapPatientWithDoctor="INSERT INTO  CSCI5308_6_DEVINT.patients_doctors_mapping (patient_id, doc_id) \n" +
+                    "VALUES ('"+patient_id+"','"+doctor_id+"');";
+
+            statement.addBatch(queryToSaveAppointment);
+            statement.addBatch(queryToMapPatientWithDoctor);
+
+            int[] tempResult=statement.executeBatch();
+            System.out.println("NEW APPOINTMENT CREATED");
+
         }catch (SQLException e){
-            System.err.println("SQL ERROR");
+            System.err.println("New APPOINTMENT FAIL TO SAVE");
             e.printStackTrace();
         }
     }
     public static void main(String[] args) {
         BookAppointments bookAppointments=new BookAppointments();
-        bookAppointments.appointmentBookingPortalofPatient("jash kuon");
+        bookAppointments.appointmentBookingPortalofPatient("patient234");
     }
 }

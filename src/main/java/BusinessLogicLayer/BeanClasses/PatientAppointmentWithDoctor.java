@@ -1,3 +1,12 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Kishan Kahodariya
+ * @description: This is a bean class for Appointments that
+ * handles all parameters regarding an appointment throughout the
+ * system.
+ *
+ * */
+
 package BusinessLogicLayer.PatientModule;
 
 public class PatientAppointmentWithDoctor {
@@ -62,9 +71,5 @@ public class PatientAppointmentWithDoctor {
         this.typeOfAppointment = typeOfAppointment;
         return true;
     }
-
-
-
-
 
 }

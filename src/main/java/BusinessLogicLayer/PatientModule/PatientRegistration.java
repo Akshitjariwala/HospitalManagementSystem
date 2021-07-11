@@ -1,8 +1,7 @@
 /*
  * CSCI 5308 Group Project
  * @author: Kishan Kahodariya
- * @description: This program handles new patient registration,
- * and also handles login process of patient.
+ * @description: This program handles new patient registration.
  * The database access is done using common DatabaseConnection class
  *
  * */
@@ -10,19 +9,16 @@
 package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
-import BusinessLogicLayer.PatientModule.Patient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-public class UpdatePersonalDetails {
+
+
+public class PatientRegistration {
 
     private static DatabaseConnection databaseConnection=DatabaseConnection.createInstance();
 
@@ -366,7 +362,7 @@ public class UpdatePersonalDetails {
     }
 
     public static void main(String[] args) {
-        UpdatePersonalDetails updatePersonalDetails=new UpdatePersonalDetails();
+        PatientRegistration updatePersonalDetails=new PatientRegistration();
         updatePersonalDetails.newPatientRegistration();
 
     }
