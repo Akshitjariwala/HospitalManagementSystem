@@ -136,19 +136,23 @@ public class BookAppointments {
         return true;
     }
 
-    private void displayDoctorList() throws SQLException  {
+    private void displayDoctorList()  {
 
-        String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM CSCI5308_6_DEVINT.doctors;";
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(fetchingDoctordetails);
-        //print doctor list
-        System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
-        System.out.println("---------------------------------------------------------------------------------");
-        int optionIndex = 0;
-        while (resultSet.next()) {
+        try {
+            String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM CSCI5308_6_DEVINT.doctors;";
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(fetchingDoctordetails);
+            //print doctor list
+            System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
+            System.out.println("---------------------------------------------------------------------------------");
+            int optionIndex = 0;
+            while (resultSet.next()) {
 
-            doctorList.add(resultSet.getString(1));
-            System.out.println("|\t\t" + ++optionIndex + "\t\t   " + resultSet.getString(1) + "\t\t\t\t" + resultSet.getString(2) + "\t\t\t\t" + resultSet.getDouble(3) + "\t|");
+                doctorList.add(resultSet.getString(1));
+                System.out.println("|\t\t" + ++optionIndex + "\t\t   " + resultSet.getString(1) + "\t\t\t\t" + resultSet.getString(2) + "\t\t\t\t" + resultSet.getDouble(3) + "\t|");
+            }
+        }catch (SQLException e){
+            System.err.println("SQL ERROR");
         }
     }
 
@@ -247,8 +251,6 @@ public class BookAppointments {
                     changeAppointmentDetails();
                     break;
             }
-        } catch (SQLException E) {
-            System.err.println("SQL ERROR !!!");
         } catch (IOException e) {
             System.err.println("I/O ERROR !!!");
         }

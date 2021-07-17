@@ -163,6 +163,7 @@ public class PatientRegistration {
         displaynewPatientdetails();
 
     }
+
     private void displaynewPatientdetails()  {
 
         System.out.println("\nBelow are the details given:\n");

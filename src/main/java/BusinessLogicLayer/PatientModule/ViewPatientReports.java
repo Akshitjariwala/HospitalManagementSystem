@@ -29,7 +29,7 @@ public class ViewPatientReports  {
         viewPatientReports.viewLabReports("rushit123");
     }
 
-    public void viewLabReports( String patientID)  {
+    public void viewLabReports(String patientID)  {
 
         System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
         System.out.println("Fetching Old Reports.....\n");
