@@ -13,15 +13,12 @@ public class PatientUI {
 
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public void mainPatientUI(String patientID,String patientName){
+    public void mainPatientUI(String patientID,String patientName)  {
 
         BookAppointments appointments=new BookAppointments();
         ViewPatientReports viewPatientReports=new ViewPatientReports();
-
         int optionSelected=0;
-
         System.out.println("Welcome *******"+patientName+"*******\n\n");
-
         System.out.println("1. Book Appointment");
         System.out.println("2. View Lab Reports");
         try{
@@ -53,7 +50,8 @@ public class PatientUI {
         }
     }
 
-    public void loginOrRegistrationUI(){
+    public void loginOrRegistrationUI()  {
+
         PatientRegistration newPatient=new PatientRegistration();
         PatientLogin patientLogin=new PatientLogin();
         int optionSelected=0;
@@ -87,8 +85,5 @@ public class PatientUI {
         }catch (IOException e){
             System.err.println("I/O ERROR");
         }
-    }
-    public static void main(String[] args) {
-
     }
 }

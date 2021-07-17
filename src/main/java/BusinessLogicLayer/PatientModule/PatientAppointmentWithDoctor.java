@@ -9,7 +9,7 @@
 
 package BusinessLogicLayer.PatientModule;
 
-public class PatientAppointmentWithDoctor {
+public class PatientAppointmentWithDoctor  {
 
     private String patientName=null;
     private String doctorName=null;
@@ -17,62 +17,70 @@ public class PatientAppointmentWithDoctor {
     private String timeSlot=null;
     private String typeOfAppointment=null;
 
-    public PatientAppointmentWithDoctor(String patientName, String doctorName, String appointmentDate, String timeSlot, String typeOfAppointment) {
+    public PatientAppointmentWithDoctor(String patientName, String doctorName, String appointmentDate, String timeSlot, String typeOfAppointment)  {
+
         this.patientName = patientName;
         this.doctorName = doctorName;
         this.appointmentDate = appointmentDate;
         this.timeSlot = timeSlot;
         this.typeOfAppointment = typeOfAppointment;
     }
-    public PatientAppointmentWithDoctor(){
+    public PatientAppointmentWithDoctor() {
+
     }
 
-    public String getPatientName() {
+    public String getPatientName()  {
+
         return patientName;
     }
 
-    public Boolean setPatientName(String patientName) {
+    public Boolean setPatientName(String patientName)  {
+
         this.patientName = patientName;
         return true;
     }
 
-    public String getDoctorName() {
+    public String getDoctorName()  {
+
         return doctorName;
     }
 
-    public Boolean setDoctorName(String doctorName) {
+    public Boolean setDoctorName(String doctorName)  {
+
         this.doctorName = doctorName;
         return true;
     }
 
-    public String getAppointmentDate() {
+    public String getAppointmentDate()  {
+
         return appointmentDate;
     }
 
-    public Boolean setAppointmentDate(String appointmentDate) {
+    public Boolean setAppointmentDate(String appointmentDate)  {
+
         this.appointmentDate = appointmentDate;
         return true;
     }
 
-    public String getTimeSlot() {
+    public String getTimeSlot()  {
+
         return timeSlot;
     }
 
-    public Boolean setTimeSlot(String timeSlot) {
+    public Boolean setTimeSlot(String timeSlot)  {
+
         this.timeSlot = timeSlot;
         return true;
     }
 
-    public String getTypeOfAppointment() {
+    public String getTypeOfAppointment()  {
+
         return typeOfAppointment;
     }
 
-    public Boolean setTypeOfAppointment(String typeOfAppointment) {
+    public Boolean setTypeOfAppointment(String typeOfAppointment)  {
+
         this.typeOfAppointment = typeOfAppointment;
         return true;
     }
-	public static void main(String[] args) {
-		
-	}
-
 }

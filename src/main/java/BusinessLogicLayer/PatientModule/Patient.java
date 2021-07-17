@@ -11,6 +11,7 @@ package BusinessLogicLayer.PatientModule;
 import java.util.Scanner;
 
 public class Patient {
+
     private String firstName=null;
     private String lastName=null;
     private String middleName=null;
@@ -25,7 +26,8 @@ public class Patient {
     private String password=null;
     private Scanner readInput=new Scanner(System.in);
 
-    public Patient(String firstName, String lastName, String middleName, String emaiID, String phoneNumber, String address, String cityName, String stateName, String emergencyContactName, String emergencyContactNumber, String userID, String password) {
+    public Patient(String firstName, String lastName, String middleName, String emaiID, String phoneNumber, String address, String cityName, String stateName, String emergencyContactName, String emergencyContactNumber, String userID, String password)  {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -39,120 +41,143 @@ public class Patient {
         this.userID = userID;
         this.password = password;
     }
-    public Patient(){
+    public Patient()  {
 
     }
 
-    public String getFirstName() {
+    public String getFirstName()  {
+
         return firstName;
     }
 
-    public String getLastName() {
+    public String getLastName()  {
+
         return lastName;
     }
 
-    public String getMiddleName() {
+    public String getMiddleName()  {
+
         return middleName;
     }
 
-    public String getEmaiID() {
+    public String getEmaiID()  {
+
         return emaiID;
     }
 
-    public String getPhoneNumber() {
+    public String getPhoneNumber()  {
+
         return phoneNumber;
     }
 
-    public String getAddress() {
+    public String getAddress()  {
+
         return address;
     }
 
-    public String getCityName() {
+    public String getCityName()  {
+
         return cityName;
     }
 
-    public String getStateName() {
+    public String getStateName()  {
+
         return stateName;
     }
 
-    public String getEmergencyContactName() {
+    public String getEmergencyContactName()  {
+
         return emergencyContactName;
     }
 
-    public String getEmergencyContactNumber() {
+    public String getEmergencyContactNumber()  {
+
         return emergencyContactNumber;
     }
 
-    public String getUserID() {
+    public String getUserID()  {
+
         return userID;
     }
 
-    public String getPassword() {
+    public String getPassword()  {
+
         return password;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName)  {
+
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName)  {
         this.lastName = lastName;
     }
 
-    public void setMiddleName(String middleName) {
+    public void setMiddleName(String middleName)  {
+
         if (middleName=="")
             this.middleName = null;
         else
              this.middleName = middleName;
     }
 
-    public void setEmaiID(String emaiID) {
+    public void setEmaiID(String emaiID)  {
+
         this.emaiID = emaiID;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber)  {
+
         this.phoneNumber = phoneNumber;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(String address)  {
+
         if (address=="")
             this.address = null;
         else
         this.address = address;
     }
 
-    public void setCityName(String cityName) {
+    public void setCityName(String cityName)  {
+
         this.cityName = cityName;
     }
 
-    public void setStateName(String stateName) {
+    public void setStateName(String stateName)  {
+
         this.stateName = stateName;
     }
 
-    public void setEmergencyContactName(String emergencyContactName) {
+    public void setEmergencyContactName(String emergencyContactName)  {
+
         if (emergencyContactName=="")
             this.emergencyContactName = null;
         else
             this.emergencyContactName = emergencyContactName;
     }
 
-    public void setEmergencyContactNumber(String emergencyContactNumber) {
+    public void setEmergencyContactNumber(String emergencyContactNumber)  {
+
         if (emergencyContactNumber=="")
             this.emergencyContactNumber = null;
         else
             this.emergencyContactNumber = emergencyContactNumber;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(String userID)  {
+
         this.userID = userID;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password)  {
+
         this.password = password;
     }
 
-    public void setReadInput(Scanner readInput) {
+    public void setReadInput(Scanner readInput)  {
+
         this.readInput = readInput;
     }
-
 }

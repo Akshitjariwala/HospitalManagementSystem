@@ -42,6 +42,12 @@ public class PatientRegistration {
     private String userID=null;
     private String password=null;
 
+    public static void main(String[] args)  {
+        PatientRegistration updatePersonalDetails=new PatientRegistration();
+        updatePersonalDetails.newPatientRegistration();
+
+    }
+
     public void newPatientRegistration(){
 
         try {
@@ -157,7 +163,8 @@ public class PatientRegistration {
         displaynewPatientdetails();
 
     }
-    private void displaynewPatientdetails(){
+    private void displaynewPatientdetails()  {
+
         System.out.println("\nBelow are the details given:\n");
         System.out.println("1. Last name: "+patient.getLastName());
         System.out.println("2. First name: "+patient.getFirstName());
@@ -178,6 +185,7 @@ public class PatientRegistration {
     }
 
     private void changeEnteredDetails()  {
+
         String X=null;
     try {
         do {
@@ -345,7 +353,8 @@ public class PatientRegistration {
     }
     }
 
-    private void saveNewPatient(){
+    private void saveNewPatient()  {
+
          try {
             statement=connection.createStatement();
             String query1 = "INSERT INTO patients (patient_id, password, last_name, first_name, middle_name, email, phone_number, address, city, state, type_of_patient, emg_contact_name, emg_contact_phone)" +
@@ -359,12 +368,6 @@ public class PatientRegistration {
         catch (Exception E){
             E.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        PatientRegistration updatePersonalDetails=new PatientRegistration();
-        updatePersonalDetails.newPatientRegistration();
-
     }
 }
 

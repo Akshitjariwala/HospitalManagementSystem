@@ -23,6 +23,12 @@ public class ViewPatientReports  {
     private static Connection connection = databaseConnection.openDBConnection();
     private Statement statement=null;
 
+    public static void main(String[] args)  {
+
+        ViewPatientReports viewPatientReports=new ViewPatientReports();
+        viewPatientReports.viewLabReports("rushit123");
+    }
+
     public void viewLabReports( String patientID)  {
 
         System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
@@ -53,11 +59,5 @@ public class ViewPatientReports  {
         }catch (SQLException e){
             System.err.print("SQL ERROR");
         }
-    }
-
-    public static void main(String[] args)  {
-
-        ViewPatientReports viewPatientReports=new ViewPatientReports();
-        viewPatientReports.viewLabReports("rushit123");
     }
 }

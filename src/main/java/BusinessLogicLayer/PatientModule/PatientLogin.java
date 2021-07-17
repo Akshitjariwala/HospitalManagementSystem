@@ -21,8 +21,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class PatientLogin {
-
+public class PatientLogin  {
 
     private static DatabaseConnection databaseConnection=DatabaseConnection.createInstance();
 
@@ -31,7 +30,13 @@ public class PatientLogin {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private PatientUI patientUI=new PatientUI();
 
-    public void patientLogin(){
+    public static void main(String[] args)  {
+        PatientLogin patientLogin=new PatientLogin();
+        patientLogin.patientLogin();
+    }
+
+    public void patientLogin()  {
+
         String userID=null;
         String password=null;
         String providedPassword=null;
@@ -74,10 +79,5 @@ public class PatientLogin {
        }catch (SQLException e){
            System.out.println("SQL ERROR");
        }
-    }
-
-    public static void main(String[] args) {
-        PatientLogin patientLogin=new PatientLogin();
-        patientLogin.patientLogin();
     }
 }
