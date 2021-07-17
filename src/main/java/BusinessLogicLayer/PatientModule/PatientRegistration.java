@@ -8,6 +8,7 @@
 
 package BusinessLogicLayer.PatientModule;
 
+import BusinessLogicLayer.PatientModule.PatientInterfaces.PatientRegistrationInterface;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 
 import java.io.BufferedReader;
@@ -18,7 +19,7 @@ import java.sql.Statement;
 
 
 
-public class PatientRegistration {
+public class PatientRegistration implements PatientRegistrationInterface {
 
     private static DatabaseConnection databaseConnection=DatabaseConnection.createInstance();
 
@@ -160,11 +161,11 @@ public class PatientRegistration {
         }catch (IOException e){
             System.out.println("I/O ERROR");
         }
-        displaynewPatientdetails();
+        displayEnteredDetails();
 
     }
 
-    private void displaynewPatientdetails()  {
+    private void displayEnteredDetails()  {
 
         System.out.println("\nBelow are the details given:\n");
         System.out.println("1. Last name: "+patient.getLastName());
@@ -210,7 +211,7 @@ public class PatientRegistration {
                     lastNameFlag = true;
                 } while (!lastName.matches("[A-Za-z]+"));
                 patient.setLastName(lastName);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 2:
@@ -224,14 +225,14 @@ public class PatientRegistration {
                     firstNameFlag = true;
                 } while (!firstName.matches("[A-Za-z]+"));
                 patient.setFirstName(firstName);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 3:
                 System.out.println("Enter new Middle Name: ");
                 middleName = reader.readLine();
                 patient.setMiddleName(middleName);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 4:
@@ -245,28 +246,28 @@ public class PatientRegistration {
                     emailFlag = true;
                 } while (!emaiID.matches("^(.+)@(.+)$"));
                 patient.setEmaiID(emaiID);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 5:
                 System.out.println("Enter new Phone Number: ");
                 phoneNumber =reader.readLine();
                 patient.setPhoneNumber(phoneNumber);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 6:
                 System.out.println("Enter new Emergency Contact Name: ");
                 emergencyContactName = reader.readLine();
                 patient.setEmergencyContactName(emergencyContactName);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 7:
                 System.out.println("Enter new Emergency Contact Number: ");
                 emergencyContactNumber =reader.readLine();
                 patient.setEmergencyContactNumber(emergencyContactNumber);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 8:
@@ -274,7 +275,7 @@ public class PatientRegistration {
                     System.out.println("Enter new Address: ");
                     address = reader.readLine();
                 patient.setAddress(address);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 9:
@@ -289,7 +290,7 @@ public class PatientRegistration {
                 } while (!cityName.matches("[A-Za-z]+"));
                 patient.setCityName(cityName);
 
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 10:
@@ -303,7 +304,7 @@ public class PatientRegistration {
                     stateFlag = true;
                 } while (!stateName.matches("[A-Za-z]+"));
                 patient.setStateName(stateName);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 11:
@@ -317,7 +318,7 @@ public class PatientRegistration {
                     userIDFlag = true;
                 } while (!stateName.matches("[A-Za-z0-9]+"));
                 patient.setUserID(userID);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 12:
@@ -334,11 +335,11 @@ public class PatientRegistration {
                     passFlag = true;
                 } while (!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&()=+])(?=.*\\S+$).{8,20}$"));
                 patient.setPassword(password);
-                displaynewPatientdetails();
+                displayEnteredDetails();
                 break;
 
             case 13:
-                saveNewPatient();
+                saveEnteredDetails();
                 System.out.println("NEW PATIENT CREATED");
                 break;
 
@@ -354,7 +355,7 @@ public class PatientRegistration {
     }
     }
 
-    private void saveNewPatient()  {
+    public void saveEnteredDetails()  {
 
          try {
             statement=connection.createStatement();
