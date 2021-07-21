@@ -47,8 +47,11 @@ public class DoctorHome {
 					boolean flag3=false;
 					if(ch==1)
 						flag3=viewreports.viewAllReports();
-					else if(ch==2)
-						flag3=viewreports.viewPatientReports();
+					else if(ch==2) {
+						System.out.println("Enter patientId");
+						String patientId=sc.next();
+						flag3=viewreports.viewPatientReports(patientId);
+					}
 					if(ch!=1 || ch!=2)
 						break;
 					if(flag3==false)
