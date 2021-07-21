@@ -44,7 +44,6 @@ public class ViewPatientsDao {
 					while(rs.next())
 					{
 						Patient p=new Patient();
-						//					Kishan uncomment this after fixing patientid setter
 						p.setUserID(rs.getString("patient_id"));
 						p.setAddress(rs.getString("address"));
 						p.setCityName(rs.getString("city"));
