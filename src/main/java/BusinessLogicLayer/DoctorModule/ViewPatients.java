@@ -10,7 +10,6 @@ public class ViewPatients {
 
 	String docId;
 	ViewPatientsDao pdao;
-	ArrayList<String> patientIds;
 
 	public ViewPatients(String docId) {
 		// TODO Auto-generated constructor stub

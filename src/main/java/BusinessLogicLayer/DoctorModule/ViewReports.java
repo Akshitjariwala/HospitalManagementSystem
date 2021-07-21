@@ -2,18 +2,21 @@ package BusinessLogicLayer.DoctorModule;
 
 public class ViewReports {
 
-	public ViewReports(String string) {
+	String docId;
+	public ViewReports(String docId) {
 		// TODO Auto-generated constructor stub
+		this.docId=docId;
+		
 	}
 
-	public Object viewAllReports() {
+	public boolean viewAllReports() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
-	public Object viewPatientReports(String patientId) {
+	public boolean viewPatientReports() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }
