@@ -39,11 +39,9 @@ public class DoctorHome {
 					boolean flag2=viewpatients.viewAllPatients();
 					if(flag2==false) 
 						System.out.println("Try a different option");
-
-
-
 					break;
 				case 3:
+					
 					break;
 				case 4:
 					System.exit(1);// exit()
