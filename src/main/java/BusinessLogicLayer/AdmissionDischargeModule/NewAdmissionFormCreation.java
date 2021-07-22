@@ -49,8 +49,9 @@ public class NewAdmissionFormCreation {
             System.out.println("1. Admission Form");
             System.out.println("2. Discharge Form");
             System.out.println("3. Register New Patient.");
-            System.out.println("4. Exit.");
-            System.out.printf("\nSelect number between 1-4 to perform appropriate action.\n\nEnter Selection : ");
+            System.out.println("4. Go to previous menu");            
+            System.out.println("5. Exit.");
+            System.out.printf("\nSelect number between 1-5 to perform appropriate action.\n\nEnter Selection : ");
 
             Scanner userInput = new Scanner(System.in);
             int choice = userInput.nextInt();
@@ -67,8 +68,12 @@ public class NewAdmissionFormCreation {
                         patientRegistration.newPatientRegistration();flag=0;
                         break;
                     case 4:
-                        AdminLogin adminLogin = new AdminLogin();
-                        adminLogin.AdminPage();
+                    	AdminLogin al=new AdminLogin();
+                    	al.AdminPage();
+                    	break;
+                    case 5:
+                        Main main = new Main();
+                        main.mainMethod();
                         break; // Go to Admin Home Page.
                 }
             }else{
@@ -89,7 +94,7 @@ public class NewAdmissionFormCreation {
             System.out.printf("%n");
             System.out.println("1. Generate New Admission Form.");
             System.out.println("2. Update Existing Admission Form.");
-            System.out.println("3. Go Back To Home Page.");
+            System.out.println("3. Go Back To Previous menu.");
             System.out.printf("\nSelect number between 1-3 to perform appropriate action.\n\nEnter Selection : ");
 
             Scanner userInput = new Scanner(System.in);

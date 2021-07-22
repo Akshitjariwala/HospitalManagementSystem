@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import DatabaseLayer.Dao.RegisterDoctorDAO;
+import PresentationLayer.AdminLogin;
 
 public class RegisterDoctor {
     String str = "";
@@ -20,6 +21,7 @@ public class RegisterDoctor {
         RegisterDoctor registration = new RegisterDoctor();
         System.out.println("Press 1 to register");
         System.out.println("Press 2 to update the records ");
+        System.out.println("Press 3 to return to the previous menu");
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
 
@@ -30,8 +32,17 @@ public class RegisterDoctor {
         else if(choice == 2){
             registration.UpdateRegistration();
         }
+        else if(choice == 3){
+        	AdminLogin al=new AdminLogin();
+        	try {
+				al.AdminPage();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
         else{
-            System.out.println("Invalid Input, Please choose either 1 or 2 ");
+            System.out.println("Invalid Input, Please choose either 1, 2 or 3");
         }
     }
 
@@ -181,8 +192,28 @@ public class RegisterDoctor {
         int status = RegisterDoctorDAO.addDoctor(doct);
         if(status ==1 ) {
             System.out.println("Doctor details added successfully");
+           try {
+			registerDoctor();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+            
         } else {
             System.out.println("ERROR while adding details");
+			try {
+				registerDoctor();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
         }
     }
 

@@ -9,6 +9,7 @@
 package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import PresentationLayer.PatientUI;
 import BusinessLogicLayer.PatientModule.PatientAppointmentWithDoctor;
 
 import java.io.BufferedReader;
@@ -223,7 +224,13 @@ public class BookAppointments {
 
                 case 6:
                     saveAppointment(globalPatientID,appointmentWithDoctor.getDoctorName());
+                    PatientUI pui=new PatientUI();
+                    pui.mainPatientUI(globalPatientID, appointmentWithDoctor.getPatientName());
+                    
                     break;
+                case 7:
+                	 PatientUI pui2=new PatientUI();
+                     pui2.mainPatientUI(globalPatientID, appointmentWithDoctor.getPatientName());
 
                 default:
                     System.err.println("Wrong Input");

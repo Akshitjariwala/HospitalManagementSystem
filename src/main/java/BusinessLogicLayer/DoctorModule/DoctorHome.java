@@ -39,11 +39,23 @@ public class DoctorHome {
 					boolean flag2=viewpatients.viewAllPatients();
 					if(flag2==false) 
 						System.out.println("Try a different option");
-
-
-
 					break;
 				case 3:
+					ViewReports viewreports=new ViewReports(this.docId);
+					System.out.println("1. for viewAll the Reports\n2. for view patient-wise reports");
+					int ch=sc.nextInt();
+					boolean flag3=false;
+					if(ch==1)
+						flag3=viewreports.viewAllReports();
+					else if(ch==2) {
+						System.out.println("Enter patientId");
+						String patientId=sc.next();
+						flag3=viewreports.viewPatientReports(patientId);
+					}
+					if(ch!=1 || ch!=2)
+						break;
+					if(flag3==false)
+						System.out.println("Try a different option");
 					break;
 				case 4:
 					System.exit(1);// exit()
@@ -54,10 +66,6 @@ public class DoctorHome {
 				System.out.println("Invalid Input Received! Please Enter Valid Selection.");
 				System.out.printf("%n");
 			}
-
-
-
-
 		}while(true);
 	}
 	public static void main(String args[])
