@@ -1,4 +1,4 @@
-package BusinessLogicLayer.AdminModule;
+package BusinessLogicLayer.BeanClasses;
 
 public class Appointment {
   private int appointmentId;

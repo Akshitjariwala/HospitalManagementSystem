@@ -1,5 +1,6 @@
 package BusinessLogicLayer.AdminModule;
 
+import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.ActionDatabase.Admin.ManageAppointmentDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

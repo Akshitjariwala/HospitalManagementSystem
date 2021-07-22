@@ -1,12 +1,12 @@
 package DatabaseLayer.ActionDatabase.Admin;
 
-import BusinessLogicLayer.AdminModule.Appointment;
+import BusinessLogicLayer.BeanClasses.Appointment;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IManageAppointmentDatabase {
 
-  ArrayList<Appointment> getAppointmentList();
+  List<Appointment> getAppointmentList();
 
   boolean updateAppointmentStatus(int appId, String newStatus);
 

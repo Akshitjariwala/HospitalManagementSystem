@@ -1,4 +1,6 @@
-package BusinessLogicLayer.WardModule;
+package BusinessLogicLayer.BeanClasses;
+
+import BusinessLogicLayer.BeanClasses.Bed;
 
 public class PatientBed {
 

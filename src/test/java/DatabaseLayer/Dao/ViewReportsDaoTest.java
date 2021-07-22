@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import BusinessLogicLayer.BeanClasses.Reports;
-import BusinessLogicLayer.PatientModule.Patient;
 
 class ViewReportsDaoTest {
 	private ViewReportsDao viewreportsDAO;

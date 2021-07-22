@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import BusinessLogicLayer.AdminModule.Appointment;
+import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
@@ -48,7 +48,7 @@ public class ViewAppointmentsDao {
 		} finally {
 			databaseConnection.closeDBConnection();
 		}
-		return new ArrayList<Appointment>();
+		return new ArrayList<>();
 	}
 }
 
