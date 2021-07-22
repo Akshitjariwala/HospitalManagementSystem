@@ -1,11 +1,12 @@
-package BusinessLogicLayer.AdmissionDischargeModule;
+package DatabaseLayer.Dao;
 
+import BusinessLogicLayer.BeanClasses.Admission;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AdmissionDAO {
 
@@ -63,22 +64,32 @@ public class AdmissionDAO {
         return type;
     }*/
 
-    public ArrayList<String> getAdmissionTypesList() throws SQLException {
-        ArrayList<String> type = new ArrayList<>();
+    public Map<Integer,String> getAdmissionTypesList() throws SQLException {
+        Map<Integer,String> type = new HashMap<>();
         ResultSet types = statement.executeQuery("SELECT * FROM admission_type");
 
         while(types.next()){
-            type.add(types.getString("admission_type"));
+            type.put(types.getInt("admission_type_code"),types.getString("admission_type"));
         }
         return type;
     }
 
-    public ArrayList<String> getDiseaseList() throws SQLException {
+    /*public ArrayList<String> getDiseaseList() throws SQLException {
         ArrayList<String> disease = new ArrayList<>();
         ResultSet diseases = statement.executeQuery("SELECT * FROM disease");
 
         while(diseases.next()){
             disease.add(diseases.getString("disease_code"));
+        }
+        return disease;
+    }*/
+
+    public Map<Integer,String> getDiseaseList() throws SQLException {
+        Map<Integer,String> disease = new HashMap<>();
+        ResultSet diseases = statement.executeQuery("SELECT * FROM disease");
+
+        while(diseases.next()){
+            disease.put(diseases.getInt("disease_id"),diseases.getString("disease_code"));
         }
         return disease;
     }
@@ -94,12 +105,12 @@ public class AdmissionDAO {
         return diseaseName;
     }
 
-    public ArrayList<String> getDoctorList() throws SQLException {
-        ArrayList<String> doctorList = new ArrayList<>();
+    public Map<Integer,String> getDoctorList() throws SQLException {
+        Map<Integer,String> doctorList = new HashMap<>();
         ResultSet doctors = statement.executeQuery("SELECT * FROM doctors");
 
         while(doctors.next()){
-            doctorList.add(doctors.getString("first_name")+" "+doctors.getString("last_name"));
+            doctorList.put(doctors.getInt("id"),doctors.getString("first_name")+" "+doctors.getString("last_name"));
         }
         return doctorList;
     }
@@ -124,12 +135,12 @@ public class AdmissionDAO {
         return doctorName;
     }
 
-    public ArrayList<String> getWardsList() throws SQLException {
-        ArrayList<String> wardList = new ArrayList<String>();
+    public Map<Integer,String> getWardsList() throws SQLException {
+        Map<Integer,String> wardList = new HashMap<>();
         ResultSet wards = statement.executeQuery("SELECT * FROM wards");
 
         while(wards.next()){
-            wardList.add(wards.getString("name"));
+            wardList.put(wards.getInt("ward_id"),wards.getString("name"));
         }
 
         return wardList;
@@ -144,12 +155,12 @@ public class AdmissionDAO {
         return wardCode;
     }
 
-    public ArrayList<String> getAvailableBeds() throws SQLException {
-        ArrayList<String> bedList = new ArrayList<String>();
+    public Map<Integer,String> getAvailableBeds() throws SQLException {
+        Map<Integer,String> bedList = new HashMap<>();
         ResultSet availableBeds = statement.executeQuery("SELECT * FROM beds WHERE isOccupied = 0");
 
         while(availableBeds.next()){
-            bedList.add(availableBeds.getString("bed_code"));
+            bedList.put(availableBeds.getInt("bed_id"),availableBeds.getString("bed_code"));
         }
 
         return bedList;

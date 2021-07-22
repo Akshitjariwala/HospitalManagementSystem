@@ -1,4 +1,4 @@
-package BusinessLogicLayer.AdmissionDischargeModule;
+package BusinessLogicLayer.BeanClasses;
 
 import java.sql.Date;
 

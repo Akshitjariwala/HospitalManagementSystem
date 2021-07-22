@@ -1,11 +1,15 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import BusinessLogicLayer.BeanClasses.Admission;
+import DatabaseLayer.Dao.AdmissionDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -40,13 +44,13 @@ class AdmissionDAOTest {
   // getAdmissionTypesList() returns ResultSet object with list of Admission Types from database.
   @Test
   void getAdmissionTypesList() throws SQLException {
-    ArrayList<String> admissionTypeList = new ArrayList<>();
-    admissionTypeList.add("Covid");
-    admissionTypeList.add("General Care");
-    admissionTypeList.add("ICU");
-    admissionTypeList.add("Long Term Accoute Care");
-    admissionTypeList.add("Surgery");
-    admissionTypeList.add("Maternity");
+    Map<Integer,String> admissionTypeList = new HashMap<>();
+    admissionTypeList.put(1,"Covid");
+    admissionTypeList.put(2,"General Care");
+    admissionTypeList.put(3,"ICU");
+    admissionTypeList.put(4,"Long Term Acute Care");
+    admissionTypeList.put(5,"Surgery");
+    admissionTypeList.put(6,"Maternity");
     Mockito.when(admissionDAO.getAdmissionTypesList()).thenReturn(admissionTypeList);
     assertEquals(admissionTypeList, admissionDAO.getAdmissionTypesList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -54,13 +58,13 @@ class AdmissionDAOTest {
   // getDiseaseList() returns ArrayList object with list of disease from database.
   @Test
   void getDiseaseList() throws SQLException {
-    ArrayList<String> diseaseList = new ArrayList<>();
-    diseaseList.add("Disease");
-    diseaseList.add("Disease");
-    diseaseList.add("Disease");
-    diseaseList.add("Disease");
-    diseaseList.add("Disease");
-    diseaseList.add("Disease");
+    Map<Integer,String> diseaseList = new HashMap<>();
+    diseaseList.put(1,"Disease");
+    diseaseList.put(2,"Disease");
+    diseaseList.put(3,"Disease");
+    diseaseList.put(4,"Disease");
+    diseaseList.put(5,"Disease");
+    diseaseList.put(6,"Disease");
     Mockito.when(admissionDAO.getDiseaseList()).thenReturn(diseaseList);
     assertEquals(diseaseList, admissionDAO.getDiseaseList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -82,15 +86,15 @@ class AdmissionDAOTest {
   // getDoctorList() returns ArrayList object with list of Doctors from database.
   @Test
   void getDoctorList() throws SQLException {
-    ArrayList<String> doctorList = new ArrayList<>();
-    doctorList.add("Hemant Desai");
-    doctorList.add("Harit Parekh");
-    doctorList.add("vaishnavi jupudi");
-    doctorList.add("Aayush Shah");
-    doctorList.add("Avani Kothiya");
-    doctorList.add("Janki Kheni");
-    doctorList.add("vaishnavi jup");
-    doctorList.add("doctor doct7");
+    Map<Integer,String> doctorList = new HashMap<>();
+    doctorList.put(1,"Hemant Desai");
+    doctorList.put(2,"Harit Parekh");
+    doctorList.put(3,"vaishnavi jupudi");
+    doctorList.put(4,"Aayush Shah");
+    doctorList.put(5,"Avani Kothiya");
+    doctorList.put(6,"Janki Kheni");
+    doctorList.put(7,"vaishnavi jup");
+    doctorList.put(6,"doctor doct7");
     Mockito.when(admissionDAO.getDoctorList()).thenReturn(doctorList);
     assertEquals(doctorList, admissionDAO.getDoctorList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -113,11 +117,11 @@ class AdmissionDAOTest {
   // getWardsList() returns ArrayList object with list of wards.
   @Test
   void getWardsList() throws SQLException {
-    ArrayList<String> wardList = new ArrayList<>();
-    wardList.add("WARD A");
-    wardList.add("WARD B");
-    wardList.add("WARD C");
-    wardList.add("WARD D");
+    Map<Integer,String> wardList = new HashMap<>();
+    wardList.put(1,"WARD A");
+    wardList.put(2,"WARD B");
+    wardList.put(3,"WARD C");
+    wardList.put(4,"WARD D");
     Mockito.when(admissionDAO.getWardsList()).thenReturn(wardList);
     assertEquals(wardList, admissionDAO.getWardsList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -132,12 +136,12 @@ class AdmissionDAOTest {
   // getAvailableBeds() returns list of all the available beds as ArrayList object
   @Test
   void getAvailableBeds() throws SQLException {
-    ArrayList<String> bedList = new ArrayList<>();
-    bedList.add("10002-1");
-    bedList.add("10002-5");
-    bedList.add("10002-8");
-    bedList.add("10002-9");
-    bedList.add("10002-17");
+    Map<Integer,String> bedList = new HashMap<>();
+    bedList.put(1,"10002-1");
+    bedList.put(2,"10002-5");
+    bedList.put(3,"10002-8");
+    bedList.put(4,"10002-9");
+    bedList.put(5,"10002-17");
     Mockito.when(admissionDAO.getAvailableBeds()).thenReturn(bedList);
     assertEquals(bedList, admissionDAO.getAvailableBeds(), "Test Failed!. Incorrect or No value received.");
   }
