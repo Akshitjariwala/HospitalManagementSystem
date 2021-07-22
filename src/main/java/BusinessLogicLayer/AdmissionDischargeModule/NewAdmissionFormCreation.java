@@ -1,17 +1,18 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import BusinessLogicLayer.BeanClasses.Admission;
 import BusinessLogicLayer.PatientModule.PatientRegistration;
+import DatabaseLayer.Dao.AdmissionDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.AdminLogin;
 import PresentationLayer.Main;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class NewAdmissionFormCreation {
 
@@ -51,11 +52,11 @@ public class NewAdmissionFormCreation {
             System.out.println("3. Register New Patient.");
             System.out.println("4. Go to previous menu");            
             System.out.println("5. Exit.");
-            System.out.printf("\nSelect number between 1-5 to perform appropriate action.\n\nEnter Selection : ");
+            System.out.print("\nSelect number between 1-5 to perform appropriate action.\n\nEnter Selection : ");
 
             Scanner userInput = new Scanner(System.in);
             int choice = userInput.nextInt();
-            if(choice > 0 && choice <=4){
+            if(choice > 0 && choice <=5){
                 switch (choice) {
                     case 1:
                         admissionFormPage();flag=0;
@@ -68,13 +69,12 @@ public class NewAdmissionFormCreation {
                         patientRegistration.newPatientRegistration();flag=0;
                         break;
                     case 4:
-                    	AdminLogin al=new AdminLogin();
+                    	AdminLogin al = new AdminLogin();
                     	al.AdminPage();
                     	break;
                     case 5:
-                        Main main = new Main();
-                        main.mainMethod();
-                        break; // Go to Admin Home Page.
+                        Main.mainMethod();
+                        break; //Go to Admin Home Page.
                 }
             }else{
                 System.out.println("\nInvalid Input Received! Please Enter Valid Selection.\n");
@@ -95,7 +95,7 @@ public class NewAdmissionFormCreation {
             System.out.println("1. Generate New Admission Form.");
             System.out.println("2. Update Existing Admission Form.");
             System.out.println("3. Go Back To Previous menu.");
-            System.out.printf("\nSelect number between 1-3 to perform appropriate action.\n\nEnter Selection : ");
+            System.out.print("\nSelect number between 1-3 to perform appropriate action.\n\nEnter Selection : ");
 
             Scanner userInput = new Scanner(System.in);
             int choice = userInput.nextInt();
@@ -213,7 +213,7 @@ public class NewAdmissionFormCreation {
                     System.out.println("7. Admission Date  :\t"+todayDate);
                     System.out.println("8. Save Form");
                     System.out.println("9. Main Menu");
-                    System.out.printf("\nTo change or update the details please enter" +
+                    System.out.print("\nTo change or update the details please enter" +
                                     "a associated number between 1-6.\nSelect 7 to" +
                                     " save the Admission form and 9 to return to the " +
                                     "Main Menu.\n\nEnter Selection : ");
@@ -259,7 +259,7 @@ public class NewAdmissionFormCreation {
         String patientName=null;
         int flag=0;
         do{
-            System.out.printf("\n1. Enter Patient ID\t\t:");
+            System.out.print("\n1. Enter Patient ID\t\t:");
             Scanner res = new Scanner(System.in);
             res = new Scanner(System.in);
             String patientID = res.nextLine();
@@ -277,68 +277,54 @@ public class NewAdmissionFormCreation {
     }
 
     public String displayAdmissionType() throws SQLException {
-        int totalRow = 1,flag=0;
+        int flag=0;
         String admissionType = null;
-        String admissionTypeID;
+        int admissionTypeID;
         do {
             Scanner input = new Scanner(System.in);
             System.out.println("\n3. Select Admission Type from below options. ");
-            ArrayList<String> result = admissionDao.getAdmissionTypesList();
+            Map<Integer, String> result = admissionDao.getAdmissionTypesList();
             System.out.printf("%n");
             System.out.println("\t CODE | Type\t\t\t\n" + "==================================================");
-            for (String type:result) {
-                System.out.println("\t\t" + totalRow + " | " + type);
-                totalRow++;
+            for (Map.Entry m : result.entrySet()) {
+                System.out.println("\t\t" + m.getKey() + " | " + m.getValue());
             }
-            System.out.printf("\nEnter Selection\t\t: ");
-            admissionTypeID = input.nextLine();
-            totalRow--;
-            String regex = "[1-" + totalRow + "]";
-            Pattern p = Pattern.compile(regex);
-            Matcher m = p.matcher(admissionTypeID);
-            if (m.find()) {
-                admissionType = admissionDao.getAdmissionType(Integer.parseInt(admissionTypeID));
-                admission.setAdmissionType(Integer.parseInt(admissionTypeID));
+            System.out.print("\nEnter Selection\t\t: ");
+            admissionTypeID = input.nextInt();
+            if (result.containsKey(admissionTypeID)) {
+                admissionType = admissionDao.getAdmissionType(admissionTypeID);
+                admission.setAdmissionType(admissionTypeID);
                 flag = 1;
             } else {
                 System.out.printf("%n");
                 System.out.println("Invalid Input Received! Please Enter Valid Selection.");
-                totalRow=1;
             }
         }while(flag==0);
         return admissionType;
     }
 
     public String displayDiagnose() throws SQLException {
-
         int flag = 0;
         String diseaseName = null;
         do {
-            int totalRows = 1;
             Scanner userInput = new Scanner(System.in);
             System.out.println("\n4. Select Disease Code from below options. ");
-            ArrayList<String> result = admissionDao.getDiseaseList();
+            Map<Integer,String> result = admissionDao.getDiseaseList();
             System.out.printf("%n");
             System.out.println("\t CODE | Disease\t\t\t\n" + "==================================================");
-            for (String disease:result) {
-                System.out.println("\t\t" + totalRows + " | " + disease);
-                totalRows++;
+            for (Map.Entry m : result.entrySet()) {
+                System.out.println("\t\t" + m.getKey() + " | " + m.getValue());
             }
-            System.out.printf("\nEnter Selection\t\t: ");
-            String diseaseID = userInput.nextLine();
-            totalRows--;
-            String regex = "[1-" + totalRows + "]";
-            Pattern p = Pattern.compile(regex);
-            Matcher m = p.matcher(diseaseID);
-            if(m.find()) {
-                diseaseName = admissionDao.getDiseaseName(Integer.parseInt(diseaseID));
-                admission.setDiseaseID(Integer.parseInt(diseaseID));
+            System.out.print("\nEnter Selection\t\t: ");
+            int diseaseID = userInput.nextInt();
+            if(result.containsKey(diseaseID)) {
+                diseaseName = admissionDao.getDiseaseName(diseaseID);
+                admission.setDiseaseID(diseaseID);
                 flag = 1;
             }
             else{
                 System.out.printf("%n");
                 System.out.println("Invalid Input Received! Please Enter Valid Selection.");
-                totalRows=1;
             }
         }while(flag==0);
         return diseaseName;
@@ -348,28 +334,24 @@ public class NewAdmissionFormCreation {
         int flag = 0;
         String doctorName = null;
         do {
-            int totalRows = 1;
             Scanner userInput = new Scanner(System.in);
             System.out.println("\n5. Select Doctor Code from below options. ");
             // Fetch Doctors based on the Disease ID.
-            ArrayList<String> result = admissionDao.getDoctorList();
+            Map<Integer,String> result = admissionDao.getDoctorList();
             System.out.printf("%n");
             System.out.println("\t CODE | Doctor\t\t\t\n" + "==================================================");
-            for (String doctor:result) {
-                System.out.println("\t\t" + totalRows + " | Dr. " + doctor);
-                totalRows++;
+            for (Map.Entry m : result.entrySet()) {
+                System.out.println("\t\t" + m.getKey() + " | Dr. " + m.getValue());
             }
-            System.out.printf("\nEnter Selection\t\t: ");
+            System.out.print("\nEnter Selection\t\t: ");
             int docID = userInput.nextInt();
-            totalRows--;
-            if(docID<=totalRows && docID>0){
+            if(result.containsKey(docID)){
                 doctorName = admissionDao.getDoctorName(docID);
                 admission.setDoctorID(admissionDao.getDoctor(docID));
                 flag = 1;
             }else{
                     System.out.printf("%n");
                     System.out.println("Invalid Input Received! Please Enter Valid Selection.");
-                    totalRows=1;
             }
         }while(flag==0);
         return doctorName;
@@ -379,31 +361,24 @@ public class NewAdmissionFormCreation {
 
         int flag = 0;
         String wardCode = null;
-        int totalRows = 1;
         do {
             Scanner userInput = new Scanner(System.in);
             System.out.println("\n6. Select Ward Code from below options. ");
-            ArrayList<String> result = admissionDao.getWardsList();
+            Map<Integer,String> result = admissionDao.getWardsList();
             System.out.printf("%n");
             System.out.println("\t CODE | Ward Name\t\t\n" + "==================================================");
-            for (String ward:result) {
-                System.out.println("\t\t" + totalRows + " | " + ward);
-                totalRows++;
+            for (Map.Entry m : result.entrySet()) {
+                System.out.println("\t\t" + m.getKey() + " | " + m.getValue());
             }
-            System.out.printf("\nEnter Selection\t\t: ");
-            String wardID = userInput.nextLine();
-            totalRows--;
-            String regex = "[1-" + totalRows + "]";
-            Pattern p = Pattern.compile(regex);
-            Matcher m = p.matcher(wardID);
-            if(m.find()){
-                wardCode = admissionDao.getWardCode(Integer.parseInt(wardID));
-                admission.setWardID(Integer.parseInt(wardID));
+            System.out.print("\nEnter Selection\t\t: ");
+            int wardID = userInput.nextInt();
+            if(result.containsKey(wardID)){
+                wardCode = admissionDao.getWardCode(wardID);
+                admission.setWardID(wardID);
                 flag=1;
             }else{
                 System.out.printf("%n");
                 System.out.println("Invalid Input Received! Please Enter Valid Selection.");
-                totalRows=1;
             }
 
         }while(flag==0);
@@ -414,32 +389,25 @@ public class NewAdmissionFormCreation {
 
         int flag = 0;
         String bedCode = null;
-        int totalRows = 1;
         do {
             Scanner userInput = new Scanner(System.in);
             System.out.println("\n7. Select Bed Code from below options. ");
-            ArrayList<String> result = admissionDao.getAvailableBeds();
+            Map<Integer,String> result = admissionDao.getAvailableBeds();
             System.out.printf("%n");
             System.out.println("\t CODE | Bed Code\t\t\n" + "==================================================");
-            for (String bed:result) {
-                System.out.println("\t\t" + totalRows + " | " +bed);
-                totalRows++;
+            for (Map.Entry m : result.entrySet()) {
+                System.out.println("\t\t" + m.getKey() + " | " +m.getValue());
             }
-            System.out.printf("\nEnter Selection\t\t: ");
-            totalRows--;
-            String bedID = userInput.nextLine();
-            String regex = "[1-" + totalRows + "]";
-            Pattern p = Pattern.compile(regex);
-            Matcher m = p.matcher(bedID);
-            if(m.find()){
-                bedCode = admissionDao.getBedCode(Integer.parseInt(bedID));
-                admission.setBedID(Integer.parseInt(bedID));
+            System.out.print("\nEnter Selection\t\t: ");
+            int bedID = userInput.nextInt();
+            if(result.containsKey(bedID)){
+                bedCode = admissionDao.getBedCode(bedID);
+                admission.setBedID(bedID);
                 flag=1;
             }
             else{
                 System.out.printf("%n");
                 System.out.println("Invalid Input Received! Please Enter Valid Selection.");
-                totalRows=1;
             }
 
         }while(flag==0);
@@ -455,7 +423,7 @@ public class NewAdmissionFormCreation {
         int finalResult;
         do{
             Scanner userInput = new Scanner(System.in);
-            System.out.printf("\nEnter Patient ID  : ");
+            System.out.print("\nEnter Patient ID  : ");
             String patientID = userInput.nextLine();
             boolean result = admissionDao.ifPatientExists(patientID);
             Admission updateUser;
@@ -474,7 +442,7 @@ public class NewAdmissionFormCreation {
                         System.out.println("6. Bed ID          :\t"+admissionDao.getBedCode(updateUser.getBedID()));
                         System.out.println("7. Save Form\t");
                         System.out.println("8. Main Menu\t");
-                        System.out.printf("\nTo change or update the details please enter" +
+                        System.out.print("\nTo change or update the details please enter" +
                                     "a associated number between 1-6.\nSelect 7 to" +
                                     "save the Admission form and 8 to return to" +
                                     "Main Menu.\n\nEnter Selection : ");

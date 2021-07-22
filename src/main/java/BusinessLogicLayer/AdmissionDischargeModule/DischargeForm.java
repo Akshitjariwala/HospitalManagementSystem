@@ -1,5 +1,8 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import BusinessLogicLayer.BeanClasses.Admission;
+import DatabaseLayer.Dao.AdmissionDAO;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Scanner;

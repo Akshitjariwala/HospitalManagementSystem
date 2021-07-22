@@ -1,5 +1,6 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
+import BusinessLogicLayer.BeanClasses.Admission;
 import org.junit.jupiter.api.Test;
 
 
