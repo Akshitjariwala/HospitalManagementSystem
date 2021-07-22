@@ -26,7 +26,7 @@ public class AdminLogin {
       String password = loginPassword.nextLine();
 
       if (loginID != null && password != null) {
-        if(loginID == null & password == null){ // Provide Valid Admin Login Password.
+        if(loginID.equals("admin") & password.equals("admin")){ // Provide Valid Admin Login Password.
           AdminPage();
         } else {
           System.out.println("\nUser Login ID and Password Doesnt Match. Please Provide Valid Login ID and Password.\n");
@@ -56,7 +56,7 @@ public class AdminLogin {
       System.out.printf("\nSelect number between 1-6 to perform appropriate action.\n\n");
 
       do {
-        System.out.println("Enter Selection : ");
+        System.out.print("Enter Selection : ");
         Scanner userInput = new Scanner(System.in);
         int choice = userInput.nextInt();
         if (choice >= 1 && choice <= 6) {
@@ -78,8 +78,9 @@ public class AdminLogin {
               manageAppointments.manageAppointmentHome();
               exitFlag = 1;
               break;
-            case 6: exitFlag=1;
-              break;
+            case 6: Main main = new Main();
+                    main.mainMethod();
+                    break;
           }
           choiceFlag = 1;
         } else {

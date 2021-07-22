@@ -55,7 +55,7 @@ public class NewAdmissionFormCreation {
 
             Scanner userInput = new Scanner(System.in);
             int choice = userInput.nextInt();
-            if(choice > 0 && choice <=4){
+            if(choice > 0 && choice <=5){
                 switch (choice) {
                     case 1:
                         admissionFormPage();flag=0;
@@ -68,13 +68,13 @@ public class NewAdmissionFormCreation {
                         patientRegistration.newPatientRegistration();flag=0;
                         break;
                     case 4:
-                    	AdminLogin al=new AdminLogin();
+                    	AdminLogin al = new AdminLogin();
                     	al.AdminPage();
                     	break;
                     case 5:
                         Main main = new Main();
                         main.mainMethod();
-                        break; // Go to Admin Home Page.
+                        break; //Go to Admin Home Page.
                 }
             }else{
                 System.out.println("\nInvalid Input Received! Please Enter Valid Selection.\n");
@@ -275,6 +275,39 @@ public class NewAdmissionFormCreation {
 
         return patientName;
     }
+
+   /* public String displayAdmissionType() throws SQLException {
+        int totalRow = 1,flag=0;
+        String admissionType = null;
+        String admissionTypeID;
+        do {
+            Scanner input = new Scanner(System.in);
+            System.out.println("\n3. Select Admission Type from below options. ");
+            ArrayList<String> result = admissionDao.getAdmissionTypesList();
+            System.out.printf("%n");
+            System.out.println("\t CODE | Type\t\t\t\n" + "==================================================");
+            for (String type:result) {
+                System.out.println("\t\t" + totalRow + " | " + type);
+                totalRow++;
+            }
+            System.out.printf("\nEnter Selection\t\t: ");
+            admissionTypeID = input.nextLine();
+            totalRow--;
+            String regex = "[1-" + totalRow + "]";
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(admissionTypeID);
+            if (m.find()) {
+                admissionType = admissionDao.getAdmissionType(Integer.parseInt(admissionTypeID));
+                admission.setAdmissionType(Integer.parseInt(admissionTypeID));
+                flag = 1;
+            } else {
+                System.out.printf("%n");
+                System.out.println("Invalid Input Received! Please Enter Valid Selection.");
+                totalRow=1;
+            }
+        }while(flag==0);
+        return admissionType;
+    }*/
 
     public String displayAdmissionType() throws SQLException {
         int totalRow = 1,flag=0;

@@ -53,6 +53,16 @@ public class AdmissionDAO {
         return admissionType;
     }
 
+    /*public ArrayList<String> getAdmissionTypesList() throws SQLException {
+        ArrayList<String> type = new ArrayList<>();
+        ResultSet types = statement.executeQuery("SELECT * FROM admission_type");
+
+        while(types.next()){
+            type.add(types.getString("admission_type"));
+        }
+        return type;
+    }*/
+
     public ArrayList<String> getAdmissionTypesList() throws SQLException {
         ArrayList<String> type = new ArrayList<>();
         ResultSet types = statement.executeQuery("SELECT * FROM admission_type");
