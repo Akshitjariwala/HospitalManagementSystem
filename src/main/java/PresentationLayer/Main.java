@@ -13,7 +13,7 @@ public class Main {
     System.out.println("============================================================");
     System.out.println("\t\tWelcome to our Hospital Management System!!!\t\t");
     System.out.println("============================================================");
-    System.out.println("Choose one of the following LOGIN option...");
+    System.out.println("Choose one of the following login option...\n");
     System.out.println("1. Doctor");
     System.out.println("2. Patient");
     System.out.println("3. Admin");
@@ -21,7 +21,7 @@ public class Main {
 
     int flag = 0;
     do {
-      System.out.println("Select number between 1-4 to perform appropriate action.");
+      System.out.println("Select number between 1-4 to perform appropriate action.\n");
       System.out.print("Enter Selection : ");
       Scanner userInput = new Scanner(System.in);
       int choice = userInput.nextInt();
@@ -33,13 +33,11 @@ public class Main {
             flag = 1;
             break;
           case 2:
-            System.out.println("Patient Login");
             PatientUI patientUI=new PatientUI();
             patientUI.loginOrRegistrationUI();
             flag = 1;
             break;
           case 3:
-            System.out.println("Admin Login");
             AdminLogin adminLogin = new AdminLogin();
             adminLogin.AdminLoginPage();
             flag = 1;

@@ -48,7 +48,7 @@ public class ViewAppointmentsDao {
 		} finally {
 			databaseConnection.closeDBConnection();
 		}
-		return new ArrayList<Appointment>();
+		return new ArrayList<>();
 	}
 }
 

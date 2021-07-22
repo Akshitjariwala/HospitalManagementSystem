@@ -36,13 +36,11 @@ public class DoctorLoginDAO {
                 str = rs.getString("password");
 
             }
-            System.out.println(count);
-            System.out.println(str);
             if(count !=null && str != null){
                 status = 1;
             }
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         return status;
     }

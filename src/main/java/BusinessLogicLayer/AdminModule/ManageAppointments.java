@@ -2,6 +2,7 @@ package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.ActionDatabase.Admin.ManageAppointmentDatabase;
+import PresentationLayer.AdminLogin;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -74,6 +75,12 @@ public class ManageAppointments extends ManageAppointmentDatabase {
       System.out.println("==================================================");
       System.out.println("\t\tNo Appointment Found\t\t");
       System.out.println("==================================================");
+    }
+    AdminLogin adminLogin = new AdminLogin();
+    try {
+      adminLogin.AdminPage();
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 }

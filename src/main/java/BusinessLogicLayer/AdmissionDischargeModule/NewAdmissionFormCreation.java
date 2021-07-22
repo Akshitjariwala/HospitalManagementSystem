@@ -38,13 +38,13 @@ public class NewAdmissionFormCreation {
     int flag = 0;
     do {
       System.out.println("\n=================================================");
-      System.out.println("\t\t\t\tMain Menu\t\t\t\t");
+      System.out.println("\t\t\t\tAdmission/Discharge Home Page\t\t\t\t");
       System.out.println("=================================================");
       System.out.printf("%n");
       System.out.println("1. Admission Form");
       System.out.println("2. Discharge Form");
       System.out.println("3. Register New Patient.");
-      System.out.println("4. Go to previous menu");
+      System.out.println("4. Go to Admin Home Page");
       System.out.println("5. Exit.");
       System.out.print("\nSelect number between 1-5 to perform appropriate action.\n\nEnter Selection : ");
 

@@ -12,15 +12,14 @@ public class DoctorLogin {
     Doctor doctor = new Doctor();
     System.out.println("=============================Doctor Login=======================================");
     do {
-      System.out.println("Enter Doctor Id:");
+      System.out.print("Enter Doctor Id : ");
       Scanner input = new Scanner(System.in);
       String doctorId = input.next();
-      System.out.println("Enter Password:");
+      System.out.print("Enter Password : ");
       String password = input.next();
       temp = DoctorLoginDAO.checkDoctorLogin(doctorId, password);
       if (temp == 1) {
         doctor.setMedicalLicenseId(doctorId);
-        System.out.println("==================LOGIN SUCCESSFULL ================");
         DoctorHome doctorHome = new DoctorHome(doctorId);
         doctorHome.doctorHomePage();
 
@@ -28,6 +27,5 @@ public class DoctorLogin {
         System.out.println("Invalid details. Please login again");
       }
     } while (temp == 0);
-
   }
 }

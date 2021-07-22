@@ -6,6 +6,7 @@ import BusinessLogicLayer.BeanClasses.BedCounts;
 import BusinessLogicLayer.BeanClasses.PatientBed;
 import BusinessLogicLayer.BeanClasses.Ward;
 import DatabaseLayer.ActionDatabase.Admin.ManageWardDatabase;
+import PresentationLayer.AdminLogin;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class WardHome extends ManageWardDatabase implements IWardActions {
       System.out.println("2. Update existing Wards");
       System.out.println("3. Show bed Availability");
       System.out.println("4. Patient-wise bed details");
-      System.out.println("5. Main Menu");
+      System.out.println("5. Go to Admin Home Page");
       System.out.println("6. Exit");
       System.out.printf("%n");
       System.out.print("Select number between 1-6 to perform appropriate action.");
@@ -52,7 +53,7 @@ public class WardHome extends ManageWardDatabase implements IWardActions {
             flag = 1;
             break;
           case 3:
-            //checkBedAvailability();// call patient-wise bed details method here
+            checkBedAvailability();// call patient-wise bed details method here
             flag = 1;
             break;
           case 4:
@@ -60,8 +61,12 @@ public class WardHome extends ManageWardDatabase implements IWardActions {
             flag = 1;
             break;
           case 5:
-            // call main menu
-            flag = 1;
+            AdminLogin adminLogin = new AdminLogin();
+            try {
+              adminLogin.AdminPage();
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
           case 6:
             System.exit(1);// exit()
             flag = 1;
@@ -86,19 +91,11 @@ public class WardHome extends ManageWardDatabase implements IWardActions {
         Ward w = bd.getWard();
         System.out.printf("%-15s %-10s %-10s %10s %10s%n", w.getWardId(), "|", bd.getBedType(), "|", bd.getNumberOfBeds());
       }
-
-
     } else {
       System.out.println("\t\t Currently no beds are available, Please try again later\t\t");
     }
-
-
-  }
-
-
-  @Override
-  public void addNewWards() {
-
+    WardHome wardHome = new WardHome();
+    wardHome.wardManageHomePage();
   }
 
   @Override
@@ -109,28 +106,26 @@ public class WardHome extends ManageWardDatabase implements IWardActions {
 
     int wardId = -1;
     do {
-      if (wardId == -1) {
-        wardId = getSelectedWard();
-        System.out.println(" Fetching Details... ");
-      }
+      wardId = getSelectedWard();
+      System.out.println(" Fetching Details... ");
     } while (wardId == -1);
 
-    if (wardId != -1) {
-      ArrayList<PatientBed> patientBeds = getPatientBed(wardId);
-      if (patientBeds.size() != 0) {
-        System.out.println("================================================================");
-        System.out.println("\t\t\t\t\tPatients with Occupied Beds\t\t\t\t\t");
-        System.out.println("================================================================");
-        System.out.printf("%-15s %-10s %-10s %10s %10s%n", "Patient Name", "|", "Patient Id", "|", "Bed Detail");
-        for (PatientBed patientBed : patientBeds) {
-          System.out.printf("%-15s %-10s %-10s %10s %10s%n", patientBed.getPatientName(), "|", patientBed.getPatientId(), "|", patientBed.getBed().getBedCode());
-        }
-      } else {
-        System.out.println("==================================================");
-        System.out.println("\t\tPatients not admitted in this ward\t\t");
-        System.out.println("==================================================");
+    ArrayList<PatientBed> patientBeds = getPatientBed(wardId);
+    if (patientBeds.size() != 0) {
+      System.out.println("================================================================");
+      System.out.println("\t\t\t\t\tPatients with Occupied Beds\t\t\t\t\t");
+      System.out.println("================================================================");
+      System.out.printf("%-15s %-10s %-10s %10s %10s%n", "Patient Name", "|", "Patient Id", "|", "Bed Detail");
+      for (PatientBed patientBed : patientBeds) {
+        System.out.printf("%-15s %-10s %-10s %10s %10s%n", patientBed.getPatientName(), "|", patientBed.getPatientId(), "|", patientBed.getBed().getBedCode());
       }
+    } else {
+      System.out.println("==================================================");
+      System.out.println("\t\tPatients not admitted in this ward\t\t");
+      System.out.println("==================================================");
     }
+    WardHome wardHome = new WardHome();
+    wardHome.wardManageHomePage();
   }
 
   @Override

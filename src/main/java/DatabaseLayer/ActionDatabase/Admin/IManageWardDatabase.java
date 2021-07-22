@@ -6,19 +6,20 @@ import BusinessLogicLayer.BeanClasses.PatientBed;
 import BusinessLogicLayer.BeanClasses.Ward;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IManageWardDatabase {
 
-	Ward getWard(int wardId);
+  Ward getWard(int wardId);
 
-	Bed getBed(int bedId);
+  Bed getBed(int bedId);
 
-	ArrayList<Ward> getWardsList();
+  List<Ward> getWardsList();
 
-	ArrayList<Bed> getWardBeds(int wardId);
+  List<Bed> getWardBeds(int wardId);
 
-	ArrayList<PatientBed> getPatientBed(int wardId);
+  List<PatientBed> getPatientBed(int wardId);
 
-	ArrayList<BedCounts> showCurrentAvailableBeds();
+  List<BedCounts> showCurrentAvailableBeds();
 
 }
