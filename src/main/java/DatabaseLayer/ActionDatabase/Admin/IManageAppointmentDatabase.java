@@ -1,6 +1,6 @@
 package DatabaseLayer.ActionDatabase.Admin;
 
-import BusinessLogicLayer.AdminModule.Appointment;
+import BusinessLogicLayer.BeanClasses.Appointment;
 
 import java.util.ArrayList;
 

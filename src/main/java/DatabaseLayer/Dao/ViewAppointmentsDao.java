@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import BusinessLogicLayer.AdminModule.Appointment;
+import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;

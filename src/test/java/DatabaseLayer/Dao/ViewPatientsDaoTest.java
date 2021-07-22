@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import BusinessLogicLayer.PatientModule.Patient;
+import BusinessLogicLayer.BeanClasses.Patient;
 
 class ViewPatientsDaoTest {
 

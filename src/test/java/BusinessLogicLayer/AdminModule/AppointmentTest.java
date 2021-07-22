@@ -1,5 +1,6 @@
 package BusinessLogicLayer.AdminModule;
 
+import BusinessLogicLayer.BeanClasses.Appointment;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

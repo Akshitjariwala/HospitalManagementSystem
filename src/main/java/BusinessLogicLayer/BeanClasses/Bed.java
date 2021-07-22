@@ -1,4 +1,4 @@
-package BusinessLogicLayer.WardModule;
+package BusinessLogicLayer.BeanClasses;
 
 public class Bed {
   private int bedId;

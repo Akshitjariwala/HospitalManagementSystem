@@ -1,6 +1,6 @@
 package BusinessLogicLayer.PatientModule;
 
-import BusinessLogicLayer.PatientModule.PatientAppointmentWithDoctor;
+import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

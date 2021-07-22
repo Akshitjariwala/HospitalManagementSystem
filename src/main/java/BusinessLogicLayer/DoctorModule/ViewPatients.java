@@ -2,8 +2,7 @@ package BusinessLogicLayer.DoctorModule;
 
 import java.util.ArrayList;
 
-import BusinessLogicLayer.AdminModule.Appointment;
-import BusinessLogicLayer.PatientModule.Patient;
+import BusinessLogicLayer.BeanClasses.Patient;
 import DatabaseLayer.Dao.ViewPatientsDao;
 
 public class ViewPatients {

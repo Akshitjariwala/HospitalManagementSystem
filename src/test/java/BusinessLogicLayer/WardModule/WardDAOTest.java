@@ -1,5 +1,9 @@
 package BusinessLogicLayer.WardModule;
 
+import BusinessLogicLayer.BeanClasses.Bed;
+import BusinessLogicLayer.BeanClasses.BedCounts;
+import BusinessLogicLayer.BeanClasses.PatientBed;
+import BusinessLogicLayer.BeanClasses.Ward;
 import DatabaseLayer.ActionDatabase.Admin.ManageWardDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

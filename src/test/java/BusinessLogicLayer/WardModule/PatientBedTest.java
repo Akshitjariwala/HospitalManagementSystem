@@ -1,5 +1,8 @@
 package BusinessLogicLayer.WardModule;
 
+import BusinessLogicLayer.BeanClasses.Bed;
+import BusinessLogicLayer.BeanClasses.PatientBed;
+import BusinessLogicLayer.BeanClasses.Ward;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

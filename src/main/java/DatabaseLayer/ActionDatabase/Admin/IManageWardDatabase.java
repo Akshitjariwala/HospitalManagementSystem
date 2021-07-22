@@ -1,9 +1,9 @@
 package DatabaseLayer.ActionDatabase.Admin;
 
-import BusinessLogicLayer.WardModule.Bed;
-import BusinessLogicLayer.WardModule.BedCounts;
-import BusinessLogicLayer.WardModule.PatientBed;
-import BusinessLogicLayer.WardModule.Ward;
+import BusinessLogicLayer.BeanClasses.Bed;
+import BusinessLogicLayer.BeanClasses.BedCounts;
+import BusinessLogicLayer.BeanClasses.PatientBed;
+import BusinessLogicLayer.BeanClasses.Ward;
 
 import java.util.ArrayList;
 

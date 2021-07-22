@@ -1,5 +1,6 @@
 package BusinessLogicLayer.AdminModule;
 
+import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.ActionDatabase.Admin.ManageAppointmentDatabase;
 
 import java.util.ArrayList;
@@ -8,11 +9,6 @@ import java.util.Scanner;
 public class ManageAppointments extends ManageAppointmentDatabase {
 
   public ManageAppointments() {
-  }
-
-  public static void main(String[] args) {
-    ManageAppointments manageAppointments = new ManageAppointments();
-    manageAppointments.manageAppointmentHome();
   }
 
   public void manageAppointmentHome() {

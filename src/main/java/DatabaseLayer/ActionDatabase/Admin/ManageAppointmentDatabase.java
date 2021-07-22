@@ -1,6 +1,6 @@
 package DatabaseLayer.ActionDatabase.Admin;
 
-import BusinessLogicLayer.AdminModule.Appointment;
+import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
