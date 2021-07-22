@@ -5,6 +5,7 @@ import DatabaseLayer.Dao.AdmissionDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -16,15 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AdmissionDAOTest {
 
   private AdmissionDAO admissionDAO;
-  private long timeToMil = System.currentTimeMillis();
-  private Date date = new Date(timeToMil);
+  private final long timeToMil = System.currentTimeMillis();
+  private final Date date = new Date(timeToMil);
 
   @BeforeEach
   void setup() {
     admissionDAO = Mockito.mock(AdmissionDAO.class);
   }
-
-  private AdmissionDAO demoDAO = new AdmissionDAO();
 
   // This Returns patient record with provided patient ID.
   @Test
@@ -44,13 +43,13 @@ class AdmissionDAOTest {
   // getAdmissionTypesList() returns ResultSet object with list of Admission Types from database.
   @Test
   void getAdmissionTypesList() throws SQLException {
-    Map<Integer,String> admissionTypeList = new HashMap<>();
-    admissionTypeList.put(1,"Covid");
-    admissionTypeList.put(2,"General Care");
-    admissionTypeList.put(3,"ICU");
-    admissionTypeList.put(4,"Long Term Acute Care");
-    admissionTypeList.put(5,"Surgery");
-    admissionTypeList.put(6,"Maternity");
+    Map<Integer, String> admissionTypeList = new HashMap<>();
+    admissionTypeList.put(1, "Covid");
+    admissionTypeList.put(2, "General Care");
+    admissionTypeList.put(3, "ICU");
+    admissionTypeList.put(4, "Long Term Acute Care");
+    admissionTypeList.put(5, "Surgery");
+    admissionTypeList.put(6, "Maternity");
     Mockito.when(admissionDAO.getAdmissionTypesList()).thenReturn(admissionTypeList);
     assertEquals(admissionTypeList, admissionDAO.getAdmissionTypesList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -58,13 +57,13 @@ class AdmissionDAOTest {
   // getDiseaseList() returns ArrayList object with list of disease from database.
   @Test
   void getDiseaseList() throws SQLException {
-    Map<Integer,String> diseaseList = new HashMap<>();
-    diseaseList.put(1,"Disease");
-    diseaseList.put(2,"Disease");
-    diseaseList.put(3,"Disease");
-    diseaseList.put(4,"Disease");
-    diseaseList.put(5,"Disease");
-    diseaseList.put(6,"Disease");
+    Map<Integer, String> diseaseList = new HashMap<>();
+    diseaseList.put(1, "Disease");
+    diseaseList.put(2, "Disease");
+    diseaseList.put(3, "Disease");
+    diseaseList.put(4, "Disease");
+    diseaseList.put(5, "Disease");
+    diseaseList.put(6, "Disease");
     Mockito.when(admissionDAO.getDiseaseList()).thenReturn(diseaseList);
     assertEquals(diseaseList, admissionDAO.getDiseaseList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -86,15 +85,15 @@ class AdmissionDAOTest {
   // getDoctorList() returns ArrayList object with list of Doctors from database.
   @Test
   void getDoctorList() throws SQLException {
-    Map<Integer,String> doctorList = new HashMap<>();
-    doctorList.put(1,"Hemant Desai");
-    doctorList.put(2,"Harit Parekh");
-    doctorList.put(3,"vaishnavi jupudi");
-    doctorList.put(4,"Aayush Shah");
-    doctorList.put(5,"Avani Kothiya");
-    doctorList.put(6,"Janki Kheni");
-    doctorList.put(7,"vaishnavi jup");
-    doctorList.put(6,"doctor doct7");
+    Map<Integer, String> doctorList = new HashMap<>();
+    doctorList.put(1, "Hemant Desai");
+    doctorList.put(2, "Harit Parekh");
+    doctorList.put(3, "vaishnavi jupudi");
+    doctorList.put(4, "Aayush Shah");
+    doctorList.put(5, "Avani Kothiya");
+    doctorList.put(6, "Janki Kheni");
+    doctorList.put(7, "vaishnavi jup");
+    doctorList.put(6, "doctor doct7");
     Mockito.when(admissionDAO.getDoctorList()).thenReturn(doctorList);
     assertEquals(doctorList, admissionDAO.getDoctorList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -117,11 +116,11 @@ class AdmissionDAOTest {
   // getWardsList() returns ArrayList object with list of wards.
   @Test
   void getWardsList() throws SQLException {
-    Map<Integer,String> wardList = new HashMap<>();
-    wardList.put(1,"WARD A");
-    wardList.put(2,"WARD B");
-    wardList.put(3,"WARD C");
-    wardList.put(4,"WARD D");
+    Map<Integer, String> wardList = new HashMap<>();
+    wardList.put(1, "WARD A");
+    wardList.put(2, "WARD B");
+    wardList.put(3, "WARD C");
+    wardList.put(4, "WARD D");
     Mockito.when(admissionDAO.getWardsList()).thenReturn(wardList);
     assertEquals(wardList, admissionDAO.getWardsList(), "Test Failed!. Incorrect or No value received.");
   }
@@ -136,12 +135,12 @@ class AdmissionDAOTest {
   // getAvailableBeds() returns list of all the available beds as ArrayList object
   @Test
   void getAvailableBeds() throws SQLException {
-    Map<Integer,String> bedList = new HashMap<>();
-    bedList.put(1,"10002-1");
-    bedList.put(2,"10002-5");
-    bedList.put(3,"10002-8");
-    bedList.put(4,"10002-9");
-    bedList.put(5,"10002-17");
+    Map<Integer, String> bedList = new HashMap<>();
+    bedList.put(1, "10002-1");
+    bedList.put(2, "10002-5");
+    bedList.put(3, "10002-8");
+    bedList.put(4, "10002-9");
+    bedList.put(5, "10002-17");
     Mockito.when(admissionDAO.getAvailableBeds()).thenReturn(bedList);
     assertEquals(bedList, admissionDAO.getAvailableBeds(), "Test Failed!. Incorrect or No value received.");
   }
@@ -149,9 +148,14 @@ class AdmissionDAOTest {
 
   // getBedCode() returns Bed code associated with bed id.
   @Test
-  void getBedCode() throws SQLException {
-    Mockito.when(admissionDAO.getBedCode(2)).thenReturn("10002-5");
-    assertEquals("10002-5", admissionDAO.getBedCode(2), "Test Failed!. Incorrect or No value received.");
+  void getBedCode() {
+    try {
+      Mockito.when(admissionDAO.getBedCode(2)).thenReturn("10002-5");
+      assertEquals("10002-5", admissionDAO.getBedCode(2), "Test Failed!. Incorrect or No value received.");
+    } catch (SQLException sqlException) {
+      sqlException.printStackTrace();
+    }
+
   }
 
   // saveAdmissionForm() saves the Admission object data in the database.
@@ -162,13 +166,13 @@ class AdmissionDAOTest {
     assertEquals(1, admissionDAO.saveAdmissionForm(admission), "Test Failed!. Incorrect or No value received.");
   }
 
-/*  ifPatientExists() checks if user exists in the system.
-    If exists it returns true
-  else it returns false.*/
+  /*  ifPatientExists() checks if user exists in the system.
+      If exists it returns true
+    else it returns false.*/
   @Test
   void ifPatientExists() throws SQLException {
     Mockito.when(admissionDAO.ifPatientExists("doe999")).thenReturn(Boolean.valueOf("true"));
-    assertTrue(admissionDAO.ifPatientExists("doe999"),"Test Failed!. False or Incorrect value received.");
+    assertTrue(admissionDAO.ifPatientExists("doe999"), "Test Failed!. False or Incorrect value received.");
   }
 
   // This method will return Admission details of the patient.
@@ -177,7 +181,7 @@ class AdmissionDAOTest {
     Admission admission = new Admission("doe999", 3, 5, 2, 7, 5);
     Mockito.when(admissionDAO.getAdmissionDetails("doe999")).thenReturn(admission);
     Admission testAdmission = admissionDAO.getAdmissionDetails("doe999");
-    assertEquals(admission.getPatientID(),testAdmission.getPatientID(),"Test Failed!. Incorrect or No value received.");
+    assertEquals(admission.getPatientID(), testAdmission.getPatientID(), "Test Failed!. Incorrect or No value received.");
   }
 
   @Test
@@ -185,7 +189,7 @@ class AdmissionDAOTest {
     Admission admission = new Admission("doe999", 2, 3, 1, 3, 4);
     admission.setAdmissionID(50);
     Mockito.when(admissionDAO.updateAdmissionForm(admission)).thenReturn(1);
-    assertEquals(1,admissionDAO.updateAdmissionForm(admission),"Test Failed!. Incorrect or No value received.");
+    assertEquals(1, admissionDAO.updateAdmissionForm(admission), "Test Failed!. Incorrect or No value received.");
   }
 
   // dischargePatient() saves discharge information in the database.
@@ -197,7 +201,6 @@ class AdmissionDAOTest {
     admission.setAdmissionID(50);
     admission.setDischargeComment("Patient is allowed to leave.");
     Mockito.when(admissionDAO.dischargePatient(admission)).thenReturn(Boolean.valueOf("true"));
-    assertTrue(admissionDAO.dischargePatient(admission),"Test Failed!. Incorrect or No value received.");
+    assertTrue(admissionDAO.dischargePatient(admission), "Test Failed!. Incorrect or No value received.");
   }
-
 }
