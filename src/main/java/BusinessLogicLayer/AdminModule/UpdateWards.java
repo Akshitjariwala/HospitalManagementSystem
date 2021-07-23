@@ -71,6 +71,7 @@ public class UpdateWards {
     if (!updateStr.isEmpty()) {
       updateWardsDAO = new UpdateWardsDAO();
       updateWardsDAO.updateWard(updateStr, wardId);
+      System.out.println("Ward Details updated Successfully.");
       WardHome wardHome = new WardHome();
       wardHome.wardManageHomePage();
     }

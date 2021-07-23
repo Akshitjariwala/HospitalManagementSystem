@@ -189,20 +189,13 @@ public class RegisterDoctor {
     int status = registerDoctorDAO.addDoctor(doct);
     if (status == 1) {
       System.out.println("Doctor details added successfully");
-      try {
-        registerDoctorHome();
-      } catch (ClassNotFoundException | SQLException e) {
-        e.printStackTrace();
-      }
-
     } else {
       System.out.println("ERROR while adding details");
-      try {
-        registerDoctorHome();
-      } catch (ClassNotFoundException | SQLException e) {
-        e.printStackTrace();
-      }
-
+    }
+    try {
+      registerDoctorHome();
+    } catch (SQLException | ClassNotFoundException sqlException) {
+      sqlException.printStackTrace();
     }
   }
 
@@ -212,7 +205,7 @@ public class RegisterDoctor {
    * The user will have privilege to edit the details and the details are updated in database
    */
   public void UpdateRegistration() throws SQLException, ClassNotFoundException {
-    System.out.print("Enter Doctor Id : ");
+    System.out.print("\nEnter Doctor Id : ");
 
     Scanner scanner = new Scanner(System.in);
 
@@ -220,7 +213,7 @@ public class RegisterDoctor {
     RegisterDoctorDAO registerDoctorDAO = new RegisterDoctorDAO();
     Doctor doct1 = registerDoctorDAO.getDoctor(doc_id);
     int doctorId = doct1.getId();
-    System.out.println("1. Medical License Id* :" + doct1.getMedicalLicenseId());
+    System.out.println("\n1. Medical License Id* :" + doct1.getMedicalLicenseId());
     System.out.println("2. Password* :" + doct1.getPassword());
     System.out.println("3. Last Name* :" + doct1.getLastName());
     System.out.println("4. First Name* :" + doct1.getFirstName());
@@ -234,7 +227,7 @@ public class RegisterDoctor {
     System.out.println("12. Specialization*:" + doct1.getSpecialization());
     System.out.println("13. Department* :" + doct1.getSpecialization());
     System.out.println("14. Exit");
-    System.out.println("Select a number from 1 to 13 to update any record. For exit select 14");
+    System.out.print("Select a number from 1 to 13 to update any record. For exit select 14 : ");
 
     int input = scanner.nextInt();
 
@@ -314,7 +307,12 @@ public class RegisterDoctor {
     if (!str.isEmpty()) {
       registerDoctorDAO = new RegisterDoctorDAO();
       registerDoctorDAO.updateDoctor(str, doctorId);
+      try {
+        System.out.println("Doctor details updated successfully");
+        registerDoctorHome();
+      } catch (SQLException | ClassNotFoundException sqlException) {
+        sqlException.printStackTrace();
+      }
     }
   }
 }
-
