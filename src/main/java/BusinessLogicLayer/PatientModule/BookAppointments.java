@@ -64,7 +64,7 @@ public class BookAppointments {
       //Patient
       globalPatientID = patientid;
       statement = connection.createStatement();
-      String queryToGetPatientName = "SELECT concat(first_name,' ',last_name) FROM CSCI5308_6_DEVINT.patients where patient_id='" + patientid + "';";
+      String queryToGetPatientName = "SELECT concat(first_name,' ',last_name) FROM patients where patient_id='" + patientid + "';";
       resultSet = statement.executeQuery(queryToGetPatientName);
       while (resultSet.next()) {
         appointmentWithDoctor.setPatientName(resultSet.getString(1));
@@ -132,7 +132,7 @@ public class BookAppointments {
   }
 
   private void displayDoctorList() throws SQLException {
-    String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM CSCI5308_6_DEVINT.doctors;";
+    String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM doctors;";
     statement = connection.createStatement();
     ResultSet resultSet = statement.executeQuery(fetchingDoctordetails);
     //print doctor list
@@ -267,14 +267,14 @@ public class BookAppointments {
       String queryToSaveAppointment = "INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
               "VALUES ('" + patient_id + "','" + doctor_id + "','" + appointmentWithDoctor.getAppointmentDate() + "','" + appointmentWithDoctor.getTimeSlot() + "','" + appointmentWithDoctor.getTypeOfAppointment() + "','" + appointmentStatus + "');";
 
-      String queryToMapPatientWithDoctor = "INSERT INTO  CSCI5308_6_DEVINT.patients_doctors_mapping (patient_id, doc_id) \n" +
+      String queryToMapPatientWithDoctor = "INSERT INTO patients_doctors_mapping (patient_id, doc_id) \n" +
               "VALUES ('" + patient_id + "','" + doctor_id + "');";
 
       statement.addBatch(queryToSaveAppointment);
       statement.addBatch(queryToMapPatientWithDoctor);
 
       int[] tempResult = statement.executeBatch();
-      System.out.println("NEW APPOINTMENT CREATED");
+      System.out.println("\n***** NEW APPOINTMENT CREATED *****");
 
     } catch (SQLException e) {
       System.err.println("New APPOINTMENT FAIL TO SAVE");

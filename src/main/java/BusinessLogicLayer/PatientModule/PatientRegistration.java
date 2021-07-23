@@ -159,7 +159,6 @@ public class PatientRegistration {
       System.out.println("I/O ERROR");
     }
     displaynewPatientdetails();
-
   }
 
   private void displaynewPatientdetails() {
@@ -335,7 +334,7 @@ public class PatientRegistration {
 
         case 13:
           saveNewPatient();
-          System.out.println("NEW PATIENT CREATED");
+          System.out.println("\n***** NEW PATIENT CREATED *****");
           PatientUI patientUI=new PatientUI();
           patientUI.loginOrRegistrationUI();
           break;
