@@ -6,7 +6,7 @@
  * */
 package BusinessLogicLayer.AdminModule;
 
-import BusinessLogicLayer.BeanClasses.Wards;
+import BusinessLogicLayer.BeanClasses.Ward;
 import BusinessLogicLayer.WardModule.WardHome;
 import DatabaseLayer.Dao.AddWardsDAO;
 
@@ -17,7 +17,7 @@ public class AddWards {
 
   public static void addWards() {
 
-    Wards ward = new Wards();
+    Ward ward = new Ward();
     Scanner inputData = new Scanner(System.in);
     System.out.println("============================================================================");
     System.out.println("                      Add Wards");
@@ -72,8 +72,8 @@ public class AddWards {
         System.out.println("Please enter valid input:");
       }
     } while (ward.getWardType() == null);
-
-    int status = AddWardsDAO.addWard(ward);
+    AddWardsDAO addWardsDAO = new AddWardsDAO();
+    int status = addWardsDAO.addWard(ward);
     if (status == 1) {
       System.out.println("Ward details added successfully");
     } else {

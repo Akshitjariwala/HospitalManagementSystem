@@ -1,10 +1,13 @@
 package DatabaseLayer.DatabaseConnection;
 
 import java.sql.Connection;
+import java.sql.Statement;
 
 public interface IDatabaseConnection {
 
-    Connection openDBConnection();
+  Connection openDBConnection();
 
-    void closeDBConnection();
+  void closeDBConnection();
+
+  Statement createStatement(Connection connection);
 }

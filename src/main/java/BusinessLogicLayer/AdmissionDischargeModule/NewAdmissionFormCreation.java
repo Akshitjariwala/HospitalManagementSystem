@@ -128,7 +128,7 @@ public class NewAdmissionFormCreation {
     String wardCode = null;
     String bedCode = null;
     int flag1 = 0;
-    int finalResult = 0;
+    int finalResult;
 
     System.out.println("\n==================================================");
     System.out.println("\t\t\t\tAdmission Form Page\t\t\t\t");

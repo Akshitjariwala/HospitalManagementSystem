@@ -11,9 +11,8 @@ import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
-
 public class ViewPatientsDao {
-  String docId;
+
   Connection connection = null;
   IDatabaseConnection databaseConnection;
   IDatabaseConnectionFactory databaseConnectionFactory;
@@ -24,12 +23,9 @@ public class ViewPatientsDao {
   }
 
   public ArrayList<Patient> getPatients(int docId) {
-
-    // TODO Auto-generated method stub
-    ArrayList<String> patientidlist = new ArrayList<String>();
-    patientidlist = getPatientIds(docId);
+    ArrayList<String> patientidlist = getPatientIds(docId);
     if (patientidlist != null) {
-      ArrayList<Patient> patientlist = new ArrayList<Patient>();
+      ArrayList<Patient> patientlist = new ArrayList<>();
       connection = databaseConnection.openDBConnection();
       String query = "Select * from patients where patient_id= ? Limit 1";
       for (String id : patientidlist) {
@@ -63,14 +59,12 @@ public class ViewPatientsDao {
         }
       }
     }
-
     return new ArrayList<>();
-
   }
 
   private ArrayList<String> getPatientIds(int docId) {
     connection = databaseConnection.openDBConnection();
-    ArrayList<String> patientIdlist = new ArrayList<String>();
+    ArrayList<String> patientIdlist = new ArrayList<>();
     String query = "SELECT * FROM patients_doctors_mapping where doc_id=?";
     PreparedStatement statement;
     try {
@@ -89,6 +83,4 @@ public class ViewPatientsDao {
     }
     return new ArrayList<>();
   }
-
-
 }

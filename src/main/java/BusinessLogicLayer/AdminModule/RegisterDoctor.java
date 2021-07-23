@@ -36,7 +36,6 @@ public class RegisterDoctor {
       try {
         al.AdminPage();
       } catch (Exception e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
     } else {
@@ -186,14 +185,13 @@ public class RegisterDoctor {
         System.out.println("Please enter valid input:");
       }
     } while (doct.getState() == null);
-
-    int status = RegisterDoctorDAO.addDoctor(doct);
+    RegisterDoctorDAO registerDoctorDAO = new RegisterDoctorDAO();
+    int status = registerDoctorDAO.addDoctor(doct);
     if (status == 1) {
       System.out.println("Doctor details added successfully");
       try {
         registerDoctorHome();
       } catch (ClassNotFoundException | SQLException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
 
@@ -202,7 +200,6 @@ public class RegisterDoctor {
       try {
         registerDoctorHome();
       } catch (ClassNotFoundException | SQLException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
 
@@ -215,12 +212,13 @@ public class RegisterDoctor {
    * The user will have privilege to edit the details and the details are updated in database
    */
   public void UpdateRegistration() throws SQLException, ClassNotFoundException {
-    System.out.println("Enter doctor id");
+    System.out.print("Enter Doctor Id : ");
 
     Scanner scanner = new Scanner(System.in);
 
-    int id = scanner.nextInt();
-    Doctor doct1 = RegisterDoctorDAO.getDoctor(id);
+    String doc_id = scanner.next();
+    RegisterDoctorDAO registerDoctorDAO = new RegisterDoctorDAO();
+    Doctor doct1 = registerDoctorDAO.getDoctor(doc_id);
     int doctorId = doct1.getId();
     System.out.println("1. Medical License Id* :" + doct1.getMedicalLicenseId());
     System.out.println("2. Password* :" + doct1.getPassword());
@@ -314,7 +312,8 @@ public class RegisterDoctor {
     }
 
     if (!str.isEmpty()) {
-      RegisterDoctorDAO.updateDoctor(str, doctorId);
+      registerDoctorDAO = new RegisterDoctorDAO();
+      registerDoctorDAO.updateDoctor(str, doctorId);
     }
   }
 }

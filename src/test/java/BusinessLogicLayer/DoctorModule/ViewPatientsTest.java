@@ -15,7 +15,6 @@ class ViewPatientsTest {
     viewPatients = Mockito.mock(ViewPatients.class);
   }
 
-
   @Test
   void test_viewPatientWhenExists() {
     ViewPatients vp1 = new ViewPatients(1);

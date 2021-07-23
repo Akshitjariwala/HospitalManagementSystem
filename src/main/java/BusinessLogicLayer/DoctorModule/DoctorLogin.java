@@ -10,17 +10,18 @@ public class DoctorLogin {
 
   public void login() {
     Doctor doctor = new Doctor();
-    System.out.println("=============================Doctor Login=======================================");
+    System.out.println("============================= Doctor Login =======================================");
     do {
-      System.out.print("Enter Doctor Id : ");
+      System.out.print("Enter User Id : ");
       Scanner input = new Scanner(System.in);
       String doctorId = input.next();
       System.out.print("Enter Password : ");
       String password = input.next();
-      temp = DoctorLoginDAO.checkDoctorLogin(doctorId, password);
+      DoctorLoginDAO doctorLoginDAO = new DoctorLoginDAO();
+      temp = doctorLoginDAO.checkDoctorLogin(doctorId, password);
       if (temp == 1) {
         doctor.setMedicalLicenseId(doctorId);
-        doctor = DoctorLoginDAO.getDoctor(doctorId, password);
+        doctor = doctorLoginDAO.getDoctor(doctorId, password);
         DoctorHome doctorHome = new DoctorHome(doctor.getId());
         doctorHome.doctorHomePage();
 
