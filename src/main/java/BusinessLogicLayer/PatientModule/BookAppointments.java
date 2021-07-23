@@ -8,6 +8,7 @@
  * */
 package BusinessLogicLayer.PatientModule;
 
+import BusinessLogicLayer.PatientModule.PatientInterfaces.BookAppointmentsInterface;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class BookAppointments {
+public class BookAppointments implements BookAppointmentsInterface {
 
   private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
   private static Connection connection = databaseConnection.openDBConnection();
@@ -117,7 +118,7 @@ public class BookAppointments {
       } while (!(timeSlotChoice == 1 || timeSlotChoice == 2 || timeSlotChoice == 3));
       appointmentWithDoctor.setTimeSlot(timeSlotList.get(timeSlotChoice - 1));
 
-      displayAppointmentDetails();
+      displayEnteredDetails();
       databaseConnection.closeDBConnection();
     } catch (InterruptedException e) {
       System.out.println("Time ERROR");
@@ -131,22 +132,26 @@ public class BookAppointments {
     return true;
   }
 
-  private void displayDoctorList() throws SQLException {
-    String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM doctors;";
-    statement = connection.createStatement();
-    ResultSet resultSet = statement.executeQuery(fetchingDoctordetails);
-    //print doctor list
-    System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
-    System.out.println("---------------------------------------------------------------------------------");
-    int optionIndex = 0;
-    while (resultSet.next()) {
+  public void displayDoctorList() {
+    try {
+      String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM doctors;";
+      statement = connection.createStatement();
+      ResultSet resultSet = statement.executeQuery(fetchingDoctordetails);
+      //print doctor list
+      System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
+      System.out.println("---------------------------------------------------------------------------------");
+      int optionIndex = 0;
+      while (resultSet.next()) {
 
-      doctorList.add(resultSet.getString(1));
-      System.out.println("|\t\t" + ++optionIndex + "\t\t   " + resultSet.getString(1) + "\t\t\t\t" + resultSet.getString(2) + "\t\t\t\t" + resultSet.getDouble(3) + "\t|");
+        doctorList.add(resultSet.getString(1));
+        System.out.println("|\t\t" + ++optionIndex + "\t\t   " + resultSet.getString(1) + "\t\t\t\t" + resultSet.getString(2) + "\t\t\t\t" + resultSet.getDouble(3) + "\t|");
+      }
+    }catch (SQLException SQL){
+      System.err.println("SQL ERROR");
     }
   }
 
-  private void displayAppointmentDetails() {
+  public void displayEnteredDetails() {
     System.out.println("\nBelow are you appointment Details:\n");
     System.out.println("1. Patient Name: " + appointmentWithDoctor.getPatientName());
     System.out.println("2. Doctor Name: " + appointmentWithDoctor.getDoctorName());
@@ -157,10 +162,10 @@ public class BookAppointments {
     System.out.println("7. Main Menu");
     System.out.println("\nTo change any information, please select from 2-5.\nTo confirm appointment select 6 and select 7 to go back to Main Menu");
 
-    changeAppointmentDetails();
+    changeEnteredDetails();
   }
 
-  private void changeAppointmentDetails() {
+  public void changeEnteredDetails() {
     System.out.println("Enter your choice:");
     try {
       int updateChoice = Integer.parseInt(reader.readLine());
@@ -177,7 +182,7 @@ public class BookAppointments {
             doctorFlag = true;
           } while (!(doctorChoice > 0 && doctorChoice < doctorList.size()));
           appointmentWithDoctor.setDoctorName(doctorList.get(doctorChoice - 1));
-          displayAppointmentDetails();
+          displayEnteredDetails();
           break;
 
         case 3:
@@ -192,7 +197,7 @@ public class BookAppointments {
             dateFlag = true;
           } while (!date.matches("^(0[1-9]|[12][0-9]|3[01])([./-])(0[1-9]|1[012])([./-])(19|20)\\d\\d$"));
           appointmentWithDoctor.setAppointmentDate(date);
-          displayAppointmentDetails();
+          displayEnteredDetails();
           break;
 
         case 4:
@@ -207,7 +212,7 @@ public class BookAppointments {
             timeFlag = true;
           } while (!(timeSlotChoice == 1 || timeSlotChoice == 2 || timeSlotChoice == 3));
           appointmentWithDoctor.setTimeSlot(timeSlotList.get(timeSlotChoice - 1));
-          displayAppointmentDetails();
+          displayEnteredDetails();
           break;
 
         case 5:
@@ -222,11 +227,11 @@ public class BookAppointments {
             appointmentFlag = true;
           } while (!(appointment > 0 && appointment < 3));
           appointmentWithDoctor.setTypeOfAppointment(typeOfAppointmenList.get(appointment - 1));
-          displayAppointmentDetails();
+          displayEnteredDetails();
           break;
 
         case 6:
-          saveAppointment(globalPatientID, appointmentWithDoctor.getDoctorName());
+          saveEnteredDetails(globalPatientID, appointmentWithDoctor.getDoctorName());
           PatientUI pui = new PatientUI();
           pui.mainPatientUI(globalPatientID, appointmentWithDoctor.getPatientName());
 
@@ -237,17 +242,15 @@ public class BookAppointments {
 
         default:
           System.err.println("Wrong Input");
-          changeAppointmentDetails();
+          changeEnteredDetails();
           break;
       }
-    } catch (SQLException E) {
-      System.err.println("SQL ERROR !!!");
     } catch (IOException e) {
       System.err.println("I/O ERROR !!!");
     }
   }
 
-  private void saveAppointment(String patient, String doctor) {
+  public void saveEnteredDetails(String patient, String doctor) {
 
     String patient_id = patient;
     int doctor_id = 0;

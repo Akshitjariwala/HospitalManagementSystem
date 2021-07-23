@@ -9,6 +9,7 @@
  * */
 package BusinessLogicLayer.PatientModule;
 
+import BusinessLogicLayer.PatientModule.PatientInterfaces.ViewLabReportsInterface;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
-public class ViewPatientReports {
+public class ViewPatientReports implements ViewLabReportsInterface {
 
   private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
   private static Connection connection = databaseConnection.openDBConnection();

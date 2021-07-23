@@ -9,6 +9,7 @@
 
 package BusinessLogicLayer.PatientModule;
 
+import BusinessLogicLayer.PatientModule.PatientInterfaces.LoginInterface;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 
@@ -21,7 +22,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class PatientLogin {
+public class PatientLogin implements LoginInterface {
 
 
   private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
