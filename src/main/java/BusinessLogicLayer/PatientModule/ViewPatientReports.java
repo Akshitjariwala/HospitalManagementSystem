@@ -37,17 +37,21 @@ public class ViewPatientReports {
       statement = connection.createStatement();
       ResultSet resultSet = statement.executeQuery(queryToFetchReports);
       int index = 0;
-      while (resultSet.next()) {
-        index++;
-        int reportID = resultSet.getInt(1);
-        String diagnosisType = resultSet.getString(2);
-        String doctorName = resultSet.getString(3);
-        String dateOfReport = resultSet.getString(4);
-        String testType = resultSet.getString(5);
-        String result = resultSet.getString(6);
-        System.out.println("|\t" + index + "\t\tReport " + reportID + "\t\t\t" + diagnosisType + "\t\t" + doctorName + "\t\t" + dateOfReport + "\t\t" + testType + "\t\t" + result);
-      }
 
+      if (resultSet.getRow()!=0){
+        while (resultSet.next()) {
+          index++;
+          int reportID = resultSet.getInt(1);
+          String diagnosisType = resultSet.getString(2);
+          String doctorName = resultSet.getString(3);
+          String dateOfReport = resultSet.getString(4);
+          String testType = resultSet.getString(5);
+          String result = resultSet.getString(6);
+          System.out.println("|\t" + index + "\t\tReport " + reportID + "\t\t\t" + diagnosisType + "\t\t" + doctorName + "\t\t" + dateOfReport + "\t\t" + testType + "\t\t" + result);
+        }
+      }else {
+        System.out.println("\t--------------- NO NEW REPORTS AVAILABLE ---------------");
+      }
     } catch (InterruptedException e) {
       System.err.print("INTERRUPTED");
     } catch (SQLException e) {
