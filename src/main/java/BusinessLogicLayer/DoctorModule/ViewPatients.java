@@ -7,10 +7,10 @@ import DatabaseLayer.Dao.ViewPatientsDao;
 
 public class ViewPatients {
 
-  String docId;
+  int docId;
   ViewPatientsDao pdao;
 
-  public ViewPatients(String docId) {
+  public ViewPatients(int docId) {
     // TODO Auto-generated constructor stub
     this.docId = docId;
     pdao = new ViewPatientsDao();

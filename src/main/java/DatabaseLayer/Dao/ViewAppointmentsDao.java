@@ -21,7 +21,7 @@ public class ViewAppointmentsDao {
 		databaseConnection = databaseConnectionFactory.getDatabaseConnection();
 	}
 
-	public ArrayList<Appointment> getAppointmentList(String docId,String status) {
+	public ArrayList<Appointment> getAppointmentList(int docId,String status) {
 		// TODO Auto-generated method stub
 		String query="Select * from appointments where doc_id=? and appointment_status=?";
 		ArrayList<Appointment> appointments = new ArrayList<>();
@@ -29,7 +29,7 @@ public class ViewAppointmentsDao {
 		PreparedStatement statement;
 		try {
 			statement = connection.prepareStatement(query);
-			statement.setString(1, docId);
+			statement.setInt(1, docId);
 			statement.setString(2, status);
 			ResultSet rs = statement.executeQuery();
 

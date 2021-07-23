@@ -20,7 +20,8 @@ public class DoctorLogin {
       temp = DoctorLoginDAO.checkDoctorLogin(doctorId, password);
       if (temp == 1) {
         doctor.setMedicalLicenseId(doctorId);
-        DoctorHome doctorHome = new DoctorHome(doctorId);
+        doctor = DoctorLoginDAO.getDoctor(doctorId, password);
+        DoctorHome doctorHome = new DoctorHome(doctor.getId());
         doctorHome.doctorHomePage();
 
       } else {

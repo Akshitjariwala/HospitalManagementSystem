@@ -16,7 +16,7 @@ class ViewReportsTest {
 
   @Test
   void test_allReports() {
-    ViewReports vr1 = new ViewReports("janki123");
+    ViewReports vr1 = new ViewReports(1);
     boolean flag = true;
     Mockito.when(viewReports.viewAllReports()).thenReturn(flag);
     assertEquals(true, flag);
@@ -24,7 +24,7 @@ class ViewReportsTest {
 
   @Test
   void test_patientReports() {
-    ViewReports vr1 = new ViewReports("janki123");
+    ViewReports vr1 = new ViewReports(1);
     boolean flag = true;
     String patientId = "kkishan123";
     Mockito.when(viewReports.viewPatientReports(patientId)).thenReturn(flag);

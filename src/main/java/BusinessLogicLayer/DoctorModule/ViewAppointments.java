@@ -6,11 +6,11 @@ import DatabaseLayer.Dao.ViewAppointmentsDao;
 import BusinessLogicLayer.BeanClasses.Appointment;
 
 public class ViewAppointments {
-  String docId;
+  int docId;
   String status;
   ViewAppointmentsDao vdao;
 
-  public ViewAppointments(String docId, String status) {
+  public ViewAppointments(int docId, String status) {
     this.docId = docId;
     this.status = status;
     vdao = new ViewAppointmentsDao();

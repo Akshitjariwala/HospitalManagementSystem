@@ -11,7 +11,7 @@ public class Main {
 
   public static void mainMethod() throws Exception {
     System.out.println("============================================================");
-    System.out.println("\t\tWelcome to our Hospital Management System!!!\t\t");
+    System.out.println("\t\tWelcome to our Hospital Management System\t\t");
     System.out.println("============================================================");
     System.out.println("Choose one of the following login option...\n");
     System.out.println("1. Doctor");
