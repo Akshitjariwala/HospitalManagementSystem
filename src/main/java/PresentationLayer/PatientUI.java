@@ -20,7 +20,7 @@ public class PatientUI {
 
     int optionSelected = 0;
 
-    System.out.println("Welcome *******" + patientName + "*******\n\n");
+    System.out.println("\nWelcome *******" + patientName + "*******\n\n");
 
     System.out.println("1. Book Appointment");
     System.out.println("2. View Lab Reports");
