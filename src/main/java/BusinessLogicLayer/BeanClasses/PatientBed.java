@@ -1,7 +1,5 @@
 package BusinessLogicLayer.BeanClasses;
 
-import BusinessLogicLayer.BeanClasses.Bed;
-
 public class PatientBed {
 
   private String patientName;

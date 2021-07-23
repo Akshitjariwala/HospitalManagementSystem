@@ -91,9 +91,10 @@ class AdmissionDAOTest {
     doctorList.put(3, "vaishnavi jupudi");
     doctorList.put(4, "Aayush Shah");
     doctorList.put(5, "Avani Kothiya");
-    doctorList.put(6, "Janki Kheni");
-    doctorList.put(7, "vaishnavi jup");
     doctorList.put(6, "doctor doct7");
+    doctorList.put(7, "Janki Kheni");
+    doctorList.put(8, "vaishnavi jup");
+
     Mockito.when(admissionDAO.getDoctorList()).thenReturn(doctorList);
     assertEquals(doctorList, admissionDAO.getDoctorList(), "Test Failed!. Incorrect or No value received.");
   }

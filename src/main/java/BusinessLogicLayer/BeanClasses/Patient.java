@@ -8,22 +8,20 @@
  * */
 package BusinessLogicLayer.BeanClasses;
 
-import java.util.Scanner;
-
 public class Patient {
-  private String firstName = null;
-  private String lastName = null;
-  private String middleName = null;
-  private String emaiID = null;
-  private String phoneNumber = null;
-  private String address = null;
-  private String cityName = null;
-  private String stateName = null;
-  private String emergencyContactName = null;
-  private String emergencyContactNumber = null;
+
+  private String firstName;
+  private String lastName;
+  private String middleName;
+  private String emaiID;
+  private String phoneNumber;
+  private String address;
+  private String cityName;
+  private String stateName;
+  private String emergencyContactName;
+  private String emergencyContactNumber;
   private String userID = null;
   private String password = null;
-  private Scanner readInput = new Scanner(System.in);
 
   public Patient(String firstName, String lastName, String middleName, String emaiID, String phoneNumber, String address, String cityName, String stateName, String emergencyContactName, String emergencyContactNumber, String userID, String password) {
     this.firstName = firstName;
@@ -101,7 +99,7 @@ public class Patient {
   }
 
   public void setMiddleName(String middleName) {
-    if (middleName == "")
+    if (middleName.equals(""))
       this.middleName = null;
     else
       this.middleName = middleName;
@@ -116,7 +114,7 @@ public class Patient {
   }
 
   public void setAddress(String address) {
-    if (address == "")
+    if (address.equals(""))
       this.address = null;
     else
       this.address = address;
@@ -131,14 +129,14 @@ public class Patient {
   }
 
   public void setEmergencyContactName(String emergencyContactName) {
-    if (emergencyContactName == "")
+    if (emergencyContactName.equals(""))
       this.emergencyContactName = null;
     else
       this.emergencyContactName = emergencyContactName;
   }
 
   public void setEmergencyContactNumber(String emergencyContactNumber) {
-    if (emergencyContactNumber == "")
+    if (emergencyContactNumber.equals(""))
       this.emergencyContactNumber = null;
     else
       this.emergencyContactNumber = emergencyContactNumber;
@@ -150,10 +148,6 @@ public class Patient {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public void setReadInput(Scanner readInput) {
-    this.readInput = readInput;
   }
 
 }

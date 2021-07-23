@@ -21,20 +21,20 @@ public class PatientUI implements PatientUIInterface {
 
     int optionSelected = 0;
 
-    System.out.println("\nWelcome *******" + patientName + "*******\n\n");
+    System.out.println("\nWelcome ******* " + patientName + " *******\n");
 
     System.out.println("1. Book Appointment");
     System.out.println("2. View Lab Reports");
-    System.out.println("3. Exit");
+    System.out.println("3. Logout");
     try {
-      Boolean optionFlag = false;
+      boolean optionFlag = false;
       do {
-        if ((optionSelected != 999999) && optionFlag == true)
-          System.err.println("*** Please choose either 1 or 2***\n");
+        if ((optionSelected != 999999) && optionFlag)
+          System.err.println("*** Please choose either 1 or 2 ***\n");
 
-        System.out.println("Select Option:");
-        String input=reader.readLine();
-        if (input!= null && !input.isEmpty()) {
+        System.out.print("Enter Selection : ");
+        String input = reader.readLine();
+        if (input != null && !input.isEmpty()) {
           optionSelected = Integer.parseInt(input);
           optionFlag = true;
         }
@@ -46,11 +46,15 @@ public class PatientUI implements PatientUIInterface {
           break;
 
         case 2:
-          viewPatientReports.viewLabReports(patientID,patientName);
+          viewPatientReports.viewLabReports(patientID, patientName);
           break;
 
         case 3:
-          System.exit(1);
+          try {
+            Main.mainMethod();
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
           break;
 
         default:
@@ -66,16 +70,15 @@ public class PatientUI implements PatientUIInterface {
     PatientRegistration newPatient = new PatientRegistration();
     PatientLogin patientLogin = new PatientLogin();
     int optionSelected = 0;
-    System.out.println("==============================\n\t\tType of Patient\n==============================\n");
-    System.out.println("1. Existing Patient");
+    System.out.println("\n1. Existing Patient");
     System.out.println("2. New Patient");
     try {
-      Boolean optionFlag = false;
+      boolean optionFlag = false;
       do {
-        if (optionSelected != 999999 && optionFlag == true)
+        if (optionSelected != 999999 && optionFlag)
           System.err.println("\n*** Please choose either 1 or 2***\n");
 
-        System.out.println("Select Option:");
+        System.out.print("Enter Selection : ");
         optionSelected = Integer.parseInt(reader.readLine());
         optionFlag = true;
       } while (!(optionSelected > 0 && optionSelected < 3));

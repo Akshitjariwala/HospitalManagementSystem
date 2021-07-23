@@ -23,9 +23,6 @@ public class ViewReportsDao {
   }
 
   public List<Reports> getAllReports(int docId) {
-    // TODO Auto-generated method stub
-
-    // TODO Auto-generated method stub
     ArrayList<Reports> reportlist = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
     String query = "Select * from lab_reports where doc_id= ? Limit 1";
@@ -52,13 +49,9 @@ public class ViewReportsDao {
       databaseConnection.closeDBConnection();
     }
     return new ArrayList<>();
-
   }
 
   public List<Reports> getPatientReports(int docId, String patientId) {
-    // TODO Auto-generated method stub
-
-    // TODO Auto-generated method stub
     ArrayList<Reports> reportlist = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
     String query = "Select * from lab_reports where doc_id= ? and patient_id=? Limit 1";
@@ -86,6 +79,5 @@ public class ViewReportsDao {
       databaseConnection.closeDBConnection();
     }
     return new ArrayList<>();
-
   }
 }

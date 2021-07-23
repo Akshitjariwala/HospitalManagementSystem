@@ -1,6 +1,7 @@
 package BusinessLogicLayer.BeanClasses;
 
 public class Ward {
+
   private int wardId;
   private String wardName;
   private String wardType;

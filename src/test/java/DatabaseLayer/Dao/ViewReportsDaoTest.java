@@ -3,7 +3,7 @@ package DatabaseLayer.Dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ class ViewReportsDaoTest {
     r1.setPatientId("vishal123");
     r1.setTestResult("Negative");
     r1.setTestType("RTPCR");
-    ArrayList<Reports> report = new ArrayList<>(Arrays.asList(r1));
+    ArrayList<Reports> report = new ArrayList<>(Collections.singletonList(r1));
     Mockito.when(viewreportsDAO.getAllReports(1)).thenReturn(report);
     assertEquals(1, report.size());
 
@@ -46,7 +46,7 @@ class ViewReportsDaoTest {
     r1.setPatientId("vishal123");
     r1.setTestResult("Negative");
     r1.setTestType("RTPCR");
-    ArrayList<Reports> report = new ArrayList<>(Arrays.asList(r1));
+    ArrayList<Reports> report = new ArrayList<>(Collections.singletonList(r1));
     Mockito.when(viewreportsDAO.getAllReports(1)).thenReturn(report);
     assertEquals(1, report.size());
 

@@ -6,7 +6,7 @@
  * */
 package BusinessLogicLayer.AdminModule;
 
-import BusinessLogicLayer.BeanClasses.Wards;
+import BusinessLogicLayer.BeanClasses.Ward;
 import BusinessLogicLayer.WardModule.WardHome;
 import DatabaseLayer.Dao.UpdateWardsDAO;
 
@@ -21,7 +21,8 @@ public class UpdateWards {
     System.out.println("Enter the id of the ward that has to be updated");
     Scanner scanner = new Scanner(System.in);
     int id = scanner.nextInt();
-    Wards ward = UpdateWardsDAO.getWardDetails(id);
+    UpdateWardsDAO updateWardsDAO = new UpdateWardsDAO();
+    Ward ward = updateWardsDAO.getWardDetails(id);
     int wardId = ward.getWardId();
 
     System.out.println("===========The details of the ward" + " " + wardId + "are==================");
@@ -68,7 +69,9 @@ public class UpdateWards {
         System.out.println("Invalid Input, Please choose valid input ");
     }
     if (!updateStr.isEmpty()) {
-      UpdateWardsDAO.updateWard(updateStr, wardId);
+      updateWardsDAO = new UpdateWardsDAO();
+      updateWardsDAO.updateWard(updateStr, wardId);
+      System.out.println("Ward Details updated Successfully.");
       WardHome wardHome = new WardHome();
       wardHome.wardManageHomePage();
     }

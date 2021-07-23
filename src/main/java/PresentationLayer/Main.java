@@ -33,7 +33,7 @@ public class Main {
             flag = 1;
             break;
           case 2:
-            PatientUI patientUI=new PatientUI();
+            PatientUI patientUI = new PatientUI();
             patientUI.loginOrRegistrationUI();
             flag = 1;
             break;
