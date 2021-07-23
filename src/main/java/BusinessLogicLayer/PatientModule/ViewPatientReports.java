@@ -10,6 +10,7 @@
 package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import PresentationLayer.PatientUI;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,10 +24,10 @@ public class ViewPatientReports {
   private static Connection connection = databaseConnection.openDBConnection();
   private Statement statement = null;
 
-  public void viewLabReports(String patientID) {
+  public void viewLabReports(String patientID,String patientName) {
 
     System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
-    System.out.println("Fetching Old Reports.....\n");
+    System.out.println("Fetching Lab Reports.....\n");
     try {
       TimeUnit.SECONDS.sleep(5);
       System.out.println("|\tNo.\t|\tPatient_id\t|\tDiagnosis Name\t|\tReferred By\t\t|\tDate\t|\tTest Type\t|\tResult\t|");
@@ -37,17 +38,25 @@ public class ViewPatientReports {
       statement = connection.createStatement();
       ResultSet resultSet = statement.executeQuery(queryToFetchReports);
       int index = 0;
-      while (resultSet.next()) {
-        index++;
-        int reportID = resultSet.getInt(1);
-        String diagnosisType = resultSet.getString(2);
-        String doctorName = resultSet.getString(3);
-        String dateOfReport = resultSet.getString(4);
-        String testType = resultSet.getString(5);
-        String result = resultSet.getString(6);
-        System.out.println("|\t" + index + "\t\tReport " + reportID + "\t\t\t" + diagnosisType + "\t\t" + doctorName + "\t\t" + dateOfReport + "\t\t" + testType + "\t\t" + result);
+
+      if (resultSet.getRow()!=0){
+        while (resultSet.next()) {
+          index++;
+          int reportID = resultSet.getInt(1);
+          String diagnosisType = resultSet.getString(2);
+          String doctorName = resultSet.getString(3);
+          String dateOfReport = resultSet.getString(4);
+          String testType = resultSet.getString(5);
+          String result = resultSet.getString(6);
+          System.out.println("|\t" + index + "\t\tReport " + reportID + "\t\t\t" + diagnosisType + "\t\t" + doctorName + "\t\t" + dateOfReport + "\t\t" + testType + "\t\t" + result);
+        }
+      }else {
+        System.out.println("\t--------------- NO NEW REPORTS AVAILABLE ---------------");
       }
 
+      //Redirect to previous Menu
+      PatientUI patientUI=new PatientUI();
+      patientUI.mainPatientUI(patientID,patientName);
     } catch (InterruptedException e) {
       System.err.print("INTERRUPTED");
     } catch (SQLException e) {
