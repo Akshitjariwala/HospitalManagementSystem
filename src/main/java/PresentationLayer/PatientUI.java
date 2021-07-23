@@ -24,6 +24,7 @@ public class PatientUI {
 
     System.out.println("1. Book Appointment");
     System.out.println("2. View Lab Reports");
+    System.out.println("3. Exit");
     try {
       Boolean optionFlag = false;
       do {
@@ -36,7 +37,7 @@ public class PatientUI {
           optionSelected = Integer.parseInt(input);
           optionFlag = true;
         }
-      } while (!(optionSelected > 0 && optionSelected < 3));
+      } while (!(optionSelected > 0 && optionSelected < 4));
 
       switch (optionSelected) {
         case 1:
@@ -44,7 +45,11 @@ public class PatientUI {
           break;
 
         case 2:
-          viewPatientReports.viewLabReports(patientID);
+          viewPatientReports.viewLabReports(patientID,patientName);
+          break;
+
+        case 3:
+          System.exit(1);
           break;
 
         default:

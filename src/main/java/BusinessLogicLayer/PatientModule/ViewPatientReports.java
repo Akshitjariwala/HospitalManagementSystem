@@ -10,6 +10,7 @@
 package BusinessLogicLayer.PatientModule;
 
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import PresentationLayer.PatientUI;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class ViewPatientReports {
   private static Connection connection = databaseConnection.openDBConnection();
   private Statement statement = null;
 
-  public void viewLabReports(String patientID) {
+  public void viewLabReports(String patientID,String patientName) {
 
     System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
     System.out.println("Fetching Old Reports.....\n");
@@ -52,6 +53,10 @@ public class ViewPatientReports {
       }else {
         System.out.println("\t--------------- NO NEW REPORTS AVAILABLE ---------------");
       }
+
+      //Redirect to previous Menu
+      PatientUI patientUI=new PatientUI();
+      patientUI.mainPatientUI(patientID,patientName);
     } catch (InterruptedException e) {
       System.err.print("INTERRUPTED");
     } catch (SQLException e) {
