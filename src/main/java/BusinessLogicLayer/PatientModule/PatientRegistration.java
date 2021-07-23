@@ -186,9 +186,9 @@ public class PatientRegistration {
     String X = null;
     try {
       do {
-        if (X != null)
+        if (X != null) {
           System.err.println("*** Please enter correct choice between 1-14 ***\n");
-
+        }
         System.out.println("Enter your choice:");
         X = reader.readLine();
       } while (!X.matches("(1|2|3|4|5|6|7|8|9|10|11|12|13|14)"));

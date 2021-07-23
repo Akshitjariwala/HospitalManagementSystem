@@ -27,12 +27,15 @@ public class PatientUI {
     try {
       Boolean optionFlag = false;
       do {
-        if (optionSelected != 999999 && optionFlag == true)
+        if ((optionSelected != 999999) && optionFlag == true)
           System.err.println("*** Please choose either 1 or 2***\n");
 
         System.out.println("Select Option:");
-        optionSelected = Integer.parseInt(reader.readLine());
-        optionFlag = true;
+        String input=reader.readLine();
+        if (input!= null && !input.isEmpty()) {
+          optionSelected = Integer.parseInt(input);
+          optionFlag = true;
+        }
       } while (!(optionSelected > 0 && optionSelected < 3));
 
       switch (optionSelected) {
