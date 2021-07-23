@@ -60,7 +60,7 @@ public class PatientLogin {
       } while (!password.equals(providedPassword));
 
       statement = connection.createStatement();
-      String queryToGetPatientName = "SELECT CONCAT(first_name,' ',last_name) FROM CSCI5308_6_DEVINT.patients where patient_id='" + userID + "';";
+      String queryToGetPatientName = "SELECT CONCAT(first_name,' ',last_name) FROM patients where patient_id='" + userID + "';";
       resultSet = statement.executeQuery(queryToGetPatientName);
       while (resultSet.next()) {
         patientName = resultSet.getString(1);

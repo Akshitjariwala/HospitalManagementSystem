@@ -3,9 +3,9 @@ package BusinessLogicLayer.DoctorModule;
 import java.util.Scanner;
 
 public class DoctorHome {
-  String docId;
+  int docId;
 
-  public DoctorHome(String docId) {
+  public DoctorHome(int docId) {
     this.docId = docId;
   }
 

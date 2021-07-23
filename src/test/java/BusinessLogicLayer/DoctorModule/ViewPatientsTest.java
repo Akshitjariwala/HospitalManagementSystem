@@ -18,7 +18,7 @@ class ViewPatientsTest {
 
   @Test
   void test_viewPatientWhenExists() {
-    ViewPatients vp1 = new ViewPatients("janki123");
+    ViewPatients vp1 = new ViewPatients(1);
     boolean flag = true;
     Mockito.when(viewPatients.viewAllPatients()).thenReturn(flag);
     assertEquals(true, flag);
@@ -27,7 +27,7 @@ class ViewPatientsTest {
 
   @Test
   void test_viewPatientNotExists() {
-    ViewPatients vp1 = new ViewPatients("janki1234");
+    ViewPatients vp1 = new ViewPatients(1);
     boolean flag = false;
     Mockito.when(viewPatients.viewAllPatients()).thenReturn(flag);
     assertEquals(false, flag);

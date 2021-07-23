@@ -22,7 +22,7 @@ public class ViewReportsDao {
     databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
-  public List<Reports> getAllReports(String docId) {
+  public List<Reports> getAllReports(int docId) {
     // TODO Auto-generated method stub
 
     // TODO Auto-generated method stub
@@ -32,7 +32,7 @@ public class ViewReportsDao {
     PreparedStatement statement;
     try {
       statement = connection.prepareStatement(query);
-      statement.setString(1, docId);
+      statement.setInt(1, docId);
       ResultSet rs = statement.executeQuery();
       while (rs.next()) {
         Reports r = new Reports();
@@ -55,7 +55,7 @@ public class ViewReportsDao {
 
   }
 
-  public List<Reports> getPatientReports(String docId, String patientId) {
+  public List<Reports> getPatientReports(int docId, String patientId) {
     // TODO Auto-generated method stub
 
     // TODO Auto-generated method stub
@@ -65,7 +65,7 @@ public class ViewReportsDao {
     PreparedStatement statement;
     try {
       statement = connection.prepareStatement(query);
-      statement.setString(1, docId);
+      statement.setInt(1, docId);
       statement.setString(2, patientId);
       ResultSet rs = statement.executeQuery();
       while (rs.next()) {

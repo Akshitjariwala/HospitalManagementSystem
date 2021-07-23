@@ -8,10 +8,10 @@ import DatabaseLayer.Dao.ViewReportsDao;
 
 public class ViewReports {
 
-  String docId;
+  int docId;
   ViewReportsDao vrdao;
 
-  public ViewReports(String docId) {
+  public ViewReports(int docId) {
     // TODO Auto-generated constructor stub
     this.docId = docId;
     vrdao = new ViewReportsDao();
