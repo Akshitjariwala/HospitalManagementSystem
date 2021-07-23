@@ -27,7 +27,7 @@ public class ViewPatientReports {
   public void viewLabReports(String patientID,String patientName) {
 
     System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
-    System.out.println("Fetching Old Reports.....\n");
+    System.out.println("Fetching Lab Reports.....\n");
     try {
       TimeUnit.SECONDS.sleep(5);
       System.out.println("|\tNo.\t|\tPatient_id\t|\tDiagnosis Name\t|\tReferred By\t\t|\tDate\t|\tTest Type\t|\tResult\t|");
