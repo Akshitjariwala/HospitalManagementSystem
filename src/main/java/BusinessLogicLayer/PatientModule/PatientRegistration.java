@@ -10,12 +10,16 @@ package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import PresentationLayer.PatientUI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.BatchUpdateException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
 
 
 public class PatientRegistration {
@@ -182,9 +186,9 @@ public class PatientRegistration {
     String X = null;
     try {
       do {
-        if (X != null)
+        if (X != null) {
           System.err.println("*** Please enter correct choice between 1-14 ***\n");
-
+        }
         System.out.println("Enter your choice:");
         X = reader.readLine();
       } while (!X.matches("(1|2|3|4|5|6|7|8|9|10|11|12|13|14)"));
@@ -332,6 +336,8 @@ public class PatientRegistration {
         case 13:
           saveNewPatient();
           System.out.println("NEW PATIENT CREATED");
+          PatientUI patientUI=new PatientUI();
+          patientUI.loginOrRegistrationUI();
           break;
 
         case 14:
@@ -356,8 +362,16 @@ public class PatientRegistration {
       statement.addBatch(query1);
       statement.addBatch(query2);
       statement.executeBatch();
-    } catch (Exception E) {
-      E.printStackTrace();
+    }catch (BatchUpdateException exception){
+        System.err.println("***** Username already exists *****\n");
+        try {
+          TimeUnit.SECONDS.sleep(2);
+          displaynewPatientdetails();
+        }catch (InterruptedException e){
+          System.err.println("INTERRUPTED");
+        }
+    } catch (SQLException E) {
+      System.err.println("***** SQL ERROR *****");
     }
   }
 }
