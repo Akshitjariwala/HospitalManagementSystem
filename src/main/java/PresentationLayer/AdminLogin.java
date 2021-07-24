@@ -1,8 +1,8 @@
 package PresentationLayer;
 
+import BusinessLogicLayer.AdminModule.CreateDoctor;
 import BusinessLogicLayer.AdminModule.CreateLabReports;
 import BusinessLogicLayer.AdminModule.ManageAppointments;
-import BusinessLogicLayer.AdminModule.RegisterDoctor;
 import BusinessLogicLayer.WardModule.WardHome;
 
 import java.util.Scanner;
