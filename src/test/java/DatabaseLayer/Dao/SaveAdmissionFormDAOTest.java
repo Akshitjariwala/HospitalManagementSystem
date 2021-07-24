@@ -1,16 +1,20 @@
 package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Admission;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
 import java.sql.SQLException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class SaveAdmissionFormDAOTest {
     
     public SaveAdmissionFormDAO saveAdmission;
+    
+    @BeforeEach
+    void setup() {
+        saveAdmission = Mockito.mock(SaveAdmissionFormDAO.class);
+    }
     
     @Test
     void saveAdmissionForm() throws SQLException {

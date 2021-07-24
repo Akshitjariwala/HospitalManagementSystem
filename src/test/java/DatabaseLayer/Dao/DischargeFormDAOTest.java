@@ -1,6 +1,7 @@
 package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Admission;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.sql.Date;
@@ -8,9 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DischargeFormDAOTest {
     
-    public DischargeFormDAO dischargeForm;
     private final long timeToMil = System.currentTimeMillis();
     private final Date date = new Date(timeToMil);
+    public DischargeFormDAO dischargeForm;
+    
+    @BeforeEach
+    void setup() {
+        dischargeForm = Mockito.mock(DischargeFormDAO.class);
+    }
 
     @Test
     void dischargePatient() {
