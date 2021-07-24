@@ -61,16 +61,22 @@ public class BookAppointmentsDAO {
 
             String queryToSaveAppointment = "INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
                     "VALUES ('" + patient_id + "','" + doctor_id + "','" + appointmentWithDoctor.getAppointmentDate() + "','" + appointmentWithDoctor.getTimeSlot() + "','" + appointmentWithDoctor.getTypeOfAppointment() + "','" + appointmentStatus + "');";
+       //     int result1=statement.executeUpdate(queryToSaveAppointment);
 
-            String queryToMapPatientWithDoctor = "INSERT INTO patients_doctors_mapping (patient_id, doc_id) \n" +
-                    "VALUES ('" + patient_id + "','" + doctor_id + "');";
+            String querytoCheckEntry="SELECT * from patients_doctors_mapping WHERE patient_id='"+patient_id+"' " +
+                    "AND doc_id='"+doctor_id+"';";
+
+            ResultSet tempResultSet= statement.executeQuery(querytoCheckEntry);
+            if (!(tempResultSet.getRow()>0)){
+                String queryToMapPatientWithDoctor = "INSERT INTO patients_doctors_mapping (patient_id, doc_id) \n" +
+                        "VALUES ('" + patient_id + "','" + doctor_id + "');";
+                statement.addBatch(queryToMapPatientWithDoctor);
+            }
 
             statement.addBatch(queryToSaveAppointment);
-            statement.addBatch(queryToMapPatientWithDoctor);
-
             int[] tempResult = statement.executeBatch();
         }catch (SQLException e) {
-            System.err.println("New APPOINTMENT FAIL TO SAVE");
+            System.err.println("New APPOINTMENT FAILED TO SAVE");
             e.printStackTrace();
             return  false;
         }
