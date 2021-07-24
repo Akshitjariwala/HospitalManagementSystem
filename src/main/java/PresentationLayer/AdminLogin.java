@@ -3,7 +3,6 @@ package PresentationLayer;
 import BusinessLogicLayer.AdminModule.CreateDoctor;
 import BusinessLogicLayer.AdminModule.CreateLabReports;
 import BusinessLogicLayer.AdminModule.ManageAppointments;
-import BusinessLogicLayer.AdmissionDischargeModule.NewAdmissionFormCreation;
 import BusinessLogicLayer.WardModule.WardHome;
 
 import java.util.Scanner;
@@ -68,7 +67,7 @@ public class AdminLogin {
               exitFlag = 1;
               break;
             case 2:
-              NewAdmissionFormCreation admissionModule = new NewAdmissionFormCreation();
+              AdmissionFormUI admissionModule = new AdmissionFormUI();
               admissionModule.admissionHomePage();
               exitFlag = 1;
               break;
