@@ -2,16 +2,16 @@ package BusinessLogicLayer.AdmissionDischargeModule;
 
 import BusinessLogicLayer.BeanClasses.Admission;
 import DatabaseLayer.Dao.AdmissionDAO;
-
+import DatabaseLayer.Dao.DischargeFormDAO;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DischargeForm {
 
   static AdmissionDAO admissionDao = new AdmissionDAO();
+  static DischargeFormDAO dischargeDAO = new DischargeFormDAO();
 
-  public void dischargeForm() throws SQLException {
+  public void dischargeForm() {
 
     int flag = 0;
     int flag1 = 0;
@@ -53,7 +53,8 @@ public class DischargeForm {
 
               switch (response) {
                 case 0:
-                  boolean res = admissionDao.dischargePatient(admissionDetails);
+                  boolean res;
+                  res = dischargeDAO.dischargePatient(admissionDetails);
                   if (res) {
                     System.out.println("\nUser Successfully Discharged.");
                     flag1 = 1;

@@ -5,7 +5,6 @@ import BusinessLogicLayer.PatientModule.PatientLogin;
 import BusinessLogicLayer.PatientModule.PatientRegistration;
 import BusinessLogicLayer.PatientModule.ViewPatientReports;
 import PresentationLayer.Interfaces.PatientUIInterface;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

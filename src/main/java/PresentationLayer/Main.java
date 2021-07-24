@@ -1,7 +1,6 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.DoctorModule.DoctorLogin;
-
 import java.util.Scanner;
 
 public class Main {
