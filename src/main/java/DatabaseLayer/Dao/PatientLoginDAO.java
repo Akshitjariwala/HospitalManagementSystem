@@ -8,12 +8,16 @@ import java.sql.Statement;
 
 public class PatientLoginDAO  {
 
-    private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-    private static Connection connection = databaseConnection.openDBConnection();
+    private static DatabaseConnection databaseConnection;
+    private static Connection connection;
     private Statement statement = null;
     private ResultSet resultSet = null;
 
+    public PatientLoginDAO() {
 
+        this.databaseConnection = DatabaseConnection.createInstance();
+        this.connection = databaseConnection.openDBConnection();
+    }
     public String getLoginCredentials(String userID)  {
 
       String providedPassword="";

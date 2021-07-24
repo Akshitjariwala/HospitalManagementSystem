@@ -12,13 +12,20 @@ import java.sql.Statement;
 
 public class BookAppointmentsDAO {
 
-    private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-    private static Connection connection = databaseConnection.openDBConnection();
+    private static DatabaseConnection databaseConnection;
+    private static Connection connection;
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Statement statement = null;
     private ResultSet resultSet = null;
 
+    public BookAppointmentsDAO()  {
+
+         databaseConnection = DatabaseConnection.createInstance();
+         connection = databaseConnection.openDBConnection();
+    }
+
     public String getPatientName(String patientid) {
+
         String patientName="";
         try {
             statement = connection.createStatement();
