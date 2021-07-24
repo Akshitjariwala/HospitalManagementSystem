@@ -1,4 +1,4 @@
-package DatabaseLayer.ActionDatabase.Admin;
+package DatabaseLayer.ActionDatabase.Admin.Appointments;
 
 import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
@@ -10,20 +10,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class ManageAppointmentDatabase implements IManageAppointmentDatabase {
+public class AppointmentDAO implements IAppointmentDAO {
 
   Connection connection = null;
   IDatabaseConnection databaseConnection;
   IDatabaseConnectionFactory databaseConnectionFactory;
 
-  public ManageAppointmentDatabase() {
+  public AppointmentDAO() {
     databaseConnectionFactory = new DatabaseConnectionFactory();
     databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
   @Override
-  public ArrayList<Appointment> getAppointmentList() {
+  public List<Appointment> getAppointmentList() {
     ArrayList<Appointment> appointments = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
     String query = "SELECT * FROM appointments";

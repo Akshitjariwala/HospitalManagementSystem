@@ -1,10 +1,10 @@
-package DatabaseLayer.ActionDatabase.Admin;
+package DatabaseLayer.ActionDatabase.Admin.Appointments;
 
 import BusinessLogicLayer.BeanClasses.Appointment;
 
 import java.util.List;
 
-public interface IManageAppointmentDatabase {
+public interface IAppointmentDAO {
 
   List<Appointment> getAppointmentList();
 

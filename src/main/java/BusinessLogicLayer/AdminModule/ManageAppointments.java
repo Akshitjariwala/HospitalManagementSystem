@@ -1,20 +1,31 @@
 package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Appointment;
-import DatabaseLayer.ActionDatabase.Admin.ManageAppointmentDatabase;
+import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
+import DatabaseLayer.ActionDatabase.Admin.Appointments.IAppointmentDAO;
 import PresentationLayer.AdminLogin;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class ManageAppointments extends ManageAppointmentDatabase {
+public class ManageAppointments extends AdminAbstractAction {
+
+  private IAppointmentDAO iAppointmentDAO;
+  private static final String ACTION_TITLE = "Manage Appointments";
 
   public ManageAppointments() {
+    iAppointmentDAO = iAdminActionDatabase.manageAppointments();
+  }
+
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
   }
 
   public void manageAppointmentHome() {
     System.out.println(" Fetching Details... ");
-    ArrayList<Appointment> appointments = getAppointmentList();
+    List<Appointment> appointments = iAppointmentDAO.getAppointmentList();
     if (appointments.size() != 0) {
       int flag = 0;
       Scanner appIdInput = new Scanner(System.in);
@@ -43,7 +54,7 @@ public class ManageAppointments extends ManageAppointmentDatabase {
               String appStatus = appIdInput.next();
               if (appStatus.equalsIgnoreCase("confirmed") || appStatus.equalsIgnoreCase("reject")) {
                 System.out.println("Status Updating...");
-                updateAppointmentStatus(appId, appStatus.toUpperCase());
+                iAppointmentDAO.updateAppointmentStatus(appId, appStatus.toUpperCase());
                 System.out.println("Status Updated Successfully");
                 statusFlag = 1;
                 System.out.println("\nUpdate Another Appointment Status ? (y / any other char)");
@@ -51,7 +62,7 @@ public class ManageAppointments extends ManageAppointmentDatabase {
                 if (!flagText.equalsIgnoreCase("y")) {
                   flag = 1;
                 } else {
-                  appointments = getAppointmentList();
+                  appointments = iAppointmentDAO.getAppointmentList();
                 }
               } else {
                 System.out.printf("%n");
