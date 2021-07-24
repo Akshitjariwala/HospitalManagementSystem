@@ -326,7 +326,6 @@ public class PatientRegistration implements PatientRegistrationInterface {
 
         case 13:
           saveEnteredDetails();
-          System.out.println("\n***** NEW PATIENT CREATED *****");
           PatientUI patientUI=new PatientUI();
           patientUI.loginOrRegistrationUI();
           break;
