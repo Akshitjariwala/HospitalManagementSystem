@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
@@ -77,7 +79,9 @@ public class ViewPatientsDao {
 			while (rs.next()) {
 				patientIdlist.add(rs.getString("patient_id"));
 			}
-			return patientIdlist;
+			Set<String> patientSet=new HashSet<String>(patientIdlist);
+			ArrayList<String> patientList=new ArrayList<String>(patientSet);
+			return patientList;
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		} finally {
