@@ -1,6 +1,7 @@
 package BusinessLogicLayer.BeanClasses;
 
 public class Appointment {
+
   private int appointmentId;
   private String patientId;
   private String doctorId;

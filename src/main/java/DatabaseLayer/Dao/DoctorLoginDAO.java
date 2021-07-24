@@ -1,7 +1,9 @@
 package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
+import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
+import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,20 +11,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DoctorLoginDAO {
-  public static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-  public static Connection connection = databaseConnection.openDBConnection();
-  public static Statement statement;
 
-  static {
-    try {
-      statement = connection.createStatement();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  private Connection connection = null;
+  IDatabaseConnection databaseConnection;
+  IDatabaseConnectionFactory databaseConnectionFactory;
+
+  public DoctorLoginDAO() {
+    databaseConnectionFactory = new DatabaseConnectionFactory();
+    databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
-  public static int checkDoctorLogin(String id, String password) {
-    Doctor doc = new Doctor();
+  public int checkDoctorLogin(String id, String password) {
+    connection = databaseConnection.openDBConnection();
+    Statement statement = databaseConnection.createStatement(connection);
+
     String count = null;
     String str = null;
 
@@ -41,23 +43,39 @@ public class DoctorLoginDAO {
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());
+    } finally {
+      databaseConnection.closeDBConnection();
     }
     return status;
   }
 
-  public static Doctor getDoctor(String id, String password) {
+  public Doctor getDoctor(String id, String password) {
+    connection = databaseConnection.openDBConnection();
+    Statement statement = null;
+    try {
+      statement = connection.createStatement();
+    } catch (SQLException sqlException) {
+      sqlException.printStackTrace();
+    }
     Doctor doc = new Doctor();
     try {
       String getDocQuery = "SELECT id, doc_id, password, first_name, last_name FROM doctors WHERE doc_id = '" + id + "' " +
               "AND password = '" + password + "'";
-      ResultSet rs = statement.executeQuery(getDocQuery);
-      while (rs.next()) {
-        doc.setId(rs.getInt("id"));
-        doc.setMedicalLicenseId(rs.getString("doc_id"));
+      ResultSet rs = null;
+      if (statement != null) {
+        rs = statement.executeQuery(getDocQuery);
+      }
+      if (rs != null) {
+        while (rs.next()) {
+          doc.setId(rs.getInt("id"));
+          doc.setMedicalLicenseId(rs.getString("doc_id"));
+        }
       }
 
     } catch (Exception e) {
       System.out.println(e.getMessage());
+    } finally {
+      databaseConnection.closeDBConnection();
     }
     return doc;
   }

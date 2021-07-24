@@ -33,7 +33,7 @@ public class Main {
             flag = 1;
             break;
           case 2:
-            PatientUI patientUI=new PatientUI();
+            PatientUI patientUI = new PatientUI();
             patientUI.loginOrRegistrationUI();
             flag = 1;
             break;
@@ -49,7 +49,7 @@ public class Main {
         }
       } else {
         System.out.printf("%n");
-        System.out.println("Invalid Input Received! Please Enter Valid Selection.");
+        System.err.println("Invalid Input Received! Please Enter Valid Selection.");
         System.out.printf("%n");
       }
     } while (flag == 0);

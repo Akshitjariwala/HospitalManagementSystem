@@ -1,7 +1,9 @@
 package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Reports;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
+import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
+import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,51 +12,58 @@ import java.sql.Statement;
 
 public class UpdateReportsDAO {
 
-    public static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-    public static Connection connection = databaseConnection.openDBConnection();
-    public static Statement statement;
+  private Connection connection = null;
+  IDatabaseConnection databaseConnection;
+  IDatabaseConnectionFactory databaseConnectionFactory;
 
-    static {
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+  public UpdateReportsDAO() {
+    databaseConnectionFactory = new DatabaseConnectionFactory();
+    databaseConnection = databaseConnectionFactory.getDatabaseConnection();
+  }
+
+  /* Once the details are received for which update is required
+   * The details are updated using SQL query
+   */
+  public void updateReport(String str, int id) {
+    connection = databaseConnection.openDBConnection();
+    Statement statement = databaseConnection.createStatement(connection);
+
+    String updateQuery = "UPDATE lab_reports set" + "\t" + str + "\t" + "where rep_id = " + id;
+    System.out.println(updateQuery);
+    try {
+      statement.executeUpdate(updateQuery);
+    } catch (SQLException sqlException) {
+      sqlException.printStackTrace();
+    } finally {
+      databaseConnection.closeDBConnection();
     }
+  }
 
-    /* Once the details are received for which update is required
-     * The details are updated using SQL query
-     */
-    public static void updateReport(String str, int id) throws SQLException, ClassNotFoundException {
-        try {
-            String updateQuery = "UPDATE lab_reports set" + "\t" + str + "\t"+ "where rep_id = " + id ;
-            System.out.println(updateQuery);
-            statement.executeUpdate(updateQuery);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+  public Reports getReportsDetails(int id) {
+    connection = databaseConnection.openDBConnection();
+    Statement statement = databaseConnection.createStatement(connection);
+
+    Reports report = new Reports();
+
+    try {
+      String selectQuery = "SELECT * from lab_reports where rep_id = '" + id + "' ";
+      ResultSet rs = statement.executeQuery(selectQuery);
+      while (rs.next()) {
+        report.setReportId(rs.getInt("rep_id"));
+        report.setDoctorId(rs.getInt("doc_id"));
+        report.setPatientId(rs.getString("patient_id"));
+        report.setDiagnosisName(rs.getString("diagnosis_name"));
+        report.setDate(rs.getString("date"));
+        report.setTestResult(rs.getString("test_result"));
+        report.setTestType(rs.getString("test_type"));
+      }
+
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    } finally {
+      databaseConnection.closeDBConnection();
     }
-
-    public static Reports getReportsDetails(int id){
-        Reports report = new Reports();
-
-        try{
-            String selectQuery = "SELECT * from lab_reports where rep_id = '" + id + "' ";
-            ResultSet rs = statement.executeQuery(selectQuery);
-            while(rs.next()) {
-                report.setReportId(rs.getInt("rep_id"));
-                report.setDoctorId(rs.getInt("doc_id"));
-                report.setPatientId(rs.getString("patient_id"));
-                report.setDiagnosisName(rs.getString("diagnosis_name"));
-                report.setDate(rs.getString("date"));
-                report.setTestResult(rs.getString("test_result"));
-                report.setTestType(rs.getString("test_type"));
-            }
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        return report;
-    }
+    return report;
+  }
 
 }

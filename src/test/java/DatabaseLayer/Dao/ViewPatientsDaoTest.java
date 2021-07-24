@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ class ViewPatientsDaoTest {
   @Test
   void getPatientstest2() {
     int docId = 1;
-    ArrayList<Patient> patients = new ArrayList<>(Arrays.asList());
+    ArrayList<Patient> patients = new ArrayList<>(Collections.emptyList());
     Mockito.when(viewpatientsDAO.getPatients(docId)).thenReturn(patients);
     assertEquals(0, patients.size());
   }

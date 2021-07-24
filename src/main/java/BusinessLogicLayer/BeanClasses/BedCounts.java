@@ -1,8 +1,7 @@
 package BusinessLogicLayer.BeanClasses;
 
-import BusinessLogicLayer.BeanClasses.Bed;
-
 public class BedCounts extends Bed {
+
   private int numberOfBeds;
 
   public BedCounts() {

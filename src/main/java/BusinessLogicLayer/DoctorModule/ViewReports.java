@@ -1,6 +1,5 @@
 package BusinessLogicLayer.DoctorModule;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Reports;
@@ -12,13 +11,11 @@ public class ViewReports {
   ViewReportsDao vrdao;
 
   public ViewReports(int docId) {
-    // TODO Auto-generated constructor stub
     this.docId = docId;
     vrdao = new ViewReportsDao();
   }
 
   public boolean viewAllReports() {
-    // TODO Auto-generated method stub
     List<Reports> reports = vrdao.getAllReports(this.docId);
     if (reports.size() > 0) {
       System.out.println("\n================================================================");
@@ -40,7 +37,6 @@ public class ViewReports {
   }
 
   public boolean viewPatientReports(String patientId) {
-    // TODO Auto-generated method stub
     List<Reports> reports = vrdao.getPatientReports(this.docId, patientId);
     if (reports.size() > 0) {
       System.out.println("\n================================================================");

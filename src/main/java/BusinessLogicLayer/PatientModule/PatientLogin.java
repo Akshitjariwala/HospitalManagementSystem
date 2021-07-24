@@ -9,6 +9,7 @@
 
 package BusinessLogicLayer.PatientModule;
 
+import BusinessLogicLayer.PatientModule.PatientInterfaces.LoginInterface;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 
@@ -21,11 +22,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class PatientLogin {
-
+public class PatientLogin implements LoginInterface {
 
   private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-
   private static Connection connection = databaseConnection.openDBConnection();
   private Statement statement = null;
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -38,7 +37,7 @@ public class PatientLogin {
     String patientName = null;
     ResultSet resultSet = null;
 
-    System.out.println("===========================================\n" +
+    System.out.println("\n===========================================\n" +
             "\t\t\t\tPatient Login\n" +
             "===========================================\n");
     try {
@@ -46,9 +45,9 @@ public class PatientLogin {
         if (userID != null || password != null)
           System.err.println("\n*** Invalid user ID or Password ***\n");
 
-        System.out.println("User ID:");
+        System.out.print("Enter User ID : ");
         userID = reader.readLine();
-        System.out.println("Password:");
+        System.out.print("Enter Password : ");
         password = reader.readLine();
 
 

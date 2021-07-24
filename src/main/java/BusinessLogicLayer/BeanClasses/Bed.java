@@ -1,6 +1,7 @@
 package BusinessLogicLayer.BeanClasses;
 
 public class Bed {
+
   private int bedId;
   private String bedCode;
   private Ward ward;
