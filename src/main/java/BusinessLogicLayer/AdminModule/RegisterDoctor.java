@@ -15,6 +15,7 @@ import DatabaseLayer.Dao.RegisterDoctorDAO;
 import PresentationLayer.AdminLogin;
 
 public class RegisterDoctor {
+
   String str = "";
 
   public void registerDoctorHome() throws SQLException, ClassNotFoundException {
@@ -233,24 +234,55 @@ public class RegisterDoctor {
 
     switch (input) {
       case 1:
-        System.out.println("Enter medical license id :");
-        String medical = scanner.next();
-        str = "doc_id = " + medical;
+        String medical;
+        do {
+          System.out.println("Medical License Id* :");
+          medical = scanner.next();
+          if (medical.matches("^[a-zA-Z0-9_.-]*$")) {
+            str = "doc_id = " + medical;
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (medical == null);
         break;
       case 2:
-        System.out.println("Enter Password :");
-        String password = scanner.next();
-        str = "password = " + password;
+        String password;
+        do {
+          System.out.println("Enter Password :");
+          password = scanner.nextLine();
+          if (password.matches("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" +
+                  "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$")) {
+            str = "password = " + password;
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (password == null);
+
         break;
       case 3:
-        System.out.println("Enter Last Name :");
-        String lastName = scanner.next();
-        str = "last_name = " + "'" + lastName + "'";
+        String lastName;
+        do {
+          System.out.println("Enter Last Name :");
+          lastName = scanner.nextLine();
+          if (lastName.matches("[A-Za-z]*")) {
+            str = "last_name = " + "'" + lastName + "'";
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (lastName == null);
         break;
       case 4:
-        System.out.println("Enter First Name :");
-        String firstName = scanner.next();
-        str = "first_name = " + "'" + firstName + "'";
+        String firstName;
+        do {
+          System.out.println("Enter First Name :");
+          firstName = scanner.next();
+          if (firstName.matches("[A-Za-z]*")) {
+            str = "first_name = " + "'" + firstName + "'";
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (firstName == null);
+
         break;
       case 5:
         System.out.println("Enter Middle Name :");
@@ -258,14 +290,28 @@ public class RegisterDoctor {
         str = "middle_name = " + "'" + middleName + "'";
         break;
       case 6:
-        System.out.println("Enter email :");
-        String email = scanner.next();
-        str = "email = " + "'" + email + "'";
+        String email;
+        do {
+          System.out.println("Enter email :");
+          email = scanner.next();
+          if (email.matches("^(.+)@(.+)$")) {
+            str = "email = " + "'" + email + "'";
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (email == null);
         break;
       case 7:
-        System.out.println("Enter Phone Number :");
-        String phoneNumber = scanner.next();
-        str = "phone_number = " + phoneNumber;
+        String phoneNumber;
+        do {
+          System.out.println("Enter Phone Number :");
+          phoneNumber = scanner.next();
+          if (phoneNumber.matches("\\d{10}")) {
+            str = "phone_number = " + phoneNumber;
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (phoneNumber == null);
         break;
       case 8:
         System.out.println("Enter Address :");
@@ -273,29 +319,65 @@ public class RegisterDoctor {
         str = "address = " + "'" + address + "'";
         break;
       case 9:
-        System.out.println("Enter City :");
-        String city = scanner.next();
-        str = "city = " + "'" + city + "'";
+        String city;
+        do {
+          System.out.println("Enter City :");
+          city = scanner.next();
+          if (city.matches("[A-Za-z]*")) {
+            str = "city = " + "'" + city + "'";
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (city == null);
         break;
       case 10:
-        System.out.println("Enter State :");
-        String state = scanner.next();
-        str = "state = " + "'" + state + "'";
+        String state;
+        do {
+          System.out.println("Enter State :");
+          state = scanner.next();
+          if (state.matches("[A-Za-z]*")) {
+            str = "state = " + "'" + state + "'";
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (state == null);
         break;
+
       case 11:
-        System.out.println("Enter Experience :");
-        String experience = scanner.next();
-        str = "experience_years = " + experience;
+        String experience;
+        do {
+          System.out.println("Enter Experience :");
+          experience = scanner.next();
+          if (experience.matches("^[0-9]*$")) {
+            str = "experience_years = " + experience;
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (experience == null);
         break;
       case 12:
-        System.out.println("Enter Specialization :");
-        String specialization = scanner.next();
-        str = "specialization = " + "'" + specialization + "'";
+        String specialization;
+        do {
+          System.out.println("Enter Specialization :");
+          specialization = scanner.next();
+          if (specialization.matches("[A-Za-z]*")) {
+            str = "specialization = " + "'" + specialization + "'";
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (specialization == null);
         break;
       case 13:
-        System.out.println("Enter Department :");
-        String department = scanner.next();
-        str = "department = " + "'" + department + "'";
+        String department;
+        do {
+          System.out.println("Enter Department :");
+          department = scanner.next();
+          if (department.matches("[A-Za-z]*")) {
+            str = "department = " + "'" + department + "'";
+          } else {
+            System.out.println("Please enter valid input:");
+          }
+        } while (department == null);
         break;
       case 14:
         registerDoctorHome();
@@ -303,7 +385,6 @@ public class RegisterDoctor {
       default:
         System.out.println("Invalid Input, Please select valid number ");
     }
-
     if (!str.isEmpty()) {
       registerDoctorDAO = new RegisterDoctorDAO();
       registerDoctorDAO.updateDoctor(str, doctorId);
