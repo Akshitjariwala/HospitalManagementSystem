@@ -9,15 +9,15 @@ import java.sql.Statement;
 
 public class ViewPatientReportsDAO {
 
-    private  DatabaseConnection databaseConnection;
-    private  Connection connection;
+    private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
+    private static Connection connection = databaseConnection.openDBConnection();
     private Statement statement = null;
     ResultSet resultSet=null;
 
     public ViewPatientReportsDAO() {
 
-           this.databaseConnection = DatabaseConnection.createInstance();
-           this.connection = databaseConnection.openDBConnection();
+//           this.databaseConnection = DatabaseConnection.createInstance();
+//           this.connection = databaseConnection.openDBConnection();
     }
 
     public ResultSet fetchLabReports(String patientID) {

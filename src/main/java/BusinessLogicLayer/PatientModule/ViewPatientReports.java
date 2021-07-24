@@ -22,8 +22,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ViewPatientReports implements ViewLabReportsInterface {
 
-  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-  private static Connection connection = databaseConnection.openDBConnection();
+  //private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
+ // private static Connection connection = databaseConnection.openDBConnection();
   private Statement statement = null;
   ResultSet resultSet=null;
   private ViewPatientReportsDAO viewPatientReportsDAO=new ViewPatientReportsDAO();

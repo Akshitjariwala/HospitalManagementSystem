@@ -7,15 +7,15 @@ import java.sql.*;
 
 public class PatientRegistrationDAO  {
 
-    private static DatabaseConnection databaseConnection;
-    private static Connection connection;
+    private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
+    private static Connection connection = databaseConnection.openDBConnection();
     private Statement statement = null;
     private ResultSet resultSet = null;
 
     public PatientRegistrationDAO()  {
 
-        this.databaseConnection = DatabaseConnection.createInstance();
-        this.connection = databaseConnection.openDBConnection();
+//        this.databaseConnection = DatabaseConnection.createInstance();
+//        this.connection = databaseConnection.openDBConnection();
     }
 
     public int savePatientDetails(Patient patient) {
@@ -34,6 +34,8 @@ public class PatientRegistrationDAO  {
         } catch (SQLException E) {
             System.err.println("***** SQL ERROR *****");
             status=0;
+        }finally {
+            databaseConnection.closeDBConnection();
         }
         return status;
     }

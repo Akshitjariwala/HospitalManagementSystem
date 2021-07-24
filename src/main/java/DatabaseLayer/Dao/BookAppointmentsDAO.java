@@ -12,16 +12,17 @@ import java.sql.Statement;
 
 public class BookAppointmentsDAO {
 
-    private static DatabaseConnection databaseConnection;
-    private static Connection connection;
+    private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
+    private static Connection connection = databaseConnection.openDBConnection();
+
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Statement statement = null;
     private ResultSet resultSet = null;
 
     public BookAppointmentsDAO()  {
 
-         databaseConnection = DatabaseConnection.createInstance();
-         connection = databaseConnection.openDBConnection();
+//         databaseConnection = DatabaseConnection.createInstance();
+//         connection = databaseConnection.openDBConnection();
     }
 
     public String getPatientName(String patientid) {
@@ -85,6 +86,8 @@ public class BookAppointmentsDAO {
             System.err.println("New APPOINTMENT FAILED TO SAVE");
             e.printStackTrace();
             return  false;
+        }finally {
+            databaseConnection.closeDBConnection();
         }
         return true;
     }
