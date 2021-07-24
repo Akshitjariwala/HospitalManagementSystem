@@ -25,9 +25,6 @@ import java.util.Scanner;
 
 public class PatientLogin implements LoginInterface {
 
-//  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-//  private static Connection connection = databaseConnection.openDBConnection();
-//  private Statement statement = null;
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private PatientUI patientUI = new PatientUI();
 

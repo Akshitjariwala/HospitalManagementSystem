@@ -9,6 +9,7 @@
 package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.PatientModule.PatientInterfaces.BookAppointmentsInterface;
+import DatabaseLayer.Dao.BookAppointmentsDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
@@ -27,10 +28,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BookAppointments implements BookAppointmentsInterface {
 
-  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-  private static Connection connection = databaseConnection.openDBConnection();
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-  private Statement statement = null;
+  private BookAppointmentsDAO bookAppointmentsDAO=new BookAppointmentsDAO();
   private ResultSet resultSet = null;
   private Scanner readInput = new Scanner(System.in);
   private String selectedDoctor = null;
@@ -64,12 +63,8 @@ public class BookAppointments implements BookAppointmentsInterface {
 
       //Patient
       globalPatientID = patientid;
-      statement = connection.createStatement();
-      String queryToGetPatientName = "SELECT concat(first_name,' ',last_name) FROM patients where patient_id='" + patientid + "';";
-      resultSet = statement.executeQuery(queryToGetPatientName);
-      while (resultSet.next()) {
-        appointmentWithDoctor.setPatientName(resultSet.getString(1));
-      }
+      String patientFullName=bookAppointmentsDAO.getPatientName(patientid);
+      appointmentWithDoctor.setPatientName(patientFullName);
 
       //Select doctor
       Boolean doctorFlag = false;
@@ -78,7 +73,12 @@ public class BookAppointments implements BookAppointmentsInterface {
           System.err.println("*** Please enter correct doctor prefenence ***\n");
 
         System.out.println("Select doctor (Option) with whom you want to book an appointment:");
-        doctorChoice = Integer.parseInt(reader.readLine());
+        String x=reader.readLine();
+        if (!x.isEmpty()) {
+          doctorChoice = Integer.parseInt(x);
+        }else {
+          doctorChoice=0;
+        }
         doctorFlag = true;
       } while (!(doctorChoice > 0 && doctorChoice <= doctorList.size()));
       appointmentWithDoctor.setDoctorName(doctorList.get(doctorChoice - 1));
@@ -119,15 +119,11 @@ public class BookAppointments implements BookAppointmentsInterface {
       appointmentWithDoctor.setTimeSlot(timeSlotList.get(timeSlotChoice - 1));
 
       displayEnteredDetails();
-      databaseConnection.closeDBConnection();
     } catch (InterruptedException e) {
       System.out.println("Time ERROR");
       return false;
-    } catch (SQLException e) {
-      System.err.println("Sql ERROR");
     } catch (IOException e) {
       System.err.println("I/O ERROR");
-
     }
     return true;
   }
@@ -135,8 +131,7 @@ public class BookAppointments implements BookAppointmentsInterface {
   public void displayDoctorList() {
     try {
       String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM doctors;";
-      statement = connection.createStatement();
-      ResultSet resultSet = statement.executeQuery(fetchingDoctordetails);
+     resultSet= bookAppointmentsDAO.fetchDoctorList();
       //print doctor list
       System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
       System.out.println("---------------------------------------------------------------------------------");
@@ -252,36 +247,9 @@ public class BookAppointments implements BookAppointmentsInterface {
 
   public void saveEnteredDetails(String patient, String doctor) {
 
-    String patient_id = patient;
-    int doctor_id = 0;
-    String appointmentStatus = "PENDING";
-    try {
-      statement = connection.createStatement();
-      // System.out.println(patient+" *** "+doctor);
-      String querytoFindID = "Select dr.id from doctors dr " +
-              " where concat('Dr.',dr.first_name,' ',dr.last_name)='" + doctor + "';";
-
-      resultSet = statement.executeQuery(querytoFindID);
-
-      while (resultSet.next()) {
-        doctor_id = resultSet.getInt(1);
-      }
-
-      String queryToSaveAppointment = "INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
-              "VALUES ('" + patient_id + "','" + doctor_id + "','" + appointmentWithDoctor.getAppointmentDate() + "','" + appointmentWithDoctor.getTimeSlot() + "','" + appointmentWithDoctor.getTypeOfAppointment() + "','" + appointmentStatus + "');";
-
-      String queryToMapPatientWithDoctor = "INSERT INTO patients_doctors_mapping (patient_id, doc_id) \n" +
-              "VALUES ('" + patient_id + "','" + doctor_id + "');";
-
-      statement.addBatch(queryToSaveAppointment);
-      statement.addBatch(queryToMapPatientWithDoctor);
-
-      int[] tempResult = statement.executeBatch();
+    Boolean isAppointmentBooked=bookAppointmentsDAO.saveAppointment(patient,doctor,appointmentWithDoctor);
+    if (isAppointmentBooked) {
       System.out.println("\n***** NEW APPOINTMENT CREATED *****");
-
-    } catch (SQLException e) {
-      System.err.println("New APPOINTMENT FAIL TO SAVE");
-      e.printStackTrace();
     }
   }
 }
