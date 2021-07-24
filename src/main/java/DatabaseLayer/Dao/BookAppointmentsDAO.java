@@ -2,6 +2,9 @@ package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
+import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
+import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,23 +15,24 @@ import java.sql.Statement;
 
 public class BookAppointmentsDAO {
 
-    private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-    private static Connection connection = databaseConnection.openDBConnection();
-
+    private Connection connection = null;
+    private IDatabaseConnection databaseConnection;
+    private IDatabaseConnectionFactory databaseConnectionFactory;
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Statement statement = null;
     private ResultSet resultSet = null;
 
     public BookAppointmentsDAO()  {
 
-//         databaseConnection = DatabaseConnection.createInstance();
-//         connection = databaseConnection.openDBConnection();
+        databaseConnectionFactory = new DatabaseConnectionFactory();
+        databaseConnection = databaseConnectionFactory.getDatabaseConnection();
     }
 
     public String getPatientName(String patientid) {
 
         String patientName="";
         try {
+            connection=databaseConnection.openDBConnection();
             statement = connection.createStatement();
             String queryToGetPatientName = "SELECT concat(first_name,' ',last_name) FROM patients where patient_id='" + patientid + "';";
             resultSet = statement.executeQuery(queryToGetPatientName);
@@ -37,17 +41,22 @@ public class BookAppointmentsDAO {
             }
         }catch (SQLException e) {
             System.err.println("Sql ERROR");
+        }finally {
+            databaseConnection.closeDBConnection();
         }
         return patientName;
     }
 
     public ResultSet fetchDoctorList()  {
         try {
+            connection= databaseConnection.openDBConnection();
             String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM doctors;";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(fetchingDoctordetails);
         }catch (SQLException SQL){
             System.err.println("SQL ERROR");
+        }finally {
+            databaseConnection.closeDBConnection();
         }
         return resultSet;
     }
@@ -57,6 +66,7 @@ public class BookAppointmentsDAO {
         int doctor_id = 0;
         String appointmentStatus = "PENDING";
         try {
+            connection= databaseConnection.openDBConnection();
             statement = connection.createStatement();
             String querytoFindID = "Select dr.id from doctors dr " +
                     " where concat('Dr.',dr.first_name,' ',dr.last_name)='" + doctor + "';";
