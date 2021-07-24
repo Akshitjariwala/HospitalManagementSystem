@@ -1,8 +1,8 @@
 package PresentationLayer;
 
+import BusinessLogicLayer.AdminModule.CreateDoctor;
 import BusinessLogicLayer.AdminModule.CreateLabReports;
 import BusinessLogicLayer.AdminModule.ManageAppointments;
-import BusinessLogicLayer.AdminModule.RegisterDoctor;
 import BusinessLogicLayer.AdmissionDischargeModule.NewAdmissionFormCreation;
 import BusinessLogicLayer.WardModule.WardHome;
 
@@ -63,8 +63,8 @@ public class AdminLogin {
         if (choice >= 1 && choice <= 6) {
           switch (choice) {
             case 1:
-              RegisterDoctor registerDoctor = new RegisterDoctor();
-              registerDoctor.registerDoctorHome();
+              CreateDoctor create = new CreateDoctor();
+              create.adminDoctorPage();
               exitFlag = 1;
               break;
             case 2:
