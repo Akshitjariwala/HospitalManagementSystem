@@ -23,6 +23,7 @@ public class PatientLoginDAO  {
         while (resultSet.next()) {
           providedPassword = resultSet.getString(1);
         }
+        databaseConnection.closeDBConnection();
       }catch (SQLException e){
         System.out.println("SQL ERROR");
       }
@@ -39,6 +40,7 @@ public class PatientLoginDAO  {
         while (resultSet.next()) {
           patientName = resultSet.getString(1);
         }
+        databaseConnection.closeDBConnection();
       } catch (SQLException e) {
          System.out.println("SQL ERROR");
       }

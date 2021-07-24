@@ -27,6 +27,7 @@ public class BookAppointmentsDAO {
             while (resultSet.next()) {
                patientName=resultSet.getString(1);
             }
+            databaseConnection.closeDBConnection();
         }catch (SQLException e) {
             System.err.println("Sql ERROR");
         }
@@ -38,6 +39,7 @@ public class BookAppointmentsDAO {
             String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM doctors;";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(fetchingDoctordetails);
+            databaseConnection.closeDBConnection();
         }catch (SQLException SQL){
             System.err.println("SQL ERROR");
         }
@@ -69,6 +71,7 @@ public class BookAppointmentsDAO {
             statement.addBatch(queryToMapPatientWithDoctor);
 
             int[] tempResult = statement.executeBatch();
+            databaseConnection.closeDBConnection();
         }catch (SQLException e) {
             System.err.println("New APPOINTMENT FAIL TO SAVE");
             e.printStackTrace();
