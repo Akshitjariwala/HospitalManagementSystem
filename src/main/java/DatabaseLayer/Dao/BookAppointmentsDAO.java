@@ -61,7 +61,6 @@ public class BookAppointmentsDAO {
 
             String queryToSaveAppointment = "INSERT INTO appointments (patient_id, doc_id, appointment_date, preferred_slot, type_of_appo, appointment_status) \n" +
                     "VALUES ('" + patient_id + "','" + doctor_id + "','" + appointmentWithDoctor.getAppointmentDate() + "','" + appointmentWithDoctor.getTimeSlot() + "','" + appointmentWithDoctor.getTypeOfAppointment() + "','" + appointmentStatus + "');";
-       //     int result1=statement.executeUpdate(queryToSaveAppointment);
 
             String querytoCheckEntry="SELECT * from patients_doctors_mapping WHERE patient_id='"+patient_id+"' " +
                     "AND doc_id='"+doctor_id+"';";
