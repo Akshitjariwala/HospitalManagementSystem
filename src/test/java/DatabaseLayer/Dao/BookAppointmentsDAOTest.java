@@ -15,11 +15,4 @@ public class BookAppointmentsDAOTest {
         assertEquals("Kishan Patel",bookAppointmentsDAO.getPatientName("User2409"));
     }
 
-    @Test
-    public void fetchDoctorListTest() throws SQLException {
-
-        BookAppointmentsDAO bookAppointmentsDAO=new BookAppointmentsDAO();
-        ResultSet totalDoctor=bookAppointmentsDAO.fetchDoctorList();
-        assertEquals(21,totalDoctor.getRow());
-    }
 }

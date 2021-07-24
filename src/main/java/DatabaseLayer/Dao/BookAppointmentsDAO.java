@@ -55,8 +55,6 @@ public class BookAppointmentsDAO {
             resultSet = statement.executeQuery(fetchingDoctordetails);
         }catch (SQLException SQL){
             System.err.println("SQL ERROR");
-        }finally {
-            databaseConnection.closeDBConnection();
         }
         return resultSet;
     }

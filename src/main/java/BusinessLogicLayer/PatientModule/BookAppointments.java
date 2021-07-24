@@ -130,11 +130,10 @@ public class BookAppointments implements BookAppointmentsInterface {
 
   public void displayDoctorList() {
     try {
-      String fetchingDoctordetails = "SELECT concat('Dr.',first_name,' ', last_name) as doctor_name,specialization,experience_years FROM doctors;";
-     resultSet= bookAppointmentsDAO.fetchDoctorList();
+      resultSet= bookAppointmentsDAO.fetchDoctorList();
       //print doctor list
       System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
-      System.out.println("---------------------------------------------------------------------------------");
+      System.out.println("-------------------------------------------------------------------------");
       int optionIndex = 0;
       while (resultSet.next()) {
 

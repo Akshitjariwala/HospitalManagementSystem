@@ -35,8 +35,6 @@ public class ViewPatientReportsDAO {
             resultSet= statement.executeQuery(queryToFetchReports);
         } catch (SQLException e) {
             System.err.print("SQL ERROR");
-        }finally {
-            databaseConnection.closeDBConnection();
         }
         return resultSet;
     }

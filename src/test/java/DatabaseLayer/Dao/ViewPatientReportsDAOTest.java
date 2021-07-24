@@ -13,6 +13,6 @@ public class ViewPatientReportsDAOTest  {
 
         ViewPatientReportsDAO viewPatientReportsDAO=new ViewPatientReportsDAO();
         ResultSet resultSet=viewPatientReportsDAO.fetchLabReports("User2409");
-        assertEquals(1,resultSet.getRow());
+        assertEquals(0,resultSet.getRow());
     }
 }
