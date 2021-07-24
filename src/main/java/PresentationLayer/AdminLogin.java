@@ -3,7 +3,7 @@ package PresentationLayer;
 import BusinessLogicLayer.AdminModule.CreateDoctor;
 import BusinessLogicLayer.AdminModule.CreateLabReports;
 import BusinessLogicLayer.AdminModule.ManageAppointments;
-import BusinessLogicLayer.WardModule.WardHome;
+import BusinessLogicLayer.AdminModule.ManageWards;
 
 import java.util.Scanner;
 
@@ -42,7 +42,7 @@ public class AdminLogin {
     int choiceFlag = 0;
     int exitFlag = 0;
     ManageAppointments manageAppointments = new ManageAppointments();
-    WardHome wardHome = new WardHome();
+    ManageWards manageWards = new ManageWards();
     do {
       System.out.println("\n=================================================");
       System.out.println("\t\t\t\tAdmin Home Page\t\t\t\t");
@@ -50,7 +50,7 @@ public class AdminLogin {
       System.out.printf("%n");
       System.out.println("1. Doctor Management");
       System.out.println("2. Admission Discharge");
-      System.out.println("3. " + wardHome.getActionTitle());
+      System.out.println("3. " + manageWards.getActionTitle());
       System.out.println("4. Manage Reports");
       System.out.println("5. " + manageAppointments.getActionTitle());
       System.out.println("6. Logout");
@@ -73,7 +73,8 @@ public class AdminLogin {
               exitFlag = 1;
               break;
             case 3:
-              wardHome.wardManageHomePage();
+              WardUI wardUI = new WardUI();
+              wardUI.wardManageHomePage();
               exitFlag = 1;
               break;
             case 4:

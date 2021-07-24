@@ -1,25 +1,25 @@
-package BusinessLogicLayer.WardModule;
+package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.BedCounts;
 import BusinessLogicLayer.BeanClasses.PatientBed;
 import BusinessLogicLayer.BeanClasses.Ward;
-import DatabaseLayer.ActionDatabase.Admin.*;
+import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
 import DatabaseLayer.ActionDatabase.Admin.Beds.IBedDAO;
 import DatabaseLayer.ActionDatabase.Admin.Wards.IWardDAO;
-import PresentationLayer.AdminLogin;
+import PresentationLayer.WardUI;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class WardHome extends AdminAbstractAction implements IWardActions {
+public class ManageWards extends AdminAbstractAction implements IWardActions, IBedActions {
 
   private IWardDAO iWardDAO;
   private IBedDAO iBedDAO;
   private static String updateStr = "";
   private static final String ACTION_TITLE = "Manage Wards";
 
-  public WardHome() {
+  public ManageWards() {
     iWardDAO = iAdminActionDatabase.manageWard();
     iBedDAO = iAdminActionDatabase.manageBed();
   }
@@ -27,64 +27,6 @@ public class WardHome extends AdminAbstractAction implements IWardActions {
   @Override
   public String getActionTitle() {
     return ACTION_TITLE;
-  }
-
-  // wardManageHomePage() method returns Ward module home page.
-  public void wardManageHomePage() {
-    int flag = 0;
-    do {
-      System.out.println("=================================================");
-      System.out.println("\t\t\t\tWard Management\t\t\t\t");
-      System.out.println("=================================================");
-      System.out.printf("%n");
-      System.out.println("1. Add new Wards");
-      System.out.println("2. Update existing Wards");
-      System.out.println("3. Show bed Availability");
-      System.out.println("4. Patient-wise bed details");
-      System.out.println("5. Go to Admin Home Page");
-      System.out.println("6. Exit");
-      System.out.printf("%n");
-      System.out.print("Select number between 1-6 to perform appropriate action.");
-      System.out.printf("%n");
-      System.out.print("Enter Selection : ");
-
-      Scanner userInput = new Scanner(System.in);
-      int choice = userInput.nextInt();
-      if (choice > 0 && choice <= 5) {
-        switch (choice) {
-          case 1:
-            addWards();// call add new wards method here
-            flag = 1;
-            break;
-          case 2:
-            updateWards();
-            flag = 1;
-            break;
-          case 3:
-            checkBedAvailability();// call patient-wise bed details method here
-            flag = 1;
-            break;
-          case 4:
-            checkPatientWiseBedDetails();// call patient-wise bed details method here
-            flag = 1;
-            break;
-          case 5:
-            AdminLogin adminLogin = new AdminLogin();
-            try {
-              adminLogin.AdminPage();
-            } catch (Exception e) {
-              e.printStackTrace();
-            }
-          case 6:
-            System.exit(1);// exit()
-            flag = 1;
-        }
-      } else {
-        System.out.printf("%n");
-        System.out.println("Invalid Input Received! Please Enter Valid Selection.");
-        System.out.printf("%n");
-      }
-    } while (flag == 0);
   }
 
   @Override
@@ -151,7 +93,7 @@ public class WardHome extends AdminAbstractAction implements IWardActions {
     } else {
       System.out.println("ERROR while adding ward");
     }
-    WardHome wardHome = new WardHome();
+    WardUI wardHome = new WardUI();
     wardHome.wardManageHomePage();
   }
 
@@ -200,7 +142,7 @@ public class WardHome extends AdminAbstractAction implements IWardActions {
         updateStr = "bed_type = " + "'" + bedType + "'";
         break;
       case 6:
-        WardHome wardHome = new WardHome();
+        WardUI wardHome = new WardUI();
         wardHome.wardManageHomePage();
         break;
       default:
@@ -209,7 +151,7 @@ public class WardHome extends AdminAbstractAction implements IWardActions {
     if (!updateStr.isEmpty()) {
       iWardDAO.updateWard(updateStr, wardId);
       System.out.println("Ward Details updated Successfully.");
-      WardHome wardHome = new WardHome();
+      WardUI wardHome = new WardUI();
       wardHome.wardManageHomePage();
     }
   }
@@ -229,7 +171,7 @@ public class WardHome extends AdminAbstractAction implements IWardActions {
     } else {
       System.out.println("\t\t Currently no beds are available, Please try again later\t\t");
     }
-    WardHome wardHome = new WardHome();
+    WardUI wardHome = new WardUI();
     wardHome.wardManageHomePage();
   }
 
@@ -259,7 +201,7 @@ public class WardHome extends AdminAbstractAction implements IWardActions {
       System.out.println("\t\tPatients not admitted in this ward\t\t");
       System.out.println("==================================================");
     }
-    WardHome wardHome = new WardHome();
+    WardUI wardHome = new WardUI();
     wardHome.wardManageHomePage();
   }
 
