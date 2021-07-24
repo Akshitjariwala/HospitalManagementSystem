@@ -379,6 +379,7 @@ public class PatientRegistration implements PatientRegistrationInterface {
       System.out.println("\n***** NEW PATIENT CREATED *****\n");
     }else if(isNewPatientCreated==-1) {
       try {
+        System.err.println("***** Username already exists *****\n");
         TimeUnit.SECONDS.sleep(2);
         displayEnteredDetails();
       }catch (InterruptedException e){
