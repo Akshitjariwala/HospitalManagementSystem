@@ -117,8 +117,7 @@ public class BedDAO implements IBedDAO {
 
   @Override
   public List<BedCounts> showCurrentAvailableBeds() {
-    // TODO Auto-generated method stub
-    ArrayList<BedCounts> bd = new ArrayList<BedCounts>();
+    List<BedCounts> bd = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
     String query = "select count(bed_id) as bedcounts,ward_id,bed_type from beds where isOccupied=0 group by ward_id";
     PreparedStatement statement;
