@@ -24,13 +24,13 @@ public class ViewPatients {
       System.out.printf("%n");
       System.out.printf("%-10s %-10s %-10s %-10s", "Patient Id", "|", "FirstName", "|");
       System.out.printf("%-10s %-10s %-10s %-10s", "MiddleName", "|", "LastName", "|");
-      System.out.printf("%-50s %-10s %-30s %-10s", "Address", "|", "EmailID", "|");
+      System.out.printf("%-10s %-10s %-10s %-10s", "Address", "|", "EmailID", "|");
       System.out.printf("%-10s %-10s %-10s %-10s", "City", "|", "State", "|");
       System.out.printf("%-10s %-10s %-10s %10s %-10s%n", "Phone Number", "|", "EmergencyContactName", "|", "EmergencyContact2");
       for (Patient patient : patients) {
         System.out.printf("%-10s %-10s %-10s %-10s", patient.getUserID(), " | ", patient.getFirstName(), "|");
         System.out.printf("%-10s %-10s %-10s %-10s", patient.getMiddleName(), " | ", patient.getLastName(), "|");
-        System.out.printf("%-50s %-10s %-30s %-10s", patient.getAddress(), " | ", patient.getEmaiID(), "|");
+        System.out.printf("%-10s %-10s %-10s %-10s", patient.getAddress(), " | ", patient.getEmaiID(), "|");
         System.out.printf("%-10s %-10s %-10s %-10s", patient.getCityName(), " | ", patient.getStateName(), "|");
         System.out.printf("%-10s %-10s %-10s %10s %-10s%n", patient.getPhoneNumber(), " | ", patient.getEmergencyContactName(), "|", patient.getEmergencyContactNumber());
       }
