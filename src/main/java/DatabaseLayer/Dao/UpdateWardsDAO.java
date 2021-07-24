@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UpdateWardsDAO {
+public class UpdateWardsDAO implements IUpdateWardsDAO {
 
   private Connection connection = null;
   IDatabaseConnection databaseConnection;

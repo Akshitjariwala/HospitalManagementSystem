@@ -14,7 +14,7 @@ import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class AddWardsDAO {
+public class AddWardsDAO implements IAddWardsDAO {
 
   Connection connection = null;
   IDatabaseConnection databaseConnection;
