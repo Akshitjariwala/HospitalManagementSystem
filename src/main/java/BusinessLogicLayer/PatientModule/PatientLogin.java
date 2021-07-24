@@ -52,20 +52,9 @@ public class PatientLogin implements LoginInterface {
         System.out.print("Enter Password : ");
         password = reader.readLine();
 
-      //  statement = connection.createStatement();
-       // resultSet = statement.executeQuery("SELECT password FROM login_cred WHERE userid='" + userID + "';");
-//        while (resultSet.next()) {
-//          providedPassword = resultSet.getString(1);
-//        }
         providedPassword=patientLoginDAO.getLoginCredentials(userID);
       } while (!password.equals(providedPassword));
 
-     // statement = connection.createStatement();
-      //String queryToGetPatientName = "SELECT CONCAT(first_name,' ',last_name) FROM patients where patient_id='" + userID + "';";
-     // resultSet = statement.executeQuery(queryToGetPatientName);
-//      while (resultSet.next()) {
-//        patientName = resultSet.getString(1);
-//      }
       patientName=patientLoginDAO.getPatientName(userID);
 
       //Redirect to mainPatientUI
@@ -74,8 +63,5 @@ public class PatientLogin implements LoginInterface {
     } catch (IOException e) {
       System.out.println("I/O ERROR");
     }
-//    } catch (SQLException e) {
-//      System.out.println("SQL ERROR");
-//    }
   }
 }
