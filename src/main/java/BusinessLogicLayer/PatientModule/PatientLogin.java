@@ -10,6 +10,7 @@
 package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.PatientModule.PatientInterfaces.LoginInterface;
+import DatabaseLayer.Dao.PatientLoginDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 
@@ -24,9 +25,9 @@ import java.util.Scanner;
 
 public class PatientLogin implements LoginInterface {
 
-  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-  private static Connection connection = databaseConnection.openDBConnection();
-  private Statement statement = null;
+//  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
+//  private static Connection connection = databaseConnection.openDBConnection();
+//  private Statement statement = null;
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private PatientUI patientUI = new PatientUI();
 
@@ -36,6 +37,7 @@ public class PatientLogin implements LoginInterface {
     String providedPassword = null;
     String patientName = null;
     ResultSet resultSet = null;
+    PatientLoginDAO patientLoginDAO=new PatientLoginDAO();
 
     System.out.println("\n===========================================\n" +
             "\t\t\t\tPatient Login\n" +
@@ -50,28 +52,30 @@ public class PatientLogin implements LoginInterface {
         System.out.print("Enter Password : ");
         password = reader.readLine();
 
-
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery("SELECT password FROM login_cred WHERE userid='" + userID + "';");
-        while (resultSet.next()) {
-          providedPassword = resultSet.getString(1);
-        }
+      //  statement = connection.createStatement();
+       // resultSet = statement.executeQuery("SELECT password FROM login_cred WHERE userid='" + userID + "';");
+//        while (resultSet.next()) {
+//          providedPassword = resultSet.getString(1);
+//        }
+        providedPassword=patientLoginDAO.getLoginCredentials(userID);
       } while (!password.equals(providedPassword));
 
-      statement = connection.createStatement();
-      String queryToGetPatientName = "SELECT CONCAT(first_name,' ',last_name) FROM patients where patient_id='" + userID + "';";
-      resultSet = statement.executeQuery(queryToGetPatientName);
-      while (resultSet.next()) {
-        patientName = resultSet.getString(1);
-      }
+     // statement = connection.createStatement();
+      //String queryToGetPatientName = "SELECT CONCAT(first_name,' ',last_name) FROM patients where patient_id='" + userID + "';";
+     // resultSet = statement.executeQuery(queryToGetPatientName);
+//      while (resultSet.next()) {
+//        patientName = resultSet.getString(1);
+//      }
+      patientName=patientLoginDAO.getPatientName(userID);
 
       //Redirect to mainPatientUI
       patientUI.mainPatientUI(userID, patientName);
 
     } catch (IOException e) {
       System.out.println("I/O ERROR");
-    } catch (SQLException e) {
-      System.out.println("SQL ERROR");
     }
+//    } catch (SQLException e) {
+//      System.out.println("SQL ERROR");
+//    }
   }
 }
