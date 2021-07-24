@@ -97,7 +97,6 @@ public class RegisterDoctorDAO {
 
     try {
       String updateQuery = "UPDATE doctors set" + "\t" + s + "\t" + "where id = " + id;
-      System.out.println(updateQuery);
       statement.executeUpdate(updateQuery);
     } catch (Exception e) {
       e.printStackTrace();
