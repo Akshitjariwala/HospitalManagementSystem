@@ -29,7 +29,6 @@ public class UpdateReportsDAO {
     Statement statement = databaseConnection.createStatement(connection);
 
     String updateQuery = "UPDATE lab_reports set" + "\t" + str + "\t" + "where rep_id = " + id;
-    System.out.println(updateQuery);
     try {
       statement.executeUpdate(updateQuery);
     } catch (SQLException sqlException) {

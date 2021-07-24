@@ -198,8 +198,9 @@ public class NewAdmissionFormCreation {
         System.out.println("\n==================================================");
         System.out.println("\t\t\t\tConfirm Admission Details.\t\t\t");
         System.out.println("==================================================");
-        System.out.println("   Patient ID      :\t" + admission.getPatientID());
-        System.out.println("1. Patient Name    :\t" + patientName);
+
+        System.out.println("0. Patient Name    :\t" + patientName);
+        System.out.println("1. Patient ID      :\t" + admission.getPatientID());
         System.out.println("2. Admission Type  :\t" + admissionType);
         System.out.println("3. Diagnose Code   :\t" + diseaseName);
         System.out.println("4. Physician       :\t" + doctorName);

@@ -253,6 +253,8 @@ public class AdmissionDAO {
 
   public int updateAdmissionForm(Admission admission) throws SQLException {
 
+    connection = databaseConnection.openDBConnection();
+
     String updateSQL = "UPDATE admission SET patient_id = ? , admission_type = ? , ward_id = ? , bed_id = ? , doc_id = ? , disease_code = ? WHERE admissionID = ?";
     int result;
     PreparedStatement ps = connection.prepareStatement(updateSQL);
