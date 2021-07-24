@@ -45,12 +45,11 @@ public class NewAdmissionFormCreation {
       System.out.println("2. Discharge Form");
       System.out.println("3. Register New Patient.");
       System.out.println("4. Go to Admin Home Page");
-      System.out.println("5. Exit.");
       System.out.print("\nSelect number between 1-5 to perform appropriate action.\n\nEnter Selection : ");
 
       Scanner userInput = new Scanner(System.in);
       int choice = userInput.nextInt();
-      if (choice > 0 && choice <= 5) {
+      if (choice > 0 && choice <= 4) {
         switch (choice) {
           case 1:
             admissionFormPage();
@@ -69,9 +68,6 @@ public class NewAdmissionFormCreation {
             AdminLogin al = new AdminLogin();
             al.AdminPage();
             break;
-          case 5:
-            Main.mainMethod();
-            break; //Go to Admin Home Page.
         }
       } else {
         System.out.println("\nInvalid Input Received! Please Enter Valid Selection.\n");
@@ -128,7 +124,7 @@ public class NewAdmissionFormCreation {
     String wardCode = null;
     String bedCode = null;
     int flag1 = 0;
-    int finalResult = 0;
+    int finalResult;
 
     System.out.println("\n==================================================");
     System.out.println("\t\t\t\tAdmission Form Page\t\t\t\t");
@@ -202,8 +198,8 @@ public class NewAdmissionFormCreation {
         System.out.println("\n==================================================");
         System.out.println("\t\t\t\tConfirm Admission Details.\t\t\t");
         System.out.println("==================================================");
-        System.out.println("0. Patient Name    :\t" + patientName);
-        System.out.println("1. Patient ID      :\t" + admission.getPatientID());
+        System.out.println("   Patient ID      :\t" + admission.getPatientID());
+        System.out.println("1. Patient Name    :\t" + patientName);
         System.out.println("2. Admission Type  :\t" + admissionType);
         System.out.println("3. Diagnose Code   :\t" + diseaseName);
         System.out.println("4. Physician       :\t" + doctorName);
@@ -213,9 +209,9 @@ public class NewAdmissionFormCreation {
         System.out.println("8. Save Form");
         System.out.println("9. Main Menu");
         System.out.print("\nTo change or update the details please enter" +
-                "a associated number between 1-6.\nSelect 7 to" +
+                "a associated number between 1-6.\nSelect 8 to" +
                 " save the Admission form and 9 to return to the " +
-                "Main Menu.\n\nEnter Selection : ");
+                "Admission/Discharge Home Page.\n\nEnter Selection : ");
 
         int result = userInput.nextInt();
         if (result > 0 && result <= 9) {
@@ -254,7 +250,8 @@ public class NewAdmissionFormCreation {
               flag1 = 0;
               break;
             case 9:
-              System.out.println("Go to Main page");
+              NewAdmissionFormCreation newAdmissionFormCreation = new NewAdmissionFormCreation();
+              newAdmissionFormCreation.admissionHomePage();
               flag1 = 0;
           }
         } else {
@@ -453,8 +450,8 @@ public class NewAdmissionFormCreation {
             System.out.println("7. Save Form\t");
             System.out.println("8. Main Menu\t");
             System.out.print("\nTo change or update the details please enter" +
-                    "a associated number between 1-6.\nSelect 7 to" +
-                    "save the Admission form and 8 to return to" +
+                    "a associated number between 1-6.\nSelect 7 to " +
+                    "save the Admission form and 8 to return to " +
                     "Main Menu.\n\nEnter Selection : ");
 
             int userResponse = userInput.nextInt();
@@ -502,7 +499,8 @@ public class NewAdmissionFormCreation {
                   formFlag = 0;
                   break;
                 case 8:
-                  System.out.println("Go to Main page");
+                  NewAdmissionFormCreation newAdmissionFormCreation = new NewAdmissionFormCreation();
+                  newAdmissionFormCreation.admissionHomePage();
                   formFlag = 0;
               }
             } else {

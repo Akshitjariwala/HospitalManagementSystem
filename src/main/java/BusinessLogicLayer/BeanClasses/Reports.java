@@ -1,61 +1,68 @@
 package BusinessLogicLayer.BeanClasses;
 
 public class Reports {
-    int reportId;
-    int doctorId;
-    String patientId;
-    String diagnosisName;
-    String date;
-    String testResult;
-    String testType;
+  private int reportId;
+  private int doctorId;
+  private String patientId;
+  private String diagnosisName;
+  private String date;
+  private String testResult;
+  private String testType;
 
-    public int getReportId() {
-        return reportId;
-    }
-    public void setReportId(int reportId) {
-        this.reportId = reportId;
-    }
+  public int getReportId() {
+    return reportId;
+  }
 
-    public int getDoctorId() {
-        return doctorId;
-    }
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
-    }
+  public void setReportId(int reportId) {
+    this.reportId = reportId;
+  }
 
-    public String getPatientId() {
-        return patientId;
-    }
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
-    }
+  public int getDoctorId() {
+    return doctorId;
+  }
 
-    public String getDiagnosisName() {
-        return diagnosisName;
-    }
-    public void setDiagnosisName(String diagnosisName) {
-        this.diagnosisName = diagnosisName;
-    }
+  public void setDoctorId(int doctorId) {
+    this.doctorId = doctorId;
+  }
 
-    public String getDate() {
-        return date;
-    }
-    public void setDate(String date) {
-        this.date = date;
-    }
+  public String getPatientId() {
+    return patientId;
+  }
 
-    public String getTestResult() {
-        return testResult;
-    }
-    public void setTestResult(String testResult) {
-        this.testResult = testResult;
-    }
+  public void setPatientId(String patientId) {
+    this.patientId = patientId;
+  }
 
-    public String getTestType() {
-        return testType;
-    }
-    public void setTestType(String testType) {
-        this.testType = testType;
-    }
+  public String getDiagnosisName() {
+    return diagnosisName;
+  }
+
+  public void setDiagnosisName(String diagnosisName) {
+    this.diagnosisName = diagnosisName;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public String getTestResult() {
+    return testResult;
+  }
+
+  public void setTestResult(String testResult) {
+    this.testResult = testResult;
+  }
+
+  public String getTestType() {
+    return testType;
+  }
+
+  public void setTestType(String testType) {
+    this.testType = testType;
+  }
 
 }

@@ -1,24 +1,26 @@
 package BusinessLogicLayer.DoctorModule;
 
+import PresentationLayer.Main;
+
 import java.util.Scanner;
 
 public class DoctorHome {
-  String docId;
+  int docId;
 
-  public DoctorHome(String docId) {
+  public DoctorHome(int docId) {
     this.docId = docId;
   }
 
   public void doctorHomePage() {
     Scanner sc = new Scanner(System.in);
     System.out.println("=================================================");
-    System.out.println("Welcome Doctor" + "\t" + this.docId);
+    System.out.println("Welcome Doctor " + this.docId);
     System.out.println("=================================================\n");
     do {
       System.out.println("1. View Appointments");
       System.out.println("2. View Patients");
       System.out.println("3. View Reports");
-      System.out.println("4. Exit");
+      System.out.println("4. Logout");
       System.out.println("Select a choice between 1-4 to perform appropriate action.\n");
       System.out.print("Enter Selection : ");
       int choice = sc.nextInt();
@@ -52,7 +54,12 @@ public class DoctorHome {
               System.out.println("Try a different option");
             break;
           case 4:
-            System.exit(1);
+            System.out.println("You are Logged-out Successfully.");
+            try {
+              Main.mainMethod();
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
 
         }
       } else {

@@ -9,6 +9,7 @@
  * */
 package BusinessLogicLayer.PatientModule;
 
+import BusinessLogicLayer.PatientModule.PatientInterfaces.ViewLabReportsInterface;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
-public class ViewPatientReports {
+public class ViewPatientReports implements ViewLabReportsInterface {
 
   private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
   private static Connection connection = databaseConnection.openDBConnection();
@@ -33,7 +34,7 @@ public class ViewPatientReports {
       System.out.println("|\tNo.\t|\tPatient_id\t|\tDiagnosis Name\t|\tReferred By\t\t|\tDate\t|\tTest Type\t|\tResult\t|");
       System.out.println("--------------------------------------------------------------------------------------------------------------------");
       String queryToFetchReports = "SELECT rep_id,diagnosis_name,CONCAT('Dr.',dr.first_name,' ',dr.last_name) as Referred_By,date,test_type,test_result \n" +
-              "FROM CSCI5308_6_DEVINT.lab_reports lr join doctors dr on dr.id=lr.doc_id \n" +
+              "FROM lab_reports lr join doctors dr on dr.id=lr.doc_id \n" +
               "WHERE lr.patient_id='" + patientID + "';";
       statement = connection.createStatement();
       ResultSet resultSet = statement.executeQuery(queryToFetchReports);

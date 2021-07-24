@@ -53,7 +53,7 @@ public class AdminLogin {
       System.out.println("3. Manage Wards");
       System.out.println("4. Manage Reports");
       System.out.println("5. Manage Appointments");
-      System.out.println("6. Exit");
+      System.out.println("6. Logout");
       System.out.print("Select number between 1-6 to perform appropriate action.\n");
 
       do {
@@ -87,7 +87,7 @@ public class AdminLogin {
               exitFlag = 1;
               break;
             case 6:
-              System.exit(1);
+              Main.mainMethod();
               break;
           }
           choiceFlag = 1;

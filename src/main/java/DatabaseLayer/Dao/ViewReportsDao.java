@@ -22,17 +22,14 @@ public class ViewReportsDao {
     databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
-  public List<Reports> getAllReports(String docId) {
-    // TODO Auto-generated method stub
-
-    // TODO Auto-generated method stub
+  public List<Reports> getAllReports(int docId) {
     ArrayList<Reports> reportlist = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
     String query = "Select * from lab_reports where doc_id= ? Limit 1";
     PreparedStatement statement;
     try {
       statement = connection.prepareStatement(query);
-      statement.setString(1, docId);
+      statement.setInt(1, docId);
       ResultSet rs = statement.executeQuery();
       while (rs.next()) {
         Reports r = new Reports();
@@ -52,20 +49,16 @@ public class ViewReportsDao {
       databaseConnection.closeDBConnection();
     }
     return new ArrayList<>();
-
   }
 
-  public List<Reports> getPatientReports(String docId, String patientId) {
-    // TODO Auto-generated method stub
-
-    // TODO Auto-generated method stub
+  public List<Reports> getPatientReports(int docId, String patientId) {
     ArrayList<Reports> reportlist = new ArrayList<>();
     connection = databaseConnection.openDBConnection();
     String query = "Select * from lab_reports where doc_id= ? and patient_id=? Limit 1";
     PreparedStatement statement;
     try {
       statement = connection.prepareStatement(query);
-      statement.setString(1, docId);
+      statement.setInt(1, docId);
       statement.setString(2, patientId);
       ResultSet rs = statement.executeQuery();
       while (rs.next()) {
@@ -86,6 +79,5 @@ public class ViewReportsDao {
       databaseConnection.closeDBConnection();
     }
     return new ArrayList<>();
-
   }
 }
