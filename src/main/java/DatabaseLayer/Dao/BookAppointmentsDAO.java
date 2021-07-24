@@ -40,7 +40,7 @@ public class BookAppointmentsDAO {
                patientName=resultSet.getString(1);
             }
         }catch (SQLException e) {
-            System.err.println("Sql ERROR");
+            System.err.println("SQL ERROR");
         }finally {
             databaseConnection.closeDBConnection();
         }
