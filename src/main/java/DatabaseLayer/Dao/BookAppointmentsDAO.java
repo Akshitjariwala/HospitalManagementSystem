@@ -66,7 +66,7 @@ public class BookAppointmentsDAO {
                     "AND doc_id='"+doctor_id+"';";
 
             ResultSet tempResultSet= statement.executeQuery(querytoCheckEntry);
-            if (!(tempResultSet.getRow()>0)){
+            if (tempResultSet.getRow()==0){
                 String queryToMapPatientWithDoctor = "INSERT INTO patients_doctors_mapping (patient_id, doc_id) \n" +
                         "VALUES ('" + patient_id + "','" + doctor_id + "');";
                 statement.addBatch(queryToMapPatientWithDoctor);
