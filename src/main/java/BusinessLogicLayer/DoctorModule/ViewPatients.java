@@ -5,7 +5,7 @@ import java.util.List;
 import BusinessLogicLayer.BeanClasses.Patient;
 import DatabaseLayer.Dao.ViewPatientsDao;
 
-public class ViewPatients {
+public class ViewPatients implements IViewPatients{
 
   private int docId;
   private ViewPatientsDao pdao;
@@ -14,7 +14,7 @@ public class ViewPatients {
     this.docId = docId;
     pdao = new ViewPatientsDao();
   }
-
+  @Override
   public boolean viewAllPatients() {
     List<Patient> patients = pdao.getPatients(this.docId);
     if (patients.size() > 0) {

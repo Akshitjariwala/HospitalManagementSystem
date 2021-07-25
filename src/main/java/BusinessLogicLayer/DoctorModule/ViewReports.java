@@ -5,7 +5,7 @@ import java.util.List;
 import BusinessLogicLayer.BeanClasses.Reports;
 import DatabaseLayer.Dao.ViewReportsDao;
 
-public class ViewReports {
+public class ViewReports implements IViewReports {
 
   private int docId;
   private ViewReportsDao vrdao;
@@ -14,7 +14,7 @@ public class ViewReports {
     this.docId = docId;
     vrdao = new ViewReportsDao();
   }
-
+  @Override
   public boolean viewAllReports() {
     List<Reports> reports = vrdao.getAllReports(this.docId);
     if (reports.size() > 0) {
@@ -35,7 +35,7 @@ public class ViewReports {
       return false;
     }
   }
-
+  @Override
   public boolean viewPatientReports(String patientId) {
     List<Reports> reports = vrdao.getPatientReports(this.docId, patientId);
     if (reports.size() > 0) {

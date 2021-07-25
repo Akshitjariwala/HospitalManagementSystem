@@ -5,7 +5,7 @@ import java.util.List;
 import DatabaseLayer.Dao.ViewAppointmentsDao;
 import BusinessLogicLayer.BeanClasses.Appointment;
 
-public class ViewAppointments {
+public class ViewAppointments implements IViewAppointments{
   private int docId;
   private String status;
   private ViewAppointmentsDao vdao;
@@ -15,7 +15,7 @@ public class ViewAppointments {
     this.status = status;
     vdao = new ViewAppointmentsDao();
   }
-
+  @Override
   public boolean viewAllAppointments() {
     List<Appointment> appointments = vdao.getAppointmentList(this.docId, status);
     System.out.println("=================================================");
