@@ -1,6 +1,6 @@
 package BusinessLogicLayer.DoctorModule;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 import DatabaseLayer.Dao.ViewPatientsDao;
@@ -16,7 +16,7 @@ public class ViewPatients {
   }
 
   public boolean viewAllPatients() {
-    ArrayList<Patient> patients = pdao.getPatients(this.docId);
+    List<Patient> patients = pdao.getPatients(this.docId);
     if (patients.size() > 0) {
       System.out.println("================================================================");
       System.out.println("\t\t\t\tPatients under your supervision\t\t\t\t");

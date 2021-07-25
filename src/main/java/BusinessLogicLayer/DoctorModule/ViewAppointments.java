@@ -1,6 +1,6 @@
 package BusinessLogicLayer.DoctorModule;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import DatabaseLayer.Dao.ViewAppointmentsDao;
 import BusinessLogicLayer.BeanClasses.Appointment;
@@ -17,7 +17,7 @@ public class ViewAppointments {
   }
 
   public boolean viewAllAppointments() {
-    ArrayList<Appointment> appointments = vdao.getAppointmentList(this.docId, status);
+    List<Appointment> appointments = vdao.getAppointmentList(this.docId, status);
     System.out.println("=================================================");
     System.out.println("\t\t\t\tYour appointments\t\t\t\t");
     System.out.println("=================================================");

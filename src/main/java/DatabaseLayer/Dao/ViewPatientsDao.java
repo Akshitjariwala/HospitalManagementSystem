@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import BusinessLogicLayer.BeanClasses.Patient;
@@ -24,8 +25,8 @@ public class ViewPatientsDao {
 		databaseConnection = databaseConnectionFactory.getDatabaseConnection();
 	}
 
-	public ArrayList<Patient> getPatients(int docId) {
-		ArrayList<String> patientidlist = getPatientIds(docId);
+	public List<Patient> getPatients(int docId) {
+		List<String> patientidlist = getPatientIds(docId);
 		if (patientidlist != null) {
 			ArrayList<Patient> patientlist = new ArrayList<>();
 			connection = databaseConnection.openDBConnection();
@@ -66,7 +67,7 @@ public class ViewPatientsDao {
 		return new ArrayList<>();
 	}
 
-	private ArrayList<String> getPatientIds(int docId) {
+	private List<String> getPatientIds(int docId) {
 		connection = databaseConnection.openDBConnection();
 		ArrayList<String> patientIdlist = new ArrayList<>();
 		String query = "SELECT * FROM patients_doctors_mapping where doc_id=?";
