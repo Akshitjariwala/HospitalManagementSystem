@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge;
 
 import BusinessLogicLayer.BeanClasses.Admission;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
@@ -6,7 +6,7 @@ import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 import java.sql.*;
 
-public class DischargeFormDAO {
+public class DischargeFormDAO implements IDischargeFormDAO {
     
     Connection connection = null;
     IDatabaseConnection databaseConnection;
@@ -16,7 +16,8 @@ public class DischargeFormDAO {
         databaseConnectionFactory = new DatabaseConnectionFactory();
         databaseConnection = databaseConnectionFactory.getDatabaseConnection();
     }
-    
+
+    @Override
     public boolean dischargePatient(Admission admission) {
         connection = databaseConnection.openDBConnection();
         Statement statement = databaseConnection.createStatement(connection);

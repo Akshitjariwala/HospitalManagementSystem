@@ -4,7 +4,6 @@ import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
 import DatabaseLayer.ActionDatabase.Admin.Appointments.IAppointmentDAO;
 import PresentationLayer.AdminUI;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

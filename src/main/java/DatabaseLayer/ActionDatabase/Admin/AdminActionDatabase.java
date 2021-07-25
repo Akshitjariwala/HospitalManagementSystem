@@ -1,5 +1,6 @@
 package DatabaseLayer.ActionDatabase.Admin;
 
+import DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge.*;
 import DatabaseLayer.ActionDatabase.Admin.Appointments.AppointmentDAO;
 import DatabaseLayer.ActionDatabase.Admin.Appointments.IAppointmentDAO;
 import DatabaseLayer.ActionDatabase.Admin.Beds.BedDAO;
@@ -27,5 +28,50 @@ public class AdminActionDatabase implements IAdminActionDatabase {
   @Override
   public IAppointmentDAO manageAppointments() {
     return new AppointmentDAO();
+  }
+
+  @Override
+  public IAdmissionFormDAO saveAdmissionForm() {
+    return new SaveAdmissionFormDAO();
+  }
+
+  @Override
+  public IAdmissionDetailsDAO admissionDetailsDAO(){
+    return new AdmissionDAO();
+  }
+
+  @Override
+  public IAdmissionTypeDAO admissionTypeDAO() {
+    return new AdmissionDAO();
+  }
+
+  @Override
+  public IBedAdmissionDAO bedAdmissionDAO(){
+    return new AdmissionDAO();
+  }
+
+  @Override
+  public IDiseaseDAO diseaseDAO(){
+    return new AdmissionDAO();
+  }
+
+  @Override
+  public IDoctorDAO doctorDAO(){
+    return new AdmissionDAO();
+  }
+
+  @Override
+  public IPatientDAO patientDAO(){
+    return new AdmissionDAO();
+  }
+
+  @Override
+  public IDischargeFormDAO dischargeDAO(){
+    return new DischargeFormDAO();
+  }
+
+  @Override
+  public IWardAdmissionDAO wardAdmissionDAO(){
+    return new AdmissionDAO();
   }
 }

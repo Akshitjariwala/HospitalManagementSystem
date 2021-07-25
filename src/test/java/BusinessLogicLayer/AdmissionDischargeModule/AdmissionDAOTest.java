@@ -1,7 +1,7 @@
 package BusinessLogicLayer.AdmissionDischargeModule;
 
 import BusinessLogicLayer.BeanClasses.Admission;
-import DatabaseLayer.Dao.AdmissionDAO;
+import DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge.AdmissionDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
