@@ -1,21 +1,15 @@
 package BusinessLogicLayer.User;
 
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.Dao.PatientLoginDAO;
 import PresentationLayer.PatientUI;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 
 public class PatientUser extends User {
 
-  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-  private static Connection connection = databaseConnection.openDBConnection();
-  private Statement statement = null;
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private PatientUI patientUI = new PatientUI();
 
@@ -26,6 +20,7 @@ public class PatientUser extends User {
     String providedPassword = null;
     String patientName = null;
     ResultSet resultSet = null;
+    PatientLoginDAO patientLoginDAO=new PatientLoginDAO();
 
     System.out.println("\n===========================================\n" +
             "\t\t\t\tPatient Login\n" +
@@ -40,26 +35,16 @@ public class PatientUser extends User {
         System.out.print("Enter Password : ");
         password = reader.readLine();
 
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery("SELECT password FROM login_cred WHERE userid='" + userID + "';");
-        while (resultSet.next()) {
-          providedPassword = resultSet.getString(1);
-        }
+        providedPassword=patientLoginDAO.getLoginCredentials(userID);
       } while (!password.equals(providedPassword));
 
-      statement = connection.createStatement();
-      String queryToGetPatientName = "SELECT CONCAT(first_name,' ',last_name) FROM patients where patient_id='" + userID + "';";
-      resultSet = statement.executeQuery(queryToGetPatientName);
-      while (resultSet.next()) {
-        patientName = resultSet.getString(1);
-      }
+      patientName=patientLoginDAO.getPatientName(userID);
 
+      //Redirect to mainPatientUI
       patientUI.mainPatientUI(userID, patientName);
 
     } catch (IOException e) {
       System.out.println("I/O ERROR");
-    } catch (SQLException e) {
-      System.out.println("SQL ERROR");
     }
   }
 }

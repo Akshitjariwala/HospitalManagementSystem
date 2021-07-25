@@ -10,27 +10,18 @@ package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 import BusinessLogicLayer.PatientModule.PatientInterfaces.PatientRegistrationInterface;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.Dao.PatientRegistrationDAO;
 import PresentationLayer.PatientUI;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.BatchUpdateException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
-
 
 public class PatientRegistration implements PatientRegistrationInterface {
 
-  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-
-  private static Connection connection = databaseConnection.openDBConnection();
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-  private Statement statement = null;
   private Patient patient = new Patient();
+  private PatientRegistrationDAO patientRegistrationDAO=new PatientRegistrationDAO();
 
   private String firstName = null;
   private String lastName = null;
@@ -335,7 +326,6 @@ public class PatientRegistration implements PatientRegistrationInterface {
 
         case 13:
           saveEnteredDetails();
-          System.out.println("\n***** NEW PATIENT CREATED *****");
           PatientUI patientUI=new PatientUI();
           patientUI.loginOrRegistrationUI();
           break;
@@ -353,25 +343,20 @@ public class PatientRegistration implements PatientRegistrationInterface {
   }
 
   public void saveEnteredDetails() {
-    try {
-      statement = connection.createStatement();
-      String query1 = "INSERT INTO patients (patient_id, password, last_name, first_name, middle_name, email, phone_number, address, city, state, type_of_patient, emg_contact_name, emg_contact_phone)" +
-              "VALUES ('" + patient.getUserID() + "','" + patient.getPassword() + "','" + patient.getLastName() + "','" + patient.getFirstName() + "','" + patient.getMiddleName() + "','" + patient.getEmaiID() + "','" + patient.getPhoneNumber() + "','" + patient.getAddress() + "','" + patient.getCityName() + "','" + patient.getStateName() + "','Patient','" + patient.getEmergencyContactName() + "','" + patient.getEmergencyContactNumber() + "');";
-      //  statement.executeUpdate(query1);
-      String query2 = "INSERT INTO login_cred VALUES ('" + patient.getUserID() + "','" + patient.getPassword() + "','Patient');";
-      statement.addBatch(query1);
-      statement.addBatch(query2);
-      statement.executeBatch();
-    }catch (BatchUpdateException exception){
+
+    int isNewPatientCreated=patientRegistrationDAO.savePatientDetails(patient);
+    if (isNewPatientCreated==1)  {
+      System.out.println("\n***** NEW PATIENT CREATED *****\n");
+    }else if(isNewPatientCreated==-1) {
+      try {
         System.err.println("***** Username already exists *****\n");
-        try {
-          TimeUnit.SECONDS.sleep(2);
-          displayEnteredDetails();
-        }catch (InterruptedException e){
-          System.err.println("INTERRUPTED");
-        }
-    } catch (SQLException E) {
-      System.err.println("***** SQL ERROR *****");
+        TimeUnit.SECONDS.sleep(2);
+        displayEnteredDetails();
+      }catch (InterruptedException e){
+        System.err.println("INTERRUPTED");
+      }
+    }else {
+      System.out.println("\n***** UNABLE TO CREATE NEW PATIENT *****\n");
     }
   }
 }
