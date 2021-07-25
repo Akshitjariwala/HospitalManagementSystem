@@ -16,7 +16,6 @@ public class PatientLoginDAO  {
     private IDatabaseConnection databaseConnection;
     private IDatabaseConnectionFactory databaseConnectionFactory;
     private Statement statement = null;
-    private ResultSet resultSet = null;
 
     public PatientLoginDAO() {
 
@@ -26,7 +25,9 @@ public class PatientLoginDAO  {
     public String getLoginCredentials(String userID)  {
 
       String providedPassword="";
-      try {
+      ResultSet resultSet=null;
+
+        try {
         connection=databaseConnection.openDBConnection();
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT password FROM login_cred WHERE userid='" + userID + "';");
@@ -45,7 +46,9 @@ public class PatientLoginDAO  {
     public String getPatientName(String userID)  {
 
       String patientName="";
-      try {
+      ResultSet resultSet=null;
+
+        try {
           connection=databaseConnection.openDBConnection();
           statement = connection.createStatement();
         String queryToGetPatientName = "SELECT CONCAT(first_name,' ',last_name) FROM patients where patient_id='" + userID + "';";

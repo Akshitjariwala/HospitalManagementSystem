@@ -21,12 +21,10 @@ import java.util.concurrent.TimeUnit;
 public class ViewPatientReports implements ViewLabReportsInterface {
 
   private Statement statement = null;
-  ResultSet resultSet=null;
   private ViewPatientReportsDAO viewPatientReportsDAO=new ViewPatientReportsDAO();
 
-
   public void viewLabReports(String patientID,String patientName) {
-
+    ResultSet resultSet=null;
     System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
     System.out.println("Fetching Lab Reports.....\n");
     try {
@@ -36,7 +34,7 @@ public class ViewPatientReports implements ViewLabReportsInterface {
       resultSet= viewPatientReportsDAO.fetchLabReports(patientID);
       int index = 0;
 
-      if (resultSet.getRow()!=0){
+      if (resultSet.next()){
         while (resultSet.next()) {
           index++;
           int reportID = resultSet.getInt(1);
