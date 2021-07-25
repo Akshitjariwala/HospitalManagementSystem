@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Admin.Reports;
 
 import BusinessLogicLayer.BeanClasses.Reports;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UpdateReportsDAO  {
+public class UpdateReportsDAO implements IUpdateReportsDAO {
 
   private Connection connection = null;
   IDatabaseConnection databaseConnection;
