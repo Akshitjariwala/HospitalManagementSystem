@@ -37,5 +37,5 @@ public interface IAdminActionDatabase {
 
   IManageReportsDAO reportsDAO();
 
-  IManageDoctorDAO manageDoctDAO();
+  IManageDoctorDAO manageDocDAO();
 }

@@ -7,16 +7,31 @@
 package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Reports;
+import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
+import DatabaseLayer.ActionDatabase.Admin.Reports.IManageReportsDAO;
 import DatabaseLayer.ActionDatabase.Admin.Reports.ManageReportsDAO;
 import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
 
-public class ManageReports {
+public class ManageReports extends AdminAbstractAction {
+
+  private IManageReportsDAO iManageReportsDAO;
+
+  private static final String ACTION_TITLE = "Manage Reports";
+
+  public ManageReports() {
+    iManageReportsDAO = iAdminActionDatabase.reportsDAO();
+  }
 
   private static String str = "";
 
-  public static void addReports() {
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
+
+  public void addReports() {
     Reports report = new Reports();
     Scanner inputData = new Scanner(System.in);
     System.out.println("============================================================================");
@@ -87,8 +102,7 @@ public class ManageReports {
       }
     } while (report.getTestType() == null);
 
-    ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
-    int status = manageReportsDAO.addReport(report);
+    int status = iManageReportsDAO.addReport(report);
     if (status == 1) {
       System.out.println("Report details added successfully");
     } else {
@@ -101,7 +115,7 @@ public class ManageReports {
       e.printStackTrace();
     }
   }
-  public static void updateReports() {
+  public void updateReports() {
 
     Scanner inputData = new Scanner(System.in);
     System.out.println("============================================================================");
@@ -109,8 +123,8 @@ public class ManageReports {
     System.out.println("============================================================================");
     System.out.println("Enter the report id that has to be updated");
     int id = inputData.nextInt();
-    ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
-    Reports report = manageReportsDAO.getReportsDetails(id);
+
+    Reports report = iManageReportsDAO.getReportsDetails(id);
     int reportId = report.getReportId();
 
     System.out.println("===========The details of the report" + " " + reportId + " " + "are==================");
@@ -130,7 +144,7 @@ public class ManageReports {
         do {
           System.out.println("Enter the doctor id :");
           doctorId = inputData.nextInt();
-          int count = manageReportsDAO.checkDoctorId(doctorId);
+          int count = iManageReportsDAO.checkDoctorId(doctorId);
           if (count > 0) {
             str = "doc_id = " + "'" + doctorId + "'";
           } else {
@@ -144,7 +158,7 @@ public class ManageReports {
         do {
           System.out.println("Enter the Patient id :");
           String patientId = inputData.next();
-          strCheck = manageReportsDAO.checkPatientId(patientId);
+          strCheck = iManageReportsDAO.checkPatientId(patientId);
           if (strCheck != null) {
             str = "patient_id = " + "'" + patientId + "'";
           } else {
@@ -217,7 +231,7 @@ public class ManageReports {
 
     }
     if (!str.isEmpty()) {
-      manageReportsDAO.updateReport(str, reportId);
+      iManageReportsDAO.updateReport(str, reportId);
       System.out.println("Report Updated Successfully.");
       AdminUI adminLogin = new AdminUI();
       try {

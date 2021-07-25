@@ -19,7 +19,7 @@ public class ManageDoctor extends AdminAbstractAction {
   private static final String ACTION_TITLE = "Manage Doctor";
 
   public ManageDoctor() {
-    iManageDoctorDAO = iAdminActionDatabase.manageDoctDAO();
+    iManageDoctorDAO = iAdminActionDatabase.manageDocDAO();
   }
 
   @Override

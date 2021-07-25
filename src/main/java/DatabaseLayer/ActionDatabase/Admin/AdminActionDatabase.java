@@ -80,7 +80,7 @@ public class AdminActionDatabase implements IAdminActionDatabase {
   }
 
   @Override
-  public IManageDoctorDAO manageDoctDAO() {
+  public IManageDoctorDAO manageDocDAO() {
     return new ManageDoctorDAO();
   }
 

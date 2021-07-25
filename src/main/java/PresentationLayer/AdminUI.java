@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import BusinessLogicLayer.AdminModule.CreateLabReports;
 import BusinessLogicLayer.AdminModule.ManageAppointments;
 import BusinessLogicLayer.AdminModule.ManageWards;
 
@@ -48,7 +47,8 @@ public class AdminUI {
               exitFlag = 1;
               break;
             case 4:
-              CreateLabReports.reportHomePage();
+              ReportsUI reportsUI = new ReportsUI();
+              reportsUI.reportHomePage();
               exitFlag = 1;
               break;
             case 5:
