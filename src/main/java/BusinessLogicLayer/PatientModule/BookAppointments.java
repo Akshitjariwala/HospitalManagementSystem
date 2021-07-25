@@ -8,25 +8,22 @@
  * */
 package BusinessLogicLayer.PatientModule;
 
-import BusinessLogicLayer.PatientModule.PatientInterfaces.BookAppointmentsInterface;
+import BusinessLogicLayer.PatientModule.PatientInterfaces.IBookAppointments;
 import DatabaseLayer.Dao.BookAppointmentsDAO;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class BookAppointments implements BookAppointmentsInterface {
+public class BookAppointments implements IBookAppointments {
 
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private BookAppointmentsDAO bookAppointmentsDAO=new BookAppointmentsDAO();

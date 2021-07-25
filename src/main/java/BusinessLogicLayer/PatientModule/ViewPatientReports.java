@@ -9,7 +9,7 @@
  * */
 package BusinessLogicLayer.PatientModule;
 
-import BusinessLogicLayer.PatientModule.PatientInterfaces.ViewLabReportsInterface;
+import BusinessLogicLayer.PatientModule.PatientInterfaces.IViewLabReports;
 import DatabaseLayer.Dao.ViewPatientReportsDAO;
 import PresentationLayer.PatientUI;
 
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
-public class ViewPatientReports implements ViewLabReportsInterface {
+public class ViewPatientReports implements IViewLabReports {
 
   private Statement statement = null;
   private ViewPatientReportsDAO viewPatientReportsDAO=new ViewPatientReportsDAO();

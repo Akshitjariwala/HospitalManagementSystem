@@ -1,6 +1,6 @@
 package PresentationLayer.Interfaces;
 
-public interface PatientUIInterface {
+public interface IPatientUI {
 
   public void mainPatientUI(String patientID, String patientName);
 

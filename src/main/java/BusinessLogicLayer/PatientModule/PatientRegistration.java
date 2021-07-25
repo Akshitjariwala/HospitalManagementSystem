@@ -9,7 +9,7 @@
 package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.BeanClasses.Patient;
-import BusinessLogicLayer.PatientModule.PatientInterfaces.PatientRegistrationInterface;
+import BusinessLogicLayer.PatientModule.PatientInterfaces.IPatientRegistration;
 import DatabaseLayer.Dao.PatientRegistrationDAO;
 import PresentationLayer.PatientUI;
 import java.io.BufferedReader;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
-public class PatientRegistration implements PatientRegistrationInterface {
+public class PatientRegistration implements IPatientRegistration {
 
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private Patient patient = new Patient();

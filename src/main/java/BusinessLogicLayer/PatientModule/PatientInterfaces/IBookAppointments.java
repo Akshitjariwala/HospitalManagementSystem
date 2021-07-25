@@ -1,6 +1,6 @@
 package BusinessLogicLayer.PatientModule.PatientInterfaces;
 
-public interface BookAppointmentsInterface extends NewDetailsInterface  {
+public interface IBookAppointments extends INewDetails  {
 
      boolean appointmentBookingPortalofPatient(String patientid);
      void displayDoctorList();

@@ -1,6 +1,6 @@
 package BusinessLogicLayer.PatientModule.PatientInterfaces;
 
-public interface PatientRegistrationInterface extends NewDetailsInterface  {
+public interface IPatientRegistration extends INewDetails {
 
     void newPatientRegistration();
     void saveEnteredDetails();

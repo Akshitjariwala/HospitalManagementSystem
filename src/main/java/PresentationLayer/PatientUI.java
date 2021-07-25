@@ -4,13 +4,13 @@ import BusinessLogicLayer.PatientModule.BookAppointments;
 import BusinessLogicLayer.PatientModule.PatientRegistration;
 import BusinessLogicLayer.PatientModule.ViewPatientReports;
 import BusinessLogicLayer.User.PatientUser;
-import PresentationLayer.Interfaces.PatientUIInterface;
+import PresentationLayer.Interfaces.IPatientUI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PatientUI implements PatientUIInterface {
+public class PatientUI implements IPatientUI {
 
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
