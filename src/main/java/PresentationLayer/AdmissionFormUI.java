@@ -20,7 +20,7 @@ public class AdmissionFormUI {
             System.out.println("2. Discharge Form");
             System.out.println("3. Register New Patient.");
             System.out.println("4. Go to Admin Home Page");
-            System.out.print("\nSelect number between 1-5 to perform appropriate action.\n\nEnter Selection : ");
+            System.out.print("\nSelect number between 1-4 to perform appropriate action.\n\nEnter Selection : ");
             
             Scanner userInput = new Scanner(System.in);
             int choice = userInput.nextInt();

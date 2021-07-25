@@ -1,5 +1,6 @@
 package DatabaseLayer.ActionDatabase.Admin;
 
+import DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge.*;
 import DatabaseLayer.ActionDatabase.Admin.Appointments.IAppointmentDAO;
 import DatabaseLayer.ActionDatabase.Admin.Beds.IBedDAO;
 import DatabaseLayer.ActionDatabase.Admin.Wards.IWardDAO;
@@ -13,4 +14,22 @@ public interface IAdminActionDatabase {
   IAdmissionDischargeDatabase admissionDischarge();
 
   IAppointmentDAO manageAppointments();
+
+  IAdmissionFormDAO saveAdmissionForm();
+
+  IAdmissionDetailsDAO admissionDetailsDAO();
+
+  IAdmissionTypeDAO admissionTypeDAO();
+
+  IBedAdmissionDAO bedAdmissionDAO();
+
+  IDiseaseDAO diseaseDAO();
+
+  IDoctorDAO doctorDAO();
+
+  IPatientDAO patientDAO();
+
+  IDischargeFormDAO dischargeDAO();
+
+  IWardAdmissionDAO wardAdmissionDAO();
 }

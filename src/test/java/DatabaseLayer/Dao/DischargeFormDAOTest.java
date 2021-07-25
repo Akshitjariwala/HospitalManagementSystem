@@ -1,6 +1,8 @@
 package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Admission;
+import DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge.DischargeFormDAO;
+import DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge.IDischargeFormDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,7 +13,7 @@ class DischargeFormDAOTest {
     
     private final long timeToMil = System.currentTimeMillis();
     private final Date date = new Date(timeToMil);
-    public DischargeFormDAO dischargeForm;
+    public IDischargeFormDAO dischargeForm;
     
     @BeforeEach
     void setup() {

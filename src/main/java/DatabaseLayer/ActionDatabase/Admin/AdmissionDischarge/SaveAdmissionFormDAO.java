@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge;
 
 import BusinessLogicLayer.BeanClasses.Admission;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
