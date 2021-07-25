@@ -11,10 +11,8 @@ package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.PatientModule.PatientInterfaces.ViewLabReportsInterface;
 import DatabaseLayer.Dao.ViewPatientReportsDAO;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,8 +20,6 @@ import java.util.concurrent.TimeUnit;
 
 public class ViewPatientReports implements ViewLabReportsInterface {
 
-  //private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
- // private static Connection connection = databaseConnection.openDBConnection();
   private Statement statement = null;
   ResultSet resultSet=null;
   private ViewPatientReportsDAO viewPatientReportsDAO=new ViewPatientReportsDAO();
