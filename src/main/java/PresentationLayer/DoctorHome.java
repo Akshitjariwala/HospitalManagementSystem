@@ -1,8 +1,10 @@
-package BusinessLogicLayer.DoctorModule;
-
-import PresentationLayer.Main;
+package PresentationLayer;
 
 import java.util.Scanner;
+
+import BusinessLogicLayer.DoctorModule.ViewAppointments;
+import BusinessLogicLayer.DoctorModule.ViewPatients;
+import BusinessLogicLayer.DoctorModule.ViewReports;
 
 public class DoctorHome {
   int docId;
