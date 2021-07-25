@@ -6,10 +6,11 @@ import BusinessLogicLayer.DoctorModule.ViewAppointments;
 import BusinessLogicLayer.DoctorModule.ViewPatients;
 import BusinessLogicLayer.DoctorModule.ViewReports;
 
-public class DoctorHome {
+public class DoctorUI {
+
   int docId;
 
-  public DoctorHome(int docId) {
+  public DoctorUI(int docId) {
     this.docId = docId;
   }
 

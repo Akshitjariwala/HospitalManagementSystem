@@ -2,7 +2,7 @@ package BusinessLogicLayer.User;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
 import DatabaseLayer.Dao.DoctorLoginDAO;
-import PresentationLayer.DoctorHome;
+import PresentationLayer.DoctorUI;
 
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class DoctorUser extends User {
       if (temp == 1) {
         doctor.setMedicalLicenseId(doctorId);
         doctor = doctorLoginDAO.getDoctor(doctorId, password);
-        DoctorHome doctorHome = new DoctorHome(doctor.getId());
+        DoctorUI doctorHome = new DoctorUI(doctor.getId());
         doctorHome.doctorHomePage();
 
       } else {
