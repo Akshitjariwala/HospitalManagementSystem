@@ -44,9 +44,9 @@ public class AdmissionFormUI {
                         flag = 0;
                         break;
                     case 4:
-                        AdminLogin al = new AdminLogin();
+                        AdminUI al = new AdminUI();
                         try {
-                            al.AdminPage();
+                            al.adminPage();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

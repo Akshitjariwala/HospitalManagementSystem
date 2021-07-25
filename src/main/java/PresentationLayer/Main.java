@@ -1,14 +1,16 @@
 package PresentationLayer;
 
-import BusinessLogicLayer.DoctorModule.DoctorLogin;
+import BusinessLogicLayer.User.AdminUser;
+import BusinessLogicLayer.User.DoctorUser;
+
 import java.util.Scanner;
 
 public class Main {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     mainMethod();
   }
 
-  public static void mainMethod() throws Exception {
+  public static void mainMethod() {
     System.out.println("============================================================");
     System.out.println("\t\tWelcome to our Hospital Management System\t\t");
     System.out.println("============================================================");
@@ -27,8 +29,8 @@ public class Main {
       if (choice > 0 && choice <= 4) {
         switch (choice) {
           case 1:
-            DoctorLogin doctorLogin = new DoctorLogin();
-            doctorLogin.login();
+            DoctorUser doctor = new DoctorUser();
+            doctor.login();
             flag = 1;
             break;
           case 2:
@@ -37,8 +39,8 @@ public class Main {
             flag = 1;
             break;
           case 3:
-            AdminLogin adminLogin = new AdminLogin();
-            adminLogin.AdminLoginPage();
+            AdminUser adminUser = new AdminUser();
+            adminUser.login();
             flag = 1;
             break;
           case 4:

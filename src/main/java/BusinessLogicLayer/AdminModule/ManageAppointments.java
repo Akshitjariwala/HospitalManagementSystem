@@ -3,7 +3,7 @@ package BusinessLogicLayer.AdminModule;
 import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
 import DatabaseLayer.ActionDatabase.Admin.Appointments.IAppointmentDAO;
-import PresentationLayer.AdminLogin;
+import PresentationLayer.AdminUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +34,9 @@ public class ManageAppointments extends AdminAbstractAction implements IManageAp
       System.out.println("\t\tNo Appointment Found\t\t");
       System.out.println("==================================================");
     }
-    AdminLogin adminLogin = new AdminLogin();
+    AdminUI adminLogin = new AdminUI();
     try {
-      adminLogin.AdminPage();
+      adminLogin.adminPage();
     } catch (Exception e) {
       e.printStackTrace();
     }

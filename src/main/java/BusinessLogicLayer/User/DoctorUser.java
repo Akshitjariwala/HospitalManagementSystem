@@ -1,14 +1,16 @@
-package BusinessLogicLayer.DoctorModule;
+package BusinessLogicLayer.User;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
+import BusinessLogicLayer.DoctorModule.DoctorHome;
 import DatabaseLayer.Dao.DoctorLoginDAO;
 
 import java.util.Scanner;
 
-public class DoctorLogin {
-  int temp = 0;
+public class DoctorUser extends User {
 
+  @Override
   public void login() {
+    int temp;
     Doctor doctor = new Doctor();
     System.out.println("============================= Doctor Login =======================================");
     do {

@@ -8,11 +8,9 @@ package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import DatabaseLayer.Dao.RegisterDoctorDAO;
-import PresentationLayer.AdminLogin;
 
 public class RegisterDoctor {
 

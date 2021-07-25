@@ -1,15 +1,5 @@
-/*
- * CSCI 5308 Group Project
- * @author: Kishan Kahodariya
- * @description: This program handles login process of patients i.e.
- * it verifies if a patient is registered in the system or not.
- * The database access is done using common DatabaseConnection class
- *
- * */
+package BusinessLogicLayer.User;
 
-package BusinessLogicLayer.PatientModule;
-
-import BusinessLogicLayer.PatientModule.PatientInterfaces.LoginInterface;
 import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.PatientUI;
 
@@ -20,9 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
-public class PatientLogin implements LoginInterface {
+public class PatientUser extends User {
 
   private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
   private static Connection connection = databaseConnection.openDBConnection();
@@ -30,7 +19,8 @@ public class PatientLogin implements LoginInterface {
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private PatientUI patientUI = new PatientUI();
 
-  public void patientLogin() {
+  @Override
+  public void login() {
     String userID = null;
     String password = null;
     String providedPassword = null;
@@ -50,7 +40,6 @@ public class PatientLogin implements LoginInterface {
         System.out.print("Enter Password : ");
         password = reader.readLine();
 
-
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT password FROM login_cred WHERE userid='" + userID + "';");
         while (resultSet.next()) {
@@ -65,7 +54,6 @@ public class PatientLogin implements LoginInterface {
         patientName = resultSet.getString(1);
       }
 
-      //Redirect to mainPatientUI
       patientUI.mainPatientUI(userID, patientName);
 
     } catch (IOException e) {

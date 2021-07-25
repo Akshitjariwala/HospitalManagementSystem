@@ -1,6 +1,6 @@
 package BusinessLogicLayer.AdminModule;
 
-import PresentationLayer.AdminLogin;
+import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
 
@@ -20,9 +20,9 @@ public class CreateDoctor {
     } else if (choice == 2) {
       UpdateDoctorRegister.updateRegistration();
     } else if (choice == 3) {
-      AdminLogin al = new AdminLogin();
+      AdminUI al = new AdminUI();
       try {
-        al.AdminPage();
+        al.adminPage();
       } catch (Exception e) {
         e.printStackTrace();
       }

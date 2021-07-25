@@ -7,38 +7,9 @@ import BusinessLogicLayer.AdminModule.ManageWards;
 
 import java.util.Scanner;
 
-public class AdminLogin {
+public class AdminUI {
 
-  public void AdminLoginPage() throws Exception {
-
-    int choiceFlag = 0;
-
-    do {
-      System.out.println("\n=================================================");
-      System.out.println("\t\t\t\tAdmin Login Page\t\t\t");
-      System.out.println("=================================================");
-      System.out.printf("%n");
-      System.out.print("Enter UserId : ");
-      Scanner loginInput = new Scanner(System.in);
-      String loginID = loginInput.nextLine();
-      System.out.print("Enter Password : ");
-      Scanner loginPassword = new Scanner(System.in);
-      String password = loginPassword.nextLine();
-
-      if (loginID != null && password != null) {
-        if (loginID.equals("admin") & password.equals("admin")) { // Provide Valid Admin Login Password.
-          AdminPage();
-        } else {
-          System.out.println("\nUser Login ID and Password Doesnt Match. Please Provide Valid Login ID and Password.\n");
-        }
-      } else {
-        System.out.println("\nInvalid Input Received! Please Enter Valid Selection.\n");
-      }
-    } while (choiceFlag == 0);
-  }
-
-  public void AdminPage() throws Exception {
-
+  public void adminPage() {
     int choiceFlag = 0;
     int exitFlag = 0;
     ManageAppointments manageAppointments = new ManageAppointments();

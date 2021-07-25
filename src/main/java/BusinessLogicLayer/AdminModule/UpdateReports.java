@@ -3,7 +3,7 @@ package BusinessLogicLayer.AdminModule;
 import BusinessLogicLayer.BeanClasses.Reports;
 import DatabaseLayer.Dao.AddReportsDAO;
 import DatabaseLayer.Dao.UpdateReportsDAO;
-import PresentationLayer.AdminLogin;
+import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
 
@@ -132,9 +132,9 @@ public class UpdateReports {
       updateReportsDAO = new UpdateReportsDAO();
       updateReportsDAO.updateReport(str, reportId);
       System.out.println("Report Updated Successfully.");
-      AdminLogin adminLogin = new AdminLogin();
+      AdminUI adminLogin = new AdminUI();
       try {
-        adminLogin.AdminPage();
+        adminLogin.adminPage();
       } catch (Exception e) {
         e.printStackTrace();
       }

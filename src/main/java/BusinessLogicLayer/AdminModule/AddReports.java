@@ -2,7 +2,7 @@ package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Reports;
 import DatabaseLayer.Dao.AddReportsDAO;
-import PresentationLayer.AdminLogin;
+import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
 
@@ -86,9 +86,9 @@ public class AddReports {
     } else {
       System.out.println("ERROR while adding ward");
     }
-    AdminLogin adminLogin = new AdminLogin();
+    AdminUI adminLogin = new AdminUI();
     try {
-      adminLogin.AdminPage();
+      adminLogin.adminPage();
     } catch (Exception e) {
       e.printStackTrace();
     }

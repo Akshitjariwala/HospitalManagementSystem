@@ -47,9 +47,9 @@ public class WardUI {
             flag = 1;
             break;
           case 5:
-            AdminLogin adminLogin = new AdminLogin();
+            AdminUI adminLogin = new AdminUI();
             try {
-              adminLogin.AdminPage();
+              adminLogin.adminPage();
             } catch (Exception e) {
               e.printStackTrace();
             }
