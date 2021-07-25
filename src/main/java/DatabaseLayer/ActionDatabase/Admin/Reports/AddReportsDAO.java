@@ -1,12 +1,13 @@
 /*
  * CSCI 5308 Group Project
  * @author: Sai Vaishnavi Jupudi
- * @description: This program handles doctor registration
+ * @description: This program handles Reports
  *
  * */
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Admin.Reports;
 
 import BusinessLogicLayer.BeanClasses.Reports;
+import DatabaseLayer.ActionDatabase.Admin.Reports.IAddReportsDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;

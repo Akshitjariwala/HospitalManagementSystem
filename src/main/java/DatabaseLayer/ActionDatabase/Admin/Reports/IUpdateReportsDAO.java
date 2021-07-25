@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Admin.Reports;
 
 import BusinessLogicLayer.BeanClasses.Reports;
 

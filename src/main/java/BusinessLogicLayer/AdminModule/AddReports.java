@@ -1,7 +1,7 @@
 package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Reports;
-import DatabaseLayer.Dao.AddReportsDAO;
+import DatabaseLayer.ActionDatabase.Admin.Reports.AddReportsDAO;
 import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
