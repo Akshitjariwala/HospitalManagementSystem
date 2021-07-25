@@ -1,5 +1,12 @@
 package BusinessLogicLayer.DoctorModule;
-
+/*
+ * CSCI 5308 Group Project
+ * @author: Vishal Rakesh Jaiswal
+ * @description: This program allows a doctor to view patients who either have appointnment with the doctor
+ * or have been admitted against the doctor.
+ * The database access is done using common DatabaseConnection class
+ *
+ * */
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Patient;

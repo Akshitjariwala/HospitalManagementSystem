@@ -1,5 +1,10 @@
 package PresentationLayer;
-
+/*
+ * CSCI 5308 Group Project
+ * @author: Vishal Rakesh Jaiswal
+ * @description: This program allows a doctor to perform a desired operation
+ * The doctor selects which operation to execute and gets the desired output
+ * */
 import java.util.Scanner;
 
 import BusinessLogicLayer.DoctorModule.ViewAppointments;

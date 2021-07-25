@@ -1,5 +1,12 @@
 package BusinessLogicLayer.DoctorModule;
-
+/*
+ * CSCI 5308 Group Project
+ * @author: Vishal Rakesh Jaiswal
+ * @description: This program allows a doctor to view either reports of all the patients
+ * under the supervision of the doctor or reports of a specific patient.
+ * The database access is done using common DatabaseConnection class
+ *
+ * */
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Reports;
