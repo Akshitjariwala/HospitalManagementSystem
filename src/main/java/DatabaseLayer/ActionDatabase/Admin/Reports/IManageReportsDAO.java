@@ -3,6 +3,7 @@ package DatabaseLayer.ActionDatabase.Admin.Reports;
 import BusinessLogicLayer.BeanClasses.Reports;
 
 public interface IManageReportsDAO {
+
   int addReport(Reports report);
 
   int checkDoctorId(int id);

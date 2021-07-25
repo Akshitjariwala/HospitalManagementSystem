@@ -1,24 +1,32 @@
-package BusinessLogicLayer.AdminModule;
+/*
+ * CSCI 5308 Group Project
+ * @author: Sai Vaishnavi Jupudi
+ * @description: This program handles doctor management
+ *
+ * */
+package PresentationLayer;
 
-import PresentationLayer.AdminUI;
+import BusinessLogicLayer.AdminModule.ManageDoctor;
 
 import java.util.Scanner;
 
-public class CreateDoctor {
+public class DoctorManagementUI {
 
-  public static void adminDoctorPage() {
+  private final ManageDoctor managedoctor = new ManageDoctor();
+
+  public void adminDoctorPage() {
+
     System.out.println("\n1. New Doctor Registration");
     System.out.println("2. Update Existing Doctor");
     System.out.println("3. Go to Admin Home Page");
     System.out.print("Enter Selection : ");
     Scanner input = new Scanner(System.in);
     int choice = input.nextInt();
-
     // Action performed based on input choice
     if (choice == 1) {
-      ManageDoctor.registration();
+      managedoctor.registration();
     } else if (choice == 2) {
-      ManageDoctor.updateRegistration();
+      managedoctor.updateRegistration();
     } else if (choice == 3) {
       AdminUI al = new AdminUI();
       try {
@@ -29,7 +37,7 @@ public class CreateDoctor {
     } else {
       System.out.println("Invalid Input, Please choose either 1, 2 or 3");
     }
+
   }
+
 }
-
-

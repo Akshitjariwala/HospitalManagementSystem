@@ -5,6 +5,10 @@ import DatabaseLayer.ActionDatabase.Admin.Appointments.AppointmentDAO;
 import DatabaseLayer.ActionDatabase.Admin.Appointments.IAppointmentDAO;
 import DatabaseLayer.ActionDatabase.Admin.Beds.BedDAO;
 import DatabaseLayer.ActionDatabase.Admin.Beds.IBedDAO;
+import DatabaseLayer.ActionDatabase.Admin.ManageDoctor.IManageDoctorDAO;
+import DatabaseLayer.ActionDatabase.Admin.ManageDoctor.ManageDoctorDAO;
+import DatabaseLayer.ActionDatabase.Admin.Reports.IManageReportsDAO;
+import DatabaseLayer.ActionDatabase.Admin.Reports.ManageReportsDAO;
 import DatabaseLayer.ActionDatabase.Admin.Wards.IWardDAO;
 import DatabaseLayer.ActionDatabase.Admin.Wards.WardDAO;
 
@@ -73,5 +77,15 @@ public class AdminActionDatabase implements IAdminActionDatabase {
   @Override
   public IWardAdmissionDAO wardAdmissionDAO(){
     return new AdmissionDAO();
+  }
+
+  @Override
+  public IManageDoctorDAO manageDoctDAO() {
+    return new ManageDoctorDAO();
+  }
+
+  @Override
+  public IManageReportsDAO reportsDAO() {
+    return new ManageReportsDAO();
   }
 }

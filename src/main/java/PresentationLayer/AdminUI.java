@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import BusinessLogicLayer.AdminModule.CreateDoctor;
 import BusinessLogicLayer.AdminModule.CreateLabReports;
 import BusinessLogicLayer.AdminModule.ManageAppointments;
 import BusinessLogicLayer.AdminModule.ManageWards;
@@ -34,8 +33,8 @@ public class AdminUI {
         if (choice >= 1 && choice <= 6) {
           switch (choice) {
             case 1:
-              CreateDoctor create = new CreateDoctor();
-              create.adminDoctorPage();
+              DoctorManagementUI doctorManagementUI = new DoctorManagementUI();
+              doctorManagementUI.adminDoctorPage();
               exitFlag = 1;
               break;
             case 2:

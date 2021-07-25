@@ -7,15 +7,30 @@
 package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
-import DatabaseLayer.ActionDatabase.Admin.ManageDoctor.ManageDoctorDAO;
+import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
+import DatabaseLayer.ActionDatabase.Admin.ManageDoctor.IManageDoctorDAO;
+import PresentationLayer.DoctorManagementUI;
 
 import java.util.Scanner;
 
-public class ManageDoctor {
+public class ManageDoctor extends AdminAbstractAction {
+
+  private IManageDoctorDAO iManageDoctorDAO;
+  private static final String ACTION_TITLE = "Manage Doctor";
+
+  public ManageDoctor() {
+    iManageDoctorDAO = iAdminActionDatabase.manageDoctDAO();
+  }
+
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
+
   /* Doctor Details are taken as input
    * The details are stored into database
    */
-  public static void registration() {
+  public void registration() {
     Doctor doct = new Doctor();
     Scanner inputData = new Scanner(System.in);
     System.out.println("============================================================================");
@@ -153,14 +168,15 @@ public class ManageDoctor {
         System.out.println("Please enter valid input:");
       }
     } while (doct.getState() == null);
-    ManageDoctorDAO manageDoctorDAO = new ManageDoctorDAO();
-    int status = manageDoctorDAO.addDoctor(doct);
+
+    int status = iManageDoctorDAO.addDoctor(doct);
     if (status == 1) {
       System.out.println("Doctor details added successfully");
     } else {
       System.out.println("ERROR while adding details");
     }
-    CreateDoctor.adminDoctorPage();
+    DoctorManagementUI doctorManagementUI = new DoctorManagementUI();
+    doctorManagementUI.adminDoctorPage();
   }
 
   /* The details of the doctor can be updated
@@ -168,7 +184,7 @@ public class ManageDoctor {
    * The details are fetched from database and are displayed
    * The user will have privilege to edit the details and the details are updated in database
    */
-  public static void updateRegistration(){
+  public void updateRegistration() {
     String str = "";
 
     System.out.print("\nEnter Doctor Id : ");
@@ -176,8 +192,8 @@ public class ManageDoctor {
     Scanner scanner = new Scanner(System.in);
 
     String doc_id = scanner.next();
-    ManageDoctorDAO manageDoctorDAO = new ManageDoctorDAO();
-    Doctor doct1 = manageDoctorDAO.getDoctor(doc_id);
+
+    Doctor doct1 = iManageDoctorDAO.getDoctor(doc_id);
     int doctorId = doct1.getId();
     System.out.println("\n1. Medical License Id* :" + doct1.getMedicalLicenseId());
     System.out.println("2. Password* :" + doct1.getPassword());
@@ -345,17 +361,18 @@ public class ManageDoctor {
         } while (department == null);
         break;
       case 14:
-        CreateDoctor.adminDoctorPage();
+        DoctorManagementUI doctorManagementUI = new DoctorManagementUI();
+        doctorManagementUI.adminDoctorPage();
         break;
       default:
         System.out.println("Invalid Input, Please select valid number ");
     }
     if (!str.isEmpty()) {
-      manageDoctorDAO = new ManageDoctorDAO();
-      manageDoctorDAO.updateDoctor(str, doctorId);
-
+      iManageDoctorDAO.updateDoctor(str, doctorId);
       System.out.println("Doctor details updated successfully");
-      CreateDoctor.adminDoctorPage();
+      DoctorManagementUI doctorManagementUI = new DoctorManagementUI();
+      doctorManagementUI.adminDoctorPage();
     }
   }
+
 }
