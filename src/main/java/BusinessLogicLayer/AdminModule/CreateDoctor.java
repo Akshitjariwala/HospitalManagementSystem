@@ -16,9 +16,9 @@ public class CreateDoctor {
 
     // Action performed based on input choice
     if (choice == 1) {
-      RegisterDoctor.registration();
+      ManageDoctor.registration();
     } else if (choice == 2) {
-      UpdateDoctorRegister.updateRegistration();
+      ManageDoctor.updateRegistration();
     } else if (choice == 3) {
       AdminUI al = new AdminUI();
       try {

@@ -1,3 +1,9 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Sai Vaishnavi Jupudi
+ * @description: This program handles Reports
+ *
+ * */
 package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Reports;
