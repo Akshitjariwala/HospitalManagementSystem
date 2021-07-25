@@ -4,7 +4,6 @@ import BusinessLogicLayer.PatientModule.BookAppointments;
 import BusinessLogicLayer.PatientModule.PatientRegistration;
 import BusinessLogicLayer.PatientModule.ViewPatientReports;
 import BusinessLogicLayer.User.PatientUser;
-import PresentationLayer.Interfaces.IPatientUI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
