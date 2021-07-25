@@ -14,7 +14,6 @@ public class PatientRegistrationDAO  {
     private IDatabaseConnection databaseConnection;
     private IDatabaseConnectionFactory databaseConnectionFactory;
     private Statement statement = null;
-    private ResultSet resultSet = null;
 
     public PatientRegistrationDAO()  {
 
@@ -24,6 +23,7 @@ public class PatientRegistrationDAO  {
 
     public int savePatientDetails(Patient patient) {
        int status=0;
+       ResultSet resultSet=null;
         try  {
             connection=databaseConnection.openDBConnection();
             statement = connection.createStatement();
