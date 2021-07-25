@@ -1,6 +1,6 @@
 package DatabaseLayer.Dao;
 
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.Dao.Interfaces.IPatientLoginDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PatientLoginDAO  {
+public class PatientLoginDAO implements IPatientLoginDAO {
 
     private Connection connection = null;
     private IDatabaseConnection databaseConnection;

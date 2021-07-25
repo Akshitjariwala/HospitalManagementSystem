@@ -1,14 +1,14 @@
 package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Patient;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.Dao.Interfaces.IPatientRegistrationDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
 import java.sql.*;
 
-public class PatientRegistrationDAO  {
+public class PatientRegistrationDAO implements IPatientRegistrationDAO {
 
     private Connection connection = null;
     private IDatabaseConnection databaseConnection;

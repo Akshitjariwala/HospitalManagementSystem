@@ -1,16 +1,15 @@
 package DatabaseLayer.Dao;
 
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import DatabaseLayer.Dao.Interfaces.IViewPatientReportsDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ViewPatientReportsDAO {
+public class ViewPatientReportsDAO  implements IViewPatientReportsDAO {
 
     private Connection connection = null;
     private IDatabaseConnection databaseConnection;
