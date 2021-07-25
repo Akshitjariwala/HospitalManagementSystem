@@ -1,3 +1,11 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Kishan Kahodariya
+ * @description: This program handles allows patient to
+ * select different feature of the system based on his/her type
+ * i.e. existing or new.
+ *
+ */
 package PresentationLayer;
 
 import BusinessLogicLayer.PatientModule.BookAppointments;

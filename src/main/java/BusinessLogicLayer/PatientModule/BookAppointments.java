@@ -5,7 +5,7 @@
  * once the patient has logged in.
  * The database access is done using common DatabaseConnection class
  *
- * */
+ */
 package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.PatientModule.PatientInterfaces.IBookAppointments;
