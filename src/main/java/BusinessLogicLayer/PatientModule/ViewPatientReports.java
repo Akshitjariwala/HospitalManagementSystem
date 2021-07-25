@@ -24,6 +24,7 @@ public class ViewPatientReports implements IViewLabReports {
   private ViewPatientReportsDAO viewPatientReportsDAO=new ViewPatientReportsDAO();
 
   public void viewLabReports(String patientID,String patientName) {
+
     ResultSet resultSet=null;
     System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
     System.out.println("Fetching Lab Reports.....\n");
