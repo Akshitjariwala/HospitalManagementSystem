@@ -7,8 +7,8 @@ import DatabaseLayer.Dao.ViewReportsDao;
 
 public class ViewReports {
 
-  int docId;
-  ViewReportsDao vrdao;
+  private int docId;
+  private ViewReportsDao vrdao;
 
   public ViewReports(int docId) {
     this.docId = docId;

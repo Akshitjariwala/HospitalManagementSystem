@@ -7,8 +7,8 @@ import DatabaseLayer.Dao.ViewPatientsDao;
 
 public class ViewPatients {
 
-  int docId;
-  ViewPatientsDao pdao;
+  private int docId;
+  private ViewPatientsDao pdao;
 
   public ViewPatients(int docId) {
     this.docId = docId;

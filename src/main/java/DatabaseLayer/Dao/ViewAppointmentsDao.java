@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Appointment;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
@@ -12,7 +13,7 @@ import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
 public class ViewAppointmentsDao {
-  Connection connection = null;
+  private Connection connection = null;
   IDatabaseConnection databaseConnection;
   IDatabaseConnectionFactory databaseConnectionFactory;
 
@@ -21,7 +22,7 @@ public class ViewAppointmentsDao {
     databaseConnection = databaseConnectionFactory.getDatabaseConnection();
   }
 
-  public ArrayList<Appointment> getAppointmentList(int docId, String status) {
+  public List<Appointment> getAppointmentList(int docId, String status) {
     String query = "Select * from appointments where doc_id=? and appointment_status=?";
     ArrayList<Appointment> appointments = new ArrayList<>();
     connection = databaseConnection.openDBConnection();

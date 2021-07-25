@@ -15,7 +15,7 @@ import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
 public class ViewPatientsDao {
 
-	Connection connection = null;
+	private Connection connection = null;
 	IDatabaseConnection databaseConnection;
 	IDatabaseConnectionFactory databaseConnectionFactory;
 

@@ -6,9 +6,9 @@ import DatabaseLayer.Dao.ViewAppointmentsDao;
 import BusinessLogicLayer.BeanClasses.Appointment;
 
 public class ViewAppointments {
-  int docId;
-  String status;
-  ViewAppointmentsDao vdao;
+  private int docId;
+  private String status;
+  private ViewAppointmentsDao vdao;
 
   public ViewAppointments(int docId, String status) {
     this.docId = docId;
