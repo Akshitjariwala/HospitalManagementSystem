@@ -1,16 +1,100 @@
 package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Reports;
-import DatabaseLayer.ActionDatabase.Admin.Reports.AddReportsDAO;
-import DatabaseLayer.ActionDatabase.Admin.Reports.UpdateReportsDAO;
+import DatabaseLayer.ActionDatabase.Admin.Reports.ManageReportsDAO;
 import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
 
-public class UpdateReports {
+public class ManageReports {
 
   private static String str = "";
 
+  public static void addReports() {
+    Reports report = new Reports();
+    Scanner inputData = new Scanner(System.in);
+    System.out.println("============================================================================");
+    System.out.println("                      Add Reports");
+    System.out.println("============================================================================");
+
+    do {
+      System.out.println("Enter the Doctor Id :");
+      int doctorId = inputData.nextInt();
+      ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
+      int count = manageReportsDAO.checkDoctorId(doctorId);
+      if (count > 0) {
+        report.setDoctorId(doctorId);
+      } else {
+        System.out.println("Please enter valid input:");
+      }
+    } while (report.getDoctorId() == 0);
+
+    do {
+      System.out.println("Enter the Patient id :");
+      String patientId = inputData.next();
+      ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
+      String str = manageReportsDAO.checkPatientId(patientId);
+      if (str != null) {
+        report.setPatientId(patientId);
+      } else {
+        System.out.println("Please enter valid input:");
+      }
+    } while (report.getPatientId() == null);
+
+    do {
+      System.out.println("Enter the Diagnosis Name :");
+      String diagnosisName = inputData.next();
+      if (diagnosisName.matches("^[a-zA-Z0-9_ ]*$")) {
+        report.setDiagnosisName(diagnosisName);
+      } else {
+        System.out.println("Please enter valid input:");
+      }
+    } while (report.getDiagnosisName() == null);
+
+    do {
+      System.out.println("Enter the Date of Test :");
+      String dateTest = inputData.next();
+      if (dateTest.matches("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
+        report.setDate(dateTest);
+      } else {
+        System.out.println("Please enter valid input:");
+      }
+    } while (report.getDate() == null);
+
+    do {
+      System.out.println("Enter the Test result :");
+      String testResult = inputData.next();
+      if (testResult.matches("^[a-zA-Z0-9_ ]*$")) {
+        report.setTestResult(testResult);
+      } else {
+        System.out.println("Please enter valid input:");
+      }
+    } while (report.getTestResult() == null);
+
+    do {
+      System.out.println("Enter the Test Type :");
+      String testType = inputData.next();
+      if (testType.matches("^[a-zA-Z0-9_ ]*$")) {
+        report.setTestType(testType);
+      } else {
+        System.out.println("Please enter valid input:");
+      }
+    } while (report.getTestType() == null);
+
+    ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
+    int status = manageReportsDAO.addReport(report);
+    if (status == 1) {
+      System.out.println("Report details added successfully");
+    } else {
+      System.out.println("ERROR while adding ward");
+    }
+    AdminUI adminLogin = new AdminUI();
+    try {
+      adminLogin.adminPage();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
   public static void updateReports() {
 
     Scanner inputData = new Scanner(System.in);
@@ -19,8 +103,8 @@ public class UpdateReports {
     System.out.println("============================================================================");
     System.out.println("Enter the report id that has to be updated");
     int id = inputData.nextInt();
-    UpdateReportsDAO updateReportsDAO = new UpdateReportsDAO();
-    Reports report = updateReportsDAO.getReportsDetails(id);
+    ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
+    Reports report = manageReportsDAO.getReportsDetails(id);
     int reportId = report.getReportId();
 
     System.out.println("===========The details of the report" + " " + reportId + " " + "are==================");
@@ -40,8 +124,7 @@ public class UpdateReports {
         do {
           System.out.println("Enter the doctor id :");
           doctorId = inputData.nextInt();
-          AddReportsDAO addReportsDAO = new AddReportsDAO();
-          int count = addReportsDAO.checkDoctorId(doctorId);
+          int count = manageReportsDAO.checkDoctorId(doctorId);
           if (count > 0) {
             str = "doc_id = " + "'" + doctorId + "'";
           } else {
@@ -55,8 +138,7 @@ public class UpdateReports {
         do {
           System.out.println("Enter the Patient id :");
           String patientId = inputData.next();
-          AddReportsDAO addReportsDAO = new AddReportsDAO();
-          strCheck = addReportsDAO.checkPatientId(patientId);
+          strCheck = manageReportsDAO.checkPatientId(patientId);
           if (strCheck != null) {
             str = "patient_id = " + "'" + patientId + "'";
           } else {
@@ -129,8 +211,7 @@ public class UpdateReports {
 
     }
     if (!str.isEmpty()) {
-      updateReportsDAO = new UpdateReportsDAO();
-      updateReportsDAO.updateReport(str, reportId);
+      manageReportsDAO.updateReport(str, reportId);
       System.out.println("Report Updated Successfully.");
       AdminUI adminLogin = new AdminUI();
       try {

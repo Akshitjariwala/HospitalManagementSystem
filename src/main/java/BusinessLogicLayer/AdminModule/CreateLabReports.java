@@ -12,10 +12,10 @@ public class CreateLabReports {
 
     switch (choice) {
       case 1:
-        AddReports.addReports();
+        ManageReports.addReports();
         break;
       case 2:
-        UpdateReports.updateReports();
+        ManageReports.updateReports();
         break;
     }
   }
