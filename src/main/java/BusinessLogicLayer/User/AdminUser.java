@@ -23,7 +23,7 @@ public class AdminUser extends User {
       String password = loginPassword.nextLine();
 
       if (loginID != null && password != null) {
-        if (loginID.equals("admin") & password.equals("admin")) { // Provide Valid Admin Login Password.
+        if (loginID.equals("admin") & password.equals("admin")) {
           AdminUI adminUI = new AdminUI();
           adminUI.adminPage();
         } else {

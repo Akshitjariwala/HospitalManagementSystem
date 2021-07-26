@@ -31,14 +31,6 @@ public class AdmissionForm extends AdminAbstractAction {
   public static LocalDate todayDate = LocalDate.now();
   private static final String ACTION_TITLE = "Admission Form";
 
-  static {
-    try {
-      statement = connection.createStatement();
-    } catch (SQLException throwables) {
-      throwables.printStackTrace();
-    }
-  }
-
   public AdmissionForm(){
     saveAdmissionDao = iAdminActionDatabase.saveAdmissionForm();
     getAdmissionDetailsDao = iAdminActionDatabase.admissionDetailsDAO();
