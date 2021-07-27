@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao.Interfaces;
+package DatabaseLayer.ActionDatabase.Patient.Login;
 
 public interface IPatientLoginDAO  {
 

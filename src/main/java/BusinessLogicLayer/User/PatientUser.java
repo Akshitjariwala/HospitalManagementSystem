@@ -1,6 +1,8 @@
 package BusinessLogicLayer.User;
 
-import DatabaseLayer.Dao.PatientLoginDAO;
+import DatabaseLayer.ActionDatabase.Patient.Login.IPatientLoginDAO;
+import DatabaseLayer.ActionDatabase.Patient.Login.PatientLoginDAO;
+import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import PresentationLayer.PatientUI;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,4 +49,6 @@ public class PatientUser extends User {
       System.out.println("I/O ERROR");
     }
   }
+
+
 }
