@@ -9,7 +9,9 @@
 package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.PatientModule.PatientInterfaces.IBookAppointments;
-import DatabaseLayer.Dao.BookAppointmentsDAO;
+import DatabaseLayer.ActionDatabase.Patient.BookAppointments.BookAppointmentsDAO;
+import DatabaseLayer.ActionDatabase.Patient.BookAppointments.IBookAppointmentsDAO;
+import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import PresentationLayer.PatientUI;
 import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
 
@@ -23,10 +25,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class BookAppointments implements IBookAppointments {
+public class BookAppointments extends PatientAbstractAction {
 
+  private IBookAppointmentsDAO iBookAppointmentsDAO;
+  private static final String ACTION_TITLE ="Book Appointments";
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-  private BookAppointmentsDAO bookAppointmentsDAO=new BookAppointmentsDAO();
   private ResultSet resultSet = null;
   private Scanner readInput = new Scanner(System.in);
   private String selectedDoctor = null;
@@ -48,6 +51,15 @@ public class BookAppointments implements IBookAppointments {
     add("Evening");
   }};
 
+  public BookAppointments() {
+    iBookAppointmentsDAO= iPatientActionDatabase.getAppointmentDAO();
+  }
+
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
+
   public boolean appointmentBookingPortalofPatient(String patientid) {
 
     System.out.println("==============================\nBOOK APPOINTMENT\n==============================");
@@ -60,7 +72,7 @@ public class BookAppointments implements IBookAppointments {
 
       //Patient
       globalPatientID = patientid;
-      String patientFullName=bookAppointmentsDAO.getPatientName(patientid);
+      String patientFullName= iBookAppointmentsDAO.getPatientName(patientid);
       appointmentWithDoctor.setPatientName(patientFullName);
 
       //Select doctor
@@ -127,7 +139,7 @@ public class BookAppointments implements IBookAppointments {
 
   public void displayDoctorList() {
     try {
-      resultSet= bookAppointmentsDAO.fetchDoctorList();
+      resultSet= iBookAppointmentsDAO.fetchDoctorList();
       //print doctor list
       System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
       System.out.println("-------------------------------------------------------------------------");
@@ -243,7 +255,7 @@ public class BookAppointments implements IBookAppointments {
 
   public void saveEnteredDetails(String patient, String doctor) {
 
-    Boolean isAppointmentBooked=bookAppointmentsDAO.saveAppointment(patient,doctor,appointmentWithDoctor);
+    Boolean isAppointmentBooked=iBookAppointmentsDAO.saveAppointment(patient,doctor,appointmentWithDoctor);
     if (isAppointmentBooked) {
       System.out.println("\n***** NEW APPOINTMENT CREATED *****");
     }

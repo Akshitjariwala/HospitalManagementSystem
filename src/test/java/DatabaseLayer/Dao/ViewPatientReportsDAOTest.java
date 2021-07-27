@@ -1,5 +1,6 @@
 package DatabaseLayer.Dao;
 
+import DatabaseLayer.ActionDatabase.Patient.ViewReports.ViewPatientReportsDAO;
 import org.junit.Test;
 
 import java.sql.ResultSet;

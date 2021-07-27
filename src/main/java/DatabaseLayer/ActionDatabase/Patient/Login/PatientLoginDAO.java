@@ -1,6 +1,5 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Patient.Login;
 
-import DatabaseLayer.Dao.Interfaces.IPatientLoginDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;

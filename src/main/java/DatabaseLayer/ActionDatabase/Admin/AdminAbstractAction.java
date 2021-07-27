@@ -5,6 +5,7 @@ public abstract class AdminAbstractAction {
   protected IAdminActionDatabase iAdminActionDatabase;
 
   public AdminAbstractAction() {
+
     iAdminActionDatabase = new AdminActionDatabase();
   }
 

@@ -1,7 +1,6 @@
-package DatabaseLayer.Dao.Interfaces;
+package DatabaseLayer.ActionDatabase.Patient.BookAppointments;
 
 import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
-
 import java.sql.ResultSet;
 
 public interface IBookAppointmentsDAO {

@@ -10,19 +10,22 @@ package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 import BusinessLogicLayer.PatientModule.PatientInterfaces.IPatientRegistration;
-import DatabaseLayer.Dao.PatientRegistrationDAO;
+import DatabaseLayer.ActionDatabase.Patient.BookAppointments.IBookAppointmentsDAO;
+import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
+import DatabaseLayer.ActionDatabase.Patient.Registration.IPatientRegistrationDAO;
+import DatabaseLayer.ActionDatabase.Patient.Registration.PatientRegistrationDAO;
 import PresentationLayer.PatientUI;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
-public class PatientRegistration implements IPatientRegistration {
+public class PatientRegistration extends PatientAbstractAction {
 
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private Patient patient = new Patient();
-  private PatientRegistrationDAO patientRegistrationDAO=new PatientRegistrationDAO();
-
+  private IPatientRegistrationDAO iPatientRegistrationDAO;
+  private static final String ACTION_TITLE ="Patient Registration";
   private String firstName = null;
   private String lastName = null;
   private String middleName = null;
@@ -37,6 +40,14 @@ public class PatientRegistration implements IPatientRegistration {
   private String additionalComments = null;
   private String userID = null;
   private String password = null;
+
+
+  public PatientRegistration() { iPatientRegistrationDAO=iPatientActionDatabase.registerPatientDAO();}
+
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
 
   public void newPatientRegistration() {
 
@@ -172,6 +183,7 @@ public class PatientRegistration implements IPatientRegistration {
     System.out.println("\nTo change or update the provided details, enter a number between 1-11.\nTo save the details enter 16 and to go back to Main menu select 13");
     changeEnteredDetails();
   }
+
 
   public void changeEnteredDetails() {
     String X = null;
@@ -344,9 +356,9 @@ public class PatientRegistration implements IPatientRegistration {
 
   public void saveEnteredDetails() {
 
-    int isNewPatientCreated=patientRegistrationDAO.savePatientDetails(patient);
+    int isNewPatientCreated=iPatientRegistrationDAO.savePatientDetails(patient);
     if (isNewPatientCreated==1)  {
-      System.out.println("\n***** NEW PATIENT CREATED *****\n");
+      System.out.println("\n***** NEW PATIENT CREATED *****");
     }else if(isNewPatientCreated==-1) {
       try {
         System.err.println("***** Username already exists *****\n");
