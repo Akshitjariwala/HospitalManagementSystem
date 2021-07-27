@@ -13,7 +13,7 @@ import PresentationLayer.DoctorManagementUI;
 
 import java.util.Scanner;
 
-public class ManageDoctor extends AdminAbstractAction {
+public class ManageDoctor extends AdminAbstractAction implements IManageDoctor {
 
   private IManageDoctorDAO iManageDoctorDAO;
   private static final String ACTION_TITLE = "Manage Doctor";
@@ -30,6 +30,7 @@ public class ManageDoctor extends AdminAbstractAction {
   /* Doctor Details are taken as input
    * The details are stored into database
    */
+  @Override
   public void registration() {
     Doctor doct = new Doctor();
     Scanner inputData = new Scanner(System.in);
@@ -184,6 +185,7 @@ public class ManageDoctor extends AdminAbstractAction {
    * The details are fetched from database and are displayed
    * The user will have privilege to edit the details and the details are updated in database
    */
+  @Override
   public void updateRegistration() {
     String str = "";
 

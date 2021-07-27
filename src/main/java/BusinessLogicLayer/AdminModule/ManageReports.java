@@ -13,7 +13,7 @@ import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
 
-public class ManageReports extends AdminAbstractAction {
+public class ManageReports extends AdminAbstractAction implements IManageReports {
 
   private IManageReportsDAO iManageReportsDAO;
 
@@ -34,6 +34,7 @@ public class ManageReports extends AdminAbstractAction {
    * The report details are taken as input
    * The details are stored into database
    */
+  @Override
   public void addReports() {
     Reports report = new Reports();
     Scanner inputData = new Scanner(System.in);
@@ -43,14 +44,14 @@ public class ManageReports extends AdminAbstractAction {
 
     do {
       System.out.println("Enter the Doctor Id :");
-      int doctorId = inputData.nextInt();
+      String doctorId = inputData.next();
       int count = iManageReportsDAO.checkDoctorId(doctorId);
       if (count > 0) {
         report.setDoctorId(doctorId);
       } else {
         System.out.println("Please enter valid input:");
       }
-    } while (report.getDoctorId() == 0);
+    } while (report.getDoctorId() == null);
 
     do {
       System.out.println("Enter the Patient id :");
@@ -122,6 +123,7 @@ public class ManageReports extends AdminAbstractAction {
    * The details are fetched from database and are displayed
    * The user will have privilege to edit the details and the details are updated in database
    */
+  @Override
   public void updateReports() {
 
     Scanner inputData = new Scanner(System.in);
@@ -147,18 +149,18 @@ public class ManageReports extends AdminAbstractAction {
 
     switch (input) {
       case 1:
-        int doctorId;
+        String doctorId;
         do {
           System.out.println("Enter the doctor id :");
-          doctorId = inputData.nextInt();
+          doctorId = inputData.next();
           int count = iManageReportsDAO.checkDoctorId(doctorId);
           if (count > 0) {
             str = "doc_id = " + "'" + doctorId + "'";
           } else {
-            doctorId = 0;
+            doctorId = null;
             System.out.println("Please enter valid input:");
           }
-        } while (doctorId == 0);
+        } while (doctorId == null);
         break;
       case 2:
         String strCheck;

@@ -6,7 +6,7 @@ public interface IManageReportsDAO {
 
   int addReport(Reports report);
 
-  int checkDoctorId(int id);
+  int checkDoctorId(String id);
 
   String checkPatientId(String id);
 

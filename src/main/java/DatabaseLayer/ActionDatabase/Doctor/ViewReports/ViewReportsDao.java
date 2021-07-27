@@ -34,7 +34,7 @@ public class ViewReportsDao implements IViewReportsDao {
       while (rs.next()) {
         Reports r = new Reports();
         r.setReportId(rs.getInt("rep_id"));
-        r.setDoctorId(rs.getInt("doc_id"));
+        r.setDoctorId(rs.getString("doc_id"));
         r.setPatientId(rs.getString("patient_id"));
         r.setDiagnosisName(rs.getString("diagnosis_name"));
         r.setDate(rs.getString("date"));
@@ -64,7 +64,7 @@ public class ViewReportsDao implements IViewReportsDao {
       while (rs.next()) {
         Reports r = new Reports();
         r.setReportId(rs.getInt("rep_id"));
-        r.setDoctorId(rs.getInt("doc_id"));
+        r.setDoctorId(rs.getString("doc_id"));
         r.setPatientId(rs.getString("patient_id"));
         r.setDiagnosisName(rs.getString("diagnosis_name"));
         r.setDate(rs.getString("date"));
