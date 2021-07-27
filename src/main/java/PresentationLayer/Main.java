@@ -2,7 +2,6 @@ package PresentationLayer;
 
 import BusinessLogicLayer.User.AdminUser;
 import BusinessLogicLayer.User.DoctorUser;
-
 import java.util.Scanner;
 
 public class Main {
