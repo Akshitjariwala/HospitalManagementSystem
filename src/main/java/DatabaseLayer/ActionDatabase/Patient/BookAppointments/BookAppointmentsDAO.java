@@ -1,8 +1,7 @@
 
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Patient.BookAppointments;
 
 import BusinessLogicLayer.BeanClasses.PatientAppointmentWithDoctor;
-import DatabaseLayer.Dao.Interfaces.IBookAppointmentsDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
@@ -14,8 +13,8 @@ import java.sql.Statement;
 public class BookAppointmentsDAO implements IBookAppointmentsDAO  {
 
     private Connection connection = null;
-    private final IDatabaseConnection databaseConnection;
-    private final IDatabaseConnectionFactory databaseConnectionFactory;
+    private IDatabaseConnection databaseConnection;
+    private IDatabaseConnectionFactory databaseConnectionFactory;
     private Statement statement = null;
 
     public BookAppointmentsDAO()  {
