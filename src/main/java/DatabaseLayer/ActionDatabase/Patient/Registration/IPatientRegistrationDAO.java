@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao.Interfaces;
+package DatabaseLayer.ActionDatabase.Patient.Registration;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 

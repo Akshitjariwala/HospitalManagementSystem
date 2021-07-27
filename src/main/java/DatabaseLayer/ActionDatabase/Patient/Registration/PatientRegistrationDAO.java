@@ -1,7 +1,6 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Patient.Registration;
 
 import BusinessLogicLayer.BeanClasses.Patient;
-import DatabaseLayer.Dao.Interfaces.IPatientRegistrationDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
