@@ -1,23 +1,26 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Akshit Jariwala
+ * @description: This Module handles Admission functionality
+ * It creates a new admission records for the patient which can be
+ * updated. It allocates resources to the patient based on availability.
+ * It also handles the discharge of the Patient and release of resources.
+ */
+
 package BusinessLogicLayer.AdmissionDischargeModule;
 
 import BusinessLogicLayer.BeanClasses.Admission;
 import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
 import DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge.*;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
 import PresentationLayer.AdmissionFormUI;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class AdmissionForm extends AdminAbstractAction {
+public class AdmissionForm extends AdminAbstractAction implements IAdmissionForm {
 
-  public static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-  public static Connection connection = databaseConnection.openDBConnection();
-  public static Statement statement;
   public static IAdmissionDetailsDAO getAdmissionDetailsDao;
   public static IAdmissionFormDAO saveAdmissionDao;
   public static IAdmissionTypeDAO admissionTypeDAO;
@@ -30,14 +33,6 @@ public class AdmissionForm extends AdminAbstractAction {
   public static Admission admission = new Admission();
   public static LocalDate todayDate = LocalDate.now();
   private static final String ACTION_TITLE = "Admission Form";
-
-  static {
-    try {
-      statement = connection.createStatement();
-    } catch (SQLException throwables) {
-      throwables.printStackTrace();
-    }
-  }
 
   public AdmissionForm(){
     saveAdmissionDao = iAdminActionDatabase.saveAdmissionForm();
@@ -55,6 +50,7 @@ public class AdmissionForm extends AdminAbstractAction {
     return ACTION_TITLE;
   }
 
+  @Override
   public void newAdmissionForm() {
 
     Scanner userInput = new Scanner(System.in);
@@ -198,6 +194,7 @@ public class AdmissionForm extends AdminAbstractAction {
     }
   }
 
+  @Override
   public String displayPatientName() {
     String patientName = null;
     int flag = 0;
@@ -224,6 +221,7 @@ public class AdmissionForm extends AdminAbstractAction {
     return patientName;
   }
 
+  @Override
   public String displayAdmissionType() {
     int flag = 0;
     String admissionType = null;
@@ -256,6 +254,7 @@ public class AdmissionForm extends AdminAbstractAction {
     return admissionType;
   }
 
+  @Override
   public String displayDiagnose() {
     int flag = 0;
     String diseaseName = null;
@@ -287,6 +286,7 @@ public class AdmissionForm extends AdminAbstractAction {
     return diseaseName;
   }
 
+  @Override
   public String displayDoctor() {
     int flag = 0;
     String doctorName = null;
@@ -318,6 +318,7 @@ public class AdmissionForm extends AdminAbstractAction {
     return doctorName;
   }
 
+  @Override
   public String displayWard() {
 
     int flag = 0;
@@ -351,6 +352,7 @@ public class AdmissionForm extends AdminAbstractAction {
     return wardCode;
   }
 
+  @Override
   public String displayBed() {
 
     int flag = 0;
@@ -384,6 +386,7 @@ public class AdmissionForm extends AdminAbstractAction {
     return bedCode;
   }
 
+  @Override
   public void updateAdmissionForm() {
 
     int flag = 0;

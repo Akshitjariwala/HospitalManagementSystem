@@ -1,11 +1,7 @@
-package BusinessLogicLayer.AdmissionDischargeModule;
+package BusinessLogicLayer.BeanClasses;
 
-import BusinessLogicLayer.BeanClasses.Admission;
 import org.junit.jupiter.api.Test;
-
-
 import java.sql.Date;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AdmissionTest {
@@ -62,7 +58,6 @@ public class AdmissionTest {
     assertEquals(6, admission.getDiseaseID(), "Test Failed!. Incorrect or No value received.");
   }
 
-  // getAdmissionDate() returns the date of Admission.
   @Test
   public void getAdmissionDate() {
     Admission admission = new Admission();
@@ -70,7 +65,6 @@ public class AdmissionTest {
     assertEquals(date, admission.getAdmissionDate(), "Test Failed!. Incorrect or No value received.");
   }
 
-  // getDischargeDate() returns the date of Discharge.
   @Test
   public void getDischargeDate() {
     Admission admission = new Admission();
