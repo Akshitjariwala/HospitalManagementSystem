@@ -34,9 +34,9 @@ public class WardDAOTest {
     ward.setLocation("Wing B");
     ward.setTotalBeds(25);
     ward.setBedType("ICU");
-    assertEquals(11 + " " + "General" + " " + "General" + " " + "Wing B" + " " + 25 + " " + "ICU",
-            ward.getWardId() + " " + ward.getWardType() + " " + ward.getWardName() + " " + ward.getLocation() + " " + ward.getTotalBeds() + " " +
-                    ward.getBedType(), "The values are not valid");
+
+    Mockito.when(iWardDAO.addWard(ward)).thenReturn(1);
+    assertEquals(1, iWardDAO.addWard(ward), "Ward has not been added");
   }
 
   @Test
