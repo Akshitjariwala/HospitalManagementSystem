@@ -1,7 +1,6 @@
 package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Patient;
-import DatabaseLayer.ActionDatabase.Patient.BookAppointments.BookAppointmentsDAO;
 import DatabaseLayer.ActionDatabase.Patient.Login.PatientLoginDAO;
 import DatabaseLayer.ActionDatabase.Patient.Registration.PatientRegistrationDAO;
 import org.junit.jupiter.api.BeforeEach;
