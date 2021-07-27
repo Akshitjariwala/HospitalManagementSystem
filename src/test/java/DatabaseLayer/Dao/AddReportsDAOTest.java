@@ -2,6 +2,7 @@ package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Reports;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +18,6 @@ class AddReportsDAOTest {
     report.setDate("2020-02-02");
     report.setTestResult("Negative");
     report.setTestType("Blood-Sample");
-
     assertEquals(1 + " " + 5 + " " + "Patient123" + " " + "Covid" + " " + "2020-02-02" + " " +
             "Negative" + " " + "Blood-Sample", report.getReportId() + " " + report.getDoctorId() + " " +
             report.getPatientId() + " " + report.getDiagnosisName() + " " + report.getDate() + " "

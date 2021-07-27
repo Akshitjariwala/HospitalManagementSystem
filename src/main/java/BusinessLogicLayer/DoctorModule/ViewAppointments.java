@@ -1,11 +1,10 @@
-package BusinessLogicLayer.DoctorModule;
 /*
  * CSCI 5308 Group Project
  * @author: Vishal Rakesh Jaiswal
  * @description: This program allows a doctor to view appointments booked with the doctor
  * The database access is done using common DatabaseConnection class
- *
  * */
+package BusinessLogicLayer.DoctorModule;
 import java.util.List;
 
 import DatabaseLayer.ActionDatabase.Doctor.DoctorAbstractAction;

@@ -1,4 +1,3 @@
-package BusinessLogicLayer.DoctorModule;
 /*
  * CSCI 5308 Group Project
  * @author: Vishal Rakesh Jaiswal
@@ -7,6 +6,8 @@ package BusinessLogicLayer.DoctorModule;
  * The database access is done using common DatabaseConnection class
  *
  * */
+package BusinessLogicLayer.DoctorModule;
+
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Reports;
