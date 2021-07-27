@@ -1,6 +1,5 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Patient.ViewReports;
 
-import DatabaseLayer.Dao.Interfaces.IViewPatientReportsDAO;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;

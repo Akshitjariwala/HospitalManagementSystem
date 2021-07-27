@@ -42,7 +42,7 @@ public class PatientRegistration extends PatientAbstractAction {
   private String password = null;
 
 
-  public PatientRegistration() { iPatientRegistrationDAO=iPatientActionDatabase.registerPatient();}
+  public PatientRegistration() { iPatientRegistrationDAO=iPatientActionDatabase.registerPatientDAO();}
 
   @Override
   public String getActionTitle() {

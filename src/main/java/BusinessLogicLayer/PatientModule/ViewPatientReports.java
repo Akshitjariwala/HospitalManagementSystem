@@ -10,7 +10,10 @@
 package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.PatientModule.PatientInterfaces.IViewLabReports;
-import DatabaseLayer.Dao.ViewPatientReportsDAO;
+import DatabaseLayer.ActionDatabase.Patient.BookAppointments.IBookAppointmentsDAO;
+import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
+import DatabaseLayer.ActionDatabase.Patient.ViewReports.IViewPatientReportsDAO;
+import DatabaseLayer.ActionDatabase.Patient.ViewReports.ViewPatientReportsDAO;
 import PresentationLayer.PatientUI;
 
 import java.sql.ResultSet;
@@ -18,11 +21,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
-public class ViewPatientReports implements IViewLabReports {
+public class ViewPatientReports extends PatientAbstractAction {
 
   private Statement statement = null;
-  private ViewPatientReportsDAO viewPatientReportsDAO=new ViewPatientReportsDAO();
+  private IViewPatientReportsDAO iViewPatientReportsDAO;
+  private static final String ACTION_TITLE ="View Patient Reports";
 
+  public ViewPatientReports() {
+    iViewPatientReportsDAO= iPatientActionDatabase.viewReportsDAO();
+  }
+
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
   public void viewLabReports(String patientID,String patientName) {
 
     ResultSet resultSet=null;
@@ -32,7 +44,7 @@ public class ViewPatientReports implements IViewLabReports {
       TimeUnit.SECONDS.sleep(5);
       System.out.println("|\tNo.\t|\tPatient_id\t|\tDiagnosis Name\t|\tReferred By\t\t|\tDate\t|\tTest Type\t|\tResult\t|");
       System.out.println("--------------------------------------------------------------------------------------------------------------------");
-      resultSet= viewPatientReportsDAO.fetchLabReports(patientID);
+      resultSet= iViewPatientReportsDAO.fetchLabReports(patientID);
       int index = 0;
 
       if (resultSet.next()){
