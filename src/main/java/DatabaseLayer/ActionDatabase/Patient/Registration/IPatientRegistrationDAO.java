@@ -4,5 +4,5 @@ import BusinessLogicLayer.BeanClasses.Patient;
 
 public interface IPatientRegistrationDAO {
 
-    int savePatientDetails(Patient patient);
+  int savePatientDetails(Patient patient);
 }

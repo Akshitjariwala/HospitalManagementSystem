@@ -4,6 +4,7 @@ import DatabaseLayer.ActionDatabase.Patient.Login.IPatientLoginDAO;
 import DatabaseLayer.ActionDatabase.Patient.Login.PatientLoginDAO;
 import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import PresentationLayer.PatientUI;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +23,7 @@ public class PatientUser extends User {
     String providedPassword = null;
     String patientName = null;
     ResultSet resultSet = null;
-    PatientLoginDAO patientLoginDAO=new PatientLoginDAO();
+    PatientLoginDAO patientLoginDAO = new PatientLoginDAO();
 
     System.out.println("\n===========================================\n" +
             "\t\t\t\tPatient Login\n" +
@@ -37,10 +38,10 @@ public class PatientUser extends User {
         System.out.print("Enter Password : ");
         password = reader.readLine();
 
-        providedPassword=patientLoginDAO.getLoginCredentials(userID);
+        providedPassword = patientLoginDAO.getLoginCredentials(userID);
       } while (!password.equals(providedPassword));
 
-      patientName=patientLoginDAO.getPatientName(userID);
+      patientName = patientLoginDAO.getPatientName(userID);
 
       //Redirect to mainPatientUI
       patientUI.mainPatientUI(userID, patientName);

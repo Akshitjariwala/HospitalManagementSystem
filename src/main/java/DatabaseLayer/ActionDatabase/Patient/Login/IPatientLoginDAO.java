@@ -1,7 +1,8 @@
 package DatabaseLayer.ActionDatabase.Patient.Login;
 
-public interface IPatientLoginDAO  {
+public interface IPatientLoginDAO {
 
-    String getLoginCredentials(String userID);
-    String getPatientName(String userID);
+  String getLoginCredentials(String userID);
+
+  String getPatientName(String userID);
 }

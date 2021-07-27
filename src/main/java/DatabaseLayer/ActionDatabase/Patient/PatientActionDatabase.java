@@ -15,9 +15,13 @@ public class PatientActionDatabase implements IPatientActionDatabase {
   }
 
   @Override
-  public IPatientRegistrationDAO registerPatientDAO() { return new PatientRegistrationDAO(); }
+  public IPatientRegistrationDAO registerPatientDAO() {
+    return new PatientRegistrationDAO();
+  }
 
   @Override
-  public IViewPatientReportsDAO viewReportsDAO() { return new ViewPatientReportsDAO(); }
+  public IViewPatientReportsDAO viewReportsDAO() {
+    return new ViewPatientReportsDAO();
+  }
 
 }

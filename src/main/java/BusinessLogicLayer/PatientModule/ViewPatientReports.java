@@ -9,11 +9,8 @@
  * */
 package BusinessLogicLayer.PatientModule;
 
-import BusinessLogicLayer.PatientModule.PatientInterfaces.IViewLabReports;
-import DatabaseLayer.ActionDatabase.Patient.BookAppointments.IBookAppointmentsDAO;
 import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import DatabaseLayer.ActionDatabase.Patient.ViewReports.IViewPatientReportsDAO;
-import DatabaseLayer.ActionDatabase.Patient.ViewReports.ViewPatientReportsDAO;
 import PresentationLayer.PatientUI;
 
 import java.sql.ResultSet;
@@ -25,29 +22,30 @@ public class ViewPatientReports extends PatientAbstractAction {
 
   private Statement statement = null;
   private IViewPatientReportsDAO iViewPatientReportsDAO;
-  private static final String ACTION_TITLE ="View Patient Reports";
+  private static final String ACTION_TITLE = "View Patient Reports";
 
   public ViewPatientReports() {
-    iViewPatientReportsDAO= iPatientActionDatabase.viewReportsDAO();
+    iViewPatientReportsDAO = iPatientActionDatabase.viewReportsDAO();
   }
 
   @Override
   public String getActionTitle() {
     return ACTION_TITLE;
   }
-  public void viewLabReports(String patientID,String patientName) {
 
-    ResultSet resultSet=null;
+  public void viewLabReports(String patientID, String patientName) {
+
+    ResultSet resultSet = null;
     System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
     System.out.println("Fetching Lab Reports.....\n");
     try {
       TimeUnit.SECONDS.sleep(5);
       System.out.println("|\tNo.\t|\tPatient_id\t|\tDiagnosis Name\t|\tReferred By\t\t|\tDate\t|\tTest Type\t|\tResult\t|");
       System.out.println("--------------------------------------------------------------------------------------------------------------------");
-      resultSet= iViewPatientReportsDAO.fetchLabReports(patientID);
+      resultSet = iViewPatientReportsDAO.fetchLabReports(patientID);
       int index = 0;
 
-      if (resultSet.next()){
+      if (resultSet.next()) {
         while (resultSet.next()) {
           index++;
           int reportID = resultSet.getInt(1);
@@ -58,13 +56,13 @@ public class ViewPatientReports extends PatientAbstractAction {
           String result = resultSet.getString(6);
           System.out.println("|\t" + index + "\t\tReport " + reportID + "\t\t\t" + diagnosisType + "\t\t" + doctorName + "\t\t" + dateOfReport + "\t\t" + testType + "\t\t" + result);
         }
-      }else {
+      } else {
         System.out.println("\t--------------- NO NEW REPORTS AVAILABLE ---------------");
       }
 
       //Redirect to previous Menu
-      PatientUI patientUI=new PatientUI();
-      patientUI.mainPatientUI(patientID,patientName);
+      PatientUI patientUI = new PatientUI();
+      patientUI.mainPatientUI(patientID, patientName);
     } catch (InterruptedException e) {
       System.err.print("INTERRUPTED");
     } catch (SQLException e) {

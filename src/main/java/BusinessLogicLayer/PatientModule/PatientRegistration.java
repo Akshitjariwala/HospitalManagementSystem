@@ -9,12 +9,10 @@
 package BusinessLogicLayer.PatientModule;
 
 import BusinessLogicLayer.BeanClasses.Patient;
-import BusinessLogicLayer.PatientModule.PatientInterfaces.IPatientRegistration;
-import DatabaseLayer.ActionDatabase.Patient.BookAppointments.IBookAppointmentsDAO;
 import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import DatabaseLayer.ActionDatabase.Patient.Registration.IPatientRegistrationDAO;
-import DatabaseLayer.ActionDatabase.Patient.Registration.PatientRegistrationDAO;
 import PresentationLayer.PatientUI;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,7 +23,7 @@ public class PatientRegistration extends PatientAbstractAction {
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private Patient patient = new Patient();
   private IPatientRegistrationDAO iPatientRegistrationDAO;
-  private static final String ACTION_TITLE ="Patient Registration";
+  private static final String ACTION_TITLE = "Patient Registration";
   private String firstName = null;
   private String lastName = null;
   private String middleName = null;
@@ -42,7 +40,9 @@ public class PatientRegistration extends PatientAbstractAction {
   private String password = null;
 
 
-  public PatientRegistration() { iPatientRegistrationDAO=iPatientActionDatabase.registerPatientDAO();}
+  public PatientRegistration() {
+    iPatientRegistrationDAO = iPatientActionDatabase.registerPatientDAO();
+  }
 
   @Override
   public String getActionTitle() {
@@ -338,7 +338,7 @@ public class PatientRegistration extends PatientAbstractAction {
 
         case 13:
           saveEnteredDetails();
-          PatientUI patientUI=new PatientUI();
+          PatientUI patientUI = new PatientUI();
           patientUI.loginOrRegistrationUI();
           break;
 
@@ -356,18 +356,18 @@ public class PatientRegistration extends PatientAbstractAction {
 
   public void saveEnteredDetails() {
 
-    int isNewPatientCreated=iPatientRegistrationDAO.savePatientDetails(patient);
-    if (isNewPatientCreated==1)  {
+    int isNewPatientCreated = iPatientRegistrationDAO.savePatientDetails(patient);
+    if (isNewPatientCreated == 1) {
       System.out.println("\n***** NEW PATIENT CREATED *****");
-    }else if(isNewPatientCreated==-1) {
+    } else if (isNewPatientCreated == -1) {
       try {
         System.err.println("***** Username already exists *****\n");
         TimeUnit.SECONDS.sleep(2);
         displayEnteredDetails();
-      }catch (InterruptedException e){
+      } catch (InterruptedException e) {
         System.err.println("INTERRUPTED");
       }
-    }else {
+    } else {
       System.out.println("\n***** UNABLE TO CREATE NEW PATIENT *****\n");
     }
   }

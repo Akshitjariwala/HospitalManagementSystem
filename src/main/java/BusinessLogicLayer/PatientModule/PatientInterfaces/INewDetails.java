@@ -2,6 +2,7 @@ package BusinessLogicLayer.PatientModule.PatientInterfaces;
 
 public interface INewDetails {
 
-    void displayEnteredDetails();
-    void changeEnteredDetails();
+  void displayEnteredDetails();
+
+  void changeEnteredDetails();
 }
