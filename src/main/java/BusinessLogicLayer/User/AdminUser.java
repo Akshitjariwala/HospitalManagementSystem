@@ -1,3 +1,11 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Akshit Jariwala
+ * @description: This program handles admin Login by
+ * validating him/her before giving access to the system
+ *
+ * */
+
 package BusinessLogicLayer.User;
 
 import PresentationLayer.AdminUI;

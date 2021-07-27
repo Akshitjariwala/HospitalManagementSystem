@@ -1,3 +1,11 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Kishan Kahodariya
+ * @description: This program handles patient Login
+ * of existing patient and validate them before
+ * giving access to the system
+ *
+ * */
 package BusinessLogicLayer.User;
 
 import DatabaseLayer.ActionDatabase.Patient.Login.PatientLoginDAO;
