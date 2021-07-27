@@ -1,14 +1,23 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Akshit Jariwala
+ * @description: This Module handles Admission/Discharge form.
+ * It shows the main menu for the Admission/ Discharge.
+ */
+
 package PresentationLayer;
 
 import BusinessLogicLayer.AdmissionDischargeModule.AdmissionForm;
 import BusinessLogicLayer.AdmissionDischargeModule.DischargeForm;
+import BusinessLogicLayer.AdmissionDischargeModule.IAdmissionForm;
+import BusinessLogicLayer.AdmissionDischargeModule.IDischargeForm;
 import BusinessLogicLayer.PatientModule.PatientRegistration;
 import java.util.Scanner;
 
 public class AdmissionFormUI {
     
-    public static DischargeForm dischargeForm = new DischargeForm();
-    public static AdmissionForm newAdmission = new AdmissionForm();
+    public static IDischargeForm IDischargeForm = new DischargeForm();
+    public static IAdmissionForm newAdmission = new AdmissionForm();
     public void admissionHomePage() {
         int flag = 0;
         do {
@@ -35,7 +44,7 @@ public class AdmissionFormUI {
                         flag = 0;
                         break;
                     case 2:
-                        dischargeForm.dischargeForm();
+                        IDischargeForm.dischargeForm();
                         flag = 0;
                         break;
                     case 3:

@@ -1,3 +1,10 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Akshit Jariwala
+ * @description: This Module handles Discharge functionality
+ * It handles the discharge of the Patient and release of resources.
+ */
+
 package BusinessLogicLayer.AdmissionDischargeModule;
 
 import BusinessLogicLayer.BeanClasses.Admission;
@@ -7,7 +14,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class DischargeForm extends AdminAbstractAction {
+public class DischargeForm extends AdminAbstractAction implements IDischargeForm {
 
   public static IAdmissionDetailsDAO getAdmissionDetailsDao;
   public static IAdmissionTypeDAO admissionTypeDAO;
@@ -35,6 +42,7 @@ public class DischargeForm extends AdminAbstractAction {
     return ACTION_TITLE;
   }
 
+  @Override
   public void dischargeForm() {
 
     int flag = 0;

@@ -24,7 +24,7 @@ public class DischargeFormDAO implements IDischargeFormDAO {
         
         int result;
         int response;
-        boolean bool = false;
+        boolean output = false;
         Date date = admission.getDischargeDate();
         String dischargeSQL = "UPDATE admission SET date_of_discharge = ? , comments = ? WHERE admissionID = ?";
         String updateBed = "UPDATE beds SET isOccupied = 0 WHERE bed_id = " + admission.getBedID();
@@ -40,7 +40,7 @@ public class DischargeFormDAO implements IDischargeFormDAO {
             if (result == 1) {
                 response = statement.executeUpdate(updateBed);
                 if (response == 1) {
-                    bool = true;
+                    output = true;
                 }
             }
         } catch (SQLException throwables) {
@@ -48,6 +48,6 @@ public class DischargeFormDAO implements IDischargeFormDAO {
         }
         databaseConnection.closeDBConnection();
         
-        return bool;
+        return output;
     }
 }

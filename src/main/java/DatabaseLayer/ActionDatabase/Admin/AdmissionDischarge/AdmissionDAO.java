@@ -43,21 +43,21 @@ public class AdmissionDAO implements IPatientDAO, IAdmissionTypeDAO, IDiseaseDAO
   public boolean ifPatientExists(String patientID) {
     connection = databaseConnection.openDBConnection();
     Statement statement = databaseConnection.createStatement(connection);
-    boolean res = false;
+    boolean output = false;
     
     String SQL = "SELECT * FROM patients WHERE patient_id = '" + patientID + "'";
     ResultSet result;
     try {
       result = statement.executeQuery(SQL);
       if (result.next()) {
-        res = true;
+        output = true;
       }
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
     databaseConnection.closeDBConnection();
     
-    return res;
+    return output;
   }
   
   @Override
@@ -85,19 +85,19 @@ public class AdmissionDAO implements IPatientDAO, IAdmissionTypeDAO, IDiseaseDAO
     connection = databaseConnection.openDBConnection();
     Statement statement = databaseConnection.createStatement(connection);
 
-    Map<Integer, String> type = new HashMap<>();
-    ResultSet types;
+    Map<Integer, String> typeMap = new HashMap<>();
+    ResultSet admissionTypes;
     try {
-      types = statement.executeQuery("SELECT * FROM admission_type");
-      while (types.next()) {
-        type.put(types.getInt("admission_type_code"), types.getString("admission_type"));
+      admissionTypes = statement.executeQuery("SELECT * FROM admission_type");
+      while (admissionTypes.next()) {
+        typeMap.put(admissionTypes.getInt("admission_type_code"), admissionTypes.getString("admission_type"));
       }
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
     
     databaseConnection.closeDBConnection();
-    return type;
+    return typeMap;
   }
   
   @Override
@@ -105,19 +105,19 @@ public class AdmissionDAO implements IPatientDAO, IAdmissionTypeDAO, IDiseaseDAO
     connection = databaseConnection.openDBConnection();
     Statement statement = databaseConnection.createStatement(connection);
 
-    Map<Integer, String> disease = new HashMap<>();
+    Map<Integer, String> diseaseMap = new HashMap<>();
     ResultSet diseases;
     try {
       diseases = statement.executeQuery("SELECT * FROM disease");
       while (diseases.next()) {
-        disease.put(diseases.getInt("disease_id"), diseases.getString("disease_code"));
+        diseaseMap.put(diseases.getInt("disease_id"), diseases.getString("disease_code"));
       }
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
     databaseConnection.closeDBConnection();
     
-    return disease;
+    return diseaseMap;
   }
 
   @Override
@@ -145,19 +145,19 @@ public class AdmissionDAO implements IPatientDAO, IAdmissionTypeDAO, IDiseaseDAO
     connection = databaseConnection.openDBConnection();
     Statement statement = databaseConnection.createStatement(connection);
 
-    Map<Integer, String> doctorList = new HashMap<>();
+    Map<Integer, String> doctorsMap = new HashMap<>();
     ResultSet doctors;
     try {
       doctors = statement.executeQuery("SELECT * FROM doctors");
       while (doctors.next()) {
-        doctorList.put(doctors.getInt("id"), doctors.getString("first_name") + " " + doctors.getString("last_name"));
+        doctorsMap.put(doctors.getInt("id"), doctors.getString("first_name") + " " + doctors.getString("last_name"));
       }
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
     databaseConnection.closeDBConnection();
     
-    return doctorList;
+    return doctorsMap;
   }
 
   @Override
@@ -205,19 +205,19 @@ public class AdmissionDAO implements IPatientDAO, IAdmissionTypeDAO, IDiseaseDAO
     connection = databaseConnection.openDBConnection();
     Statement statement = databaseConnection.createStatement(connection);
 
-    Map<Integer, String> wardList = new HashMap<>();
+    Map<Integer, String> wardMap = new HashMap<>();
     ResultSet wards;
     try {
       wards = statement.executeQuery("SELECT * FROM wards");
       while (wards.next()) {
-        wardList.put(wards.getInt("ward_id"), wards.getString("name"));
+        wardMap.put(wards.getInt("ward_id"), wards.getString("name"));
       }
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
     databaseConnection.closeDBConnection();
     
-    return wardList;
+    return wardMap;
   }
 
   @Override
@@ -245,19 +245,19 @@ public class AdmissionDAO implements IPatientDAO, IAdmissionTypeDAO, IDiseaseDAO
     connection = databaseConnection.openDBConnection();
     Statement statement = databaseConnection.createStatement(connection);
 
-    Map<Integer, String> bedList = new HashMap<>();
+    Map<Integer, String> bedMap = new HashMap<>();
     ResultSet availableBeds;
     try {
       availableBeds = statement.executeQuery("SELECT * FROM beds WHERE isOccupied = 0");
       while (availableBeds.next()) {
-        bedList.put(availableBeds.getInt("bed_id"), availableBeds.getString("bed_code"));
+        bedMap.put(availableBeds.getInt("bed_id"), availableBeds.getString("bed_code"));
       }
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
     databaseConnection.closeDBConnection();
     
-    return bedList;
+    return bedMap;
   }
 
   @Override
