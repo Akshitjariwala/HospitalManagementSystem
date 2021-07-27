@@ -30,5 +30,4 @@ class ViewAppointmentsDaoTest {
     assertEquals(2, appointments.size());
   }
 
-
 }
