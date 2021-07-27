@@ -22,9 +22,9 @@ public class PatientRegistrationDAOTest {
   public void getPatientNameTest() {
 
     Patient patient = new Patient("Kishan", "Patel", "", "kishan@gmail.ca", "88877645676", "", "halifax", "NS", "", "", "User2409", "Qawsed@2134");
-  int result=1;
+    int result = 1;
     Mockito.when(patientRegistrationDAO.savePatientDetails(patient)).thenReturn(result);
-    assertEquals(1,result);
+    assertEquals(1, result);
 
   }
 

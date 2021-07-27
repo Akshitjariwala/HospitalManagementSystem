@@ -25,11 +25,6 @@ public class AdminActionDatabase implements IAdminActionDatabase {
   }
 
   @Override
-  public IAdmissionDischargeDatabase admissionDischarge() {
-    return null;
-  }
-
-  @Override
   public IAppointmentDAO manageAppointments() {
     return new AppointmentDAO();
   }
@@ -40,7 +35,7 @@ public class AdminActionDatabase implements IAdminActionDatabase {
   }
 
   @Override
-  public IAdmissionDetailsDAO admissionDetailsDAO(){
+  public IAdmissionDetailsDAO admissionDetailsDAO() {
     return new AdmissionDAO();
   }
 
@@ -50,32 +45,32 @@ public class AdminActionDatabase implements IAdminActionDatabase {
   }
 
   @Override
-  public IBedAdmissionDAO bedAdmissionDAO(){
+  public IBedAdmissionDAO bedAdmissionDAO() {
     return new AdmissionDAO();
   }
 
   @Override
-  public IDiseaseDAO diseaseDAO(){
+  public IDiseaseDAO diseaseDAO() {
     return new AdmissionDAO();
   }
 
   @Override
-  public IDoctorDAO doctorDAO(){
+  public IDoctorDAO doctorDAO() {
     return new AdmissionDAO();
   }
 
   @Override
-  public IPatientDAO patientDAO(){
+  public IPatientDAO patientDAO() {
     return new AdmissionDAO();
   }
 
   @Override
-  public IDischargeFormDAO dischargeDAO(){
+  public IDischargeFormDAO dischargeDAO() {
     return new DischargeFormDAO();
   }
 
   @Override
-  public IWardAdmissionDAO wardAdmissionDAO(){
+  public IWardAdmissionDAO wardAdmissionDAO() {
     return new AdmissionDAO();
   }
 

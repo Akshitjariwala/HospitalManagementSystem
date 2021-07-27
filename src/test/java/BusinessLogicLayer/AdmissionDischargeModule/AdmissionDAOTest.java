@@ -5,32 +5,34 @@ import DatabaseLayer.ActionDatabase.Admin.AdmissionDischarge.AdmissionDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AdmissionDAOTest {
 
   private AdmissionDAO admissionDAO;
-  
+
   @BeforeEach
   void setup() {
     admissionDAO = Mockito.mock(AdmissionDAO.class);
   }
-  
+
   @Test
   void getPatient() {
     Mockito.when(admissionDAO.getPatient("doe999")).thenReturn("John Doe");
     assertEquals("John Doe", admissionDAO.getPatient("doe999"), "Test Failed!. Incorrect or No value received.");
   }
-  
+
   @Test
   void getAdmissionType() {
     Mockito.when(admissionDAO.getAdmissionType(1)).thenReturn("Covid");
     assertEquals("Covid", admissionDAO.getAdmissionType(1), "Test Failed!. Incorrect or No value received.");
   }
-  
+
   @Test
   void getAdmissionTypesList() {
     Map<Integer, String> admissionTypeList = new HashMap<>();
@@ -84,7 +86,7 @@ class AdmissionDAOTest {
     Mockito.when(admissionDAO.getDoctorList()).thenReturn(doctorList);
     assertEquals(doctorList, admissionDAO.getDoctorList(), "Test Failed!. Incorrect or No value received.");
   }
-  
+
   @Test
   void getDoctor() {
     Mockito.when(admissionDAO.getDoctor(4)).thenReturn(4);
@@ -130,7 +132,7 @@ class AdmissionDAOTest {
   void getBedCode() {
     Mockito.when(admissionDAO.getBedCode(2)).thenReturn("10002-5");
     assertEquals("10002-5", admissionDAO.getBedCode(2), "Test Failed!. Incorrect or No value received.");
-  
+
   }
 
   @Test
