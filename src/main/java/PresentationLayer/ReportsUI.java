@@ -1,7 +1,7 @@
 /*
  * CSCI 5308 Group Project
  * @author: Sai Vaishnavi Jupudi
- * @description: This program handles reports 
+ * @description: This program handles reports
  *
  * */
 package PresentationLayer;

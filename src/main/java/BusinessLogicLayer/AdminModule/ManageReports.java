@@ -41,8 +41,7 @@ public class ManageReports extends AdminAbstractAction {
     do {
       System.out.println("Enter the Doctor Id :");
       int doctorId = inputData.nextInt();
-      ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
-      int count = manageReportsDAO.checkDoctorId(doctorId);
+      int count = iManageReportsDAO.checkDoctorId(doctorId);
       if (count > 0) {
         report.setDoctorId(doctorId);
       } else {
@@ -53,8 +52,7 @@ public class ManageReports extends AdminAbstractAction {
     do {
       System.out.println("Enter the Patient id :");
       String patientId = inputData.next();
-      ManageReportsDAO manageReportsDAO = new ManageReportsDAO();
-      String str = manageReportsDAO.checkPatientId(patientId);
+      String str = iManageReportsDAO.checkPatientId(patientId);
       if (str != null) {
         report.setPatientId(patientId);
       } else {

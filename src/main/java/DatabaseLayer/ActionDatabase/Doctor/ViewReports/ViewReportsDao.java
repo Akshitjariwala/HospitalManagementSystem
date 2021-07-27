@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Doctor.ViewReports;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnection;
 import DatabaseLayer.DatabaseConnection.IDatabaseConnectionFactory;
 
-public class ViewReportsDao {
+public class ViewReportsDao implements IViewReportsDao {
   private Connection connection = null;
   IDatabaseConnection databaseConnection;
   IDatabaseConnectionFactory databaseConnectionFactory;
