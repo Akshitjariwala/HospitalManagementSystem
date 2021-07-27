@@ -4,5 +4,5 @@ import java.sql.ResultSet;
 
 public interface IViewPatientReportsDAO {
 
-    ResultSet fetchLabReports(String patientID);
+  ResultSet fetchLabReports(String patientID);
 }

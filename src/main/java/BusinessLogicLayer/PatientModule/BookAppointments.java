@@ -8,8 +8,6 @@
  */
 package BusinessLogicLayer.PatientModule;
 
-import BusinessLogicLayer.PatientModule.PatientInterfaces.IBookAppointments;
-import DatabaseLayer.ActionDatabase.Patient.BookAppointments.BookAppointmentsDAO;
 import DatabaseLayer.ActionDatabase.Patient.BookAppointments.IBookAppointmentsDAO;
 import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import PresentationLayer.PatientUI;
@@ -28,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class BookAppointments extends PatientAbstractAction {
 
   private IBookAppointmentsDAO iBookAppointmentsDAO;
-  private static final String ACTION_TITLE ="Book Appointments";
+  private static final String ACTION_TITLE = "Book Appointments";
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   private ResultSet resultSet = null;
   private Scanner readInput = new Scanner(System.in);
@@ -52,7 +50,7 @@ public class BookAppointments extends PatientAbstractAction {
   }};
 
   public BookAppointments() {
-    iBookAppointmentsDAO= iPatientActionDatabase.getAppointmentDAO();
+    iBookAppointmentsDAO = iPatientActionDatabase.getAppointmentDAO();
   }
 
   @Override
@@ -72,7 +70,7 @@ public class BookAppointments extends PatientAbstractAction {
 
       //Patient
       globalPatientID = patientid;
-      String patientFullName= iBookAppointmentsDAO.getPatientName(patientid);
+      String patientFullName = iBookAppointmentsDAO.getPatientName(patientid);
       appointmentWithDoctor.setPatientName(patientFullName);
 
       //Select doctor
@@ -82,11 +80,11 @@ public class BookAppointments extends PatientAbstractAction {
           System.err.println("*** Please enter correct doctor prefenence ***\n");
 
         System.out.println("Select doctor (Option) with whom you want to book an appointment:");
-        String x=reader.readLine();
+        String x = reader.readLine();
         if (!x.isEmpty()) {
           doctorChoice = Integer.parseInt(x);
-        }else {
-          doctorChoice=0;
+        } else {
+          doctorChoice = 0;
         }
         doctorFlag = true;
       } while (!(doctorChoice > 0 && doctorChoice <= doctorList.size()));
@@ -139,7 +137,7 @@ public class BookAppointments extends PatientAbstractAction {
 
   public void displayDoctorList() {
     try {
-      resultSet= iBookAppointmentsDAO.fetchDoctorList();
+      resultSet = iBookAppointmentsDAO.fetchDoctorList();
       //print doctor list
       System.out.println("|\tOption\t\t|\t\tDoctor Name\t\t|\tSpecialization\t\t|\tExperience\t\t|");
       System.out.println("-------------------------------------------------------------------------");
@@ -149,7 +147,7 @@ public class BookAppointments extends PatientAbstractAction {
         doctorList.add(resultSet.getString(1));
         System.out.println("|\t\t" + ++optionIndex + "\t\t   " + resultSet.getString(1) + "\t\t\t\t" + resultSet.getString(2) + "\t\t\t\t" + resultSet.getDouble(3) + "\t|");
       }
-    }catch (SQLException SQL){
+    } catch (SQLException SQL) {
       System.err.println("SQL ERROR");
     }
   }
@@ -255,7 +253,7 @@ public class BookAppointments extends PatientAbstractAction {
 
   public void saveEnteredDetails(String patient, String doctor) {
 
-    Boolean isAppointmentBooked=iBookAppointmentsDAO.saveAppointment(patient,doctor,appointmentWithDoctor);
+    Boolean isAppointmentBooked = iBookAppointmentsDAO.saveAppointment(patient, doctor, appointmentWithDoctor);
     if (isAppointmentBooked) {
       System.out.println("\n***** NEW APPOINTMENT CREATED *****");
     }
