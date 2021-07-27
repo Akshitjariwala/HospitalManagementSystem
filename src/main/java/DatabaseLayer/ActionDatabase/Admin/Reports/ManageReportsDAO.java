@@ -47,7 +47,7 @@ public class ManageReportsDAO implements IManageReportsDAO{
    * The id should be existing in the doctors table
    * It is matched with the help of query
    */
-  public int checkDoctorId(int id) {
+  public int checkDoctorId(String id) {
     connection = databaseConnection.openDBConnection();
     Statement statement = databaseConnection.createStatement(connection);
 
@@ -126,7 +126,7 @@ public class ManageReportsDAO implements IManageReportsDAO{
       ResultSet rs = statement.executeQuery(selectQuery);
       while (rs.next()) {
         report.setReportId(rs.getInt("rep_id"));
-        report.setDoctorId(rs.getInt("doc_id"));
+        report.setDoctorId(rs.getString("doc_id"));
         report.setPatientId(rs.getString("patient_id"));
         report.setDiagnosisName(rs.getString("diagnosis_name"));
         report.setDate(rs.getString("date"));

@@ -13,8 +13,6 @@ public interface IAdminActionDatabase {
 
   IBedDAO manageBed();
 
-  IAdmissionDischargeDatabase admissionDischarge();
-
   IAppointmentDAO manageAppointments();
 
   IAdmissionFormDAO saveAdmissionForm();

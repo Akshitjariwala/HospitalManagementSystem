@@ -2,23 +2,30 @@ package DatabaseLayer.Dao;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 import DatabaseLayer.ActionDatabase.Patient.Registration.PatientRegistrationDAO;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class PatientRegistrationDAOTest {
 
-  @Test
-  public void savePatientDetailsTest() {
-    PatientRegistrationDAO patientRegistrationDAO = new PatientRegistrationDAO();
-    Patient patient = new Patient();
-    patient.setFirstName("mansi");
-    patient.setLastName("patel");
-    patient.setEmaiID("qawsed@wsedxc.sa");
-    patient.setCityName("Halifax");
-    patient.setStateName("NS");
-    patient.setUserID("mansi123");
-    patient.setPassword("Qawsed@sxdc23");
-    assertEquals(1, patientRegistrationDAO.savePatientDetails(patient));
+  PatientRegistrationDAO patientRegistrationDAO;
+
+  @BeforeEach
+  void setup() {
+    patientRegistrationDAO = Mockito.mock(PatientRegistrationDAO.class);
   }
+
+  @Test
+  public void getPatientNameTest() {
+
+    Patient patient = new Patient("Kishan", "Patel", "", "kishan@gmail.ca", "88877645676", "", "halifax", "NS", "", "", "User2409", "Qawsed@2134");
+    int result = 1;
+    Mockito.when(patientRegistrationDAO.savePatientDetails(patient)).thenReturn(result);
+    assertEquals(1, result);
+
+  }
+
 }
