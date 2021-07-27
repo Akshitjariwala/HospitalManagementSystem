@@ -1,3 +1,9 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Sai Vaishnavi Jupudi
+ * @description: This program handles Doctor Login
+ *
+ * */
 package BusinessLogicLayer.User;
 
 import BusinessLogicLayer.BeanClasses.Doctor;

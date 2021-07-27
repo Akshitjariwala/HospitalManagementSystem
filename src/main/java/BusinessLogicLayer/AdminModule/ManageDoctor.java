@@ -1,7 +1,7 @@
 /*
  * CSCI 5308 Group Project
  * @author: Sai Vaishnavi Jupudi
- * @description: This program handles doctor registration
+ * @description: This program handles doctor registration and updating the doctor details
  *
  * */
 package BusinessLogicLayer.AdminModule;
@@ -136,7 +136,7 @@ public class ManageDoctor extends AdminAbstractAction {
       String password = inputData.nextLine();
 
       if (password.matches("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" +
-          "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$")) {
+              "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$")) {
         doct.setPassword(password);
       } else {
         System.out.println("Please enter valid input:");
@@ -232,7 +232,7 @@ public class ManageDoctor extends AdminAbstractAction {
           System.out.println("Enter Password :");
           password = scanner.nextLine();
           if (password.matches("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" +
-              "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$")) {
+                  "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$")) {
             str = "password = " + password;
           } else {
             System.out.println("Please enter valid input:");

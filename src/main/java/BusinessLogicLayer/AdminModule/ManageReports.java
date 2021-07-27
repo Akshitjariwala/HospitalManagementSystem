@@ -9,7 +9,6 @@ package BusinessLogicLayer.AdminModule;
 import BusinessLogicLayer.BeanClasses.Reports;
 import DatabaseLayer.ActionDatabase.Admin.AdminAbstractAction;
 import DatabaseLayer.ActionDatabase.Admin.Reports.IManageReportsDAO;
-import DatabaseLayer.ActionDatabase.Admin.Reports.ManageReportsDAO;
 import PresentationLayer.AdminUI;
 
 import java.util.Scanner;
@@ -113,6 +112,7 @@ public class ManageReports extends AdminAbstractAction {
       e.printStackTrace();
     }
   }
+
   public void updateReports() {
 
     Scanner inputData = new Scanner(System.in);
