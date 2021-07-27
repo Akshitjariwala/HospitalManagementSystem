@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import BusinessLogicLayer.BeanClasses.Patient;
+import DatabaseLayer.ActionDatabase.Doctor.ViewPatients.ViewPatientsDao;
 
 class ViewPatientsDaoTest {
 

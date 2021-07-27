@@ -1,22 +1,36 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Vishal Rakesh Jaiswal
+ * @description: This program allows a doctor to view either reports of all the patients
+ * under the supervision of the doctor or reports of a specific patient.
+ * The database access is done using common DatabaseConnection class
+ *
+ * */
 package BusinessLogicLayer.DoctorModule;
 
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Reports;
-import DatabaseLayer.Dao.ViewReportsDao;
+import DatabaseLayer.ActionDatabase.Doctor.DoctorAbstractAction;
+import DatabaseLayer.ActionDatabase.Doctor.ViewReports.IViewReportsDao;
 
-public class ViewReports {
+public class ViewReports extends DoctorAbstractAction implements IViewReports {
 
-  int docId;
-  ViewReportsDao vrdao;
+  private int docId;
+  private IViewReportsDao iViewReportsDao;
+  private static final String ACTION_TITLE = "View Reports";
 
   public ViewReports(int docId) {
     this.docId = docId;
-    vrdao = new ViewReportsDao();
+    iViewReportsDao = iDoctorActionDatabase.viewReportsDAO();
   }
-
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
+  @Override
   public boolean viewAllReports() {
-    List<Reports> reports = vrdao.getAllReports(this.docId);
+    List<Reports> reports = iViewReportsDao.getAllReports(this.docId);
     if (reports.size() > 0) {
       System.out.println("\n================================================================");
       System.out.println("\t\t\t\tAll Reports under your supervision\t\t\t\t");
@@ -35,9 +49,9 @@ public class ViewReports {
       return false;
     }
   }
-
+  @Override
   public boolean viewPatientReports(String patientId) {
-    List<Reports> reports = vrdao.getPatientReports(this.docId, patientId);
+    List<Reports> reports = iViewReportsDao.getPatientReports(this.docId, patientId);
     if (reports.size() > 0) {
       System.out.println("\n================================================================");
       System.out.println("\t\t\t\tAll Reports of Patient\t\t\t\t");

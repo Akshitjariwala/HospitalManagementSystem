@@ -25,17 +25,17 @@ class ReportsTest {
   @Test
   void getDoctorId() {
     Reports report = new Reports();
-    int id = 2021;
+    String id = "2021";
     report.setDoctorId(id);
-    assertEquals(2021, report.getDoctorId(), "The id doesnt match ");
+    assertEquals("2021", report.getDoctorId(), "The id doesnt match ");
   }
 
   @Test
   void setDoctorId() {
     Reports report = new Reports();
-    int id = 2021;
+    String id = "2021";
     report.setDoctorId(id);
-    assertEquals(2021, report.getDoctorId(), "The id doesnt match ");
+    assertEquals("2021", report.getDoctorId(), "The id doesnt match ");
   }
 
   @Test

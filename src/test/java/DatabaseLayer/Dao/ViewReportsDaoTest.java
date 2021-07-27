@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import BusinessLogicLayer.BeanClasses.Reports;
+import DatabaseLayer.ActionDatabase.Doctor.ViewReports.ViewReportsDao;
 
 class ViewReportsDaoTest {
   private ViewReportsDao viewreportsDAO;
@@ -23,7 +24,7 @@ class ViewReportsDaoTest {
   void test_getAllReports() {
     Reports r1 = new Reports();
     r1.setReportId(1);
-    r1.setDoctorId(2);
+    r1.setDoctorId("2");
     r1.setDate("11-07-2021");
     r1.setDiagnosisName("Covid-19");
     r1.setPatientId("vishal123");
@@ -40,7 +41,7 @@ class ViewReportsDaoTest {
   void test_getAllPatientReports() {
     Reports r1 = new Reports();
     r1.setReportId(1);
-    r1.setDoctorId(2);
+    r1.setDoctorId("2");
     r1.setDate("11-07-2021");
     r1.setDiagnosisName("Covid-19");
     r1.setPatientId("vishal123");

@@ -1,22 +1,36 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Vishal Rakesh Jaiswal
+ * @description: This program allows a doctor to view patients who either have appointnment with the doctor
+ * or have been admitted against the doctor.
+ * The database access is done using common DatabaseConnection class
+ *
+ * */
 package BusinessLogicLayer.DoctorModule;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Patient;
-import DatabaseLayer.Dao.ViewPatientsDao;
+import DatabaseLayer.ActionDatabase.Doctor.DoctorAbstractAction;
+import DatabaseLayer.ActionDatabase.Doctor.ViewPatients.IViewPatientsDao;
 
-public class ViewPatients {
+public class ViewPatients extends DoctorAbstractAction implements IViewPatients {
 
-  int docId;
-  ViewPatientsDao pdao;
+  private int docId;
+  private IViewPatientsDao iViewPatientsDao;
+  private static final String ACTION_TITLE = "View Patients";
 
   public ViewPatients(int docId) {
     this.docId = docId;
-    pdao = new ViewPatientsDao();
+    iViewPatientsDao=iDoctorActionDatabase.viewPatientsDao();
   }
-
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
+  @Override
   public boolean viewAllPatients() {
-    ArrayList<Patient> patients = pdao.getPatients(this.docId);
+    List<Patient> patients = iViewPatientsDao.getPatients(this.docId);
     if (patients.size() > 0) {
       System.out.println("================================================================");
       System.out.println("\t\t\t\tPatients under your supervision\t\t\t\t");

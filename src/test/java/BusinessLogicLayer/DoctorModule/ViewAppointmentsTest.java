@@ -22,7 +22,6 @@ class ViewAppointmentsTest {
     Mockito.when(viewappointment.viewAllAppointments()).thenReturn(flag);
 
     assertEquals(true, flag);
-
   }
 
   @Test

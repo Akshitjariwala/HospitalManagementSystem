@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import BusinessLogicLayer.BeanClasses.Appointment;
+import DatabaseLayer.ActionDatabase.Doctor.ViewAppointments.ViewAppointmentsDao;
 
 class ViewAppointmentsDaoTest {
 
@@ -28,6 +29,5 @@ class ViewAppointmentsDaoTest {
     Mockito.when(viewappointmentDAO.getAppointmentList(1, "CONFIRMED")).thenReturn(appointments);
     assertEquals(2, appointments.size());
   }
-
 
 }

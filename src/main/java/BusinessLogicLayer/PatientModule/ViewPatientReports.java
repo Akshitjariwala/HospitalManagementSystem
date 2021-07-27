@@ -9,38 +9,44 @@
  * */
 package BusinessLogicLayer.PatientModule;
 
-import BusinessLogicLayer.PatientModule.PatientInterfaces.ViewLabReportsInterface;
-import DatabaseLayer.DatabaseConnection.DatabaseConnection;
+import BusinessLogicLayer.PatientModule.PatientInterfaces.IViewLabReports;
+import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
+import DatabaseLayer.ActionDatabase.Patient.ViewReports.IViewPatientReportsDAO;
 import PresentationLayer.PatientUI;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
-public class ViewPatientReports implements ViewLabReportsInterface {
+public class ViewPatientReports extends PatientAbstractAction implements IViewLabReports {
 
-  private static DatabaseConnection databaseConnection = DatabaseConnection.createInstance();
-  private static Connection connection = databaseConnection.openDBConnection();
   private Statement statement = null;
+  private IViewPatientReportsDAO iViewPatientReportsDAO;
+  private static final String ACTION_TITLE = "View Patient Reports";
 
-  public void viewLabReports(String patientID,String patientName) {
+  public ViewPatientReports() {
+    iViewPatientReportsDAO = iPatientActionDatabase.viewReportsDAO();
+  }
 
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
+
+  public void viewLabReports(String patientID, String patientName) {
+
+    ResultSet resultSet = null;
     System.out.println("\n===========================\n\tYOUR LAB REPORTS\n===========================");
     System.out.println("Fetching Lab Reports.....\n");
     try {
       TimeUnit.SECONDS.sleep(5);
       System.out.println("|\tNo.\t|\tPatient_id\t|\tDiagnosis Name\t|\tReferred By\t\t|\tDate\t|\tTest Type\t|\tResult\t|");
       System.out.println("--------------------------------------------------------------------------------------------------------------------");
-      String queryToFetchReports = "SELECT rep_id,diagnosis_name,CONCAT('Dr.',dr.first_name,' ',dr.last_name) as Referred_By,date,test_type,test_result \n" +
-              "FROM lab_reports lr join doctors dr on dr.id=lr.doc_id \n" +
-              "WHERE lr.patient_id='" + patientID + "';";
-      statement = connection.createStatement();
-      ResultSet resultSet = statement.executeQuery(queryToFetchReports);
+      resultSet = iViewPatientReportsDAO.fetchLabReports(patientID);
       int index = 0;
 
-      if (resultSet.getRow()!=0){
+      if (resultSet.next()) {
         while (resultSet.next()) {
           index++;
           int reportID = resultSet.getInt(1);
@@ -51,13 +57,13 @@ public class ViewPatientReports implements ViewLabReportsInterface {
           String result = resultSet.getString(6);
           System.out.println("|\t" + index + "\t\tReport " + reportID + "\t\t\t" + diagnosisType + "\t\t" + doctorName + "\t\t" + dateOfReport + "\t\t" + testType + "\t\t" + result);
         }
-      }else {
+      } else {
         System.out.println("\t--------------- NO NEW REPORTS AVAILABLE ---------------");
       }
 
       //Redirect to previous Menu
-      PatientUI patientUI=new PatientUI();
-      patientUI.mainPatientUI(patientID,patientName);
+      PatientUI patientUI = new PatientUI();
+      patientUI.mainPatientUI(patientID, patientName);
     } catch (InterruptedException e) {
       System.err.print("INTERRUPTED");
     } catch (SQLException e) {

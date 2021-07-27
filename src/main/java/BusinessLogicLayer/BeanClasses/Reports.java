@@ -2,7 +2,7 @@ package BusinessLogicLayer.BeanClasses;
 
 public class Reports {
   private int reportId;
-  private int doctorId;
+  private String doctorId;
   private String patientId;
   private String diagnosisName;
   private String date;
@@ -17,11 +17,11 @@ public class Reports {
     this.reportId = reportId;
   }
 
-  public int getDoctorId() {
+  public String getDoctorId() {
     return doctorId;
   }
 
-  public void setDoctorId(int doctorId) {
+  public void setDoctorId(String doctorId) {
     this.doctorId = doctorId;
   }
 
