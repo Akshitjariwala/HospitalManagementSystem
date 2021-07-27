@@ -1,4 +1,3 @@
-package BusinessLogicLayer.DoctorModule;
 /*
  * CSCI 5308 Group Project
  * @author: Vishal Rakesh Jaiswal
@@ -7,12 +6,14 @@ package BusinessLogicLayer.DoctorModule;
  * The database access is done using common DatabaseConnection class
  *
  * */
+package BusinessLogicLayer.DoctorModule;
+
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Patient;
 import DatabaseLayer.Dao.ViewPatientsDao;
 
-public class ViewPatients implements IViewPatients{
+public class ViewPatients implements IViewPatients {
 
   private int docId;
   private ViewPatientsDao pdao;
@@ -21,6 +22,7 @@ public class ViewPatients implements IViewPatients{
     this.docId = docId;
     pdao = new ViewPatientsDao();
   }
+
   @Override
   public boolean viewAllPatients() {
     List<Patient> patients = pdao.getPatients(this.docId);

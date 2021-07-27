@@ -8,6 +8,7 @@
  */
 package BusinessLogicLayer.PatientModule;
 
+import BusinessLogicLayer.PatientModule.PatientInterfaces.IBookAppointments;
 import DatabaseLayer.ActionDatabase.Patient.BookAppointments.IBookAppointmentsDAO;
 import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import PresentationLayer.PatientUI;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class BookAppointments extends PatientAbstractAction {
+public class BookAppointments extends PatientAbstractAction implements IBookAppointments {
 
   private IBookAppointmentsDAO iBookAppointmentsDAO;
   private static final String ACTION_TITLE = "Book Appointments";
