@@ -27,32 +27,26 @@ public class Admission {
     this.diseaseID = diseaseID;
   }
 
-  // getAdmissionDate() returns the date of Admission.
   public Date getAdmissionDate() {
     return admissionDate;
   }
 
-  // setAdmissionDate() sets the date of Admission.
   public void setAdmissionDate(Date admissionDate) {
     this.admissionDate = admissionDate;
   }
 
-  // getDischargeDate() returns the date of Discharge.
   public Date getDischargeDate() {
     return dischargeDate;
   }
 
-  // setAdmissionDate() sets the date of Discharge.
   public void setDischargeDate(Date dischargeDate) {
     this.dischargeDate = dischargeDate;
   }
 
-  // getDischargeComment() returns Discharge comment.
   public String getDischargeComment() {
     return dischargeComment;
   }
 
-  // setDischargeComment() sets Discharge comment.
   public void setDischargeComment(String dischargeComment) {
     this.dischargeComment = dischargeComment;
   }

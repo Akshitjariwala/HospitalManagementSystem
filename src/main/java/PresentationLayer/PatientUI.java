@@ -1,16 +1,23 @@
+/*
+ * CSCI 5308 Group Project
+ * @author: Kishan Kahodariya
+ * @description: This program handles allows patient to
+ * select different feature of the system based on his/her type
+ * i.e. existing or new.
+ *
+ */
 package PresentationLayer;
 
 import BusinessLogicLayer.PatientModule.BookAppointments;
-import BusinessLogicLayer.PatientModule.PatientLogin;
 import BusinessLogicLayer.PatientModule.PatientRegistration;
 import BusinessLogicLayer.PatientModule.ViewPatientReports;
-import PresentationLayer.Interfaces.PatientUIInterface;
+import BusinessLogicLayer.User.PatientUser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PatientUI implements PatientUIInterface {
+public class PatientUI {
 
   private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -68,7 +75,7 @@ public class PatientUI implements PatientUIInterface {
 
   public void loginOrRegistrationUI() {
     PatientRegistration newPatient = new PatientRegistration();
-    PatientLogin patientLogin = new PatientLogin();
+
     int optionSelected = 0;
     System.out.println("\n1. Existing Patient");
     System.out.println("2. New Patient");
@@ -85,13 +92,12 @@ public class PatientUI implements PatientUIInterface {
 
       switch (optionSelected) {
         case 1:
-          patientLogin.patientLogin();
+          PatientUser patient = new PatientUser();
+          patient.login();
           break;
-
         case 2:
           newPatient.newPatientRegistration();
           break;
-
         default:
           System.err.println("Some error occured");
           break;

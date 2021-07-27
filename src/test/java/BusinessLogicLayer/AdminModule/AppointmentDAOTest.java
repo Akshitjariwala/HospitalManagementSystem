@@ -1,7 +1,7 @@
 package BusinessLogicLayer.AdminModule;
 
 import BusinessLogicLayer.BeanClasses.Appointment;
-import DatabaseLayer.ActionDatabase.Admin.ManageAppointmentDatabase;
+import DatabaseLayer.ActionDatabase.Admin.Appointments.AppointmentDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppointmentDAOTest {
 
-  private ManageAppointmentDatabase manageAppointmentDatabase;
+  private AppointmentDAO manageAppointmentDatabase;
 
   @BeforeEach
   void setup() {
-    manageAppointmentDatabase = Mockito.mock(ManageAppointmentDatabase.class);
+    manageAppointmentDatabase = Mockito.mock(AppointmentDAO.class);
   }
 
   @Test
