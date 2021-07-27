@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Doctor.ViewAppointments;
 
 import java.util.List;
 

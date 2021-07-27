@@ -10,20 +10,26 @@ package BusinessLogicLayer.DoctorModule;
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Reports;
-import DatabaseLayer.Dao.ViewReportsDao;
+import DatabaseLayer.ActionDatabase.Doctor.DoctorAbstractAction;
+import DatabaseLayer.ActionDatabase.Doctor.ViewReports.IViewReportsDao;
 
-public class ViewReports implements IViewReports {
+public class ViewReports extends DoctorAbstractAction implements IViewReports {
 
   private int docId;
-  private ViewReportsDao vrdao;
+  private IViewReportsDao iViewReportsDao;
+  private static final String ACTION_TITLE = "View Reports";
 
   public ViewReports(int docId) {
     this.docId = docId;
-    vrdao = new ViewReportsDao();
+    iViewReportsDao = iDoctorActionDatabase.viewReportsDAO();
+  }
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
   }
   @Override
   public boolean viewAllReports() {
-    List<Reports> reports = vrdao.getAllReports(this.docId);
+    List<Reports> reports = iViewReportsDao.getAllReports(this.docId);
     if (reports.size() > 0) {
       System.out.println("\n================================================================");
       System.out.println("\t\t\t\tAll Reports under your supervision\t\t\t\t");
@@ -44,7 +50,7 @@ public class ViewReports implements IViewReports {
   }
   @Override
   public boolean viewPatientReports(String patientId) {
-    List<Reports> reports = vrdao.getPatientReports(this.docId, patientId);
+    List<Reports> reports = iViewReportsDao.getPatientReports(this.docId, patientId);
     if (reports.size() > 0) {
       System.out.println("\n================================================================");
       System.out.println("\t\t\t\tAll Reports of Patient\t\t\t\t");

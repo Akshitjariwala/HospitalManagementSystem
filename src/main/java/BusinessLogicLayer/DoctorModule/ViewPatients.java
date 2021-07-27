@@ -11,21 +11,26 @@ package BusinessLogicLayer.DoctorModule;
 import java.util.List;
 
 import BusinessLogicLayer.BeanClasses.Patient;
-import DatabaseLayer.Dao.ViewPatientsDao;
+import DatabaseLayer.ActionDatabase.Doctor.DoctorAbstractAction;
+import DatabaseLayer.ActionDatabase.Doctor.ViewPatients.IViewPatientsDao;
 
-public class ViewPatients implements IViewPatients {
+public class ViewPatients extends DoctorAbstractAction implements IViewPatients {
 
   private int docId;
-  private ViewPatientsDao pdao;
+  private IViewPatientsDao iViewPatientsDao;
+  private static final String ACTION_TITLE = "View Patients";
 
   public ViewPatients(int docId) {
     this.docId = docId;
-    pdao = new ViewPatientsDao();
+    iViewPatientsDao=iDoctorActionDatabase.viewPatientsDao();
   }
-
+  @Override
+  public String getActionTitle() {
+    return ACTION_TITLE;
+  }
   @Override
   public boolean viewAllPatients() {
-    List<Patient> patients = pdao.getPatients(this.docId);
+    List<Patient> patients = iViewPatientsDao.getPatients(this.docId);
     if (patients.size() > 0) {
       System.out.println("================================================================");
       System.out.println("\t\t\t\tPatients under your supervision\t\t\t\t");
