@@ -7,7 +7,7 @@
 package BusinessLogicLayer.User;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
-import DatabaseLayer.Dao.DoctorLoginDAO;
+import DatabaseLayer.ActionDatabase.Doctor.Login.DoctorLoginDAO;
 import PresentationLayer.DoctorUI;
 
 import java.util.Scanner;

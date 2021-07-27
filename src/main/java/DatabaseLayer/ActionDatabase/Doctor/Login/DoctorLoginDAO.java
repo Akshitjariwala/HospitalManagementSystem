@@ -1,4 +1,4 @@
-package DatabaseLayer.Dao;
+package DatabaseLayer.ActionDatabase.Doctor.Login;
 
 import BusinessLogicLayer.BeanClasses.Doctor;
 import DatabaseLayer.DatabaseConnection.DatabaseConnectionFactory;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DoctorLoginDAO {
+public class DoctorLoginDAO implements IDoctorLoginDAO {
 
   private Connection connection = null;
   IDatabaseConnection databaseConnection;
