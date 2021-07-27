@@ -21,7 +21,7 @@ class ManageReportsDAOTest {
   void addReport() {
     Reports reports = new Reports();
     reports.setReportId(1);
-    reports.setDoctorId(2);
+    reports.setDoctorId("2");
     reports.setDate("27-07-2021");
     reports.setDiagnosisName("Covid-19");
     reports.setPatientId("vaishnavi");
@@ -33,8 +33,8 @@ class ManageReportsDAOTest {
 
   @Test
   void checkDoctorId() {
-    Mockito.when(manageReportsDAO.checkDoctorId(2)).thenReturn(1);
-    assertEquals(1, manageReportsDAO.checkDoctorId(2), "The values are not present");
+    Mockito.when(manageReportsDAO.checkDoctorId("2")).thenReturn(1);
+    assertEquals(1, manageReportsDAO.checkDoctorId("2"), "The values are not present");
   }
 
   @Test
@@ -47,7 +47,7 @@ class ManageReportsDAOTest {
   void getReportsDetails() {
     Reports r1 = new Reports();
     r1.setReportId(1);
-    r1.setDoctorId(2);
+    r1.setDoctorId("2");
     r1.setDate("11-07-2021");
     r1.setDiagnosisName("Covid-19");
     r1.setPatientId("vishal123");
