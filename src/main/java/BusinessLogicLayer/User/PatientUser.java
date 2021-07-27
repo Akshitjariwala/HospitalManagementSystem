@@ -1,8 +1,6 @@
 package BusinessLogicLayer.User;
 
-import DatabaseLayer.ActionDatabase.Patient.Login.IPatientLoginDAO;
 import DatabaseLayer.ActionDatabase.Patient.Login.PatientLoginDAO;
-import DatabaseLayer.ActionDatabase.Patient.PatientAbstractAction;
 import PresentationLayer.PatientUI;
 
 import java.io.BufferedReader;
