@@ -1,13 +1,9 @@
 package DatabaseLayer.ActionDatabase.Admin.Reports;
 
 import BusinessLogicLayer.BeanClasses.Reports;
-import DatabaseLayer.ActionDatabase.Doctor.ViewReports.ViewReportsDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,22 +28,31 @@ class ManageReportsDAOTest {
     reports.setTestType("RTPCR");
     Mockito.when(manageReportsDAO.addReport(reports)).thenReturn(1);
     assertEquals(1, manageReportsDAO.addReport(reports), "The values are not inserted");
-
   }
 
   @Test
   void checkDoctorId() {
+    Mockito.when(manageReportsDAO.checkDoctorId(2)).thenReturn(1);
+    assertEquals(1, manageReportsDAO.checkDoctorId(2), "The values are not present");
   }
 
   @Test
   void checkPatientId() {
-  }
-
-  @Test
-  void updateReport() {
+    Mockito.when(manageReportsDAO.checkPatientId("vaishnavi")).thenReturn("vaishnavi");
+    assertEquals("vaishnavi", manageReportsDAO.checkPatientId("vaishnavi"), "The values are not present");
   }
 
   @Test
   void getReportsDetails() {
+    Reports r1 = new Reports();
+    r1.setReportId(1);
+    r1.setDoctorId(2);
+    r1.setDate("11-07-2021");
+    r1.setDiagnosisName("Covid-19");
+    r1.setPatientId("vishal123");
+    r1.setTestResult("Negative");
+    r1.setTestType("RTPCR");
+    Mockito.when(manageReportsDAO.getReportsDetails(1)).thenReturn(r1);
+    assertEquals(r1, manageReportsDAO.getReportsDetails(1));
   }
 }
